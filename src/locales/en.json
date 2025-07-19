@@ -1,0 +1,31 @@
+{
+  "welcome": "Welcome, Mahmoud!",
+  "logout": "Log out",
+  "HomePageLink": "Home",
+  "AboutPageLink": "About Us",
+  "AdoptionPageLink": "Adoption",
+  "ContactUsPageLink": "Contact Us",
+  "ServicesPageLink": "Services",
+  "SignupPageLink": "Create an Account",
+  "LoginPageLink": "login",
+  "toggleLanguage": " toggleLanguage",
+  "footer": {
+    "getInTouch": "Let's Get In Touch",
+    "emailPlaceholder": "Enter Your Email",
+    "rights": "all rights reserved © 2025",
+    "terms": "Terms & Conditions",
+    "termsList": ["Privacy Policy", "Refund Policy", "User Agreement"]
+  },
+  "contacts": "Contacts",
+  "groomingReview": "Grooming Review",
+  "mainHeroText": "Your Pets, our priority",
+  "mainHeroParagraph": "Spend extra time & love with Dog walking",
+  "petLives": {
+    "title": "Your Pet lives for the day, the hour, even for the moment.",
+    "desc1": "All employees at Scooby have been carefully selected. Each employee always has the safety and care of your Pet in mind.",
+    "desc2": "Contact Us to schedule your services today!"
+  },
+  "adoption":{
+    "HeroText":"Find your new best friend"
+  }
+}
