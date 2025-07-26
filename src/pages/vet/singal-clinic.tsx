@@ -68,9 +68,9 @@ export default function SingleClinic() {
             </div>
           </div>
 
-            <div className=" rounded-xl">
-          <div className="mt-12 ">
-            <h2 className="text-2xl font-bold mb-4">Location</h2>
+          <div className=" rounded-xl">
+            <div className="mt-12 ">
+              <h2 className="text-2xl font-bold mb-4">Location</h2>
               <div className="flex items-center justify-center h-full text-gray-400">
                 <MapComponent
                   latitude={vet?.locations.coordinates[0] ?? 0}

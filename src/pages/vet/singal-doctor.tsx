@@ -114,7 +114,7 @@ export default function SingleDoctor() {
             </h2>
             <p className="text-gray-300 whitespace-pre-line">{doctor?.about}</p>
           </section>
-          {doctor?.imagesProfile?.length  && (
+          {doctor?.imagesProfile?.length && (
             <section className="mb-12">
               <h2 className="text-2xl font-bold mb-4">Gallery</h2>
               <SwiperWrapper preview={4} isPagination>
@@ -138,7 +138,7 @@ export default function SingleDoctor() {
               <Button variant="outline">Leave a Review</Button>
             </div>
             <div className="space-y-6">
-              {doctor?.reviewsOfDoctor?.length  ? (
+              {doctor?.reviewsOfDoctor?.length ? (
                 doctor?.reviewsOfDoctor?.map((review) => <ReviewCard key={review._id} review={review} />)
               ) : (
                 <p className="text-gray-400">No reviews yet</p>

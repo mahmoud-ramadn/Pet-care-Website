@@ -52,7 +52,6 @@ export default function DataTable<TData, TValue>({
 
   const [pagination] = useQueryStates(defaultPagination)
 
-
   const table = useReactTable({
     data,
     columns,

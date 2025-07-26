@@ -1,4 +1,3 @@
-
 /**
  * Reads a file and returns its content as a Data URL.
  * @param {File} file - The file to be read.
@@ -6,19 +5,19 @@
  * @throws {Error} If the file could not be read.
  */
 export const readFileAsDataURL = (file: File): Promise<string> => {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader()
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
 
-        reader.onloadend = () => {
-            resolve(reader.result as string)
-        }
+    reader.onloadend = () => {
+      resolve(reader.result as string)
+    }
 
-        reader.onerror = () => {
-            reject(new Error("Failed to read file"))
-        }
+    reader.onerror = () => {
+      reject(new Error("Failed to read file"))
+    }
 
-        reader.readAsDataURL(file)
-    })
+    reader.readAsDataURL(file)
+  })
 }
 
 /**
@@ -27,8 +26,8 @@ export const readFileAsDataURL = (file: File): Promise<string> => {
  * @returns {boolean} True if the file is an image, otherwise false.
  */
 export const isImageType = (file: File): boolean => {
-    if (!file) return false
-    return file.type.startsWith("image/") && file.size < 5
+  if (!file) return false
+  return file.type.startsWith("image/") && file.size < 5
 }
 
 /**
@@ -37,8 +36,8 @@ export const isImageType = (file: File): boolean => {
  * @returns {boolean} True if the file is a regular file, otherwise false.
  */
 export const isFileType = (file: File): boolean => {
-    if (!file) return false
-    return !file.type.startsWith("image/") // Return true if the file is not an image
+  if (!file) return false
+  return !file.type.startsWith("image/") // Return true if the file is not an image
 }
 
 /**
@@ -48,6 +47,6 @@ export const isFileType = (file: File): boolean => {
  * @returns {boolean} True if all files are of the specified type, otherwise false.
  */
 export const areAllValidFiles = (files: FileList | File[], type: "image" | "file"): boolean => {
-    const action = type === "image" ? isImageType : isFileType
-    return Array.from(files).every((file) => action(file))
+  const action = type === "image" ? isImageType : isFileType
+  return Array.from(files).every((file) => action(file))
 }
