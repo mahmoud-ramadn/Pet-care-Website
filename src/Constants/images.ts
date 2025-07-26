@@ -15,9 +15,10 @@ import Suppllies from "@/assets/images/home box squer Nav/Supplies.png"
 import Veterinary from "@/assets/images/home box squer Nav/Veterinary.png"
 import clinics from "@/assets/images/home box squer Nav/clinics.png"
 import PetFoot from "@/assets/images/home box squer Nav/pet_foot.png"
-import PetVaccination from "@/assets/images/vet/static-details1.png";
-import PetVeterinary from "@/assets/images/vet/static-details2.png";
-import PetSugery from "@/assets/images/vet/static-details3.png";
+import HeroServices from "@/assets/images/services/hero.jpg"
+import PetVaccination from "@/assets/images/vet/static-details1.png"
+import PetVeterinary from "@/assets/images/vet/static-details2.png"
+import PetSugery from "@/assets/images/vet/static-details3.png"
 
 export const ProjectImages = {
   adoption: {
@@ -48,6 +49,9 @@ export const ProjectImages = {
     vetHeroIMage,
     PetVaccination,
     PetVeterinary,
-    PetSugery
+    PetSugery,
+  },
+  services: {
+    HeroServices,
   },
 }

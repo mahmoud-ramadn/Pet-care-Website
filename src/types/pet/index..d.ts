@@ -2,10 +2,11 @@ type MoreThemCarType = {
   MainTitle: string
   subTitle: string
   className?: string
+  path?: string
 }
 
 type TopCollectionsCardType = {
-  id?:string
+  id?: string
   image: string
   title: string
   type: string

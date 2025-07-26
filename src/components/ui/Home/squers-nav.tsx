@@ -1,11 +1,12 @@
-import {  HomNavigationLink } from "@/Constants/main";
-import SwiperWrapper from "../SwiperWrapper";
-import SquareNavigation from "../common/squer-nav";
+import { HomNavigationLink } from "@/Constants/main"
+
+import SwiperWrapper from "../SwiperWrapper"
+import SquareNavigation from "../common/squer-nav"
 
 export default function SquiresNav() {
   return (
-    <div className=" container my-20">
-      <SwiperWrapper preview={5} className=" p-3">
+    <div className=" container my-20  ">
+      <SwiperWrapper preview={5} className="rounded-lg p-3">
         {HomNavigationLink.map((item) => (
           <SquareNavigation
             key={item.id}

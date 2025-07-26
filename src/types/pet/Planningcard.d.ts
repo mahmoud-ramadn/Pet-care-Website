@@ -1,5 +1,5 @@
 interface PlanningCardType {
-    id?:string
+  id?: string
   icon: string
   title: string
   description: string

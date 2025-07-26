@@ -47,19 +47,11 @@ export default function DataTable<TData, TValue>({
 
   const defaultPagination = {
     page: parseAsInteger.withDefault(1),
-    limit: parseAsInteger.withDefault(DEFAULT_PAGE_SIZE),
+    limit: parseAsInteger.withDefault(0),
   }
 
-  const [pagination, setPagination] = useQueryStates(defaultPagination)
+  const [pagination] = useQueryStates(defaultPagination)
 
-  const onUpdatePagination = (newPagination: Partial<PaginationQueryParams>) => {
-    setPagination((prev) => {
-      return {
-        ...prev,
-        ...newPagination,
-      }
-    })
-  }
 
   const table = useReactTable({
     data,

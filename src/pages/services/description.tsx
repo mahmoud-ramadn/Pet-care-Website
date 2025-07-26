@@ -1,6 +1,9 @@
+import TabsServices from "@/components/ui/services/tabs-services"
 
 export default function Description() {
   return (
-    <div>disreption</div>
+    <div className=" container">
+      <TabsServices />
+    </div>
   )
 }

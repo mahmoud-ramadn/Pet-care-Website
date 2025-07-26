@@ -1,13 +1,26 @@
 import TopCollections from "@/components/ui/Adoption/top-collections/top-collections"
 
-import { topCollectionsMock } from "@/Constants/main"
+import { useDogsForKids, useTopCollectionDog } from "@/hooks/pet"
 
 export default function Dogs() {
+  const { value: dogs, loading } = useTopCollectionDog()
+  const { value: DogsForKids, loading: isloading } = useDogsForKids()
   return (
     <div className="   pt-40 pb-20">
       <TopCollections
-        arr={topCollectionsMock}
+        arr={dogs ?? []}
         MainTitle="Top Collections"
+        loading={loading}
+        more={{
+          MainTitle: "More dogs",
+          subTitle: "Collection on Scooby",
+          path: "dog",
+        }}
+      />
+      <TopCollections
+        arr={DogsForKids ?? []}
+        loading={isloading}
+        MainTitle="Best Dogs for kids"
         more={{
           MainTitle: "More dogs",
           subTitle: "Collection on Scooby",

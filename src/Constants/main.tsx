@@ -1,16 +1,8 @@
-import { Mail, MapIcon, PhoneCall } from "lucide-react";
+import { Mail, MapIcon, PhoneCall } from "lucide-react"
 
+import type { ReactElement } from "react"
 
-
-import type { ReactElement } from "react";
-
-
-
-import { ProjectImages } from "./images";
-
-
-
-
+import { ProjectImages } from "./images"
 
 type ContactLink = {
   icon: () => ReactElement
@@ -24,7 +16,9 @@ export const HeaderLinks: HeaderLinksType[] = [
   { href: "/", labelKey: "AboutPageLink" },
   { href: "adoption", labelKey: "AdoptionPageLink" },
   { href: "/", labelKey: "ContactUsPageLink" },
+  { href: "blogs", labelKey: "blogs" },
   { href: "vet", labelKey: "Vet" },
+  { href: "shop", labelKey: "Shop" },
   { href: "services", labelKey: "ServicesPageLink" },
 ]
 
@@ -506,32 +500,144 @@ export const shelterMockData: ShelterCardType[] = [
 export const MeetOurBestDoctorsMock: CircleCardType[] = [
   {
     id: "1",
-    image: "https://placedog.net/300/300?id=1",
+    path: "testing",
+    image: "https://picsum.photos/id/1011/300/300",
     name: "Dog Food",
     specific: "Healthy meals for your dog",
   },
   {
     id: "2",
-    image: "https://placekitten.com/300/300",
+    image: "https://picsum.photos/id/1025/300/300",
     name: "Cat Toys",
     specific: "Fun toys for your cat",
   },
   {
     id: "3",
-    image: "https://picsum.photos/300/300?random=3",
+    image: "https://picsum.photos/id/237/300/300",
     name: "Veterinary",
     specific: "Top care for your pets",
   },
   {
     id: "4",
-    image: "https://picsum.photos/300/300?random=4",
+    image: "https://picsum.photos/id/1062/300/300",
     name: "Grooming",
     specific: "Best grooming services",
   },
   {
     id: "5",
-    image: "https://picsum.photos/300/300?random=5",
+    image: "https://picsum.photos/id/1074/300/300",
     name: "Adoption",
     specific: "Find your new best friend",
   },
+]
+
+export const mockServices: ServicesCardType[] = [
+  {
+    image: "https://images.unsplash.com/photo-1591769225440-811ad7d6eab2?w=300&h=200&fit=crop",
+    title: "Pet Grooming",
+    price: "$30",
+    address: "123 Animal St, Cairo",
+    description: "Full grooming service for your pet including bath and trimming.",
+    rate: 4.5,
+  },
+  {
+    image: "https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?w=300&h=200&fit=crop",
+    title: "Dog Walking",
+    price: "$15",
+    address: "Downtown, Giza",
+    description: "30-minute walk for your dog around your neighborhood.",
+    rate: 4.8,
+  },
+  {
+    image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=300&h=200&fit=crop",
+    title: "Cat Sitting",
+    price: "$25",
+    address: "Zamalek, Cairo",
+    description: "Daily visit to feed and play with your cat while you're away.",
+    rate: 4.3,
+  },
+  {
+    image: "https://images.unsplash.com/photo-1553284965-e2815db2e5a0?w=300&h=200&fit=crop",
+    title: "Vet Consultation",
+    price: "$40",
+    address: "Maadi, Cairo",
+    description: "Professional vet available for checkups and vaccinations.",
+    rate: 4.9,
+  },
+  {
+    image: "https://images.unsplash.com/photo-1556838803-cc94986cb631?w=300&h=200&fit=crop",
+    title: "Rabbit Boarding",
+    price: "$20",
+    address: "Nasr City, Cairo",
+    description: "Safe and comfortable boarding for your rabbits.",
+    rate: 4.2,
+  },
+  {
+    image: "https://images.unsplash.com/photo-1535591273668-578e31182c4f?w=300&h=200&fit=crop",
+    title: "Aquarium Cleaning",
+    price: "$35",
+    address: "Heliopolis, Cairo",
+    description: "Complete aquarium cleaning and water treatment services.",
+    rate: 4.4,
+  },
+  {
+    image: "https://images.unsplash.com/photo-1555169062-013468b47731?w=300&h=200&fit=crop",
+    title: "Bird Training",
+    price: "$50",
+    address: "New Cairo",
+    description: "Teach your bird basic commands and friendly behavior.",
+    rate: 4.6,
+  },
+  {
+    image: "https://images.unsplash.com/photo-1528158222524-d4d912d2e208?w=300&h=200&fit=crop",
+    title: "Parrot Boarding",
+    price: "$28",
+    address: "6th October, Giza",
+    description: "Spacious and safe boarding service for your parrots.",
+    rate: 4.7,
+  },
+]
+
+export const DEFAULT_PAGE_SIZE: number = 10
+
+export const servicesMenu = [
+  "All Services",
+  "Pet Training",
+  "Pet Grooming",
+  "Pet Boarding",
+  "Pet Hotel",
+  "Pet Care",
+  "Pet Sitting",
+  "Pet Taxi",
+  "Pet Walking",
+]
+
+export const allEgyptGovernorates = [
+  "Cairo",
+  "Giza",
+  "Alexandria",
+  "Dakahlia",
+  "Red Sea",
+  "Beheira",
+  "Fayoum",
+  "Gharbia",
+  "Ismailia",
+  "Menofia",
+  "Minya",
+  "Qaliubiya",
+  "New Valley",
+  "Suez",
+  "Aswan",
+  "Assiut",
+  "Beni Suef",
+  "Port Said",
+  "Damietta",
+  "Kafr El Sheikh",
+  "Matruh",
+  "Luxor",
+  "Qena",
+  "Sohag",
+  "North Sinai",
+  "South Sinai",
+  "Sharqia",
 ]
