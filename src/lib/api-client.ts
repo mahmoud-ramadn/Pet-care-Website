@@ -21,7 +21,7 @@ type Options = {
  */
 export const apiClient = async <T>(options: Options): Promise<T> => {
   try {
-    const { url, method = "GET", retry = 0, timeout = 10000, data, auth = true } = options
+    const { url, method = "GET", retry = 0, timeout = 10000, data, auth = false } = options
 
     if (!url && !import.meta.env.VITE_API_URL) {
       throw new Error("❌ Missing API URL")
