@@ -20,6 +20,7 @@ export const getAllProduct = async (queryString?: string) => {
   const response = await apiClient<ApiResponse<ProductData[]>>({
     url,
     method: "GET",
+    auth: false,
   })
 
   return response
