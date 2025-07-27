@@ -32,6 +32,9 @@ export const apiClient = async <T>(options: options): Promise<T> => {
 
     const baseURL = url?.includes("http") ? url : import.meta.env.VITE_API_URL + url?.replace(/^\//, "")
 
+    console.log(baseURL);
+    
+
     if (!baseURL) {
       throw new Error("Base URL is required")
     }
