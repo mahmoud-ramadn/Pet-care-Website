@@ -1,3 +1,4 @@
+import { useAtomValue } from "jotai"
 import { EarthIcon, Menu, X } from "lucide-react"
 
 import { useEffect, useState } from "react"
@@ -5,9 +6,14 @@ import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
 import { HeaderLinks } from "@/Constants/main"
+import { tokenAtom } from "@/atoms"
 import i18n from "@/i18n"
 
+import UserInfo from "./user-info"
+
 export default function Header() {
+  const token = useAtomValue(tokenAtom)
+
   const { t } = useTranslation()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -37,8 +43,8 @@ export default function Header() {
     <header
       className={`sticky top-0 z-40 w-full py-3 bg-white transition-all duration-300 ${scrolled ? "shadow-md" : ""}`}
     >
-      <div className="container mx-auto px-4 flex items-center justify-between">
-        <div className="flex items-center gap-x-8 lg:gap-x-32">
+      <div className=" container mx-auto px-4 flex items-center justify-between">
+        <div className="flex items-center  gap-x-2">
           <Link to="/">
             <img className="h-12 w-12 md:h-16 md:w-16" src="/logo.webp" alt="logo" />
           </Link>
@@ -56,13 +62,26 @@ export default function Header() {
         </div>
 
         <div className="flex items-center  space-x-4">
-          <div className="hidden md:flex items-center space-x-6">
-            <Link to="/Signup" className="hover:text-primary transition-colors duration-200 font-medium text-gray-800">
-              {t("SignupPageLink")}
-            </Link>
-            <Link to="/login" className="hover:text-primary transition-colors duration-200 font-medium text-gray-800">
-              {t("LoginPageLink")}
-            </Link>
+          <div className="flex items-center space-x-6">
+            {token ? (
+              <UserInfo />
+            ) : (
+              <>
+                <Link
+                  to="/Signup"
+                  className="hover:text-primary transition-colors duration-200 font-medium text-gray-800"
+                >
+                  {t("SignupPageLink")}
+                </Link>
+                <Link
+                  to="/login"
+                  className="hover:text-primary transition-colors duration-200 font-medium text-gray-800"
+                >
+                  {t("LoginPageLink")}
+                </Link>
+              </>
+            )}
+
             <button
               type="button"
               onClick={toggleLanguage}
@@ -74,7 +93,7 @@ export default function Header() {
           </div>
 
           <button
-            className="md:hidden text-2xl focus:outline-none"
+            className="lg:hidden block text-2xl focus:outline-none"
             onClick={() => setMobileMenuOpen(true)}
             aria-label={t("openMenu")}
           >
@@ -82,7 +101,6 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile Menu Overlay */}
         <div
           className={`md:hidden fixed inset-0 bg-black/35 z-40 transition-opacity duration-300 ${
             mobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -91,7 +109,7 @@ export default function Header() {
         />
 
         <div
-          className={`md:hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
+          className={`lg:hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
             mobileMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
@@ -129,22 +147,24 @@ export default function Header() {
               </li>
             </ul>
 
-            <div className="mt-8 pt-6 border-t border-gray-100">
-              <Link
-                className="block py-3 px-4 bg-primary text-white rounded-lg text-center mb-3 hover:bg-primary-dark transition-colors duration-200 font-medium"
-                to="/Signup"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t("SignupPageLink")}
-              </Link>
-              <Link
-                className="block py-3 px-4 border border-primary text-primary rounded-lg text-center hover:bg-gray-50 transition-colors duration-200 font-medium"
-                to="/login"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t("LoginPageLink")}
-              </Link>
-            </div>
+            {!token && (
+              <div className="mt-8 pt-6 border-t border-gray-100">
+                <Link
+                  className="block py-3 px-4 bg-primary text-white rounded-lg text-center mb-3 hover:bg-primary-dark transition-colors duration-200 font-medium"
+                  to="/Signup"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {t("SignupPageLink")}
+                </Link>
+                <Link
+                  className="block py-3 px-4 border border-primary text-primary rounded-lg text-center hover:bg-gray-50 transition-colors duration-200 font-medium"
+                  to="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {t("LoginPageLink")}
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
