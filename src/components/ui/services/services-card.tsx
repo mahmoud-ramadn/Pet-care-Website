@@ -3,7 +3,6 @@ import { Star } from "lucide-react"
 import { Link } from "react-router"
 
 export default function ServicesCard({
-  _id,
   serviceType,
   serviceImage,
   price,
@@ -12,7 +11,7 @@ export default function ServicesCard({
 }: Readonly<ShuffledServiceType>) {
   return (
     <Link
-      to={`description/${_id}`}
+      to={`description/${serviceProfile?.id}`}
       className="rounded-lg shadow-lg hover:shadow-xl transition-shadow bg-white overflow-hidden"
     >
       <img className="w-full h-48 object-cover" src={serviceImage} alt={serviceType} />

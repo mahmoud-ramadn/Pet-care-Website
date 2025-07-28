@@ -1,20 +1,19 @@
 import { zodResolver } from "@hookform/resolvers/zod"
+import { toast } from "sonner"
 
 import { useForm } from "react-hook-form"
-
-import { cn } from "@/lib/utils"
+import { Link, useNavigate } from "react-router"
 
 import { ButtonWithLoading } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
+import { RegisterUser } from "@/apis/auth"
+
 import { SignUpFormSchema, type SignUpFormSchemaType } from "./scema"
 
-type Props = {
-  className?: string
-}
-
-export default function RegisterForm({ className }: Readonly<Props>) {
+export default function RegisterForm() {
+  const navigate = useNavigate()
   const form = useForm<SignUpFormSchemaType>({
     resolver: zodResolver(SignUpFormSchema),
     defaultValues: {
@@ -26,17 +25,30 @@ export default function RegisterForm({ className }: Readonly<Props>) {
   })
 
   async function onSubmit(values: SignUpFormSchemaType) {
+    const userDataWithRole: RegisterFormType = {
+      ...values,
+      role: "user",
+    }
     try {
-      console.log(values)
+      const response = await RegisterUser(userDataWithRole)
+      toast.success(response?.status)
+      navigate("/login")
     } catch (error) {
       console.log(error)
+
+      toast.error("Email is Already Exist")
     }
   }
 
   return (
-    <div className={cn("   md:w-full  py-20 container", className)}>
+    <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-8 space-y-6">
+      <div className="text-center">
+        <h2 className="text-2xl font-bold tracking-tight">إنشاء حساب جديد</h2>
+        <p className="text-sm text-muted-foreground mt-1">املأ البيانات لإنشاء حسابك الشخصي</p>
+      </div>
+
       <Form value={form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className=" md:w-2/3  w-5/6 space-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           <FormField
             control={form.control}
             name="name"
@@ -44,12 +56,13 @@ export default function RegisterForm({ className }: Readonly<Props>) {
               <FormItem>
                 <FormLabel>الاسم</FormLabel>
                 <FormControl>
-                  <Input placeholder="الاسم" {...field} />
+                  <Input placeholder="اسمك الكامل" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name="email"
@@ -57,12 +70,13 @@ export default function RegisterForm({ className }: Readonly<Props>) {
               <FormItem>
                 <FormLabel>البريد الإلكتروني</FormLabel>
                 <FormControl>
-                  <Input placeholder="البريد الإلكتروني" {...field} />
+                  <Input placeholder="example@email.com" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name="password"
@@ -70,12 +84,13 @@ export default function RegisterForm({ className }: Readonly<Props>) {
               <FormItem>
                 <FormLabel>كلمة المرور</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="كلمة المرور" {...field} />
+                  <Input type="password" placeholder="********" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name="confirmPassword"
@@ -83,18 +98,25 @@ export default function RegisterForm({ className }: Readonly<Props>) {
               <FormItem>
                 <FormLabel>تأكيد كلمة المرور</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="تأكيد كلمة المرور" {...field} />
+                  <Input type="password" placeholder="أعد إدخال كلمة المرور" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <ButtonWithLoading type="submit" size="lg" loading={form.formState.isSubmitting}>
-            تسجيل
+          <ButtonWithLoading type="submit" size="lg" className="w-full">
+            {"تسجيل"}
           </ButtonWithLoading>
         </form>
       </Form>
+
+      <div className="text-center text-sm">
+        لديك حساب بالفعل؟{" "}
+        <Link to="/login" className="text-primary hover:underline font-medium">
+          تسجيل الدخول
+        </Link>
+      </div>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import { lazy } from "react"
 import { createBrowserRouter } from "react-router"
 
+import ProtectedRoute from "@/components/ProtectedRoute"
 import Layout from "@/layouts"
 
 import { AuthRoutes } from "./auth"
@@ -15,6 +16,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "",
+        Component: ProtectedRoute,
         children: [DashboardRoutes],
       },
       AuthRoutes,

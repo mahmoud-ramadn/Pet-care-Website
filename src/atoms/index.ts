@@ -1,6 +1,5 @@
 import { atom } from "jotai"
-import { atomWithStorage } from "jotai/utils"
 
-export const countAtom = atom(0)
+export const authLoadedAtom = atom<boolean>(false)
 
-export const tokenAtom = atomWithStorage<string | null>("token", null)
+export const tokenAtom = atom<string | null>(null)

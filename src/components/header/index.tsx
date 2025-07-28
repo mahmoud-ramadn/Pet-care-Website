@@ -42,7 +42,7 @@ export default function Header() {
           <Link to="/">
             <img className="h-12 w-12 md:h-16 md:w-16" src="/logo.webp" alt="logo" />
           </Link>
-          <ul className="space-x-5 md:flex items-center hidden">
+          <ul className="md:space-x-5 lg:flex items-center hidden">
             {HeaderLinks.map((item) => (
               <Link
                 key={item.labelKey}
@@ -55,7 +55,7 @@ export default function Header() {
           </ul>
         </div>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center  space-x-4">
           <div className="hidden md:flex items-center space-x-6">
             <Link to="/Signup" className="hover:text-primary transition-colors duration-200 font-medium text-gray-800">
               {t("SignupPageLink")}
@@ -90,7 +90,6 @@ export default function Header() {
           onClick={() => setMobileMenuOpen(false)}
         />
 
-        {/* Sidebar Mobile Menu */}
         <div
           className={`md:hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
             mobileMenuOpen ? "translate-x-0" : "translate-x-full"

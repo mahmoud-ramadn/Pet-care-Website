@@ -1,4 +1,5 @@
 // import { apiClient } from "@/lib/api-client"
+import { apiClient } from "@/lib/api-client"
 
 // export const login = async (inputs: LoginInputs) => {
 //     const response = await apiClient<ApiResponse<LoginResponse>>({
@@ -17,3 +18,23 @@
 //     })
 //     return response
 // }
+
+export const RegisterUser = async (inputs: RegisterFormType) => {
+  const response = await apiClient<AuthResponse<User>>({
+    url: "users/signup",
+    method: "POST",
+    data: inputs,
+    auth: false,
+  })
+  return response
+}
+
+export const LoginUser = async (inputs: InputType) => {
+  const response = await apiClient<AuthResponseSuccess<LoginUser>>({
+    url: "users/login",
+    method: "POST",
+    data: inputs,
+    auth: false,
+  })
+  return response
+}

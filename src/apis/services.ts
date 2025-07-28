@@ -24,3 +24,12 @@ export const getServices = async (queryString?: string) => {
 
   return response.shuffledServices
 }
+
+export const getServiceProfile = async (serviceId: string) => {
+  const response = await apiClient<ServiceProfileResponse>({
+    url: `serviceProfile/get-serviceProfile/${serviceId}`,
+    method: "GET",
+  })
+
+  return response.updatedDoc
+}

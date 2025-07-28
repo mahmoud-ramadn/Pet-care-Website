@@ -1,21 +1,26 @@
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useSetAtom } from "jotai"
+import { toast } from "sonner"
 
 import { useForm } from "react-hook-form"
-// import { useNavigate } from "react-router"
+import { Link, useNavigate } from "react-router"
 
-import { cn } from "@/lib/utils"
+// import { useNavigate } from "react-router"
 
 import { ButtonWithLoading } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
+import { LoginUser } from "@/apis/auth"
+import { tokenAtom } from "@/atoms"
+
 import { type LoginFormSchema, loginFormSchema } from "./Schema"
 
-type Props = {
-  className?: string
-}
+export default function LoginForm() {
+  const setToken = useSetAtom(tokenAtom)
 
-export default function LoginForm({ className }: Readonly<Props>) {
+  const navigate = useNavigate()
+
   const form = useForm<LoginFormSchema>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -26,18 +31,33 @@ export default function LoginForm({ className }: Readonly<Props>) {
 
   async function onSubmit(values: LoginFormSchema) {
     try {
-      console.log(values)
+      const response = await LoginUser(values)
 
+      const user = response.data.result
+      const token = response.token
+
+      localStorage.setItem("token", token)
+      localStorage.setItem("user", JSON.stringify(user))
+
+      setToken(token)
+
+      toast.success(response.status)
+      navigate("/")
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.log(error)
+      toast.error("Email or password is incorrect.")
     }
   }
 
   return (
-    <div className={cn(" py-20 w-full container", className)}>
+    <div className="bg-white rounded-2xl shadow-xl  w-full max-w-md  p-8 space-y-6">
+      <div className="text-center">
+        <h2 className="text-2xl font-bold tracking-tight">تسجيل الدخول</h2>
+        <p className="text-sm text-muted-foreground mt-1">أدخل بيانات حسابك للمتابعة</p>
+      </div>
+
       <Form value={form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           <FormField
             control={form.control}
             name="email"
@@ -45,7 +65,7 @@ export default function LoginForm({ className }: Readonly<Props>) {
               <FormItem>
                 <FormLabel>البريد الإلكتروني</FormLabel>
                 <FormControl>
-                  <Input placeholder="البريد الإلكتروني" {...field} />
+                  <Input placeholder="example@email.com" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -59,103 +79,25 @@ export default function LoginForm({ className }: Readonly<Props>) {
               <FormItem>
                 <FormLabel>كلمة المرور</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="كلمة المرور" {...field} />
+                  <Input type="password" placeholder="********" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <ButtonWithLoading type="submit" size="lg" loading={form?.formState?.isSubmitting}>
+          <ButtonWithLoading type="submit" size="lg" className="w-full" loading={form.formState.isSubmitting}>
             تسجيل الدخول
           </ButtonWithLoading>
         </form>
       </Form>
+
+      <div className="text-center text-sm">
+        ليس لديك حساب؟{" "}
+        <Link to="/signup" className="text-primary hover:underline font-medium">
+          إنشاء حساب
+        </Link>
+      </div>
     </div>
   )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// "use client"
-
-// import { zodResolver } from "@hookform/resolvers/zod"
-// import { useForm } from "react-hook-form"
-// import { toast } from "sonner"
-// import { z } from "zod"
-
-// import { Button } from "@/components/ui/button"
-// import {
-//   Form,
-//   FormControl,
-//   FormDescription,
-//   FormField,
-//   FormItem,
-//   FormLabel,
-//   FormMessage,
-// } from "@/components/ui/form"
-// import { Input } from "@/components/ui/input"
-
-// const FormSchema = z.object({
-//   username: z.string().min(2, {
-//     message: "Username must be at least 2 characters.",
-//   }),
-// })
-
-// export function InputForm() {
-//   const form = useForm<z.infer<typeof FormSchema>>({
-//     resolver: zodResolver(FormSchema),
-//     defaultValues: {
-//       username: "",
-//     },
-//   })
-
-//   function onSubmit(data: z.infer<typeof FormSchema>) {
-//     toast("You submitted the following values", {
-//       description: (
-//         <pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">
-//           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-//         </pre>
-//       ),
-//     })
-//   }
-
-//   return (
-//     <Form {...form}>
-//       <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
-//         <FormField
-//           control={form.control}
-//           name="username"
-//           render={({ field }) => (
-//             <FormItem>
-//               <FormLabel>Username</FormLabel>
-//               <FormControl>
-//                 <Input placeholder="shadcn" {...field} />
-//               </FormControl>
-//               <FormDescription>
-//                 This is your public display name.
-//               </FormDescription>
-//               <FormMessage />
-//             </FormItem>
-//           )}
-//         />
-//         <Button type="submit">Submit</Button>
-//       </form>
-//     </Form>
-//   )
-// }

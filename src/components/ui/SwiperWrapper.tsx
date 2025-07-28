@@ -14,11 +14,11 @@ import i18n from "@/i18n"
 import { Button } from "./button"
 
 type SwiperWrapperProps = {
-  children: ReactNode[]
+  children?: ReactNode[]
   className?: string
   isPagination?: boolean
   isNavigation?: boolean
-  preview?:number
+  preview?: number
 }
 
 export default function SwiperWrapper({
@@ -26,7 +26,7 @@ export default function SwiperWrapper({
   className,
   isPagination = false,
   isNavigation = false,
-  preview=3,
+  preview = 3,
 }: SwiperWrapperProps) {
   const prevRef = useRef<HTMLButtonElement | null>(null)
   const nextRef = useRef<HTMLButtonElement | null>(null)
@@ -55,31 +55,37 @@ export default function SwiperWrapper({
         modules={[Navigation, Pagination]}
         spaceBetween={20}
         slidesPerView={preview}
-       breakpoints={{
-          0: {    // Mobile
+        breakpoints={{
+          0: {
+            // Mobile
             slidesPerView: 1.2,
-            spaceBetween: 15
+            spaceBetween: 15,
           },
-          480: {   // Small tablets
+          480: {
+            // Small tablets
             slidesPerView: 1.5,
-            spaceBetween: 15
+            spaceBetween: 15,
           },
-          640: {   // Large phones/tablets
+          640: {
+            // Large phones/tablets
             slidesPerView: 2,
-            spaceBetween: 20
+            spaceBetween: 20,
           },
-          768: {   // Tablets
+          768: {
+            // Tablets
             slidesPerView: 2.5,
-            spaceBetween: 20
+            spaceBetween: 20,
           },
-          1024: {  // Laptops
+          1024: {
+            // Laptops
             slidesPerView: preview,
-            spaceBetween: 25
+            spaceBetween: 25,
           },
-          1280: {  // Desktops
+          1280: {
+            // Desktops
             slidesPerView: preview,
-            spaceBetween: 30
-          }
+            spaceBetween: 30,
+          },
         }}
         navigation={{
           prevEl: prevRef.current,
@@ -95,9 +101,7 @@ export default function SwiperWrapper({
         }}
         pagination={isPagination ? { clickable: true } : false}
       >
-        {children.map((child, index) => (
-          <SwiperSlide key={index}>{child}</SwiperSlide>
-        ))}
+        {children?.map((child, index) => <SwiperSlide key={index}>{child}</SwiperSlide>)}
       </Swiper>
     </div>
   )
