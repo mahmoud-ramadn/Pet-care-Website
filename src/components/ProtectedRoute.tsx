@@ -1,17 +1,9 @@
-import { useAtomValue } from "jotai";
+import { useAtomValue } from "jotai"
 
+import { useEffect } from "react"
+import { Navigate, Outlet, useNavigate } from "react-router-dom"
 
-
-import { useEffect } from "react";
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
-
-
-
-import { authLoadedAtom, tokenAtom } from "@/atoms";
-
-
-
-
+import { authLoadedAtom, tokenAtom } from "@/atoms"
 
 export default function ProtectedRoute() {
   const token = useAtomValue(tokenAtom)
@@ -21,7 +13,6 @@ export default function ProtectedRoute() {
 
   useEffect(() => {
     if (token) {
-  
       navigate("/")
     }
   }, [token])

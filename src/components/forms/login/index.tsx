@@ -34,10 +34,10 @@ export default function LoginForm() {
     try {
       const response = await LoginUser(values)
 
-      const userDataInfo = response.data.result ?? ''
+      const userDataInfo = response.data.result ?? ""
       const token = response.token
       localStorage.setItem("token", token)
-      localStorage.setItem("userInfoData",JSON.stringify(userDataInfo))
+      localStorage.setItem("userInfoData", JSON.stringify(userDataInfo))
 
       setToken(token)
       setUserInfoAtom(userDataInfo)
