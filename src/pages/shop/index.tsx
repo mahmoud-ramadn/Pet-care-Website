@@ -51,7 +51,7 @@ export default function Shop() {
           Find exactly what you need from our curated collection of premium items
         </p>
 
-        <div className="relative max-w-2xl mx-auto">
+        <div className="relative max-w-2xl  my-5 mx-auto">
           <Input
             type="search"
             onChange={(e) => handleSearchChange(e.target.value)}
@@ -98,7 +98,7 @@ export default function Shop() {
         )}
 
         {/* Products Grid */}
-        {!loading && <>{products?.map((item) => <ProductCard key={`product-${item}`} {...item} />)}</>}
+        {!loading && <>{products?.map((item,index) => <ProductCard key={`product-${index}`} {...item} />)}</>}
       </div>
 
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">

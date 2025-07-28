@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import {  useMemo } from "react"
 
 import Hero from "@/components/ui/common/Hero"
 import SelectList from "@/components/ui/common/select"
@@ -14,7 +14,7 @@ export default function Services() {
   const { value: services, loading, retry } = useServices()
   const { query, mutate } = useServicesQueryFilter()
 
-  useEffect(() => {
+  useMemo(() => {
     if (query.serviceType && query.location) {
       retry()
     }
@@ -24,7 +24,7 @@ export default function Services() {
     <div>
       <Hero MainTitle="Find what you are looking for near you" imageHero={ProjectImages.services.HeroServices} />
 
-      <div className="container p-10 flex flex-wrap items-center justify-between">
+      <div className="container lg:p-10 p-5 flex  gap-y-5 gap-5 items-center justify-between">
         <SelectList
           className="basis-1/2"
           selectedValue={query.serviceType}

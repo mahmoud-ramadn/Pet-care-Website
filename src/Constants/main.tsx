@@ -1,8 +1,16 @@
-import { Mail, MapIcon, PhoneCall } from "lucide-react"
+import { Mail, MapIcon, PhoneCall } from "lucide-react";
 
-import type { ReactElement } from "react"
 
-import { ProjectImages } from "./images"
+
+import type { ReactElement } from "react";
+
+
+
+import { ProjectImages } from "./images";
+
+
+
+
 
 type ContactLink = {
   icon: () => ReactElement
@@ -170,12 +178,12 @@ export const VetNavigationLink: AdoptionNavigationLink[] = [
 export const HomNavigationLink: HomeBoxNavigationLink[] = [
   {
     id: "1",
-    path: "Veterinary",
+    path: "vet",
     image: ProjectImages.HomSquerNav.Veterinary,
   },
   {
     id: "2",
-    path: "Day Care",
+    path: "services",
     image: ProjectImages.HomSquerNav.DayCare,
   },
   {

@@ -44,7 +44,7 @@ export default function Header() {
       className={`sticky top-0 z-40 w-full py-3 bg-white transition-all duration-300 ${scrolled ? "shadow-md" : ""}`}
     >
       <div className=" container mx-auto px-4 flex items-center justify-between">
-        <div className="flex items-center  gap-x-2">
+        <div className="flex items-center   lg:gap-x-10  md:gap-x-5">
           <Link to="/">
             <img className="h-12 w-12 md:h-16 md:w-16" src="/logo.webp" alt="logo" />
           </Link>
