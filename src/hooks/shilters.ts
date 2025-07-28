@@ -9,9 +9,7 @@ export const useAllShilters = () => {
   })
 }
 
-
-
-export const useShilter = (id:string) => {
+export const useShilter = (id: string) => {
   return useAsyncRetry(async () => {
     const response = await getShilter(id)
     return response

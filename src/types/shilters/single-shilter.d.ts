@@ -1,4 +1,4 @@
- type ShelterResponse = {
+type ShelterResponse = {
   _id?: string
   id?: string
   shelterName?: string

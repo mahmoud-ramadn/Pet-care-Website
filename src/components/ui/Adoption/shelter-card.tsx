@@ -4,7 +4,7 @@ import { Link } from "react-router"
 
 import { Button } from "../button"
 
-export default function ShelterCard({ shelterImage, shelterName, locations, rate,id }: Readonly<ShelterItem>) {
+export default function ShelterCard({ shelterImage, shelterName, locations, rate, id }: Readonly<ShelterItem>) {
   const rating = Math.round(rate ?? 0)
 
   return (

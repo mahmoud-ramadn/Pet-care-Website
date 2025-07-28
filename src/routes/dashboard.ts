@@ -27,7 +27,7 @@ const Shop = lazy(() => import("@/pages/shop/index"))
 const Fav = lazy(() => import("@/pages/shop/fav"))
 const Checkout = lazy(() => import("@/pages/shop/checkout"))
 const Cart = lazy(() => import("@/pages/shop/cart"))
-const SingleShilter = lazy(() => import('@/pages/adoption/singl-shilter'));
+const SingleShilter = lazy(() => import("@/pages/adoption/singl-shilter"))
 const BlogsPage = lazy(() => import("@/pages/blogs"))
 const SingalClinic = lazy(() => import("@/pages/vet/singal-clinic"))
 
@@ -159,7 +159,7 @@ export const DashboardRoutes: RouteObject = {
     },
     {
       path: "get-shilter/:id",
-      Component:SingleShilter
+      Component: SingleShilter,
     },
   ],
 }

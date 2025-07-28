@@ -180,7 +180,7 @@ export const HomNavigationLink: HomeBoxNavigationLink[] = [
   },
   {
     id: "3",
-    path: "Supplies",
+    path: "shop",
     image: ProjectImages.HomSquerNav.Suppllies,
   },
   {

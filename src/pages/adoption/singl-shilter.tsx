@@ -1,6 +1,6 @@
 import { Calendar, MapPin, MessageSquare, Phone, Star, Users } from "lucide-react"
 
-import { useEffect, useState } from "react"
+import { useMemo, useState } from "react"
 import { useParams } from "react-router"
 
 import SwiperWrapper from "@/components/ui/SwiperWrapper"
@@ -17,7 +17,7 @@ export default function SinglShilter() {
   const { value: shelter, loading } = useShilter(id ?? "")
   const [mainImage, setMainImage] = useState<string | undefined>()
 
-  useEffect(() => {
+  useMemo(() => {
     if (shelter) {
       const firstImage = shelter.shelterImages?.[0] ?? shelter.shelterImage
       setMainImage(firstImage)
