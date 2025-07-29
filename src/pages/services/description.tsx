@@ -1,3 +1,5 @@
+import { useAtomValue } from "jotai"
+
 import { useParams } from "react-router-dom"
 
 import { ServiceProfileSkeleton } from "@/components/ui/feedbacks/service-profile-skeleton"
@@ -9,21 +11,27 @@ import { ServiceGallery } from "@/components/ui/serviceProfile/ServiceGallery"
 import { ServiceHeader } from "@/components/ui/serviceProfile/ServiceHeader"
 import { ServiceInfo } from "@/components/ui/serviceProfile/ServiceInfo"
 
+import { tokenAtom } from "@/atoms"
+import WriteReview from "@/components/forms/write-review"
 import { useServiceProfile } from "@/hooks/services"
+import { serviceWritereivew } from "@/apis/writeriewve"
 
 export default function Description() {
+
+  const token = useAtomValue(tokenAtom)
   const { id } = useParams()
-  const { value: serviceProfile, loading } = useServiceProfile(id ?? "")
+  const { value: serviceProfile, loading ,retry} = useServiceProfile(id ?? "")
 
   if (loading) return <ServiceProfileSkeleton />
-  if (!serviceProfile) return <div>Service not found</div>
+  if (!serviceProfile) return <div className="text-center text-gray-500 py-12">Service not found</div>
 
   return (
-    <div className="container py-8">
+    <div className="container py-10 space-y-10">
       <ServiceHeader name={serviceProfile.name} />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        {/* المحتوى الرئيسي */}
+        <div className="lg:col-span-2 space-y-10">
           <ServiceInfo
             name={serviceProfile.name}
             rate={serviceProfile.rate}
@@ -32,9 +40,9 @@ export default function Description() {
 
           <ServiceGallery images={serviceProfile.imagesProfile} />
 
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">About this service</h2>
-            <p className="text-gray-700 whitespace-pre-line">{serviceProfile.about}</p>
+          <section className="bg-white p-6 rounded-xl shadow-sm border">
+            <h2 className="text-2xl font-semibold mb-4 text-gray-800">عن الخدمة</h2>
+            <p className="text-gray-600 whitespace-pre-line leading-relaxed">{serviceProfile.about}</p>
           </section>
 
           <ServiceDetails
@@ -46,20 +54,37 @@ export default function Description() {
 
           <PetPreferences types={serviceProfile.accepted_pet_types} sizes={serviceProfile.accepted_pet_sizes} />
 
-          <section>
-            <h2 className="text-2xl font-semibold mb-4">Reviews</h2>
+          {/* المراجعات */}
+          <section className="bg-white p-6 rounded-xl shadow-sm border">
+            <h2 className="text-2xl font-semibold mb-4 text-gray-800">مراجعات العملاء</h2>
+
             {serviceProfile.reviewsOfService?.length ? (
               <div className="space-y-6">
                 {serviceProfile.reviewsOfService.map((review) => (
-                  <ReviewItem key={review._id} review={review} />
+                  <ReviewItem key={review._id} review={review}  reload={()=>retry()}  />
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500">No reviews yet</p>
+              <p className="text-gray-500">لا توجد مراجعات حتى الآن</p>
             )}
           </section>
+
+          {/* إضافة مراجعة */}
+          {token && (
+            <section className="bg-white p-6 rounded-xl shadow-sm border">
+              <h2 className="text-2xl font-semibold mb-2 text-gray-800">مراجعتك</h2>
+              <p className="text-gray-500 mb-4">يمكنك إضافة رأيك حول الخدمة</p>
+              <WriteReview writeReview={(data) => {
+            
+               serviceWritereivew(data,id?? '')
+
+               retry()
+              }} />
+            </section>
+          )}
         </div>
 
+        {/* الكارد الجانبي */}
         <div className="lg:col-span-1">
           <BookingCard
             price={serviceProfile.price}

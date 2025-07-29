@@ -98,7 +98,7 @@ export default function Shop() {
         )}
 
         {/* Products Grid */}
-        {!loading && <>{products?.map((item,index) => <ProductCard key={`product-${index}`} {...item} />)}</>}
+        {!loading && <>{products?.map((item, index) => <ProductCard key={`product-${index}`} {...item} />)}</>}
       </div>
 
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
