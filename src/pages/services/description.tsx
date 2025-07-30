@@ -19,8 +19,8 @@ import { useServiceProfile } from "@/hooks/services"
 export default function Description() {
   const token = useAtomValue(tokenAtom)
   const { id } = useParams()
-  
-  const { value: serviceProfile, loading, retry } = useServiceProfile(id??'')
+
+  const { value: serviceProfile, loading, retry } = useServiceProfile(id ?? "")
 
   if (loading) return <ServiceProfileSkeleton />
   if (!serviceProfile) return <div className="text-center text-gray-500 py-12">Service not found</div>

@@ -1,20 +1,10 @@
-import { parseAsString, useQueryStates } from "nuqs";
+import { parseAsString, useQueryStates } from "nuqs"
 
+import { useAsyncRetry } from "react-use"
 
+import { getParamsEncodedQuery } from "@/lib/map"
 
-import { useAsyncRetry } from "react-use";
-
-
-
-import { getParamsEncodedQuery } from "@/lib/map";
-
-
-
-import { getServiceProfile, getServices } from "@/apis/services";
-
-
-
-
+import { getServiceProfile, getServices } from "@/apis/services"
 
 export const useServicesQueryFilter = () => {
   const [query, setQuery] = useQueryStates({

@@ -1,6 +1,12 @@
 import SwiperWrapper from "../SwiperWrapper"
 import SquareNavigation from "../common/squer-nav"
 
+type AdoptionNavigationLink = {
+  id: string
+  path: string
+  image: string
+}
+
 type HeroLayoutType = {
   imageHero: string
   cardUrl?: string
@@ -10,15 +16,20 @@ type HeroLayoutType = {
   preview?: number
 }
 
-export default function Hero({ imageHero, cardUrl, MainTitle, array, className, preview }: Readonly<HeroLayoutType>) {
+export default function Hero({ imageHero, cardUrl, MainTitle, array, className = "", preview = 3 }: HeroLayoutType) {
   return (
-    <div
-      style={{ backgroundImage: `url(${imageHero})` }}
-      className="bg-cover relative bg-center object-cover h-[700px] flex items-center justify-center"
-    >
-      <h1 className="font-black text-5xl text-center text-white">{MainTitle}</h1>
-      <div className="container absolute left-1/2 -bottom-30 -translate-x-1/2">
-        {array && (
+    <section className="relative">
+      <img src={imageHero} alt="preload hero" style={{ display: "none" }} loading="eager" />
+
+      <div
+        className="hero-bg h-[700px] bg-cover bg-center flex items-center justify-center"
+        style={{ backgroundImage: `url(${imageHero})` }}
+      >
+        <h1 className="font-black text-5xl text-center text-white">{MainTitle}</h1>
+      </div>
+
+      {array && array.length > 0 && (
+        <div className="absolute left-1/2 -bottom-20 -translate-x-1/2 w-full px-4">
           <SwiperWrapper preview={preview}>
             {array.map((item) => (
               <SquareNavigation
@@ -32,8 +43,8 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, className, 
               />
             ))}
           </SwiperWrapper>
-        )}
-      </div>
-    </div>
+        </div>
+      )}
+    </section>
   )
 }
