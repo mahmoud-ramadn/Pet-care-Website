@@ -68,7 +68,6 @@ export default function Description() {
             )}
           </section>
 
-          {/* إضافة مراجعة */}
           {token && (
             <section className="bg-white p-6 rounded-xl shadow-sm border">
               <h2 className="text-2xl font-semibold mb-2 text-gray-800">مراجعتك</h2>
@@ -76,7 +75,6 @@ export default function Description() {
               <WriteReview
                 writeReview={(data) => {
                   serviceWritereivew(data, id ?? "")
-
                   retry()
                 }}
               />

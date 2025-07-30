@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu"
 import { useAtomValue } from "jotai"
-import { CreditCard, DotIcon, LogOut, PillIcon, UserIcon } from "lucide-react"
+import {  DotIcon, LogOut, PillIcon, UserIcon } from "lucide-react"
 
 import { userInfoAtom } from "@/atoms"
 import { useLogout } from "@/hooks/auth"
@@ -27,8 +27,7 @@ export default function UserInfo() {
     try {
       userData = JSON.parse(user)
     } catch (err) {
-      console.log(err)
-
+      console.error("Failed to parse user data:", err)
       return <p>{}</p>
     }
   } else {
@@ -80,14 +79,21 @@ export default function UserInfo() {
         <DropdownMenuSeparator />
 
         <DropdownMenuGroup>
+          {userData?.role === "admin"? (
+            <DropdownMenuItem className="px-3 py-2 rounded-md flex items-center gap-4 hover:bg-gray-100 transition-colors cursor-pointer">
+              <UserIcon size={16} />
+              Admin Dashboard
+            </DropdownMenuItem>
+          )
+        :(
           <DropdownMenuItem className="px-3 py-2 rounded-md flex items-center gap-4 hover:bg-gray-100 transition-colors cursor-pointer">
             <UserIcon size={16} />
-            Account
+            user Dashboard
           </DropdownMenuItem>
-          <DropdownMenuItem className="px-3 py-2 rounded-md flex items-center gap-4 hover:bg-gray-100 transition-colors cursor-pointer">
-            <CreditCard size={16} />
-            Billing
-          </DropdownMenuItem>
+        )
+        
+        }
+
           <DropdownMenuItem className="px-3 py-2 rounded-md flex items-center gap-4 hover:bg-gray-100 transition-colors cursor-pointer">
             <PillIcon size={16} />
             Notifications

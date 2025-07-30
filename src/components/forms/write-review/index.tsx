@@ -1,25 +1,33 @@
-import { zodResolver } from "@hookform/resolvers/zod"
-import { toast } from "sonner"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
 
-import { useForm } from "react-hook-form"
 
-import { ButtonWithLoading } from "@/components/ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Slider } from "@/components/ui/slider"
-import { Textarea } from "@/components/ui/textarea"
+
+import { useForm } from "react-hook-form";
+
+
+
+import { ButtonWithLoading } from "@/components/ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Slider } from "@/components/ui/slider";
+import { Textarea } from "@/components/ui/textarea";
+
+
 
 import { WriteReviewFormSchema, type WriteReviewFormSchemaType } from "./schema"
 
 type WriteReviewProps = {
   writeReview: (values: WriteReviewFormSchemaType) => void
+  initialValues?: Partial<WriteReviewFormSchemaType>
+  isEdit?: boolean
 }
 
-export default function WriteReview({ writeReview }: WriteReviewProps) {
+export default function WriteReview({ writeReview, initialValues,isEdit=false }: WriteReviewProps) {
   const form = useForm<WriteReviewFormSchemaType>({
     resolver: zodResolver(WriteReviewFormSchema),
     defaultValues: {
-      rating: 3,
-      review: "",
+      rating: initialValues?.rating ?? 3,
+      review: initialValues?.review ?? "",
     },
   })
 
@@ -34,10 +42,10 @@ export default function WriteReview({ writeReview }: WriteReviewProps) {
   }
 
   return (
-    <div className="w-full max-w-md p-8 space-y-6 shadow-lg border rounded-2xl">
+    <div className="w-full my-10 max-w-md p-8 space-y-6 shadow-lg border rounded-2xl">
       <Form value={form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <h2 className="text-xl font-semibold text-center text-gray-800">اكتب مراجعتك</h2>
+          <h2 className="text-xl font-semibold text-center text-gray-800">{isEdit?"تعديل مراجعتك":"اكتب مراجعتك"}</h2>
 
           <FormField
             control={form.control}
