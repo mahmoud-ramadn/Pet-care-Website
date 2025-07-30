@@ -8,7 +8,7 @@ type ServicesCardType = {
 }
 
 type ServiceProfileType = {
-  _id?: string
+  _id: string
   icon?: string
   name?: string
   description?: string
@@ -31,6 +31,7 @@ type ServiceProfileType = {
 }
 
 type ShuffledServiceType = {
+  serviceId:string 
   _id?: string
   serviceType?: string
   city?: string

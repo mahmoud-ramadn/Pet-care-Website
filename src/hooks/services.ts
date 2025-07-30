@@ -1,10 +1,20 @@
-import { parseAsString, useQueryStates } from "nuqs"
+import { parseAsString, useQueryStates } from "nuqs";
 
-import { useAsyncRetry } from "react-use"
 
-import { getParamsEncodedQuery } from "@/lib/map"
 
-import { getServiceProfile, getServices } from "@/apis/services"
+import { useAsyncRetry } from "react-use";
+
+
+
+import { getParamsEncodedQuery } from "@/lib/map";
+
+
+
+import { getServiceProfile, getServices } from "@/apis/services";
+
+
+
+
 
 export const useServicesQueryFilter = () => {
   const [query, setQuery] = useQueryStates({
@@ -25,8 +35,8 @@ export const useServices = () => {
   const { query } = useServicesQueryFilter()
   return useAsyncRetry(async () => {
     const apiParams = {
-      serviceType: query.serviceType,
-      location: query.location,
+      serviceType: query?.serviceType,
+      location: query?.location,
     }
     const response = await getServices(getParamsEncodedQuery(apiParams))
     return response
@@ -35,8 +45,7 @@ export const useServices = () => {
 
 export const useServiceProfile = (serviceId: string) => {
   return useAsyncRetry(async () => {
-    if (!serviceId) return null
     const response = await getServiceProfile(serviceId)
     return response
-  }, [serviceId])
+  })
 }

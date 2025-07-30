@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu"
 import { useAtomValue } from "jotai"
-import {  DotIcon, LogOut, PillIcon, UserIcon } from "lucide-react"
+import { DotIcon, LogOut, PillIcon, UserIcon } from "lucide-react"
 
 import { userInfoAtom } from "@/atoms"
 import { useLogout } from "@/hooks/auth"
@@ -79,20 +79,17 @@ export default function UserInfo() {
         <DropdownMenuSeparator />
 
         <DropdownMenuGroup>
-          {userData?.role === "admin"? (
+          {userData?.role === "admin" ? (
             <DropdownMenuItem className="px-3 py-2 rounded-md flex items-center gap-4 hover:bg-gray-100 transition-colors cursor-pointer">
               <UserIcon size={16} />
               Admin Dashboard
             </DropdownMenuItem>
-          )
-        :(
-          <DropdownMenuItem className="px-3 py-2 rounded-md flex items-center gap-4 hover:bg-gray-100 transition-colors cursor-pointer">
-            <UserIcon size={16} />
-            user Dashboard
-          </DropdownMenuItem>
-        )
-        
-        }
+          ) : (
+            <DropdownMenuItem className="px-3 py-2 rounded-md flex items-center gap-4 hover:bg-gray-100 transition-colors cursor-pointer">
+              <UserIcon size={16} />
+              user Dashboard
+            </DropdownMenuItem>
+          )}
 
           <DropdownMenuItem className="px-3 py-2 rounded-md flex items-center gap-4 hover:bg-gray-100 transition-colors cursor-pointer">
             <PillIcon size={16} />

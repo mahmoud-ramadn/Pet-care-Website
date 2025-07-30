@@ -74,7 +74,7 @@ export function ReviewItem({ review, reload }: ReviewItemProps) {
           {open && isOwner && (
             <div className="mt-4">
               <WriteReview
-              isEdit
+                isEdit
                 writeReview={async (values) => {
                   if (!review?._id) return
                   try {
