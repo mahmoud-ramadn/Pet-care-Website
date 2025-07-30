@@ -10,10 +10,7 @@ export default function ServicesCard({
   serviceProfile,
 }: Readonly<ShuffledServiceType>) {
   return (
-    <Link
-      to={`/services/description/${serviceProfile}`}
-      className="rounded-lg shadow-lg hover:shadow-xl transition-shadow bg-white overflow-hidden"
-    >
+    <div className="rounded-lg shadow-lg hover:shadow-xl transition-shadow bg-white overflow-hidden">
       <img className="w-full h-48 object-cover" src={serviceImage} alt={serviceType} />
       <div className="p-5 flex flex-col gap-2">
         <div className="flex justify-between items-center">
@@ -37,8 +34,14 @@ export default function ServicesCard({
           <span className="ml-2 text-xs text-gray-600">
             {serviceProfile?.rate} Review{serviceProfile?.rate !== 1 ? "s" : ""}
           </span>
+          <Link
+            to={`/services/description/${serviceProfile?._id || serviceProfile}`}
+            className="ml-auto text-blue-500 hover:underline"
+          >
+            View Details
+          </Link>
         </div>
       </div>
-    </Link>
+    </div>
   )
 }
