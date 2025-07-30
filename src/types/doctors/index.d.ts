@@ -12,7 +12,8 @@ interface Review {
   review: string
   rating: number
   createdAt: string
-  doctor: string
+  shelter?:string;
+  doctor?: string
   user?: User
   __v?: number
   id?: string

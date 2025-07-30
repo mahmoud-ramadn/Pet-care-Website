@@ -4,17 +4,19 @@ import { useMemo, useState } from "react"
 import { useParams } from "react-router"
 
 import SwiperWrapper from "@/components/ui/SwiperWrapper"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ShelterSkeleton } from "@/components/ui/feedbacks/singl-shilter-skeleton"
+import { ReviewItem } from "@/components/ui/serviceProfile/ReviewItem"
 
+import { ShilterWritereivew } from "@/apis/writeriewve"
+import WriteReview from "@/components/forms/write-review"
 import MapComponent from "@/components/map/MapComponent"
 import { useShilter } from "@/hooks/shilters"
 
 export default function SinglShilter() {
   const { id } = useParams()
-  const { value: shelter, loading } = useShilter(id ?? "")
+  const { value: shelter, loading, retry } = useShilter(id ?? "")
   const [mainImage, setMainImage] = useState<string | undefined>()
 
   useMemo(() => {
@@ -125,39 +127,35 @@ export default function SinglShilter() {
       </section>
 
       {/* Reviews Section */}
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Reviews</h2>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border">
+        <h2 className="text-2xl font-semibold mb-4 text-gray-800">مراجعات العملاء</h2>
+
         {shelter?.reviewsOfShelter?.length ? (
           <div className="space-y-6">
-            {shelter?.reviewsOfShelter.map((review) => (
-              <div key={review._id} className="border-b pb-6 last:border-0">
-                <div className="flex items-center gap-3 mb-3">
-                  <Avatar>
-                    <AvatarImage src={review.user?.profileImage} />
-                    <AvatarFallback>{review.user?.name?.charAt(0).toUpperCase()}</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <p className="font-medium">{review.user?.name}</p>
-                    <div className="flex items-center">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`w-4 h-4 ${i < (review.rating || 0) ? "text-yellow-500 fill-yellow-500" : "text-gray-300"}`}
-                        />
-                      ))}
-                      <span className="text-sm text-gray-500 ml-2">
-                        {new Date(review.createdAt ?? 0).toLocaleDateString()}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <p className="text-gray-700">{review?.review}</p>
-              </div>
+            {shelter?.reviewsOfShelter?.map((review, idx) => (
+              <ReviewItem
+                key={review._id ?? idx}
+                review={review._id ? (review as Review) : null}
+                reload={() => retry()}
+              />
             ))}
           </div>
         ) : (
-          <p className="text-gray-500">No reviews yet</p>
+          <p className="text-gray-500">لا توجد مراجعات حتى الآن</p>
         )}
+      </section>
+
+      <section className="bg-white p-6 rounded-xl shadow-sm border">
+        <h2 className="text-2xl font-semibold mb-2 text-gray-800">مراجعتك</h2>
+        <p className="text-gray-500 mb-4">يمكنك إضافة رأيك حول الخدمة</p>
+        <WriteReview
+          writeReview={(data) => {
+            ShilterWritereivew(data, id ?? "")
+
+            retry()
+          }}
+        />
       </section>
     </div>
   )

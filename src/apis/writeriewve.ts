@@ -17,3 +17,23 @@ export const DeleteReivew = async (id: string) => {
   })
   return response
 }
+
+export const DoctorsWritereivew = async (inputs: InputReviewType, id: string) => {
+  const response = await apiClient<NewReviewType>({
+    url: `reviews/createReviewDoctor/${id}`,
+    method: "POST",
+    data: inputs,
+    auth: true,
+  })
+  return response
+}
+
+export const ShilterWritereivew = async (inputs: InputReviewType, id: string) => {
+  const response = await apiClient<NewReviewType>({
+    url: `reviews/createReviewShelter/${id}`,
+    method: "POST",
+    data: inputs,
+    auth: true,
+  })
+  return response
+}

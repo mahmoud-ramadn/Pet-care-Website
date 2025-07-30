@@ -4,14 +4,18 @@ import { useParams } from "react-router"
 
 import SwiperWrapper from "@/components/ui/SwiperWrapper"
 import { Button } from "@/components/ui/button"
+import { ReviewItem } from "@/components/ui/serviceProfile/ReviewItem"
 import { Skeleton } from "@/components/ui/skeleton"
-import ReviewCard from "@/components/ui/vet/reviw-card"
+
+import { DoctorsWritereivew } from "@/apis/writeriewve"
+import WriteReview from "@/components/forms/write-review"
+// import ReviewCard from "@/components/ui/vet/reviw-card"
 
 import { useDoctor } from "@/hooks/doctors"
 
 export default function SingleDoctor() {
   const { id } = useParams()
-  const { value: data, loading, error } = useDoctor(id ?? "")
+  const { value: data, loading, error, retry } = useDoctor(id ?? "")
 
   const doctor: Doctor = data ?? {}
 
@@ -131,20 +135,29 @@ export default function SingleDoctor() {
             </section>
           )}
 
-          {/* Reviews Section */}
-          <section className="mb-12">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold">Patient Reviews</h2>
-              <Button variant="outline">Leave a Review</Button>
-            </div>
-            <div className="space-y-6">
-              {doctor?.reviewsOfDoctor?.length ? (
-                doctor?.reviewsOfDoctor?.map((review) => <ReviewCard key={review._id} review={review} />)
-              ) : (
-                <p className="text-gray-400">No reviews yet</p>
-              )}
-            </div>
+          <section className="bg-white p-6 rounded-xl shadow-sm border">
+            <h2 className="text-2xl font-semibold mb-4 text-gray-800">مراجعات العملاء</h2>
+
+            {doctor?.reviewsOfDoctor?.length ? (
+              <div className="space-y-6">
+                {doctor?.reviewsOfDoctor.map((review) => (
+                  <ReviewItem key={review._id} review={review} reload={() => retry()} />
+                ))}
+              </div>
+            ) : (
+              <p className="text-gray-500">لا توجد مراجعات حتى الآن</p>
+            )}
           </section>
+
+          <WriteReview
+            writeReview={(data) => {
+              console.log(data)
+
+              DoctorsWritereivew(data, id ?? "")
+
+              retry()
+            }}
+          />
         </>
       ) : null}
     </div>
