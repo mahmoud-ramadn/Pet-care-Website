@@ -50,6 +50,7 @@ export function ReviewItem({ review, reload }: ReviewItemProps) {
       </div>
 
       {review.review && <p className="text-gray-700">{review.review}</p>}
+      {}
 
       {isOwner && (
         <button onClick={handleDelete} className="text-red-500 mt-2 text-sm hover:underline">

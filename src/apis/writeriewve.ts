@@ -1,10 +1,6 @@
-import { apiClient } from "@/lib/api-client";
+import { apiClient } from "@/lib/api-client"
 
-
-
-
-
-export const serviceWritereivew = async (inputs: InputReviewType,id:string ) => {
+export const serviceWritereivew = async (inputs: InputReviewType, id: string) => {
   const response = await apiClient<NewReviewType>({
     url: `reviews/createReviewService/${id}`,
     method: "POST",
@@ -13,7 +9,7 @@ export const serviceWritereivew = async (inputs: InputReviewType,id:string ) => 
   })
   return response
 }
-export const DeleteReivew = async (id:string ) => {
+export const DeleteReivew = async (id: string) => {
   const response = await apiClient<NewReviewType>({
     url: `reviews/deleteReview/${id}`,
     method: "DELETE",

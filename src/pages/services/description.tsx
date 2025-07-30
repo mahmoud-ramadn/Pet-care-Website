@@ -11,16 +11,15 @@ import { ServiceGallery } from "@/components/ui/serviceProfile/ServiceGallery"
 import { ServiceHeader } from "@/components/ui/serviceProfile/ServiceHeader"
 import { ServiceInfo } from "@/components/ui/serviceProfile/ServiceInfo"
 
+import { serviceWritereivew } from "@/apis/writeriewve"
 import { tokenAtom } from "@/atoms"
 import WriteReview from "@/components/forms/write-review"
 import { useServiceProfile } from "@/hooks/services"
-import { serviceWritereivew } from "@/apis/writeriewve"
 
 export default function Description() {
-
   const token = useAtomValue(tokenAtom)
   const { id } = useParams()
-  const { value: serviceProfile, loading ,retry} = useServiceProfile(id ?? "")
+  const { value: serviceProfile, loading, retry } = useServiceProfile(id ?? "")
 
   if (loading) return <ServiceProfileSkeleton />
   if (!serviceProfile) return <div className="text-center text-gray-500 py-12">Service not found</div>
@@ -61,7 +60,7 @@ export default function Description() {
             {serviceProfile.reviewsOfService?.length ? (
               <div className="space-y-6">
                 {serviceProfile.reviewsOfService.map((review) => (
-                  <ReviewItem key={review._id} review={review}  reload={()=>retry()}  />
+                  <ReviewItem key={review._id} review={review} reload={() => retry()} />
                 ))}
               </div>
             ) : (
@@ -74,12 +73,13 @@ export default function Description() {
             <section className="bg-white p-6 rounded-xl shadow-sm border">
               <h2 className="text-2xl font-semibold mb-2 text-gray-800">مراجعتك</h2>
               <p className="text-gray-500 mb-4">يمكنك إضافة رأيك حول الخدمة</p>
-              <WriteReview writeReview={(data) => {
-            
-               serviceWritereivew(data,id?? '')
+              <WriteReview
+                writeReview={(data) => {
+                  serviceWritereivew(data, id ?? "")
 
-               retry()
-              }} />
+                  retry()
+                }}
+              />
             </section>
           )}
         </div>

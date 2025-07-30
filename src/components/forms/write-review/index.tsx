@@ -11,10 +11,10 @@ import { Textarea } from "@/components/ui/textarea"
 import { WriteReviewFormSchema, type WriteReviewFormSchemaType } from "./schema"
 
 type WriteReviewProps = {
-  writeReview: (values: WriteReviewFormSchemaType) => void;
+  writeReview: (values: WriteReviewFormSchemaType) => void
 }
 
-export default function WriteReview({ writeReview}: WriteReviewProps) {
+export default function WriteReview({ writeReview }: WriteReviewProps) {
   const form = useForm<WriteReviewFormSchemaType>({
     resolver: zodResolver(WriteReviewFormSchema),
     defaultValues: {
@@ -26,7 +26,6 @@ export default function WriteReview({ writeReview}: WriteReviewProps) {
   async function onSubmit(values: WriteReviewFormSchemaType) {
     try {
       writeReview(values)
-      console.log(values)
       toast.success("تم إرسال المراجعة بنجاح")
     } catch (error) {
       console.error(error)
