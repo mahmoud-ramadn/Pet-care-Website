@@ -1,5 +1,5 @@
 import { useAtomValue } from "jotai"
-import { EarthIcon, Menu, X } from "lucide-react"
+import { EarthIcon, Heart, Menu, X } from "lucide-react"
 
 import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -64,7 +64,16 @@ export default function Header() {
         <div className="flex items-center  space-x-4">
           <div className="flex items-center space-x-6">
             {token ? (
-              <UserInfo />
+              <>
+                <Link
+                  to="/shop/fav"
+                  className="text-gray-800 hover:text-primary transition-colors duration-200 font-medium"
+                  aria-label={t("favoriteProducts")}
+                >
+                  <Heart className="w-6 h-6" />
+                </Link>
+                <UserInfo />
+              </>
             ) : (
               <>
                 <Link

@@ -9,7 +9,6 @@ import UiTitle from "@/components/ui/ui-title"
 import { ProjectImages } from "@/Constants/images"
 import { allEgyptGovernorates, servicesMenu } from "@/Constants/main"
 import { useServices, useServicesQueryFilter } from "@/hooks/services"
-
 const pageSizeOptions = [4, 8, 20, 30]
 
 export default function Services() {
@@ -85,6 +84,14 @@ export default function Services() {
           {loading
             ? [...Array(Math.min(itemsPerPage, 8))].map((_, index) => <ServicesCardSkeleton key={index} />)
             : currentPageItems.map((item) => <ServicesCard key={item._id} {...item} />)}
+
+          {!loading && currentPageItems.length === 0 && (
+            <div className="text-center  col-span-4 text-gray-500 py-12">
+              No services found for the selected filters.
+              <br />
+              Please try different filters or check back later.
+            </div>
+          )}
         </div>
       </div>
 

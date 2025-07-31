@@ -14,7 +14,7 @@ const AdoptionLayout = lazy(() => import("@/layouts/Adoption"))
 const CatsAvilabile = lazy(() => import("@/pages/adoption/cat-availabile"))
 const DogsAvilabile = lazy(() => import("@/pages/adoption/dogs-availabile"))
 const Services = lazy(() => import("@/pages/services/index"))
-const Description = lazy(() => import("@/pages/services/description"))
+const Description = lazy(() => import("@/pages/services/service-profile"))
 
 const VeterinaryLayout = lazy(() => import("@/layouts/Vet"))
 const Vet = lazy(() => import("@/pages/vet"))

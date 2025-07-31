@@ -4,7 +4,7 @@ import { useAsyncRetry } from "react-use"
 
 import { getParamsEncodedQuery } from "@/lib/map"
 
-import { getAllProduct } from "@/apis/product"
+import { getAllProduct, getFavoriteProducts } from "@/apis/product"
 
 export const useQuestionsQueryFilterState = () => {
   const [query, setQuery] = useQueryStates({
@@ -36,4 +36,11 @@ export const useProducts = () => {
     const response = await getAllProduct(getParamsEncodedQuery(apiParams))
     return response.data
   }, [query])
+}
+
+export const useFavoriteProducts = () => {
+  return useAsyncRetry(async () => {
+    const response = await getFavoriteProducts()
+    return response
+  })
 }

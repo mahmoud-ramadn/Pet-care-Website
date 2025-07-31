@@ -1,4 +1,6 @@
 interface ProductData {
+  handleToggleFavorite?: () => void
+  toggleFavoritProduct?: () => void
   _id?: string
   name?: string
   desc?: string

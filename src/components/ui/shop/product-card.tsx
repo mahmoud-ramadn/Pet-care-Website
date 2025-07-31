@@ -1,43 +1,64 @@
-import { Heart, ShoppingCart } from "lucide-react"
+import { Heart, ShoppingCart, Star } from "lucide-react"
 
-import { useState } from "react"
+import { Button } from "@/components/ui/button"
 
-import { formatPriceEGP } from "@/lib/FormatPriceEGp"
+interface ProductCardProps extends Product {
+  handleToggleFavorite: () => void
+  isLoading?: boolean
+}
 
-import { Button } from "../button"
-
-export default function ProductCard({ productImage, name, price, discount, desc }: Readonly<ProductData>) {
-  const [isFavorite, setIsFavorite] = useState(false)
-
-  const toggleFavorite = () => {
-    setIsFavorite(!isFavorite)
-  }
-
+export default function ProductCard({
+  name,
+  desc,
+  price,
+  priceAfterDiscount,
+  discount,
+  productImage,
+  handleToggleFavorite,
+  isLoading,
+}: ProductCardProps) {
   return (
-    <div className="bg-white relative rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-      <button
-        onClick={toggleFavorite}
-        className="absolute top-4 right-4 p-2 rounded-full bg-white/80 backdrop-blur-sm hover:bg-gray-100 transition-colors"
-        aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
-      >
-        <Heart className={`w-5 h-5 ${isFavorite ? "fill-red-500 stroke-red-500" : "stroke-gray-400"}`} size={20} />
-      </button>
-
-      <img src={productImage} alt={name} className="w-full h-48 object-cover" />
+    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+      <div className="relative">
+        <img src={productImage || "/placeholder-product.jpg"} alt={name} className="w-full h-48 object-cover" />
+        <button
+          onClick={handleToggleFavorite}
+          className="absolute top-2 right-2 p-2 bg-white rounded-full shadow-md hover:bg-gray-100"
+        >
+          {isLoading ? (
+            <div className="w-5 h-5 animate-spin border-2 border-red-500 border-t-transparent rounded-full" />
+          ) : (
+            <Heart className=" text-gray-500 w-5 h-5" fill="currentColor" />
+          )}
+        </button>
+      </div>
 
       <div className="p-4">
-        <h5 className="text-lg font-semibold mb-2 line-clamp-1">{name}</h5>
-        <p className="text-gray-600 text-sm mb-4 line-clamp-2">{desc}</p>
-
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-lg font-bold text-primary">{formatPriceEGP(price ?? 0)}</span>
-          {discount && <span className="text-sm text-gray-500 line-through">{formatPriceEGP(discount)}</span>}
+        <div className="flex justify-between items-start mb-2">
+          <h3 className="font-semibold text-lg">{name}</h3>
+          <div className="flex items-center">
+            <Star className="text-yellow-400 w-4 h-4" fill="currentColor" />
+            <span className="ml-1 text-sm">4.5</span>
+          </div>
         </div>
 
-        <Button className="w-full gap-2">
-          <ShoppingCart size={18} />
-          Add to Cart
-        </Button>
+        <p className="text-gray-600 text-sm mb-3 line-clamp-2">{desc}</p>
+
+        <div className="flex items-center justify-between">
+          <div>
+            {discount ? (
+              <>
+                <span className="text-gray-400 line-through mr-2">${price?.toFixed(2)}</span>
+                <span className="font-bold text-blue-600">${priceAfterDiscount?.toFixed(2)}</span>
+              </>
+            ) : (
+              <span className="font-bold text-blue-600">${price?.toFixed(2)}</span>
+            )}
+          </div>
+          <Button variant="ghost" size="icon" className="rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200">
+            <ShoppingCart className="w-5 h-5" />
+          </Button>
+        </div>
       </div>
     </div>
   )

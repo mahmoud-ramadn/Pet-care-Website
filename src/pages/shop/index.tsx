@@ -1,6 +1,6 @@
 import { ShoppingBagIcon } from "lucide-react"
 
-import { useEffect, useMemo } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 import SelectList from "@/components/ui/common/select"
 import { ProductCardSkeleton } from "@/components/ui/feedbacks/product-card-skeleton"
@@ -16,8 +16,10 @@ import {
 import ProductCard from "@/components/ui/shop/product-card"
 import UiTitle from "@/components/ui/ui-title"
 
+import { addFavoriteProduct, getFavoriteProducts } from "@/apis/product"
 import { useProducts, useQuestionsQueryFilterState } from "@/hooks/product"
 import { useDebouncedInput } from "@/hooks/useDebounceInput"
+import { toast } from "sonner"
 
 export default function Shop() {
   const { value: products, loading } = useProducts()
@@ -28,6 +30,8 @@ export default function Shop() {
     handleChange: handleSearchChange,
     setValue: setSearchValue,
   } = useDebouncedInput(300, query.search ?? "")
+
+  const [loadingProductId, setLoadingProductId] = useState<string | null>(null)
 
   useEffect(() => {
     if (query.search !== searchValue) {
@@ -51,7 +55,7 @@ export default function Shop() {
           Find exactly what you need from our curated collection of premium items
         </p>
 
-        <div className="relative max-w-2xl  my-5 mx-auto">
+        <div className="relative max-w-2xl my-5 mx-auto">
           <Input
             type="search"
             onChange={(e) => handleSearchChange(e.target.value)}
@@ -63,7 +67,6 @@ export default function Shop() {
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
           >
             <path
               strokeLinecap="round"
@@ -73,6 +76,7 @@ export default function Shop() {
             />
           </svg>
         </div>
+
         <SelectList
           placeholder="Categories"
           selectedValue={query.category}
@@ -80,16 +84,13 @@ export default function Shop() {
           selectList={["medicine", "food", "toys", "grooming", "accessories"]}
         />
       </section>
+
       <div className="grid mb-10 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6">
-        {/* Loading State */}
         {loading && [...Array(query.limit)].map((_, index) => <ProductCardSkeleton key={`skeleton-${index}`} />)}
 
-        {/* Empty State */}
         {!loading && (!products || products.length === 0) && (
           <div className="col-span-full flex flex-col items-center justify-center py-12 space-y-6">
-            <div className="relative">
-              <ShoppingBagIcon className="size-48 text-gray-300 animate-pulse" />
-            </div>
+            <ShoppingBagIcon className="size-48 text-gray-300 animate-pulse" />
             <div className="text-center space-y-2">
               <h3 className="text-2xl font-bold text-gray-800">No Products Found</h3>
               <p className="text-gray-500">We couldn't find any matching products</p>
@@ -97,17 +98,35 @@ export default function Shop() {
           </div>
         )}
 
-        {/* Products Grid */}
-        {!loading && <>{products?.map((item, index) => <ProductCard key={`product-${index}`} {...item} />)}</>}
+        {!loading &&
+          products?.map((item) => (
+            <ProductCard
+              key={item._id}
+              {...item}
+              isLoading={loadingProductId === item._id}
+              handleToggleFavorite={async () => {
+                try {
+                  setLoadingProductId(item?._id ?? "")
+                  await addFavoriteProduct(item?._id ?? "")
+                  toast.success("Product updated in favorites")
+                  await getFavoriteProducts()
+                } catch (error) {
+                  // eslint-disable-next-line no-console
+                  console.error("Failed to update favorites:", error)
+                } finally {
+                  setLoadingProductId(null)
+                }
+              }}
+            />
+          ))}
       </div>
 
+      {/* Pagination Section */}
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
         <SelectList
           placeholder="Items per page"
           selectedValue={String(query.limit || 8)}
-          handleValueChange={(value: string) => {
-            mutate({ limit: Number(value), page: 1 })
-          }}
+          handleValueChange={(value: string) => mutate({ limit: Number(value), page: 1 })}
           selectList={["2", "4", "8", "12", "24", "32"]}
         />
 
@@ -124,7 +143,6 @@ export default function Shop() {
               />
             </PaginationItem>
 
-            {/* Show first page if not currently on it */}
             {query.page > 1 && (
               <PaginationItem>
                 <PaginationLink
@@ -139,14 +157,12 @@ export default function Shop() {
               </PaginationItem>
             )}
 
-            {/* Show current page */}
             <PaginationItem>
               <PaginationLink href="#" isActive onClick={(e) => e.preventDefault()}>
                 {query.page}
               </PaginationLink>
             </PaginationItem>
 
-            {/* Show next page if there are more products */}
             {hasMoreProducts && (
               <PaginationItem>
                 <PaginationLink
