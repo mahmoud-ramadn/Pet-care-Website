@@ -1,8 +1,4 @@
-import { apiClient } from "@/lib/api-client";
-
-
-
-
+import { apiClient } from "@/lib/api-client"
 
 export const getAllProduct = async (queryString?: string) => {
   let url = "/product/getallproduct"
@@ -30,8 +26,6 @@ export const getAllProduct = async (queryString?: string) => {
   return response
 }
 
-
-
 export const addFavoriteProduct = async (productId: string) => {
   const response = await apiClient<AddToFavoriteResponse>({
     url: `fav/addfav?productId=${productId}`,
@@ -42,8 +36,7 @@ export const addFavoriteProduct = async (productId: string) => {
   return response
 }
 
-
-export const  getFavoriteProducts   = async () => {
+export const getFavoriteProducts = async () => {
   const response = await apiClient<ProductsResponse>({
     url: `fav/getfavproduct`,
     method: "GET",

@@ -62,7 +62,7 @@ export default function Fav() {
               />
               <button
                 onClick={async () => {
-                  setLoadingIds((prev) => [...prev, product?._id??''])
+                  setLoadingIds((prev) => [...prev, product?._id ?? ""])
                   try {
                     await addFavoriteProduct(product._id ?? "")
                     setProducts((prev) => prev.filter((p) => p._id !== product._id))
@@ -74,7 +74,7 @@ export default function Fav() {
                 }}
                 className="absolute top-2 right-2 p-2 bg-white rounded-full shadow-md hover:bg-gray-100"
               >
-                {loadingIds.includes(product?._id??'') ? (
+                {loadingIds.includes(product?._id ?? "") ? (
                   <div className="w-5 h-5 border-2 border-red-500 border-t-transparent animate-spin rounded-full" />
                 ) : (
                   <Heart className="text-red-500 w-5 h-5" fill="currentColor" />

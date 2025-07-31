@@ -1,4 +1,5 @@
 import { ShoppingBagIcon } from "lucide-react"
+import { toast } from "sonner"
 
 import { useEffect, useMemo, useState } from "react"
 
@@ -19,7 +20,6 @@ import UiTitle from "@/components/ui/ui-title"
 import { addFavoriteProduct, getFavoriteProducts } from "@/apis/product"
 import { useProducts, useQuestionsQueryFilterState } from "@/hooks/product"
 import { useDebouncedInput } from "@/hooks/useDebounceInput"
-import { toast } from "sonner"
 
 export default function Shop() {
   const { value: products, loading } = useProducts()

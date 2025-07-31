@@ -9,6 +9,7 @@ import UiTitle from "@/components/ui/ui-title"
 import { ProjectImages } from "@/Constants/images"
 import { allEgyptGovernorates, servicesMenu } from "@/Constants/main"
 import { useServices, useServicesQueryFilter } from "@/hooks/services"
+
 const pageSizeOptions = [4, 8, 20, 30]
 
 export default function Services() {
