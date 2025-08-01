@@ -1,10 +1,12 @@
-import { Heart, ShoppingCart, Star } from "lucide-react"
+import { Heart, ShoppingCart, Star, Trash } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 
 interface ProductCardProps extends Product {
   handleToggleFavorite: () => void
+  isFav?: boolean
   isLoading?: boolean
+  isShop?: boolean
 }
 
 export default function ProductCard({
@@ -14,8 +16,11 @@ export default function ProductCard({
   priceAfterDiscount,
   discount,
   productImage,
+
   handleToggleFavorite,
-  isLoading,
+  isFav,
+  isLoading = false,
+  isShop = true,
 }: ProductCardProps) {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
@@ -26,9 +31,13 @@ export default function ProductCard({
           className="absolute top-2 right-2 p-2 bg-white rounded-full shadow-md hover:bg-gray-100"
         >
           {isLoading ? (
-            <div className="w-5 h-5 animate-spin border-2 border-red-500 border-t-transparent rounded-full" />
+            <div className="w-5 h-5 border-2 border-red-500 border-t-transparent animate-spin rounded-full" />
+          ) : isShop ? (
+            <Heart
+              className={` ${isFav ? "text-red-400" : "text-gray-600"} text-gray-500 w-5 h-5" fill="currentColor`}
+            />
           ) : (
-            <Heart className=" text-gray-500 w-5 h-5" fill="currentColor" />
+            <Trash className="text-red-500 w-5 h-5" fill="currentColor" />
           )}
         </button>
       </div>

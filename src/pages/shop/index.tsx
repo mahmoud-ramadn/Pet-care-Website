@@ -24,6 +24,20 @@ import { useDebouncedInput } from "@/hooks/useDebounceInput"
 export default function Shop() {
   const { value: products, loading } = useProducts()
   const { query, mutate } = useQuestionsQueryFilterState()
+  const [fav, setFav] = useState<string[]>([])
+
+  const fetchFavorites = async () => {
+    try {
+      const response = await getFavoriteProducts()
+      setFav(response.map((item) => item._id ?? "") as string[])
+    } catch (error) {
+      console.error("Error fetching favorites", error)
+    }
+  }
+
+  useEffect(() => {
+    fetchFavorites()
+  }, [fav.length])
 
   const {
     value: searchValue,
@@ -104,12 +118,13 @@ export default function Shop() {
               key={item._id}
               {...item}
               isLoading={loadingProductId === item._id}
+              isFav={fav.includes(item._id ?? "")}
               handleToggleFavorite={async () => {
                 try {
                   setLoadingProductId(item?._id ?? "")
                   await addFavoriteProduct(item?._id ?? "")
+                  await fetchFavorites()
                   toast.success("Product updated in favorites")
-                  await getFavoriteProducts()
                 } catch (error) {
                   // eslint-disable-next-line no-console
                   console.error("Failed to update favorites:", error)
