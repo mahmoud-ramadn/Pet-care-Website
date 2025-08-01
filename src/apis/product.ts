@@ -35,6 +35,15 @@ export const addFavoriteProduct = async (productId: string) => {
 
   return response
 }
+export const addCartProduct = async (productId: string) => {
+  const response = await apiClient<AddToCartResponse>({
+    url: `cart/addproduct?productId=${productId}`,
+    method: "PATCH",
+    auth: true,
+  })
+
+  return response
+}
 
 export const getFavoriteProducts = async () => {
   const response = await apiClient<ProductsResponse>({
@@ -44,4 +53,13 @@ export const getFavoriteProducts = async () => {
   })
 
   return response.data
+}
+export const getCartProducts = async () => {
+  const response = await apiClient<CartProductResponse>({
+    url: `cart/getcart`,
+    method: "GET",
+    auth: true,
+  })
+
+  return response.data.cartItems
 }

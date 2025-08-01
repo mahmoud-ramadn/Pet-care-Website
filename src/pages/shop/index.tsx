@@ -17,7 +17,7 @@ import {
 import ProductCard from "@/components/ui/shop/product-card"
 import UiTitle from "@/components/ui/ui-title"
 
-import { addFavoriteProduct, getFavoriteProducts } from "@/apis/product"
+import { addCartProduct, addFavoriteProduct, getFavoriteProducts } from "@/apis/product"
 import { useProducts, useQuestionsQueryFilterState } from "@/hooks/product"
 import { useDebouncedInput } from "@/hooks/useDebounceInput"
 
@@ -25,16 +25,16 @@ export default function Shop() {
   const { value: products, loading } = useProducts()
   const { query, mutate } = useQuestionsQueryFilterState()
   const [fav, setFav] = useState<string[]>([])
+  // const [cart, setCart] = useState<string[]>([])
 
   const fetchFavorites = async () => {
     try {
       const response = await getFavoriteProducts()
-      setFav(response?.map((item) => item._id ?? "") ||[] )
+      setFav(response?.map((item) => item?._id ?? "") || [])
     } catch (error) {
       console.error("Error fetching favorites", error)
     }
   }
-
   useEffect(() => {
     fetchFavorites()
   }, [fav.length])
@@ -115,10 +115,10 @@ export default function Shop() {
         {!loading &&
           products?.map((item) => (
             <ProductCard
-              key={item._id}
+              key={item?._id}
               {...item}
-              isLoading={loadingProductId === item._id}
-              isFav={fav.includes(item._id ?? "")}
+              isLoading={loadingProductId === item?._id}
+              isFav={fav.includes(item?._id ?? "")}
               handleToggleFavorite={async () => {
                 try {
                   setLoadingProductId(item?._id ?? "")
@@ -132,6 +132,16 @@ export default function Shop() {
                   setLoadingProductId(null)
                 }
               }}
+              handleToggleCart={async () => {
+                try {
+                  await addCartProduct(item?._id ?? "")
+                  toast.success("Product updated in cart")
+                } catch (error) {
+                  // eslint-disable-next-line no-console
+                  console.error("Failed to update favorites:", error)
+                }
+              }}
+              isShop={true}
             />
           ))}
       </div>
