@@ -1,7 +1,7 @@
 import { lazy } from "react"
 import type { RouteObject } from "react-router"
 
-import DashboardLayout from "@/layouts/Dashboard"
+import DashboardLayout from "@/layouts/Default"
 
 const ShelterPage = lazy(() => import("@/pages/adoption/shelter"))
 const AdoptionIndexPage = lazy(() => import("@/pages/adoption/index"))

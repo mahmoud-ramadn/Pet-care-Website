@@ -6,6 +6,7 @@ import Layout from "@/layouts"
 
 import { AuthRoutes } from "./auth"
 import { DashboardRoutes } from "./dashboard"
+import { RoleBase } from "./role-base"
 
 const NotFound = lazy(() => import("@/pages/not-found"))
 
@@ -20,7 +21,7 @@ export const router = createBrowserRouter([
         children: [DashboardRoutes],
       },
       AuthRoutes,
-
+      RoleBase,
       {
         path: "*",
         Component: NotFound,
