@@ -6,7 +6,7 @@ import SquareNavigation from "../common/squer-nav"
 export default function SquiresNav() {
   return (
     <div className=" container my-20  ">
-      <SwiperWrapper preview={3} className="rounded-lg p-3">
+      <SwiperWrapper preview={4} className="rounded-lg p-3">
         {HomNavigationLink.map((item) => (
           <SquareNavigation
             key={item.id}

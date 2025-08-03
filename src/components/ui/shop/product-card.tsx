@@ -7,7 +7,10 @@ interface ProductCardProps extends ProductData {
   handleToggleCart?: () => void
   isFav?: boolean
   isLoading?: boolean
+  isLoadingCart?: boolean
   isShop?: boolean
+  isCart?: boolean
+  sourcePage?: "shope" | "fav" | "cart"
 }
 
 export default function ProductCard({
@@ -22,28 +25,28 @@ export default function ProductCard({
   handleToggleCart,
   isFav,
   isLoading = false,
-  isShop = true,
+  isLoadingCart = false,
+  isCart,
 }: ProductCardProps) {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
       <div className="relative">
         <img src={productImage || "/placeholder-product.jpg"} alt={name} className="w-full h-48 object-cover" />
-        {isShop && (
-          <button
-            onClick={handleToggleFavorite}
-            className="absolute top-2 right-2 p-2 bg-white rounded-full shadow-md hover:bg-gray-100"
-          >
-            {isLoading ? (
-              <div className="w-5 h-5 border-2 border-red-500 border-t-transparent animate-spin rounded-full" />
-            ) : isShop ? (
-              <Heart
-                className={` ${isFav ? "text-red-400 fill-red-400" : "text-gray-600"} text-gray-500 w-5 h-5" fill="currentColor`}
-              />
-            ) : (
-              <TrashIcon className=" text-red-400  size-5" />
-            )}
-          </button>
-        )}
+
+        <button
+          onClick={handleToggleFavorite}
+          className="absolute top-2 right-2 p-2 bg-white rounded-full shadow-md hover:bg-gray-100"
+        >
+          {isLoading ? (
+            <div className="w-5 h-5 border-2 border-red-500 border-t-transparent animate-spin rounded-full" />
+          ) : isFav ? (
+            <Heart
+              className={` ${isFav ? "text-red-400 fill-red-400" : "text-gray-600"} text-gray-500 w-5 h-5" fill="currentColor`}
+            />
+          ) : (
+            <Heart className={`"text-gray-600"} text-gray-500 w-5 h-5" fill="currentColor`} />
+          )}
+        </button>
       </div>
 
       <div className="p-4">
@@ -68,18 +71,35 @@ export default function ProductCard({
               <span className="font-bold text-blue-600">${price?.toFixed(2)}</span>
             )}
           </div>
-          {isShop && (
-            <Button
-              onClick={handleToggleCart}
-              variant="ghost"
-              size="icon"
-              className="rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200"
-            >
-              {isShop ? <ShoppingCart className="w-5 h-5" /> : <TrashIcon className=" text-red-400  size-5" />}
-            </Button>
-          )}
+
+          <Button
+            onClick={handleToggleCart}
+            variant="ghost"
+            size="icon"
+            className="rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200"
+          >
+            {isLoadingCart ? (
+              <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent animate-spin rounded-full" />
+            ) : (
+              <ShoppingCart
+                className={` ${isCart ? "text-red-400 fill-red-400" : "text-gray-600"} text-gray-500 w-5 h-5" fill="currentColor`}
+              />
+            )}
+          </Button>
         </div>
       </div>
     </div>
   )
 }
+
+// {
+//   isLoading ? (
+//     <div className="w-5 h-5 border-2 border-red-500 border-t-transparent animate-spin rounded-full" />
+//   ) : isShop ? (
+//     <Heart
+//       className={` ${isFav ? "text-red-400 fill-red-400" : "text-gray-600"} text-gray-500 w-5 h-5" fill="currentColor`}
+//     />
+//   ) : (
+//     <TrashIcon className=" text-red-400  size-5" />
+//   )
+// }

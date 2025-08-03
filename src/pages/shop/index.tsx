@@ -17,7 +17,7 @@ import {
 import ProductCard from "@/components/ui/shop/product-card"
 import UiTitle from "@/components/ui/ui-title"
 
-import { addCartProduct, addFavoriteProduct, getFavoriteProducts } from "@/apis/product"
+import { addCartProduct, addFavoriteProduct, getCartProducts, getFavoriteProducts } from "@/apis/product"
 import { useProducts, useQuestionsQueryFilterState } from "@/hooks/product"
 import { useDebouncedInput } from "@/hooks/useDebounceInput"
 
@@ -25,19 +25,30 @@ export default function Shop() {
   const { value: products, loading } = useProducts()
   const { query, mutate } = useQuestionsQueryFilterState()
   const [fav, setFav] = useState<string[]>([])
-  // const [cart, setCart] = useState<string[]>([])
+  const [cart, setCart] = useState<string[]>([])
 
   const fetchFavorites = async () => {
     try {
       const response = await getFavoriteProducts()
       setFav(response?.map((item) => item?._id ?? "") || [])
+      console.log("aim working")
+    } catch (error) {
+      console.error("Error fetching favorites", error)
+    }
+  }
+
+  const fetchCarts = async () => {
+    try {
+      const response = await getCartProducts()
+      setCart(response?.map((item) => item.product._id ?? "") || [])
     } catch (error) {
       console.error("Error fetching favorites", error)
     }
   }
   useEffect(() => {
     fetchFavorites()
-  }, [fav.length])
+    fetchCarts()
+  }, [])
 
   const {
     value: searchValue,
@@ -46,6 +57,7 @@ export default function Shop() {
   } = useDebouncedInput(300, query.search ?? "")
 
   const [loadingProductId, setLoadingProductId] = useState<string | null>(null)
+  const [loadingCartProductId, setLoadingCartProductId] = useState<string | null>(null)
 
   useEffect(() => {
     if (query.search !== searchValue) {
@@ -118,7 +130,9 @@ export default function Shop() {
               key={item?._id}
               {...item}
               isLoading={loadingProductId === item?._id}
+              isLoadingCart={loadingCartProductId === item?._id}
               isFav={fav.includes(item?._id ?? "")}
+              isCart={cart.includes(item?._id ?? "")}
               handleToggleFavorite={async () => {
                 try {
                   setLoadingProductId(item?._id ?? "")
@@ -134,19 +148,21 @@ export default function Shop() {
               }}
               handleToggleCart={async () => {
                 try {
+                  setLoadingCartProductId(item._id ?? "")
                   await addCartProduct(item?._id ?? "")
+                  await fetchCarts()
                   toast.success("Product updated in cart")
                 } catch (error) {
                   // eslint-disable-next-line no-console
                   console.error("Failed to update favorites:", error)
+                } finally {
+                  setLoadingCartProductId(null)
                 }
               }}
-              isShop={true}
             />
           ))}
       </div>
 
-      {/* Pagination Section */}
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
         <SelectList
           placeholder="Items per page"

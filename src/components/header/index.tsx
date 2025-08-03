@@ -17,13 +17,6 @@ export default function Header() {
   const { t } = useTranslation()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  // useEffect(() => {
-  //   const storedLange= localStorage.getItem('lang')
-  //     if (storedLange && storedLange !== i18n.language) {
-  //   i18n.changeLanguage(storedLange)
-  // }
-
-  // },[])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,7 +29,6 @@ export default function Header() {
   const toggleLanguage = () => {
     const newLang = i18n.language === "ar" ? "en" : "ar"
     i18n.changeLanguage(newLang)
-    // localStorage.setItem("lang", newLang)
   }
 
   return (

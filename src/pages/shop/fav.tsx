@@ -67,6 +67,7 @@ export default function Fav() {
             {...product}
             isLoading={loadingIds.includes(product._id ?? "")}
             key={product._id}
+            isLoadingCart={false}
           />
         ))}
       </div>

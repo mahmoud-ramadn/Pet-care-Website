@@ -13,7 +13,6 @@ export default function Hero() {
     <div className=" bg-gradient-to-tl from-primary to-secondary">
       <div className="container mx-auto px-4 py-12 md:py-20">
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-          {/* Text Content */}
           <div className="md:w-1/2 space-y-6 text-center md:text-left">
             <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">{t("mainHeroText")}</h1>
 
