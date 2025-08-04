@@ -29,7 +29,6 @@ export default function Services() {
     return services?.slice(startIndex, endIndex) || []
   }, [services, page, itemsPerPage])
 
-  // إعادة تحميل البيانات لما الفلاتر تتغير
   useMemo(() => {
     if (query.serviceType || query.location) {
       retry()

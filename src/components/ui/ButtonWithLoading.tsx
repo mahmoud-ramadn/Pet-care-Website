@@ -1,6 +1,6 @@
-import { Loader2Icon } from "lucide-react";
-import { Button } from "./button";
+import { Loader2Icon } from "lucide-react"
 
+import { Button } from "./button"
 
 export default function ButtonWithLoading() {
   return (

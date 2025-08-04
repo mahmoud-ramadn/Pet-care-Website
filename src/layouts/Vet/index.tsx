@@ -14,7 +14,7 @@ export default function VeterinaryLayout() {
     <div>
       <Hero
         preview={2}
-        className="bg-green-100"
+        className="bg-primary"
         array={VetNavigationLink}
         cardUrl={lastSegment}
         imageHero={ProjectImages.vet.vetHeroIMage}

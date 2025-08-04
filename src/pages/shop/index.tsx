@@ -31,7 +31,6 @@ export default function Shop() {
     try {
       const response = await getFavoriteProducts()
       setFav(response?.map((item) => item?._id ?? "") || [])
-      console.log("aim working")
     } catch (error) {
       console.error("Error fetching favorites", error)
     }
@@ -71,7 +70,7 @@ export default function Shop() {
     }
   }, [searchValue, query.search, mutate])
 
-  const hasMoreProducts = products && products.length >= query.limit
+  const hasMoreProducts = products && products.data.length >= query.limit
 
   return (
     <div className="container py-8">
@@ -114,7 +113,7 @@ export default function Shop() {
       <div className="grid mb-10 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6">
         {loading && [...Array(query.limit)].map((_, index) => <ProductCardSkeleton key={`skeleton-${index}`} />)}
 
-        {!loading && (!products || products.length === 0) && (
+        {!loading && (!products || products.data.length === 0) && (
           <div className="col-span-full flex flex-col items-center justify-center py-12 space-y-6">
             <ShoppingBagIcon className="size-48 text-gray-300 animate-pulse" />
             <div className="text-center space-y-2">
@@ -125,7 +124,7 @@ export default function Shop() {
         )}
 
         {!loading &&
-          products?.map((item) => (
+          products?.data?.map((item) => (
             <ProductCard
               key={item?._id}
               {...item}

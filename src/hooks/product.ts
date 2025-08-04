@@ -34,7 +34,7 @@ export const useProducts = () => {
     }
 
     const response = await getAllProduct(getParamsEncodedQuery(apiParams))
-    return response.data
+    return response
   }, [query])
 }
 

@@ -19,6 +19,7 @@ type ProductsResponse = {
   data?: Product[]
 }
 
+
 type AddToFavoriteResponse = {
   status: "success" | "error"
   message: string

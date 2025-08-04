@@ -23,23 +23,20 @@ export default function UserDashboardLayout() {
               <h1 className="text-lg font-semibold">PetCar Dashboard</h1>
             </div>
             <div className="flex items-center gap-4">
-              {/* Add your header controls here (search, notifications, etc.) */}
             </div>
           </header>
 
-          {/* Main content with scrollable area */}
           <main className="flex-1 overflow-y-auto overflow-x-hidden p-4 md:p-6">
             <div
               className={cn(
                 "mx-auto w-full",
-                "max-w-[1800px]" // Optional: constrain max width for very large screens
+                "max-w-[1800px]" 
               )}
             >
               <Outlet />
             </div>
           </main>
 
-          {/* Optional footer */}
           <footer className="border-t p-4 text-center text-sm text-muted-foreground">
             © {new Date().getFullYear()} Your Company. All rights reserved.
           </footer>
