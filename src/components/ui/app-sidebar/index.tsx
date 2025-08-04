@@ -22,7 +22,7 @@ import { userInfoAtom } from "@/atoms"
 import { Button } from "../button"
 
 export function AppSidebar() {
-  const user = useAtomValue(userInfoAtom) 
+  const user = useAtomValue(userInfoAtom)
   let userData: LoginUser
 
   if (typeof user === "string") {

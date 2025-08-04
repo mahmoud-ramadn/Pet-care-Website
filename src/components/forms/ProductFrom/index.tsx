@@ -16,6 +16,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 
 
+import { CreateProducts } from "@/apis/product";
+
+
+
 import { ProductFormSchema, type TypeProductFormSchema } from "./shema";
 
 
@@ -23,12 +27,12 @@ import { ProductFormSchema, type TypeProductFormSchema } from "./shema";
 
 
 type Props = {
-   
   values?: TypeProductFormSchema
-  categories?: { label: string; value: string }[] 
+  categories?: { label: string; value: string }[]
+  onSuccess?: () => void
 }
 
-export default function ProductForm({ values, categories }: Props) {
+export default function ProductForm({ values, categories ,onSuccess}: Props) {
   const [loading, setLoading] = useState(false)
   const [previewImage, setPreviewImage] = useState<string | null>(null)
 
@@ -38,6 +42,7 @@ export default function ProductForm({ values, categories }: Props) {
       name: values?.name || "",
       desc: values?.desc || "",
       quantity: values?.quantity || 0,
+      price: values?.price || 0,
       discount: values?.discount || 0,
       category: values?.category || "",
       productImage: values?.productImage || "",
@@ -55,11 +60,30 @@ export default function ProductForm({ values, categories }: Props) {
   async function onSubmit(inputs: TypeProductFormSchema) {
     try {
       setLoading(true)
-      console.log(inputs)
-      toast.success("تم إرسال البيانات بنجاح")
+
+      const formData = new FormData()
+
+      // Append all fields to FormData
+      formData.append("name", inputs.name)
+      formData.append("desc", inputs.desc)
+      formData.append("price", inputs.price.toString())
+      formData.append("quantity", inputs.quantity.toString())
+      formData.append("discount", inputs.discount.toString())
+      formData.append("category", inputs.category)
+
+      if (inputs.productImage instanceof File) {
+        formData.append("productImage", inputs.productImage)
+      }
+
+      await CreateProducts((formData) as unknown as CreateProductInputs ?? '')
+
+      toast.success('تم اضافة المنتج بنجاح')
+       if (onSuccess) {
+         onSuccess()
+       }
     } catch (error) {
       console.error(error)
-      toast.error("حدث خطأ أثناء إرسال البيانات")
+      toast.error('فشل اضافة المنتج خطا غير متوقع')
     } finally {
       setLoading(false)
     }
@@ -117,6 +141,24 @@ export default function ProductForm({ values, categories }: Props) {
                   </FormItem>
                 )}
               />
+              <FormField
+                control={form.control}
+                name="price"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>السعر</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        placeholder="السعر"
+                        {...field}
+                        onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               <FormField
                 control={form.control}
@@ -137,7 +179,6 @@ export default function ProductForm({ values, categories }: Props) {
                 )}
               />
 
-              {/* Category Field */}
               <FormField
                 control={form.control}
                 name="category"
@@ -152,8 +193,8 @@ export default function ProductForm({ values, categories }: Props) {
                       </FormControl>
                       <SelectContent>
                         {categories?.map((category) => (
-                          <SelectItem key={category.label} value={category.label}>
-                            {category.value}
+                          <SelectItem key={category.value} value={category.value}>
+                            {category.label}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -163,7 +204,6 @@ export default function ProductForm({ values, categories }: Props) {
                 )}
               />
 
-              {/* Product Image Field */}
               <FormField
                 control={form.control}
                 name="productImage"
@@ -172,15 +212,21 @@ export default function ProductForm({ values, categories }: Props) {
                     <FormLabel>صورة المنتج</FormLabel>
                     <FormControl>
                       <div>
-                        <Input type="file" accept="image/*" onChange={handleImageChange} ref={field.ref} />
+                        <Input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleImageChange}
+                          ref={field.ref}
+                          onBlur={field.onBlur}
+                        />
                         {previewImage && (
                           <div className="mt-2">
                             <img src={previewImage} alt="Preview" className="h-20 w-20 object-cover rounded" />
                           </div>
                         )}
-                        {typeof field.value === "string" && !previewImage && (
+                        {typeof field.value === "string" && !previewImage && field.value && (
                           <div className="mt-2">
-                            <img src="https://via.placeholder.com/150?text=Product+Image" alt="Current" className="h-20 w-20 object-cover rounded" />
+                            <img src={field.value} alt="Current" className="h-20 w-20 object-cover rounded" />
                           </div>
                         )}
                       </div>

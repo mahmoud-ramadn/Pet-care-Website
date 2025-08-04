@@ -31,7 +31,7 @@ export const apiClient = async <T>(options: Options): Promise<T> => {
     const path = url?.replace(/^\/+/, "") || ""
     const fullURL = url?.includes("http") ? url : `${base}/${path}`
 
-    let headers: HeadersInit = {}
+    let headers: Record<string, string> = {}
 
     // Add Authorization if needed
     if (auth) {
@@ -48,7 +48,16 @@ export const apiClient = async <T>(options: Options): Promise<T> => {
 
     // Merge custom headers
     if (options.headers) {
-      headers = merge(headers, options.headers)
+      headers = merge(headers, options.headers as Record<string, string>)
+    }
+
+    // Don't set Content-Type for FormData - let the browser set it with boundary
+    const isFormData = data instanceof FormData
+    if (isFormData) {
+      // Remove Content-Type header if it exists, let browser set it for FormData
+      if (headers["Content-Type"]) {
+        delete headers["Content-Type"]
+      }
     }
 
     const response = await ofetch<T>(fullURL, {

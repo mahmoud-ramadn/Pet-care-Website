@@ -17,10 +17,20 @@ type Product = {
 type ProductsResponse = {
   status?: "success" | "error"
   data?: Product[]
+  message?: string
 }
 
 type AddToFavoriteResponse = {
   status: "success" | "error"
   message: string
   data: string[]
+}
+
+interface CreateProductInputs {
+  name?: string | null
+  des?: string | null
+  quantity: string | null
+  discount: string | null
+  category: string | null
+  productImage: string | null
 }

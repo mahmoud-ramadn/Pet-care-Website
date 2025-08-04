@@ -1,5 +1,4 @@
-import { atom } from "jotai";
-
+import { atom } from "jotai"
 
 export const authLoadedAtom = atom<boolean>(false)
 

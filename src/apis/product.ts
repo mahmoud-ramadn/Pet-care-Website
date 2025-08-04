@@ -1,4 +1,8 @@
-import { apiClient } from "@/lib/api-client"
+import { apiClient } from "@/lib/api-client";
+
+
+
+
 
 export const getAllProduct = async (queryString?: string) => {
   let url = "/product/getallproduct"
@@ -62,4 +66,18 @@ export const getCartProducts = async () => {
   })
 
   return response.data.cartItems
+}
+
+
+
+
+export const CreateProducts = async (inputs:CreateProductInputs) => {
+  const response = await apiClient<ProductsResponse>({
+    url: `product/createproduct`,
+    method: "POST",
+    data:inputs,
+    auth: true,
+  })
+
+  return response
 }
