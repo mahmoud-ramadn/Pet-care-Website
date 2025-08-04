@@ -1,26 +1,27 @@
-import { type ColumnDef, type ColumnFiltersState, type SortingState, type VisibilityState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
-import { parseAsInteger } from "nuqs";
-import { useQueryStates } from "nuqs";
+import {
+  type ColumnDef,
+  type ColumnFiltersState,
+  type SortingState,
+  type VisibilityState,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from "@tanstack/react-table"
+import { parseAsInteger } from "nuqs"
+import { useQueryStates } from "nuqs"
 
-
-
-import { useState } from "react";
-
-
+import { useState } from "react"
 
 // import { DEFAULT_PAGE_SIZE } from "@/lib/constants";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
-
-
-import { DataTablePagination } from "@/components/ui/data-table/table-pagination";
-import Loader from "@/components/ui/loader";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-
-
-
-
+import { DataTablePagination } from "@/components/ui/data-table/table-pagination"
+import Loader from "@/components/ui/loader"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 
 interface Props<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -34,7 +35,6 @@ interface PaginationQueryParams {
   page: number
   limit: number
 }
-
 
 export default function DataTable<TData, TValue>({
   className,
@@ -106,7 +106,7 @@ export default function DataTable<TData, TValue>({
           className
         )}
       >
-        <Table >
+        <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>

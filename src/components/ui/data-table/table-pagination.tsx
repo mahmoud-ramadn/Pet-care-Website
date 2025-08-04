@@ -1,17 +1,11 @@
-import type { Table } from "@tanstack/react-table";
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
+import type { Table } from "@tanstack/react-table"
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react"
 
+import { useMemo } from "react"
 
+import { cn } from "@/lib/utils"
 
-import { useMemo } from "react";
-
-
-
-import { cn } from "@/lib/utils";
-
-
-
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 interface PaginationQueryParams {

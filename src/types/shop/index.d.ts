@@ -16,7 +16,7 @@ interface ProductData {
   __v?: number
 }
 
- interface ProducTTable {
+interface ProducTTable {
   _id: string
   name: string
   desc: string

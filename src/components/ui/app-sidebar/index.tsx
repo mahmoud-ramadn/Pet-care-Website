@@ -22,8 +22,7 @@ import { userInfoAtom } from "@/atoms"
 import { Button } from "../button"
 
 export function AppSidebar() {
-  const user = useAtomValue(userInfoAtom)
-
+  const user = useAtomValue(userInfoAtom) 
   let userData: LoginUser
 
   if (typeof user === "string") {
@@ -51,22 +50,28 @@ export function AppSidebar() {
       <SidebarContent className="flex-1 overflow-y-auto">
         <SidebarGroup className="py-4">
           <nav className="space-y-1 px-3">
-            <Button variant="outline" className="w-full justify-start gap-3 text-gray-700 hover:bg-gray-100" >
+            <Button variant="outline" className="w-full justify-start gap-3 text-gray-700 hover:bg-gray-100">
               <Link to="/" className=" flex  w-full justify-start  item-center gap-3   text-gray-700 hover:bg-gray-100">
                 <HomeIcon className="h-4 w-4" />
                 Pet care Home
               </Link>
             </Button>
             <Button variant="outline" className="w-full justify-start gap-3 text-gray-700 hover:bg-gray-100">
-               <Link to="/admin-dashboard" className=" flex  w-full justify-start  item-center gap-3   text-gray-700 hover:bg-gray-100">
-              <LayoutDashboardIcon className="h-4 w-4" />
-               Dashboard
+              <Link
+                to="/admin-dashboard"
+                className=" flex  w-full justify-start  item-center gap-3   text-gray-700 hover:bg-gray-100"
+              >
+                <LayoutDashboardIcon className="h-4 w-4" />
+                Dashboard
               </Link>
             </Button>
             <Button variant="outline" className="w-full justify-start gap-3 text-gray-700 hover:bg-gray-100">
-               <Link to="/products" className=" flex  w-full justify-start  item-center gap-3   text-gray-700 hover:bg-gray-100">
-              <ShoppingBagIcon className="h-4 w-4" />
-              product 
+              <Link
+                to="/products"
+                className=" flex  w-full justify-start  item-center gap-3   text-gray-700 hover:bg-gray-100"
+              >
+                <ShoppingBagIcon className="h-4 w-4" />
+                product
               </Link>
             </Button>
             <Button variant="ghost" className="w-full justify-start gap-3 text-gray-700 hover:bg-gray-100">

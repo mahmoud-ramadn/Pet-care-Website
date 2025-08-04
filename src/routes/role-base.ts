@@ -20,8 +20,8 @@ export const RoleBase: RouteObject = {
       Component: Admin,
     },
     {
-      path:'products',
-      Component:products,
-    }
+      path: "products",
+      Component: products,
+    },
   ],
 }

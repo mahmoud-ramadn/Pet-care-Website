@@ -5,5 +5,4 @@ interface ApiResponse<T> {
   status?: "success" | "error"
   totalPages?: number
   totalResults?: number
-  }
-
+}
