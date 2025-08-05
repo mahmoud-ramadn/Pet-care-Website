@@ -31,7 +31,7 @@ type ServiceProfileType = {
 }
 
 type ShuffledServiceType = {
-  serviceId: string
+  serviceId?: string
   _id?: string
   serviceType?: string
   city?: string

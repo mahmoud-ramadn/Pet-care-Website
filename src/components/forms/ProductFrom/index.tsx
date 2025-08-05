@@ -1,30 +1,18 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { toast } from "sonner"
 
+import { useState } from "react"
+import { useForm } from "react-hook-form"
 
+import { ButtonWithLoading } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
+import { FormControl, FormField, FormItem, FormLabel, FormLoading, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { CreateProducts } from "@/apis/product"
 
-
-
-import { ButtonWithLoading } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
-import { FormControl, FormField, FormItem, FormLabel, FormLoading, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-
-
-
-import { CreateProducts } from "@/apis/product";
-
-
-
-import { ProductFormSchema, type TypeProductFormSchema } from "./shema";
-
-
-
-
+import { ProductFormSchema, type TypeProductFormSchema } from "./shema"
 
 type Props = {
   values?: TypeProductFormSchema
@@ -32,7 +20,7 @@ type Props = {
   onSuccess?: () => void
 }
 
-export default function ProductForm({ values, categories ,onSuccess}: Props) {
+export default function ProductForm({ values, categories, onSuccess }: Props) {
   const [loading, setLoading] = useState(false)
   const [previewImage, setPreviewImage] = useState<string | null>(null)
 
@@ -75,15 +63,15 @@ export default function ProductForm({ values, categories ,onSuccess}: Props) {
         formData.append("productImage", inputs.productImage)
       }
 
-      await CreateProducts((formData) as unknown as CreateProductInputs ?? '')
+      await CreateProducts((formData as unknown as CreateProductInputs) ?? "")
 
-      toast.success('تم اضافة المنتج بنجاح')
-       if (onSuccess) {
-         onSuccess()
-       }
+      toast.success("تم اضافة المنتج بنجاح")
+      if (onSuccess) {
+        onSuccess()
+      }
     } catch (error) {
       console.error(error)
-      toast.error('فشل اضافة المنتج خطا غير متوقع')
+      toast.error("فشل اضافة المنتج خطا غير متوقع")
     } finally {
       setLoading(false)
     }

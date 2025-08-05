@@ -42,7 +42,7 @@ export default function DataTable<TData, TValue>({
   data,
   loading = false,
   isStatic = false,
-  totalPages = 1,
+  totalPages,
 }: Readonly<Props<TData, TValue>>) {
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
@@ -163,13 +163,15 @@ export default function DataTable<TData, TValue>({
         </Table>
         <ScrollBar orientation="horizontal" className=" h-4 " />
       </ScrollArea>
-
+{
+  totalPages&&
       <DataTablePagination
         table={table}
         isStatic={isStatic}
         onUpdatePagination={onUpdatePagination}
         pagination={pagination}
       />
+}
     </>
   )
 }

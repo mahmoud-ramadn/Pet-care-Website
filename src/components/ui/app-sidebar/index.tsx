@@ -2,8 +2,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import { Separator } from "@radix-ui/react-dropdown-menu"
 import { useAtomValue } from "jotai"
 import {
-  BarChartIcon,
   CalendarIcon,
+  Cog,
   HelpCircleIcon,
   HomeIcon,
   LayoutDashboardIcon,
@@ -74,9 +74,14 @@ export function AppSidebar() {
                 product
               </Link>
             </Button>
-            <Button variant="ghost" className="w-full justify-start gap-3 text-gray-700 hover:bg-gray-100">
-              <BarChartIcon className="h-4 w-4" />
-              Analytics
+            <Button variant="outline" className="w-full justify-start gap-3 text-gray-700 hover:bg-gray-100">
+              <Link
+                to="/services-board"
+                className=" flex  w-full justify-start  item-center gap-3   text-gray-700 hover:bg-gray-100"
+              >
+                <Cog className="h-4 w-4" />
+                Services
+              </Link>
             </Button>
             <Button variant="ghost" className="w-full justify-start gap-3 text-gray-700 hover:bg-gray-100">
               <CalendarIcon className="h-4 w-4" />
