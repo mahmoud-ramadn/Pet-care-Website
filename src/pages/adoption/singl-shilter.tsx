@@ -146,7 +146,7 @@ export default function SinglShilter() {
         )}
       </section>
 
-      <section className="bg-white p-6 rounded-xl shadow-sm border">
+      <section className="bg-white p-6 mt-10 rounded-xl shadow-sm border">
         <h2 className="text-2xl font-semibold mb-2 text-gray-800">مراجعتك</h2>
         <p className="text-gray-500 mb-4">يمكنك إضافة رأيك حول الخدمة</p>
         <WriteReview

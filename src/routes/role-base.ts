@@ -3,10 +3,11 @@ import type { RouteObject } from "react-router"
 
 import UserDashboardLayout from "@/layouts/userDashbord"
 
-const User = lazy(() => import("@/pages/Dashborads/user"))
+const User = lazy(() => import("@/pages/Dashborads/user/user"))
 const Admin = lazy(() => import("@/pages/Dashborads/admin"))
 const products = lazy(() => import("@/pages/Dashborads/admin/products"))
 const services = lazy(() => import("@/pages/Dashborads/admin/services"))
+const orders = lazy(() => import("@/pages/Dashborads/user/order-user"))
 
 export const RoleBase: RouteObject = {
   path: "",
@@ -27,6 +28,10 @@ export const RoleBase: RouteObject = {
     {
       path: "services-board",
       Component: services,
+    },
+    {
+      path: "orders",
+      Component: orders,
     },
   ],
 }

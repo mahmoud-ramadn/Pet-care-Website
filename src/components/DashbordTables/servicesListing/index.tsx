@@ -10,7 +10,7 @@ export default function ServiceListing() {
   const { value: services, loading } = useServices()
 
   const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage, setItemsPerPage] = useState(10) // Default 10
+  const [itemsPerPage, setItemsPerPage] = useState(5) // Default 10
 
   const columns: ColumnDef<ShuffledServiceType>[] = useMemo(() => {
     return [
@@ -141,7 +141,7 @@ export default function ServiceListing() {
             onChange={handleItemsPerPageChange}
             className="border rounded px-2 py-1"
           >
-            <option value={4}>4</option>
+            <option value={5}>5</option>
             <option value={10}>10</option>
             <option value={20}>20</option>
             <option value={30}>30</option>

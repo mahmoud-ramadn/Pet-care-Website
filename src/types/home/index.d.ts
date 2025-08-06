@@ -1,8 +1,5 @@
-
-
-
-type HomeBoxNavigationLink= {
-    id: string;
-    path: string;
-    image: string;
- }
+type HomeBoxNavigationLink = {
+  id: string
+  path: string
+  image: string
+}

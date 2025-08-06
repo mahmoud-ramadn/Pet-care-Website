@@ -39,7 +39,6 @@ export default function UserInfo() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const logout = useLogout()
 
-  // Generate initials for fallback avatar
   const getInitials = (name?: string) => {
     if (!name) return "US"
     return name

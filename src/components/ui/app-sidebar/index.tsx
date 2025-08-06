@@ -23,7 +23,6 @@ import { userInfoAtom } from "@/atoms"
 
 import { Button } from "../button"
 
-
 export function AppSidebar() {
   const location = useLocation()
   const user = useAtomValue(userInfoAtom)
@@ -43,11 +42,17 @@ export function AppSidebar() {
     return location.pathname === path
   }
 
+  console.log(userData.role)
+
   const navItems = [
     { to: "/", icon: HomeIcon, text: "Pet care Home" },
     { to: "/admin-dashboard", icon: LayoutDashboardIcon, text: "Dashboard" },
     { to: "/products", icon: ShoppingBagIcon, text: "Products" },
     { to: "/services-board", icon: Cog, text: "Services" },
+  ]
+  const userPage = [
+    { to: "/", icon: HomeIcon, text: "Pet care Home" },
+    { to: "/orders", icon: LayoutDashboardIcon, text: "orders" },
   ]
 
   return (
@@ -64,7 +69,7 @@ export function AppSidebar() {
       <SidebarContent className="flex-1 overflow-y-auto">
         <SidebarGroup className="py-4">
           <nav className="space-y-1 px-3">
-            {navItems.map((item) => (
+            {(userData.role === "admin" ? navItems : userPage).map((item) => (
               <Button
                 key={item.to}
                 variant={isActive(item.to) ? "default" : "outline"}
@@ -79,16 +84,6 @@ export function AppSidebar() {
                 </Link>
               </Button>
             ))}
-
-            <Button variant="ghost" className="w-full justify-start gap-3 text-gray-700 hover:bg-gray-100">
-              <CalendarIcon className="h-4 w-4" />
-              Calendar
-            </Button>
-            <Button variant="ghost" className="w-full justify-start gap-3 text-gray-700 hover:bg-gray-100">
-              <MailIcon className="h-4 w-4" />
-              Messages
-              <span className="ml-auto bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded-full">3</span>
-            </Button>
           </nav>
         </SidebarGroup>
 
