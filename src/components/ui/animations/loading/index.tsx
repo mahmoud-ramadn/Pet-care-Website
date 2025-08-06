@@ -8,5 +8,5 @@ interface props {
   className?: string
 }
 export default function Loading({ className }: Readonly<props>) {
-  return <Lottie animationData={LoadingJson} loop={true}  className={cn(" max-w-[500px]  max-h-[500px] ", className)} />
+  return <Lottie animationData={LoadingJson} loop={true} className={cn(" max-w-[500px]  max-h-[500px] ", className)} />
 }

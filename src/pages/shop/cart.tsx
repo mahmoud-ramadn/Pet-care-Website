@@ -1,13 +1,12 @@
-
 import { useEffect, useState } from "react"
 import { Link } from "react-router"
 
+import Empty from "@/components/ui/animations/empty"
 import { ProductCardSkeleton } from "@/components/ui/feedbacks/product-card-skeleton"
 import ProductCard from "@/components/ui/shop/product-card"
 
 import { addCartProduct } from "@/apis/product"
 import { useCartProducts } from "@/hooks/product"
-import Empty from "@/components/ui/animations/empty"
 
 export default function Cart() {
   const { value, loading } = useCartProducts()
@@ -34,7 +33,7 @@ export default function Cart() {
     return (
       <div className="text-center py-12">
         <div className="text-5xl mb-4 flex justify-center">
-          <Empty className="text-gray-300 "  />
+          <Empty className="text-gray-300 " />
         </div>
         <h3 className="text-xl font-medium text-gray-700 mb-2">No Products in Cart </h3>
         <p className="text-gray-500 mb-6">You haven't added any products to your favorites list.</p>

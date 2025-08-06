@@ -30,10 +30,7 @@ const chartConfig = {
 
 export function ChartLine() {
   return (
-    <ChartContainer
-      config={chartConfig}
-      title="Monthly Traffic Overview"
-    >
+    <ChartContainer config={chartConfig} title="Monthly Traffic Overview">
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={chartData} margin={{ top: 20, right: 20, left: 20, bottom: 20 }} accessibilityLayer>
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />

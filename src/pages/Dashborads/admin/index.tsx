@@ -1,7 +1,9 @@
-import { ChartLine } from "@/components/ui/ChartLine";
+import { ChartLine } from "@/components/ui/ChartLine"
 
 export default function adminDashboard() {
-  return <div>
-    <ChartLine />
-  </div>
+  return (
+    <div>
+      <ChartLine />
+    </div>
+  )
 }

@@ -4,9 +4,9 @@ import Error from "@/components/ui/animations/error"
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-gray-50 p-4">
+    <div className="flex min-h-screen flex-col overflow-hidden items-center justify-center gap-6 bg-gray-50 p-4">
       <div className="flex flex-col items-center gap-4 text-center">
-        <Error  />
+        <Error />
         <h1 className="text-3xl font-bold text-gray-800">الصفحة غير موجودة</h1>
         <p className="text-lg text-gray-600">عذراً، لا يمكننا العثور على الصفحة التي تبحث عنها</p>
       </div>
