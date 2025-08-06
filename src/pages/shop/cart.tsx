@@ -1,12 +1,21 @@
-import { useEffect, useState } from "react"
-import { Link } from "react-router"
+import { useEffect, useState } from "react";
+import { Link } from "react-router";
 
-import Empty from "@/components/ui/animations/empty"
-import { ProductCardSkeleton } from "@/components/ui/feedbacks/product-card-skeleton"
-import ProductCard from "@/components/ui/shop/product-card"
 
-import { addCartProduct } from "@/apis/product"
-import { useCartProducts } from "@/hooks/product"
+
+import Empty from "@/components/ui/animations/empty";
+import { ProductCardSkeleton } from "@/components/ui/feedbacks/product-card-skeleton";
+import ProductCard from "@/components/ui/shop/product-card";
+
+
+
+import { addCartProduct } from "@/apis/product";
+import { useCartProducts } from "@/hooks/product";
+import { toast } from "sonner";
+
+
+
+
 
 export default function Cart() {
   const { value, loading } = useCartProducts()
@@ -56,6 +65,8 @@ export default function Cart() {
               try {
                 await addCartProduct(product.product._id ?? "")
                 setProducts((prev) => prev.filter((p) => p._id !== product._id))
+                                toast.success("تمت إزالة المنتج من قائمة السلة بنجاح")
+
               } catch (error) {
                 console.error("Failed to update favorites:", error)
               } finally {
@@ -65,8 +76,7 @@ export default function Cart() {
             {...product.product}
             key={product._id}
             isLoadingCart={loadingIds.includes(product._id ?? "")}
-            isFav={false}
-            isShop={true}
+            sourcePage="cart"
           />
         ))}
       </div>

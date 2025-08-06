@@ -126,8 +126,10 @@ export default function Shop() {
         {!loading &&
           products?.data?.map((item) => (
             <ProductCard
+        
               key={item?._id}
               {...item}
+              sourcePage="shope"
               isLoading={loadingProductId === item?._id}
               isLoadingCart={loadingCartProductId === item?._id}
               isFav={fav.includes(item?._id ?? "")}

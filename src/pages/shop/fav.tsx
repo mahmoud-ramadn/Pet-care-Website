@@ -1,12 +1,24 @@
-import { useEffect, useState } from "react"
-import { Link } from "react-router"
+import { toast } from "sonner";
 
-import Empty from "@/components/ui/animations/empty"
-import { ProductCardSkeleton } from "@/components/ui/feedbacks/product-card-skeleton"
-import ProductCard from "@/components/ui/shop/product-card"
 
-import { addFavoriteProduct } from "@/apis/product"
-import { useFavoriteProducts } from "@/hooks/product"
+
+import { useEffect, useState } from "react";
+import { Link } from "react-router";
+
+
+
+import Empty from "@/components/ui/animations/empty";
+import { ProductCardSkeleton } from "@/components/ui/feedbacks/product-card-skeleton";
+import ProductCard from "@/components/ui/shop/product-card";
+
+
+
+import { addFavoriteProduct } from "@/apis/product";
+import { useFavoriteProducts } from "@/hooks/product";
+
+
+
+
 
 export default function Fav() {
   const { value, loading } = useFavoriteProducts()
@@ -51,18 +63,19 @@ export default function Fav() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((product) => (
           <ProductCard
+          sourcePage="fav"
             handleToggleFavorite={async () => {
               setLoadingIds((prev) => [...prev, product._id ?? ""])
               try {
                 await addFavoriteProduct(product._id ?? "")
                 setProducts((prev) => prev.filter((p) => p._id !== product._id))
+                toast.success("تمت إزالة المنتج من قائمة المفضلة بنجاح")
               } catch (error) {
                 console.error("Failed to update favorites:", error)
               } finally {
                 setLoadingIds((prev) => prev.filter((id) => id !== product._id))
               }
             }}
-            isFav={true}
             {...product}
             isLoading={loadingIds.includes(product._id ?? "")}
             key={product._id}

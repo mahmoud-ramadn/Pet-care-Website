@@ -1,4 +1,4 @@
-import { Heart, ShoppingCart, Star } from "lucide-react"
+import { Heart, ShoppingCart, Star, Trash } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 
@@ -8,7 +8,6 @@ interface ProductCardProps extends ProductData {
   isFav?: boolean
   isLoading?: boolean
   isLoadingCart?: boolean
-  isShop?: boolean
   isCart?: boolean
   sourcePage?: "shope" | "fav" | "cart"
 }
@@ -20,7 +19,7 @@ export default function ProductCard({
   priceAfterDiscount,
   discount,
   productImage,
-
+  sourcePage,
   handleToggleFavorite,
   handleToggleCart,
   isFav,
@@ -28,25 +27,43 @@ export default function ProductCard({
   isLoadingCart = false,
   isCart,
 }: ProductCardProps) {
+  const renderFavoriteButton = () => (
+    <button
+      onClick={handleToggleFavorite}
+      className="absolute top-2 right-2 p-2 bg-white rounded-full shadow-md hover:bg-gray-100"
+    >
+      {isLoading ? (
+        <div className="w-5 h-5 border-2 border-red-500 border-t-transparent animate-spin rounded-full" />
+      ) : sourcePage === "fav" ? (
+        <Trash className="text-red-400" />
+      ) : (
+        <Heart className={`w-5 h-5 ${isFav ? "text-red-400 fill-red-400" : "text-gray-600"}`} />
+      )}
+    </button>
+  )
+
+  const renderCartButton = () => (
+    <Button
+      onClick={handleToggleCart}
+      variant="ghost"
+      size="icon"
+      className="rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200"
+    >
+      {isLoadingCart ? (
+        <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent animate-spin rounded-full" />
+      ) : sourcePage === "cart" ? (
+        <Trash className="text-red-500" />
+      ) : (
+        <ShoppingCart className={`w-5 h-5 ${isCart ? "text-red-400 fill-red-400" : "text-gray-600"}`} />
+      )}
+    </Button>
+  )
+
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
       <div className="relative">
         <img src={productImage || "/placeholder-product.jpg"} alt={name} className="w-full h-48 object-cover" />
-
-        <button
-          onClick={handleToggleFavorite}
-          className="absolute top-2 right-2 p-2 bg-white rounded-full shadow-md hover:bg-gray-100"
-        >
-          {isLoading ? (
-            <div className="w-5 h-5 border-2 border-red-500 border-t-transparent animate-spin rounded-full" />
-          ) : isFav ? (
-            <Heart
-              className={` ${isFav ? "text-red-400 fill-red-400" : "text-gray-600"} text-gray-500 w-5 h-5" fill="currentColor`}
-            />
-          ) : (
-            <Heart className={`"text-gray-600"} text-gray-500 w-5 h-5" fill="currentColor`} />
-          )}
-        </button>
+        {sourcePage !== "cart" && renderFavoriteButton()}
       </div>
 
       <div className="p-4">
@@ -72,34 +89,9 @@ export default function ProductCard({
             )}
           </div>
 
-          <Button
-            onClick={handleToggleCart}
-            variant="ghost"
-            size="icon"
-            className="rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200"
-          >
-            {isLoadingCart ? (
-              <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent animate-spin rounded-full" />
-            ) : (
-              <ShoppingCart
-                className={` ${isCart ? "text-red-400 fill-red-400" : "text-gray-600"} text-gray-500 w-5 h-5" fill="currentColor`}
-              />
-            )}
-          </Button>
+          {(sourcePage === "shope" || sourcePage === "cart") && renderCartButton()}
         </div>
       </div>
     </div>
   )
 }
-
-// {
-//   isLoading ? (
-//     <div className="w-5 h-5 border-2 border-red-500 border-t-transparent animate-spin rounded-full" />
-//   ) : isShop ? (
-//     <Heart
-//       className={` ${isFav ? "text-red-400 fill-red-400" : "text-gray-600"} text-gray-500 w-5 h-5" fill="currentColor`}
-//     />
-//   ) : (
-//     <TrashIcon className=" text-red-400  size-5" />
-//   )
-// }
