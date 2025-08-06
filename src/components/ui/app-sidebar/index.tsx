@@ -13,7 +13,9 @@ import {
   UsersIcon,
 } from "lucide-react"
 
-import { Link } from "react-router"
+import { Link, useLocation } from "react-router-dom"
+
+import { cn } from "@/lib/utils"
 
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } from "@/components/ui/sidebar"
 
@@ -21,7 +23,9 @@ import { userInfoAtom } from "@/atoms"
 
 import { Button } from "../button"
 
+
 export function AppSidebar() {
+  const location = useLocation()
   const user = useAtomValue(userInfoAtom)
   let userData: LoginUser
 
@@ -35,6 +39,16 @@ export function AppSidebar() {
   } else {
     userData = user as LoginUser
   }
+  const isActive = (path: string) => {
+    return location.pathname === path
+  }
+
+  const navItems = [
+    { to: "/", icon: HomeIcon, text: "Pet care Home" },
+    { to: "/admin-dashboard", icon: LayoutDashboardIcon, text: "Dashboard" },
+    { to: "/products", icon: ShoppingBagIcon, text: "Products" },
+    { to: "/services-board", icon: Cog, text: "Services" },
+  ]
 
   return (
     <Sidebar className="border-r border-gray-200 bg-white">
@@ -43,46 +57,29 @@ export function AppSidebar() {
           <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
             <span className="text-white font-bold text-sm">Pet</span>
           </div>
-          <img src="/logo.webp" alt="logo" className=" size-10" />
+          <img src="/logo.webp" alt="logo" className="size-10" />
         </div>
       </SidebarHeader>
 
       <SidebarContent className="flex-1 overflow-y-auto">
         <SidebarGroup className="py-4">
           <nav className="space-y-1 px-3">
-            <Button variant="outline" className="w-full justify-start gap-3 text-gray-700 hover:bg-gray-100">
-              <Link to="/" className=" flex  w-full justify-start  item-center gap-3   text-gray-700 hover:bg-gray-100">
-                <HomeIcon className="h-4 w-4" />
-                Pet care Home
-              </Link>
-            </Button>
-            <Button variant="outline" className="w-full justify-start gap-3 text-gray-700 hover:bg-gray-100">
-              <Link
-                to="/admin-dashboard"
-                className=" flex  w-full justify-start  item-center gap-3   text-gray-700 hover:bg-gray-100"
+            {navItems.map((item) => (
+              <Button
+                key={item.to}
+                variant={isActive(item.to) ? "default" : "outline"}
+                className={cn(
+                  "w-full justify-start gap-3",
+                  isActive(item.to) ? "bg-blue-50 text-blue-700" : "text-gray-700 hover:bg-gray-100"
+                )}
               >
-                <LayoutDashboardIcon className="h-4 w-4" />
-                Dashboard
-              </Link>
-            </Button>
-            <Button variant="outline" className="w-full justify-start gap-3 text-gray-700 hover:bg-gray-100">
-              <Link
-                to="/products"
-                className=" flex  w-full justify-start  item-center gap-3   text-gray-700 hover:bg-gray-100"
-              >
-                <ShoppingBagIcon className="h-4 w-4" />
-                product
-              </Link>
-            </Button>
-            <Button variant="outline" className="w-full justify-start gap-3 text-gray-700 hover:bg-gray-100">
-              <Link
-                to="/services-board"
-                className=" flex  w-full justify-start  item-center gap-3   text-gray-700 hover:bg-gray-100"
-              >
-                <Cog className="h-4 w-4" />
-                Services
-              </Link>
-            </Button>
+                <Link to={item.to} className="flex w-full justify-start items-center gap-3">
+                  <item.icon className="h-4 w-4" />
+                  {item.text}
+                </Link>
+              </Button>
+            ))}
+
             <Button variant="ghost" className="w-full justify-start gap-3 text-gray-700 hover:bg-gray-100">
               <CalendarIcon className="h-4 w-4" />
               Calendar
