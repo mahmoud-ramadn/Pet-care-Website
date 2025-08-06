@@ -43,7 +43,7 @@ export function AppSidebar() {
           <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
             <span className="text-white font-bold text-sm">Pet</span>
           </div>
-          <img src="/public/logo.webp" alt="logo" className=" size-10" />
+          <img src="/logo.webp" alt="logo" className=" size-10" />
         </div>
       </SidebarHeader>
 

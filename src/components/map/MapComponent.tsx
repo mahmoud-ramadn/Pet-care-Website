@@ -3,7 +3,6 @@ import "leaflet/dist/leaflet.css"
 
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet"
 
-// استيراد الصور يدويًا
 import markerIcon from "/map.png"
 
 const customIcon = new L.Icon({
