@@ -1,7 +1,5 @@
-import ServiceListing from "@/components/DashbordTables/servicesListing";
+import ServiceListing from "@/components/DashbordTables/servicesListing"
 
 export default function services() {
-  return (
-   <ServiceListing/>
-  )
+  return <ServiceListing />
 }

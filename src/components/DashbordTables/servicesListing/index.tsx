@@ -1,20 +1,10 @@
-import type { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table"
 
+import { useMemo, useState } from "react"
 
+import DataTable from "@/components/ui/data-table"
 
-import { useMemo, useState } from "react";
-
-
-
-import DataTable from "@/components/ui/data-table";
-
-
-
-import { useServices } from "@/hooks/services";
-
-
-
-
+import { useServices } from "@/hooks/services"
 
 export default function ServiceListing() {
   const { value: services, loading } = useServices()
@@ -133,16 +123,15 @@ export default function ServiceListing() {
   const handleNext = () => {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages))
   }
-    const handleItemsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-      setItemsPerPage(Number(e.target.value))
-      setCurrentPage(1) // Reset to page 1 when limit changes
-    }
-
+  const handleItemsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setItemsPerPage(Number(e.target.value))
+    setCurrentPage(1) // Reset to page 1 when limit changes
+  }
 
   return (
     <div className="space-y-4">
       <DataTable columns={columns} loading={loading} data={paginatedData} />
- <div className="flex justify-between items-center gap-4">
+      <div className="flex justify-between items-center gap-4">
         {/* Select Items Per Page */}
         <div className="flex items-center gap-2">
           <label htmlFor="itemsPerPage">Show:</label>
@@ -159,8 +148,7 @@ export default function ServiceListing() {
             <option value={50}>50</option>
           </select>
         </div>
-
-        </div>
+      </div>
       {/* Pagination Controls */}
       <div className="flex justify-center items-center gap-4">
         <button

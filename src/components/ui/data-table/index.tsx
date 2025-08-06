@@ -163,15 +163,14 @@ export default function DataTable<TData, TValue>({
         </Table>
         <ScrollBar orientation="horizontal" className=" h-4 " />
       </ScrollArea>
-{
-  totalPages&&
-      <DataTablePagination
-        table={table}
-        isStatic={isStatic}
-        onUpdatePagination={onUpdatePagination}
-        pagination={pagination}
-      />
-}
+      {totalPages && (
+        <DataTablePagination
+          table={table}
+          isStatic={isStatic}
+          onUpdatePagination={onUpdatePagination}
+          pagination={pagination}
+        />
+      )}
     </>
   )
 }
