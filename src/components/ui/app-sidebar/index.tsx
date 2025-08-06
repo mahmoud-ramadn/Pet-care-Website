@@ -2,12 +2,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import { Separator } from "@radix-ui/react-dropdown-menu"
 import { useAtomValue } from "jotai"
 import {
-  CalendarIcon,
   Cog,
   HelpCircleIcon,
   HomeIcon,
   LayoutDashboardIcon,
-  MailIcon,
   SettingsIcon,
   ShoppingBagIcon,
   UsersIcon,
