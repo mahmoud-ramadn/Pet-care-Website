@@ -30,7 +30,7 @@ const Cart = lazy(() => import("@/pages/shop/cart"))
 const SingleShilter = lazy(() => import("@/pages/adoption/singl-shilter"))
 const BlogsPage = lazy(() => import("@/pages/blogs"))
 const SingalClinic = lazy(() => import("@/pages/vet/singal-clinic"))
-const UserProfile=lazy(()=>import('@/pages/userProfile/index'));
+const UserProfile = lazy(() => import("@/pages/userProfile/index"))
 
 export const DashboardRoutes: RouteObject = {
   path: "",
@@ -162,9 +162,9 @@ export const DashboardRoutes: RouteObject = {
       path: "get-shilter/:id",
       Component: SingleShilter,
     },
-  {
-    path:'user/:id',
-    Component:UserProfile
-  }
+    {
+      path: "user/:id",
+      Component: UserProfile,
+    },
   ],
 }
