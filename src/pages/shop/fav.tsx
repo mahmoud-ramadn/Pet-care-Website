@@ -1,24 +1,14 @@
-import { toast } from "sonner";
+import { toast } from "sonner"
 
+import { useEffect, useState } from "react"
+import { Link } from "react-router"
 
+import Empty from "@/components/ui/animations/empty"
+import { ProductCardSkeleton } from "@/components/ui/feedbacks/product-card-skeleton"
+import ProductCard from "@/components/ui/shop/product-card"
 
-import { useEffect, useState } from "react";
-import { Link } from "react-router";
-
-
-
-import Empty from "@/components/ui/animations/empty";
-import { ProductCardSkeleton } from "@/components/ui/feedbacks/product-card-skeleton";
-import ProductCard from "@/components/ui/shop/product-card";
-
-
-
-import { addFavoriteProduct } from "@/apis/product";
-import { useFavoriteProducts } from "@/hooks/product";
-
-
-
-
+import { addFavoriteProduct } from "@/apis/product"
+import { useFavoriteProducts } from "@/hooks/product"
 
 export default function Fav() {
   const { value, loading } = useFavoriteProducts()
@@ -63,7 +53,7 @@ export default function Fav() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((product) => (
           <ProductCard
-          sourcePage="fav"
+            sourcePage="fav"
             handleToggleFavorite={async () => {
               setLoadingIds((prev) => [...prev, product._id ?? ""])
               try {

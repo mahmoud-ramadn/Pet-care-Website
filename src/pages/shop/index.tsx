@@ -126,7 +126,6 @@ export default function Shop() {
         {!loading &&
           products?.data?.map((item) => (
             <ProductCard
-        
               key={item?._id}
               {...item}
               sourcePage="shope"

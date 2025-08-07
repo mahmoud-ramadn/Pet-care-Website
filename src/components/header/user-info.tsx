@@ -87,10 +87,10 @@ export default function UserInfo() {
                 {getInitials(userData?.name)}
               </AvatarFallback>
             </Avatar>
-            <div className="text-sm overflow-hidden">
+            <Link to={`/user/${userData._id}`} className="text-sm overflow-hidden">
               <p className="font-semibold truncate">{userData?.name}</p>
               <p className="text-xs text-gray-500 truncate">{userData?.email}</p>
-            </div>
+            </Link>
           </div>
         </DropdownMenuLabel>
 
