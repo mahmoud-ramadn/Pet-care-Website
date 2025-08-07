@@ -1,7 +1,13 @@
-import { lazy } from "react"
-import type { RouteObject } from "react-router"
+import { lazy } from "react";
+import type { RouteObject } from "react-router";
 
-import DashboardLayout from "@/layouts/Default"
+
+
+import DashboardLayout from "@/layouts/Default";
+
+
+
+
 
 const ShelterPage = lazy(() => import("@/pages/adoption/shelter"))
 const AdoptionIndexPage = lazy(() => import("@/pages/adoption/index"))
@@ -31,6 +37,7 @@ const SingleShilter = lazy(() => import("@/pages/adoption/singl-shilter"))
 const BlogsPage = lazy(() => import("@/pages/blogs"))
 const SingalClinic = lazy(() => import("@/pages/vet/singal-clinic"))
 const UserProfile = lazy(() => import("@/pages/userProfile/index"))
+const CommunityPage = lazy(() => import("@/pages/Community/index"))
 
 export const DashboardRoutes: RouteObject = {
   path: "",
@@ -165,6 +172,10 @@ export const DashboardRoutes: RouteObject = {
     {
       path: "user/:id",
       Component: UserProfile,
+    },
+    {
+      path: "Community",
+      Component: CommunityPage,
     },
   ],
 }

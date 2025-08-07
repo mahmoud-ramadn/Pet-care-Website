@@ -1,8 +1,16 @@
-import { Mail, MapIcon, PhoneCall } from "lucide-react"
+import { Mail, MapIcon, PhoneCall } from "lucide-react";
 
-import type { ReactElement } from "react"
 
-import { ProjectImages } from "./images"
+
+import type { ReactElement } from "react";
+
+
+
+import { ProjectImages } from "./images";
+
+
+
+
 
 type ContactLink = {
   icon: () => ReactElement
@@ -15,7 +23,7 @@ export const HeaderLinks: HeaderLinksType[] = [
   { href: "/", labelKey: "HomePageLink" },
   { href: "/", labelKey: "AboutPageLink" },
   { href: "adoption", labelKey: "AdoptionPageLink" },
-  { href: "/", labelKey: "ContactUsPageLink" },
+  { href: "Community", labelKey: "Community" },
   { href: "blogs", labelKey: "blogs" },
   { href: "vet", labelKey: "Vet" },
   { href: "shop", labelKey: "Shop" },

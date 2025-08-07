@@ -6,8 +6,6 @@ import { useParams } from "react-router"
 import { userInfoAtom } from "@/atoms"
 import { useUserMoments } from "@/hooks/user"
 
-
-
 export default function UserProfile() {
   const id = useParams().id
   const { value: posts } = useUserMoments(id ?? "")
