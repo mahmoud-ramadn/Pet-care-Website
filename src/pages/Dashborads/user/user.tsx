@@ -1,3 +1,5 @@
+import UserOrderListing from "@/components/DashbordTables/userOrderListing";
+
 export default function UserDashborad() {
-  return <div className=" container">index</div>
+  return <UserOrderListing/>
 }

@@ -31,7 +31,7 @@ export const CreatePostCommunity = async (inputs: CreatePostInputs) => {
 
   return response
 }
-export const MakeReact = async (id:string) => {
+export const MakeReact = async (id: string) => {
   const response = await apiClient<CreatePostApi>({
     url: `community/likeAndDisLike?postId=${id}`,
     method: "PATCH",
@@ -40,3 +40,16 @@ export const MakeReact = async (id:string) => {
 
   return response
 }
+
+
+export const userOrder = async () => {
+  const response = await apiClient<OrderResponse>({
+    url: `order/getallownorder`,
+    method: "GET",
+    auth: true,
+  })
+
+  return response.data
+}
+
+

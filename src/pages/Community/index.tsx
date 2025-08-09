@@ -23,7 +23,6 @@ export default function Community() {
 
   const handleMakeReact = async (postId: string) => {
     try {
-      // تحديث محلي (optimistic update)
       setPosts((prevPosts) =>
         prevPosts?.map((item) => {
           if (item?.post?._id === postId) {
@@ -41,11 +40,9 @@ export default function Community() {
         })
       )
 
-      // نداء API
       await MakeReact(postId)
     } catch (error) {
       console.error(error)
-      // لو فيه خطأ، ممكن نعمل retry أو نرجع الحالة القديمة
       retry()
     }
   }

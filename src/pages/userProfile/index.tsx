@@ -98,7 +98,6 @@ export default function UserProfile() {
           <div className="space-y-6">
             {posts.map(({ post }) => (
               <div key={post._id} className="border rounded-lg overflow-hidden">
-                {/* Post Header */}
                 <div className="flex items-center p-4">
                   <img
                     src={post.userImage || "/default-avatar.jpg"}
@@ -111,14 +110,12 @@ export default function UserProfile() {
                   </div>
                 </div>
 
-                {/* Post Image */}
                 {post.postImage && (
                   <div className="w-full h-64 sm:h-96 relative">
                     <img src={post.postImage} alt="Post content" className="w-full h-full object-cover" />
                   </div>
                 )}
 
-                {/* Post Content */}
                 <div className="p-4">
                   <p className="mb-3">{post.description}</p>
                   <div className="flex items-center text-gray-500">

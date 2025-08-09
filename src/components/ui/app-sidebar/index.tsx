@@ -26,21 +26,31 @@ export function AppSidebar() {
   const user = useAtomValue(userInfoAtom)
   let userData: LoginUser
 
-  if (typeof user === "string") {
-    try {
-      userData = JSON.parse(user)
-    } catch (err) {
-      console.error("Failed to parse user data:", err)
-      return <p>{}</p>
-    }
-  } else {
-    userData = user as LoginUser
+if (!user) {
+  return <p>Loading...</p> // أو أي UI لليوزر اللي مش مسجل
+}
+
+if (typeof user === "string") {
+  try {
+    userData = JSON.parse(user)
+  } catch (err) {
+    console.error("Failed to parse user data:", err)
+    return <p>Error loading user</p>
   }
+} else {
+  userData = user as LoginUser
+}
+
+if (!userData || !userData.role) {
+  return <p>No user data</p> // أو redirect لصفحة تسجيل الدخول
+}
+
+
+
   const isActive = (path: string) => {
     return location.pathname === path
   }
 
-  console.log(userData.role)
 
   const navItems = [
     { to: "/", icon: HomeIcon, text: "Pet care Home" },

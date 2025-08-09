@@ -42,3 +42,32 @@ interface CreatePostInputs {
   description: string
   onlyMe: boolean
 }
+
+
+
+
+type OrderResponse = {
+  results: number
+  data: Order[]
+}
+
+type Order = {
+  _id: string
+  user: string
+  cartItems: CartItem[]
+  taxPrice: number
+  shippingPrice: number
+  totalOrderPrice: number
+  paymentMethodType: "cash" | "card" | string // لو فيه أنواع دفع تانية ضيفها هنا
+  isPaidAndDelivered: "Yes"|"NO"
+  createdAt: string // ISO Date string
+  updatedAt: string // ISO Date string
+  __v: number
+}
+
+type CartItem = {
+  product: string
+  quantity: number
+  price: number
+  _id: string
+}

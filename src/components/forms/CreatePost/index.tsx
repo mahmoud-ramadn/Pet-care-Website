@@ -79,7 +79,7 @@ export default function CreatePostForm({ values, onSuccess }: Props) {
   }
 
   return (
-    <div className="rounded-lg bg-white p-6 shadow-sm">
+    <div className="rounded-lg bg-white p-6 mb-10 shadow-sm">
       <Form value={form}>
         <FormLoading loading={loading}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="mt-6 space-y-4">
@@ -97,7 +97,7 @@ export default function CreatePostForm({ values, onSuccess }: Props) {
                   </FormItem>
                 )}
               />
-
+              
               <FormField
                 control={form.control}
                 name="onlyMe"
