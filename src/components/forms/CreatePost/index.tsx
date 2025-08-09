@@ -1,38 +1,25 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { toast } from "sonner"
 
+import { useRef, useState } from "react"
+import { useForm } from "react-hook-form"
 
+import { ButtonWithLoading } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Form } from "@/components/ui/form"
+import { FormControl, FormField, FormItem, FormLabel, FormLoading, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
 
-import { useRef, useState } from "react";
-import { useForm } from "react-hook-form";
+import { CreatePostCommunity } from "@/apis/user"
 
-
-
-import { ButtonWithLoading } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Form } from "@/components/ui/form";
-import { FormControl, FormField, FormItem, FormLabel, FormLoading, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-
-
-
-import { CreatePostCommunity } from "@/apis/user";
-
-
-
-import { type CreatePostSchema, createPostSchema } from "./shema";
-
-
-
-
+import { type CreatePostSchema, createPostSchema } from "./shema"
 
 interface Props {
-  values?: CreatePostSchema;
-  onSuccess?: () => void;
-
+  values?: CreatePostSchema
+  onSuccess?: () => void
 }
 
-export default function CreatePostForm({ values,onSuccess }: Props) {
+export default function CreatePostForm({ values, onSuccess }: Props) {
   const [loading, setLoading] = useState(false)
   const [previewImage, setPreviewImage] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -75,10 +62,10 @@ export default function CreatePostForm({ values,onSuccess }: Props) {
         formData.append("postImage", input.postImage)
       }
 
-   await CreatePostCommunity(formData as unknown as CreatePostInputs)
+      await CreatePostCommunity(formData as unknown as CreatePostInputs)
 
       toast.success("تم اضافة المنشور بنجاح")
-      
+
       form.reset()
       setPreviewImage(null)
       if (onSuccess) {

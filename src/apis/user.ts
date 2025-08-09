@@ -21,11 +21,20 @@ export const getAllPosts = async () => {
   return response.processedPosts
 }
 
-export const CreatePostCommunity = async (inputs:CreatePostInputs) => {
+export const CreatePostCommunity = async (inputs: CreatePostInputs) => {
   const response = await apiClient<CreatePostApi>({
     url: "community/addPost",
     method: "POST",
     data: inputs,
+    auth: true,
+  })
+
+  return response
+}
+export const MakeReact = async (id:string) => {
+  const response = await apiClient<CreatePostApi>({
+    url: `community/likeAndDisLike?postId=${id}`,
+    method: "PATCH",
     auth: true,
   })
 

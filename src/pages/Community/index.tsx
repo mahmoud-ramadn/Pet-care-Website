@@ -1,18 +1,53 @@
 import { formatDistanceToNow } from "date-fns"
 import { Heart, MessageCircle, MoreHorizontal, Share2 } from "lucide-react"
 
+import { useEffect, useState } from "react"
 
 import { CommunitySkeleton } from "@/components/ui/feedbacks/community-skeleton"
 
+import { MakeReact } from "@/apis/user"
 import CreatePostForm from "@/components/forms/CreatePost"
 import { useAllPosts } from "@/hooks/user"
 
 export default function Community() {
-  const { value: posts, loading ,retry} = useAllPosts()
+  const { value: posts, loading, retry } = useAllPosts()
+  const [DataPosts, setPosts] = useState(posts)
 
+  useEffect(() => {
+    setPosts(posts)
+  }, [posts])
 
-  if (loading ) {
+  if (loading) {
     return <CommunitySkeleton count={10} />
+  }
+
+  const handleMakeReact = async (postId: string) => {
+    try {
+      // تحديث محلي (optimistic update)
+      setPosts((prevPosts) =>
+        prevPosts?.map((item) => {
+          if (item?.post?._id === postId) {
+            const newLiked = !item.liked
+            return {
+              ...item,
+              liked: newLiked,
+              post: {
+                ...item.post,
+                likesNumber: newLiked ? item.post.likesNumber + 1 : item.post.likesNumber - 1,
+              },
+            }
+          }
+          return item
+        })
+      )
+
+      // نداء API
+      await MakeReact(postId)
+    } catch (error) {
+      console.error(error)
+      // لو فيه خطأ، ممكن نعمل retry أو نرجع الحالة القديمة
+      retry()
+    }
   }
 
   return (
@@ -21,7 +56,7 @@ export default function Community() {
 
       <CreatePostForm onSuccess={retry} />
 
-      {posts?.map((item) => (
+      {DataPosts?.map((item) => (
         <div key={item.post._id} className="bg-white rounded-lg shadow-md mb-6 overflow-hidden">
           <div className="flex items-center justify-between p-4">
             <div className="flex items-center space-x-3">
@@ -35,9 +70,7 @@ export default function Community() {
               <div>
                 <p className="font-semibold">{item.post.userName}</p>
                 <p className="text-gray-500 text-xs">
-                  {formatDistanceToNow(new Date(item.post.createdAt), {
-                    addSuffix: true,
-                  })}
+                  {formatDistanceToNow(new Date(item.post.createdAt), { addSuffix: true })}
                 </p>
               </div>
             </div>
@@ -47,15 +80,19 @@ export default function Community() {
           </div>
 
           {item.post.postImage && (
-            <div className="relative aspect-square bg-gray-100">
-              <img src={item.post.postImage} alt={item.post.description || "Post image"} className="object-cover" />
+            <div className="relative w-full aspect-square bg-gray-100 overflow-hidden h-75">
+              <img
+                src={item.post.postImage}
+                alt={item.post.description || "Post image"}
+                className="w-full h-full object-cover"
+              />
             </div>
           )}
 
           <div className="p-4">
             <div className="flex justify-between mb-2">
               <div className="flex space-x-4">
-                <button className="flex items-center">
+                <button onClick={() => handleMakeReact(item.post._id)} className="flex items-center">
                   <Heart
                     size={24}
                     fill={item.liked ? "#ef4444" : "none"}
