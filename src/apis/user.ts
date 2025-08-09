@@ -20,3 +20,14 @@ export const getAllPosts = async () => {
   })
   return response.processedPosts
 }
+
+export const CreatePostCommunity = async (inputs:CreatePostInputs) => {
+  const response = await apiClient<CreatePostApi>({
+    url: "community/addPost",
+    method: "POST",
+    data: inputs,
+    auth: true,
+  })
+
+  return response
+}

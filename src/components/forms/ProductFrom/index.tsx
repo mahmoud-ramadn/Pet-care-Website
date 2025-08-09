@@ -51,7 +51,6 @@ export default function ProductForm({ values, categories, onSuccess }: Props) {
 
       const formData = new FormData()
 
-      // Append all fields to FormData
       formData.append("name", inputs.name)
       formData.append("desc", inputs.desc)
       formData.append("price", inputs.price.toString())

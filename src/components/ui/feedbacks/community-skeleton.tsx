@@ -1,6 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton"
 
-
 export const CommunitySkeleton = ({ count = 3 }: { count?: number }) => {
   return (
     <div className="container max-w-2xl mx-auto py-6 px-4">

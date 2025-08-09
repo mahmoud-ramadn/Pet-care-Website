@@ -1,20 +1,12 @@
-import { lazy } from "react";
-import { createBrowserRouter } from "react-router";
+import { lazy } from "react"
+import { createBrowserRouter } from "react-router"
 
+import ProtectedRoute from "@/components/ProtectedRoute"
+import Layout from "@/layouts"
 
-
-import ProtectedRoute from "@/components/ProtectedRoute";
-import Layout from "@/layouts";
-
-
-
-import { AuthRoutes } from "./auth";
-import { DashboardRoutes } from "./dashboard";
-import { RoleBase } from "./role-base";
-
-
-
-
+import { AuthRoutes } from "./auth"
+import { DashboardRoutes } from "./dashboard"
+import { RoleBase } from "./role-base"
 
 const NotFound = lazy(() => import("@/pages/not-found"))
 
@@ -34,7 +26,6 @@ export const router = createBrowserRouter([
         path: "*",
         Component: NotFound,
       },
-
     ],
   },
 ])

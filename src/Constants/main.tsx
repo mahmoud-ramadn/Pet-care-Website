@@ -1,16 +1,8 @@
-import { Mail, MapIcon, PhoneCall } from "lucide-react";
+import { Mail, MapIcon, PhoneCall } from "lucide-react"
 
+import type { ReactElement } from "react"
 
-
-import type { ReactElement } from "react";
-
-
-
-import { ProjectImages } from "./images";
-
-
-
-
+import { ProjectImages } from "./images"
 
 type ContactLink = {
   icon: () => ReactElement
