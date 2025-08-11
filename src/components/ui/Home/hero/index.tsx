@@ -1,3 +1,5 @@
+import blob from "@/assets/images/landing page/blob 1.webp"
+import dog from "@/assets/images/landing page/cute-smiley-dog-wearing-sunglasses-removebg-preview 1 (2).webp"
 import imageHero from "@/assets/images/landing page/mainbackground.webp"
 
 export default function Hero() {
@@ -15,16 +17,8 @@ export default function Hero() {
       </div>
 
       <div className="relative flex items-center justify-center  mt-10 md:mt-0">
-        <img
-          src="/src/assets/images/landing page/blob 1.webp"
-          className="w-full max-w-[556px] overflow-hidden"
-          alt="blob background"
-        />
-        <img
-          src="/src/assets/images/landing page/cute-smiley-dog-wearing-sunglasses-removebg-preview 1 (2).webp"
-          alt="Happy dog wearing sunglasses"
-          className="w-full max-w-[384px] absolute z-10 bottom-0"
-        />
+        <img src={blob} className="w-full max-w-[556px] overflow-hidden" alt="blob background" />
+        <img src={dog} alt="Happy dog wearing sunglasses" className="w-full max-w-[384px] absolute z-10 bottom-0" />
       </div>
     </div>
   )
