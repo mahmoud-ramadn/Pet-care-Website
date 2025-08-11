@@ -16,12 +16,12 @@ export default function Hero() {
 
       <div className="relative flex items-center justify-center  mt-10 md:mt-0">
         <img
-          src="/src/assets/images/landing page/blob 1.png"
+          src="/src/assets/images/landing page/blob 1.webp"
           className="w-full max-w-[556px] overflow-hidden"
           alt="blob background"
         />
         <img
-          src="/src/assets/images/landing page/cute-smiley-dog-wearing-sunglasses-removebg-preview 1 (2).png"
+          src="/src/assets/images/landing page/cute-smiley-dog-wearing-sunglasses-removebg-preview 1 (2).webp"
           alt="Happy dog wearing sunglasses"
           className="w-full max-w-[384px] absolute z-10 bottom-0"
         />
