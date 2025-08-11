@@ -1,39 +1,30 @@
-import { CalendarCheck, Heart } from "lucide-react"
-
-import { useTranslation } from "react-i18next"
-
-import { Button } from "@/components/ui/button"
-
-import HeroImage from "@/assets/images/background/cat-dog-hero.webp"
+import imageHero from "@/assets/images/landing page/mainbackground.webp"
 
 export default function Hero() {
-  const { t } = useTranslation()
-
   return (
-    <div className=" bg-gradient-to-tl from-primary to-secondary">
-      <div className="container mx-auto px-4 py-12 md:py-20">
-        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-          <div className="md:w-1/2 space-y-6 text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">{t("mainHeroText")}</h1>
+    <div
+      className="container bg-cover bg-center md:flex-row flex-col  justify-center  gap-x-5 flex items-center py-12 px-4"
+      style={{ backgroundImage: `url(${imageHero})` }}
+    >
+      <div className="md:w-1/3 p-10 ">
+        <h1 className="text-4xl md:text-6xl font-bold text-primary mb-6">Taking care of your Smart Dog!</h1>
+        <p className="text-xl text-primary mb-8">Premium products and services for your furry friend</p>
+        <button className="bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+          Book Now
+        </button>
+      </div>
 
-            <p className="text-xl text-white/90 font-medium">{t("mainHeroParagraph")}</p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Button size="lg" className="bg-white text-primary hover:bg-white/90">
-                <Heart className="w-5 h-5 mr-2" />
-                {t("bookNow")}
-              </Button>
-              <Button variant="outline" size="lg" className=" text-primary border-white hover:bg-white/10">
-                <CalendarCheck className="w-5 h-5 mr-2" />
-                {t("learnMore")}
-              </Button>
-            </div>
-          </div>
-
-          <div className="md:w-1/2">
-            <img src={HeroImage} alt="Happy pets" className="w-full max-w-md mx-auto " />
-          </div>
-        </div>
+      <div className="relative flex items-center justify-center  mt-10 md:mt-0">
+        <img
+          src="/src/assets/images/landing page/blob 1.png"
+          className="w-full max-w-[556px] overflow-hidden"
+          alt="blob background"
+        />
+        <img
+          src="/src/assets/images/landing page/cute-smiley-dog-wearing-sunglasses-removebg-preview 1 (2).png"
+          alt="Happy dog wearing sunglasses"
+          className="w-full max-w-[384px] absolute z-10 bottom-0"
+        />
       </div>
     </div>
   )

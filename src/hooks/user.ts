@@ -1,12 +1,6 @@
-import { useAsyncRetry } from "react-use";
+import { useAsyncRetry } from "react-use"
 
-
-
-import { getAllPosts, getUserMoments, userOrder } from "@/apis/user";
-
-
-
-
+import { getAllPosts, getUserMoments, userOrder } from "@/apis/user"
 
 export const useUserMoments = (id: string) => {
   return useAsyncRetry(async () => {
@@ -22,7 +16,6 @@ export const useAllPosts = () => {
     return response
   })
 }
-
 
 export const useOrderUser = () => {
   return useAsyncRetry(async () => {

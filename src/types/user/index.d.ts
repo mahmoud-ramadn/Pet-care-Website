@@ -43,9 +43,6 @@ interface CreatePostInputs {
   onlyMe: boolean
 }
 
-
-
-
 type OrderResponse = {
   results: number
   data: Order[]
@@ -59,7 +56,7 @@ type Order = {
   shippingPrice: number
   totalOrderPrice: number
   paymentMethodType: "cash" | "card" | string // لو فيه أنواع دفع تانية ضيفها هنا
-  isPaidAndDelivered: "Yes"|"NO"
+  isPaidAndDelivered: "Yes" | "NO"
   createdAt: string // ISO Date string
   updatedAt: string // ISO Date string
   __v: number
