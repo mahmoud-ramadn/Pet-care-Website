@@ -4,13 +4,11 @@ import { useParams } from "react-router"
 
 import SwiperWrapper from "@/components/ui/SwiperWrapper"
 import { Button } from "@/components/ui/button"
+import DoctorSkeleton from "@/components/ui/feedbacks/doctorSkeleton"
 import { ReviewItem } from "@/components/ui/serviceProfile/ReviewItem"
-import { Skeleton } from "@/components/ui/skeleton"
 
 import { DoctorsWritereivew } from "@/apis/writeriewve"
 import WriteReview from "@/components/forms/write-review"
-// import ReviewCard from "@/components/ui/vet/reviw-card"
-
 import { useDoctor } from "@/hooks/doctors"
 
 export default function SingleDoctor() {
@@ -44,11 +42,9 @@ export default function SingleDoctor() {
               </div>
             </div>
 
-            {/* Doctor Info */}
             <div className="flex-1 space-y-4">
               <h1 className="text-3xl font-bold">{doctor?.name}</h1>
 
-              {/* Rating */}
               <div className="flex items-center gap-2">
                 <div className="flex items-center">
                   <Star className="text-yellow-400 fill-yellow-400" />
@@ -57,7 +53,6 @@ export default function SingleDoctor() {
                 <span className="text-gray-400">({doctor.numberOfRate} reviews)</span>
               </div>
 
-              {/* Specialization */}
               <div className="flex flex-wrap gap-2">
                 {doctor?.specialized_in?.map((specialty) => (
                   <span key={specialty} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
@@ -66,7 +61,6 @@ export default function SingleDoctor() {
                 ))}
               </div>
 
-              {/* Accepted Pets */}
               <div className="flex flex-wrap gap-2">
                 {doctor?.accepted_pet_types?.map((petType) => (
                   <span
@@ -79,7 +73,6 @@ export default function SingleDoctor() {
                 ))}
               </div>
 
-              {/* Contact Info */}
               <div className="space-y-3 pt-2">
                 <div className="flex items-center gap-2">
                   <Phone className="text-primary" size={18} />
@@ -88,7 +81,6 @@ export default function SingleDoctor() {
                 <p className="text-gray-300">{doctor.description}</p>
               </div>
 
-              {/* Action Buttons */}
               <div className="flex gap-4 pt-4">
                 <Button asChild className="flex-1 gap-2">
                   <a
@@ -108,10 +100,8 @@ export default function SingleDoctor() {
             </div>
           </div>
 
-          {/* Divider */}
           <div className="border-t border-gray-700 my-8" />
 
-          {/* About Section */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold mb-4">
               About Dr. {doctor?.name ? (doctor.name.split(" ")[1] ?? doctor.name) : ""}
@@ -151,87 +141,12 @@ export default function SingleDoctor() {
 
           <WriteReview
             writeReview={(data) => {
-              console.log(data)
-
               DoctorsWritereivew(data, id ?? "")
-
               retry()
             }}
           />
         </>
       ) : null}
-    </div>
-  )
-}
-
-function DoctorSkeleton() {
-  return (
-    <div className="space-y-8">
-      {/* Header Skeleton */}
-      <div className="flex flex-col md:flex-row gap-8">
-        <div className="w-full md:w-1/3 lg:w-1/4">
-          <Skeleton className="w-full aspect-square rounded-2xl" />
-        </div>
-        <div className="flex-1 space-y-4">
-          <Skeleton className="h-9 w-3/4" />
-          <Skeleton className="h-6 w-1/2" />
-          <div className="flex flex-wrap gap-2">
-            {[...Array(4)].map((_, i) => (
-              <Skeleton key={i} className="h-6 w-24 rounded-full" />
-            ))}
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {[...Array(2)].map((_, i) => (
-              <Skeleton key={i} className="h-6 w-20 rounded-full" />
-            ))}
-          </div>
-          <div className="space-y-3 pt-2">
-            <Skeleton className="h-5 w-1/3" />
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-5/6" />
-          </div>
-          <div className="flex gap-4 pt-4">
-            <Skeleton className="h-10 flex-1" />
-            <Skeleton className="h-10 flex-1" />
-          </div>
-        </div>
-      </div>
-
-      {/* About Skeleton */}
-      <div className="space-y-4">
-        <Skeleton className="h-8 w-1/4" />
-        <Skeleton className="h-4 w-full" />
-        <Skeleton className="h-4 w-5/6" />
-        <Skeleton className="h-4 w-3/4" />
-        <Skeleton className="h-4 w-4/5" />
-        <Skeleton className="h-4 w-2/3" />
-      </div>
-
-      {/* Gallery Skeleton */}
-      <div className="space-y-4">
-        <Skeleton className="h-8 w-1/4" />
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {[...Array(4)].map((_, i) => (
-            <Skeleton key={i} className="aspect-square rounded-lg" />
-          ))}
-        </div>
-      </div>
-
-      {/* Reviews Skeleton */}
-      <div className="space-y-6">
-        <div className="flex justify-between items-center">
-          <Skeleton className="h-8 w-1/4" />
-          <Skeleton className="h-10 w-32" />
-        </div>
-        {[...Array(2)].map((_, i) => (
-          <div key={i} className="space-y-3 p-4 border rounded-lg">
-            <Skeleton className="h-6 w-1/2" />
-            <Skeleton className="h-5 w-1/4" />
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-5/6" />
-          </div>
-        ))}
-      </div>
     </div>
   )
 }

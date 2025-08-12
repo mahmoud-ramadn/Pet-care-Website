@@ -20,6 +20,7 @@ interface Review {
 }
 
 interface Doctor {
+  viewBtm?: boolean
   _id?: string
   id?: string
   name?: string

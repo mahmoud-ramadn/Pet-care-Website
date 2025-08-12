@@ -1,4 +1,8 @@
-import { apiClient } from "@/lib/api-client"
+import { apiClient } from "@/lib/api-client";
+
+
+
+
 
 export const getUserMoments = async (id: string) => {
   const response = await apiClient<PostApiResponse>({
@@ -45,4 +49,32 @@ export const userOrder = async () => {
   })
 
   return response.data
+}
+
+export const getOneUser = async (id: string) => {
+  const response = await apiClient<GetOneUserResponse>({
+    url: `user/getOneUser/${id}`,
+    method: "GET",
+    auth: true,
+  })
+
+  return response.data?.data
+}
+
+interface inputsValues {
+  name: string
+  email: string
+  profileImage: string | File
+  phoneNumber: string
+}
+
+export const updateUserProfile = async (inputs: inputsValues) => {
+  const response = await apiClient<UpdateUserProfileResponse>({
+    url: `/user/updateuser`,
+    method: "PATCH",
+    data: inputs,
+    auth: true,
+  })
+
+  return response.data.data
 }

@@ -32,6 +32,7 @@ const BlogsPage = lazy(() => import("@/pages/blogs"))
 const SingalClinic = lazy(() => import("@/pages/vet/singal-clinic"))
 const UserProfile = lazy(() => import("@/pages/userProfile/index"))
 const CommunityPage = lazy(() => import("@/pages/Community/index"))
+const userEditProfile = lazy(() => import("@/pages/userProfile/userEditProfile"))
 
 export const DashboardRoutes: RouteObject = {
   path: "",
@@ -170,6 +171,10 @@ export const DashboardRoutes: RouteObject = {
     {
       path: "Community",
       Component: CommunityPage,
+    },
+    {
+      path: "Edit-user/:id",
+      Component: userEditProfile,
     },
   ],
 }

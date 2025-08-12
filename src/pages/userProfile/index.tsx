@@ -1,10 +1,11 @@
 import { format } from "date-fns"
 import { useAtomValue } from "jotai"
+import { Edit } from "lucide-react"
 
-import { useParams } from "react-router"
+import { Link, useParams } from "react-router"
 
 import { userInfoAtom } from "@/atoms"
-import { useUserMoments } from "@/hooks/user"
+import { useOneUser, useUserMoments } from "@/hooks/user"
 
 export default function UserProfile() {
   const id = useParams().id
@@ -32,6 +33,9 @@ export default function UserProfile() {
     return <div className="p-4 text-center">Loading user data...</div>
   }
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { value } = useOneUser(userData._id)
+
   return (
     <div className="max-w-4xl mx-auto p-4 space-y-6">
       {/* Profile Card */}
@@ -39,27 +43,30 @@ export default function UserProfile() {
         <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
           <div className="relative w-32 h-32 rounded-full overflow-hidden">
             <img
-              src={userData.profileImage || "/default-avatar.jpg"}
-              alt={`${userData.name}'s profile`}
+              src={value?.profileImage || "/default-avatar.jpg"}
+              alt={`${value?.name}'s profile`}
               className="object-cover w-full h-full"
             />
           </div>
           <div className="flex-1">
-            <h1 className="text-2xl font-bold">{userData.name}</h1>
-            <p className="text-gray-600">{userData.email}</p>
-            <p className="text-gray-600">{userData.phoneNumber}</p>
+            <h1 className="text-2xl font-bold">{value?.name}</h1>
+            <p className="text-gray-600">{value?.email}</p>
+            <p className="text-gray-600">{value?.phoneNumber}</p>
             <span className="inline-block mt-2 px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
-              {userData.role}
+              {value?.role}
             </span>
           </div>
+          <Link to={`/Edit-user/${value?._id}`}>
+            <Edit />
+          </Link>
         </div>
 
         {/* Favorites Sections */}
         <div className="mb-8">
           <h2 className="text-xl font-semibold mb-4">Favorite Pets</h2>
-          {userData.favPet && userData.favPet.length > 0 ? (
+          {value?.favPet && value?.favPet.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {userData.favPet.map((petId, index) => (
+              {value?.favPet.map((petId, index) => (
                 <div key={index} className="border rounded-lg p-4">
                   <p>Pet ID: {petId}</p>
                 </div>
@@ -73,7 +80,7 @@ export default function UserProfile() {
         <div className="space-y-8">
           <div>
             <h2 className="text-xl font-semibold mb-4">Favorite Products</h2>
-            {userData.favProduct.length > 0 ? (
+            {value?.favProduct ? (
               <div>{/* Render favorite products */}</div>
             ) : (
               <p className="text-gray-500">No favorite products yet</p>
@@ -82,7 +89,7 @@ export default function UserProfile() {
 
           <div>
             <h2 className="text-xl font-semibold mb-4">My Pets</h2>
-            {userData.pets.length > 0 ? (
+            {value?.pet ? (
               <div>{/* Render user's pets */}</div>
             ) : (
               <p className="text-gray-500">No pets registered yet</p>

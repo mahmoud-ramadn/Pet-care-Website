@@ -34,9 +34,16 @@ export default function MeetOur({
         <p className="py-4">{subTitle}</p>
         <SwiperWrapper className="my-10" preview={4}>
           {array.map((item) => (
-            <CircleCard key={item.id} name={item.name} doctorImage={item.image} description={item.specific} />
+            <CircleCard
+              viewBtm={false}
+              key={item.id}
+              name={item.name}
+              doctorImage={item.image}
+              description={item.specific}
+            />
           ))}
         </SwiperWrapper>
+
         <Link to={path}>
           <Button variant={variant} className=" bg-white hover:bg-bg-white text-primary rounded-full px-5 py-6">
             {ButtonText}

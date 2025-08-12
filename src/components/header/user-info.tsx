@@ -15,6 +15,7 @@ import { Link } from "react-router-dom"
 
 import { userInfoAtom } from "@/atoms"
 import { useLogout } from "@/hooks/auth"
+import { useOneUser } from "@/hooks/user"
 
 import { Button } from "../ui/button"
 
@@ -36,6 +37,8 @@ export default function UserInfo() {
     userData = user as LoginUser
   }
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { value } = useOneUser(userData._id)
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const logout = useLogout()
 
@@ -59,14 +62,14 @@ export default function UserInfo() {
           aria-label="User menu"
         >
           <Avatar className="h-8 w-8 rounded-lg border border-gray-200">
-            <AvatarImage src={userData?.profileImage} alt={userData?.name} className="object-cover" />
+            <AvatarImage src={value?.profileImage} alt={value?.name} className="object-cover" />
             <AvatarFallback className="rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 font-medium text-gray-700">
-              {getInitials(userData?.name)}
+              {getInitials(value?.name)}
             </AvatarFallback>
           </Avatar>
           <div className="hidden md:block text-left text-sm leading-tight">
-            <p className="font-semibold text-gray-800 truncate max-w-[120px]">{userData?.name}</p>
-            <p className="text-xs text-gray-500 truncate max-w-[120px]">{userData?.email}</p>
+            <p className="font-semibold text-gray-800 truncate max-w-[120px]">{value?.name}</p>
+            <p className="text-xs text-gray-500 truncate max-w-[120px]">{value?.email}</p>
           </div>
           <ChevronDown className="ml-1 size-4 text-gray-500 transition-transform duration-200 group-data-[state=open]:rotate-180" />
         </Button>
@@ -82,14 +85,14 @@ export default function UserInfo() {
         <DropdownMenuLabel className="p-3 font-normal hover:bg-gray-50 rounded-lg transition-colors">
           <div className="flex items-center gap-3">
             <Avatar className="h-10 w-10 rounded-lg border border-gray-200">
-              <AvatarImage src={userData?.profileImage} alt={userData?.name} className="rounded-lg object-cover" />
+              <AvatarImage src={value?.profileImage} alt={value?.name} className="rounded-lg object-cover" />
               <AvatarFallback className="rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 font-medium text-gray-700">
                 {getInitials(userData?.name)}
               </AvatarFallback>
             </Avatar>
-            <Link to={`/user/${userData._id}`} className="text-sm overflow-hidden">
-              <p className="font-semibold truncate">{userData?.name}</p>
-              <p className="text-xs text-gray-500 truncate">{userData?.email}</p>
+            <Link to={`/user/${value?._id}`} className="text-sm overflow-hidden">
+              <p className="font-semibold truncate">{value?.name}</p>
+              <p className="text-xs text-gray-500 truncate">{value?.email}</p>
             </Link>
           </div>
         </DropdownMenuLabel>
@@ -97,7 +100,7 @@ export default function UserInfo() {
         <DropdownMenuSeparator className="bg-gray-100 h-[1px]" />
 
         <DropdownMenuGroup>
-          {userData?.role === "admin" ? (
+          {value?.role === "admin" ? (
             <DropdownMenuItem asChild>
               <Link
                 to="/admin-dashboard"

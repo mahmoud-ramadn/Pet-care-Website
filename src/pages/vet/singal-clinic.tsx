@@ -22,16 +22,13 @@ export default function SingleClinic() {
         <ClinicSkeleton />
       ) : (
         <>
-          {/* Header Section */}
           <div className="flex flex-col md:flex-row gap-8">
-            {/* Clinic Image */}
             <div className="w-full md:w-1/2">
               <div className="rounded-2xl overflow-hidden border-2 border-dashed border-white">
                 <img src={vet?.vetImage} alt={vet?.vetName} className="w-full h-96 object-cover" />
               </div>
             </div>
 
-            {/* Clinic Info */}
             <div className="w-full md:w-1/2 space-y-4">
               <h1 className="text-3xl font-bold">{vet?.vetName}</h1>
               <div className="flex items-center gap-2">
@@ -43,7 +40,6 @@ export default function SingleClinic() {
               <p className="text-lg">{vet?.bio}</p>
               <p className="text-gray-300">{vet?.review}</p>
 
-              {/* Contact Info */}
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <MapPin className="text-primary" />

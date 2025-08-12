@@ -8,6 +8,13 @@ export const getAllSuccessFullAdoptions = async () => {
   return response
 }
 
+export const getTopCollection = async () => {
+  const response = await apiClient<PetApiResponse>({
+    url: "/Pets/get-top-collection",
+    method: "GET",
+  })
+  return response.data
+}
 export const getTopCollectionCat = async () => {
   const response = await apiClient<PetApiResponse>({
     url: "Pets/get-top-collection-cat",

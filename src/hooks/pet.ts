@@ -6,6 +6,7 @@ import {
   getCatsForKids,
   getDogs,
   getDogsForKids,
+  getTopCollection,
   getTopCollectionCat,
   getTopCollectionDog,
 } from "@/apis/pet"
@@ -13,6 +14,12 @@ import {
 export const useSuccessfulAdoption = () => {
   return useAsyncRetry(async () => {
     const response = await getAllSuccessFullAdoptions()
+    return response
+  })
+}
+export const useTopCollection = () => {
+  return useAsyncRetry(async () => {
+    const response = await getTopCollection()
     return response
   })
 }

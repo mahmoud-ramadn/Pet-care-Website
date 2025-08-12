@@ -18,6 +18,8 @@ type User = {
   name: string
   email: string
   role: "user" | "admin"
+  phoneNumber?: string
+
   profileImage: string
   cards: unknown[] // استبدل unknown بنوع مناسب لاحقًا
   favPet: unknown[]

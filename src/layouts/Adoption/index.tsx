@@ -6,7 +6,7 @@ import Hero from "@/components/ui/common/Hero"
 import TemplatePlanningVeterinary from "@/components/ui/common/TempletPlanningVeterinary"
 
 import { AdoptionNavigationLink, PlanningToAdoptData } from "@/Constants/main"
-import HeroImage from "@/assets/images/adoption/hero.jpg"
+import HeroImage from "@/assets/images/adoption/hero.webp"
 
 export default function AdoptionLayout() {
   const location = useLocation()

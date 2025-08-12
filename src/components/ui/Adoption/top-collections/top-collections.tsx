@@ -5,7 +5,7 @@ import TopCollectionsCard from "./top-collections-card"
 
 type TopCollectionsSectionType = {
   MainTitle: string
-  arr: PetItem[]
+  arr?: PetItem[]
   more?: MoreThemCarType
   loading?: boolean
 }
