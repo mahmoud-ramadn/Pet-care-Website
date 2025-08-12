@@ -61,9 +61,9 @@ export default function UserInfo() {
           className="flex items-center gap-3 rounded-xl bg-white hover:bg-gray-50 px-3 py-2 shadow-sm border border-gray-200 transition-all duration-200 hover:shadow-md"
           aria-label="User menu"
         >
-          <Avatar className="h-8 w-8 rounded-lg border border-gray-200">
-            <AvatarImage src={value?.profileImage} alt={value?.name} className="object-cover" />
-            <AvatarFallback className="rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 font-medium text-gray-700">
+          <Avatar className="h-8 w-8 rounded-lg  overflow-hidden border border-gray-200">
+            <AvatarImage src={value?.profileImage} alt={value?.name} className="object-cover  size-full " />
+            <AvatarFallback className="rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 size-full font-medium text-gray-700">
               {getInitials(value?.name)}
             </AvatarFallback>
           </Avatar>
@@ -85,7 +85,11 @@ export default function UserInfo() {
         <DropdownMenuLabel className="p-3 font-normal hover:bg-gray-50 rounded-lg transition-colors">
           <div className="flex items-center gap-3">
             <Avatar className="h-10 w-10 rounded-lg border border-gray-200">
-              <AvatarImage src={value?.profileImage} alt={value?.name} className="rounded-lg  h-full w-full object-cover" />
+              <AvatarImage
+                src={value?.profileImage}
+                alt={value?.name}
+                className="rounded-lg overflow-hidden h-full w-full object-cover"
+              />
               <AvatarFallback className="rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 font-medium text-gray-700">
                 {getInitials(userData?.name)}
               </AvatarFallback>
