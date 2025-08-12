@@ -1,49 +1,34 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
-import { Separator } from "@radix-ui/react-dropdown-menu"
-import { useAtomValue } from "jotai"
-import {
-  Cog,
-  HelpCircleIcon,
-  HomeIcon,
-  LayoutDashboardIcon,
-  SettingsIcon,
-  ShoppingBagIcon,
-  UsersIcon,
-} from "lucide-react"
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import { Separator } from "@radix-ui/react-dropdown-menu";
+import { Cog, HelpCircleIcon, HomeIcon, LayoutDashboardIcon, SettingsIcon, ShoppingBagIcon, UsersIcon } from "lucide-react";
 
-import { Link, useLocation } from "react-router-dom"
 
-import { cn } from "@/lib/utils"
 
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } from "@/components/ui/sidebar"
+import { Link, useLocation } from "react-router-dom";
 
-import { userInfoAtom } from "@/atoms"
 
-import { Button } from "../button"
+
+import { cn } from "@/lib/utils";
+
+
+
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } from "@/components/ui/sidebar";
+
+
+
+import { Button } from "../button";
+import { useGetMe } from "@/hooks/user";
+
+
+
+
 
 export function AppSidebar() {
   const location = useLocation()
-  const user = useAtomValue(userInfoAtom)
-  let userData: LoginUser
 
-  if (!user) {
-    return <p>Loading...</p> // أو أي UI لليوزر اللي مش مسجل
-  }
 
-  if (typeof user === "string") {
-    try {
-      userData = JSON.parse(user)
-    } catch (err) {
-      console.error("Failed to parse user data:", err)
-      return <p>Error loading user</p>
-    }
-  } else {
-    userData = user as LoginUser
-  }
+      const { value } = useGetMe()
 
-  if (!userData || !userData.role) {
-    return <p>No user data</p> // أو redirect لصفحة تسجيل الدخول
-  }
 
   const isActive = (path: string) => {
     return location.pathname === path
@@ -74,7 +59,7 @@ export function AppSidebar() {
       <SidebarContent className="flex-1 overflow-y-auto">
         <SidebarGroup className="py-4">
           <nav className="space-y-1 px-3">
-            {(userData.role === "admin" ? navItems : userPage).map((item) => (
+            {(value?.role === "admin" ? navItems : userPage).map((item) => (
               <Button
                 key={item.to}
                 variant={isActive(item.to) ? "default" : "outline"}
@@ -112,12 +97,12 @@ export function AppSidebar() {
       <SidebarFooter className="p-4 border-t border-gray-200">
         <div className="flex items-center gap-3">
           <Avatar className="h-8 w-8">
-            <AvatarImage src={userData?.profileImage} alt={userData?.name} className="object-cover" />
+            <AvatarImage src={value?.profileImage} alt={value?.name} className="object-cover" />
             <AvatarFallback className="bg-gray-100">US</AvatarFallback>
           </Avatar>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium truncate">{userData?.name}</p>
-            <p className="text-xs text-gray-500 truncate">{userData?.email}</p>
+            <p className="text-sm font-medium truncate">{value?.name}</p>
+            <p className="text-xs text-gray-500 truncate">{value?.email}</p>
           </div>
           <Button variant="ghost" size="icon" className="h-8 w-8">
             <HelpCircleIcon className="h-4 w-4 text-gray-500" />

@@ -5,7 +5,7 @@ import { useCallback, useEffect } from "react"
 import { useNavigate } from "react-router"
 
 import { RegisterUser } from "@/apis/auth"
-import { authLoadedAtom, tokenAtom, userInfoAtom } from "@/atoms"
+import { authLoadedAtom, tokenAtom} from "@/atoms"
 
 export const useRegisterUser = () => {
   return useMutation({
@@ -15,7 +15,6 @@ export const useRegisterUser = () => {
 
 export function useAuthLoad() {
   const setToken = useSetAtom(tokenAtom)
-  const setUserInfoAtom = useSetAtom(userInfoAtom)
 
   const setAuthLoaded = useSetAtom(authLoadedAtom)
 
@@ -26,7 +25,6 @@ export function useAuthLoad() {
 
     if (token && user) {
       setToken(token)
-      setUserInfoAtom(user)
     }
     setAuthLoaded(true)
   }, [])
@@ -34,7 +32,6 @@ export function useAuthLoad() {
 
 export function useLogout() {
   const setToken = useSetAtom(tokenAtom)
-  const setUserInfo = useSetAtom(userInfoAtom)
   const navigate = useNavigate()
 
   return useCallback(() => {
@@ -42,7 +39,6 @@ export function useLogout() {
     localStorage.removeItem("userInfoData")
 
     setToken(null)
-    setUserInfo("")
     navigate("/login")
-  }, [setToken, setUserInfo, navigate])
+  }, [setToken,  navigate])
 }

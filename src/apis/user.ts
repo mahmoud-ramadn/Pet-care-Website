@@ -1,4 +1,8 @@
-import { apiClient } from "@/lib/api-client"
+import { apiClient } from "@/lib/api-client";
+
+
+
+
 
 export const getUserMoments = async (id: string) => {
   const response = await apiClient<PostApiResponse>({
@@ -50,6 +54,15 @@ export const userOrder = async () => {
 export const getOneUser = async (id: string) => {
   const response = await apiClient<GetOneUserResponse>({
     url: `user/getOneUser/${id}`,
+    method: "GET",
+    auth: true,
+  })
+
+  return response.data?.data
+}
+export const getMe = async () => {
+  const response = await apiClient<GetOneUserResponse>({
+    url: `user/getuser`,
     method: "GET",
     auth: true,
   })

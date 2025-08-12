@@ -8,38 +8,22 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu"
-import { useAtomValue } from "jotai"
 import { ChevronDown, LogOut, PillIcon, UserIcon } from "lucide-react"
 
 import { Link } from "react-router-dom"
 
-import { userInfoAtom } from "@/atoms"
 import { useLogout } from "@/hooks/auth"
-import { useOneUser } from "@/hooks/user"
+import { useGetMe } from "@/hooks/user"
 
 import { Button } from "../ui/button"
 
 const isMobile = typeof window !== "undefined" && window.innerWidth < 768
 
 export default function UserInfo() {
-  const user = useAtomValue(userInfoAtom)
 
-  let userData: LoginUser
+    const { value } = useGetMe()
 
-  if (typeof user === "string") {
-    try {
-      userData = JSON.parse(user)
-    } catch (err) {
-      console.error("Failed to parse user data:", err)
-      return <p>{}</p>
-    }
-  } else {
-    userData = user as LoginUser
-  }
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { value } = useOneUser(userData._id)
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const logout = useLogout()
 
   const getInitials = (name?: string) => {
@@ -91,7 +75,7 @@ export default function UserInfo() {
                 className="rounded-lg overflow-hidden h-full w-full object-cover"
               />
               <AvatarFallback className="rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 font-medium text-gray-700">
-                {getInitials(userData?.name)}
+                {getInitials(value?.name)}
               </AvatarFallback>
             </Avatar>
             <Link to={`/user/${value?._id}`} className="text-sm overflow-hidden">

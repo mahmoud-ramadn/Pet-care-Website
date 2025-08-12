@@ -10,13 +10,12 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 
 import { LoginUser } from "@/apis/auth"
-import { tokenAtom, userInfoAtom } from "@/atoms"
+import { tokenAtom } from "@/atoms"
 
 import { type LoginFormSchema, loginFormSchema } from "./Schema"
 
 export default function LoginForm() {
   const setToken = useSetAtom(tokenAtom)
-  const setUserInfoAtom = useSetAtom(userInfoAtom)
 
   const navigate = useNavigate()
 
@@ -38,7 +37,6 @@ export default function LoginForm() {
       localStorage.setItem("userInfoData", JSON.stringify(userDataInfo))
 
       setToken(token)
-      setUserInfoAtom(userDataInfo)
 
       toast.success(response.status)
       navigate("/")

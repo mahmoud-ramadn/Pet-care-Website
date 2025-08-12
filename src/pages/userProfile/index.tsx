@@ -1,44 +1,21 @@
 import { format } from "date-fns"
-import { useAtomValue } from "jotai"
 import { Edit } from "lucide-react"
 
 import { Link, useParams } from "react-router"
 
-import { userInfoAtom } from "@/atoms"
-import { useOneUser, useUserMoments } from "@/hooks/user"
+import { useGetMe, useUserMoments } from "@/hooks/user"
 
 export default function UserProfile() {
   const id = useParams().id
   const { value: posts } = useUserMoments(id ?? "")
-  const user = useAtomValue(userInfoAtom)
-
-  let userData: LoginUser | null = null
-
-  if (!user) {
-    return <div className="p-4 text-center">No user data available</div>
-  }
-
-  if (typeof user === "string") {
-    try {
-      userData = JSON.parse(user)
-    } catch (err) {
-      console.error("Failed to parse user data:", err)
-      return <div className="p-4 text-red-500">Error loading user data</div>
-    }
-  } else {
-    userData = user as LoginUser
-  }
-
-  if (!userData) {
+  
+    const { value } = useGetMe()
+  
+  if (!value) {
     return <div className="p-4 text-center">Loading user data...</div>
   }
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { value } = useOneUser(userData._id)
-
   return (
     <div className="max-w-4xl mx-auto p-4 space-y-6">
-      {/* Profile Card */}
       <div className="bg-white rounded-lg shadow-md p-6">
         <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
           <div className="relative w-32 h-32 rounded-full overflow-hidden">
@@ -61,7 +38,6 @@ export default function UserProfile() {
           </Link>
         </div>
 
-        {/* Favorites Sections */}
         <div className="mb-8">
           <h2 className="text-xl font-semibold mb-4">Favorite Pets</h2>
           {value?.favPet && value?.favPet.length > 0 ? (
