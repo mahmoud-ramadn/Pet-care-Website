@@ -1,29 +1,17 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { toast } from "sonner"
 
+import { useEffect, useRef, useState } from "react"
+import { useForm } from "react-hook-form"
 
+import { ButtonWithLoading } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
+import { FormControl, FormField, FormItem, FormLabel, FormLoading, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
 
-import { useEffect, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
+import { updateUserProfile } from "@/apis/user"
 
-
-
-import { ButtonWithLoading } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
-import { FormControl, FormField, FormItem, FormLabel, FormLoading, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-
-
-
-import { updateUserProfile } from "@/apis/user";
-
-
-
-import { UpdateUserProfileFormSchema, type UpdateUserProfileFormSchemaType } from "./schema";
-
-
-
-
+import { UpdateUserProfileFormSchema, type UpdateUserProfileFormSchemaType } from "./schema"
 
 type forData = {
   _id?: string

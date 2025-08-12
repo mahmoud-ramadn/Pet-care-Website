@@ -85,7 +85,7 @@ export default function UserInfo() {
         <DropdownMenuLabel className="p-3 font-normal hover:bg-gray-50 rounded-lg transition-colors">
           <div className="flex items-center gap-3">
             <Avatar className="h-10 w-10 rounded-lg border border-gray-200">
-              <AvatarImage src={value?.profileImage} alt={value?.name} className="rounded-lg object-cover" />
+              <AvatarImage src={value?.profileImage} alt={value?.name} className="rounded-lg  h-full w-full object-cover" />
               <AvatarFallback className="rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 font-medium text-gray-700">
                 {getInitials(userData?.name)}
               </AvatarFallback>
