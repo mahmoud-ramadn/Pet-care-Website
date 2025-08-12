@@ -1,34 +1,29 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import { Separator } from "@radix-ui/react-dropdown-menu";
-import { Cog, HelpCircleIcon, HomeIcon, LayoutDashboardIcon, SettingsIcon, ShoppingBagIcon, UsersIcon } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
+import { Separator } from "@radix-ui/react-dropdown-menu"
+import {
+  Cog,
+  HelpCircleIcon,
+  HomeIcon,
+  LayoutDashboardIcon,
+  SettingsIcon,
+  ShoppingBagIcon,
+  UsersIcon,
+} from "lucide-react"
 
+import { Link, useLocation } from "react-router-dom"
 
+import { cn } from "@/lib/utils"
 
-import { Link, useLocation } from "react-router-dom";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } from "@/components/ui/sidebar"
 
+import { useGetMe } from "@/hooks/user"
 
-
-import { cn } from "@/lib/utils";
-
-
-
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } from "@/components/ui/sidebar";
-
-
-
-import { Button } from "../button";
-import { useGetMe } from "@/hooks/user";
-
-
-
-
+import { Button } from "../button"
 
 export function AppSidebar() {
   const location = useLocation()
 
-
-      const { value } = useGetMe()
-
+  const { value } = useGetMe()
 
   const isActive = (path: string) => {
     return location.pathname === path

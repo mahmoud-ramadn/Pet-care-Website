@@ -20,9 +20,7 @@ import { Button } from "../ui/button"
 const isMobile = typeof window !== "undefined" && window.innerWidth < 768
 
 export default function UserInfo() {
-
-    const { value } = useGetMe()
-
+  const { value } = useGetMe()
 
   const logout = useLogout()
 

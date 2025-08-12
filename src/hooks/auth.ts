@@ -5,7 +5,7 @@ import { useCallback, useEffect } from "react"
 import { useNavigate } from "react-router"
 
 import { RegisterUser } from "@/apis/auth"
-import { authLoadedAtom, tokenAtom} from "@/atoms"
+import { authLoadedAtom, tokenAtom } from "@/atoms"
 
 export const useRegisterUser = () => {
   return useMutation({
@@ -40,5 +40,5 @@ export function useLogout() {
 
     setToken(null)
     navigate("/login")
-  }, [setToken,  navigate])
+  }, [setToken, navigate])
 }

@@ -1,8 +1,4 @@
-import { apiClient } from "@/lib/api-client";
-
-
-
-
+import { apiClient } from "@/lib/api-client"
 
 export const getUserMoments = async (id: string) => {
   const response = await apiClient<PostApiResponse>({
