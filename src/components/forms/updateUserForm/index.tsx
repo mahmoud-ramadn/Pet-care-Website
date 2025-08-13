@@ -1,17 +1,29 @@
-import { zodResolver } from "@hookform/resolvers/zod"
-import { toast } from "sonner"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
 
-import { useEffect, useRef, useState } from "react"
-import { useForm } from "react-hook-form"
 
-import { ButtonWithLoading } from "@/components/ui/button"
-import { Form } from "@/components/ui/form"
-import { FormControl, FormField, FormItem, FormLabel, FormLoading, FormMessage } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
 
-import { updateUserProfile } from "@/apis/user"
+import { useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
 
-import { UpdateUserProfileFormSchema, type UpdateUserProfileFormSchemaType } from "./schema"
+
+
+import { ButtonWithLoading } from "@/components/ui/button";
+import { Form } from "@/components/ui/form";
+import { FormControl, FormField, FormItem, FormLabel, FormLoading, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+
+
+
+import { updateUserProfile } from "@/apis/user";
+
+
+
+import { UpdateUserProfileFormSchema, type UpdateUserProfileFormSchemaType } from "./schema";
+
+
+
+
 
 type forData = {
   _id?: string
@@ -62,7 +74,9 @@ export default function UserProfileUpdateForm({ value }: Props) {
         name: value.name || "",
         phoneNumber: value.phoneNumber || "",
         email: value.email || "",
-        profileImage: value.profileImage || "",
+        profileImage:
+          value.profileImage ||
+          "https://res.cloudinary.com/dhddxcwcr/image/upload/v1700416252/6558f05c2841e64561ce75d1_Cover.jpg",
       })
       if (value.profileImage) {
         setPreviewImage(value.profileImage)
