@@ -25,14 +25,14 @@ export default function SquareNavigation({
       className={cn(
         `group relative flex flex-col items-center justify-center gap-4 p-6
         backdrop-blur-sm rounded-xl shadow-sm
-        transition-all duration-300 hover:shadow-lg
+        transition-all duration-300  hover:shadow-lg
         border border-gray-100`,
         className
       )}
     >
-      <div className="relative rounded-lg">
+      <div className="relative   bg-white  rounded-lg ">
         <img
-          className={cn("w-36 h-36 object-cover transition-transform duration-500 ", imageClassName)}
+          className={cn(" size-36  object-cover  bg-white transition-transform duration-500 ", imageClassName)}
           src={image}
           alt={title}
           onError={(e) => {

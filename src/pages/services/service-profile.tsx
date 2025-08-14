@@ -54,7 +54,7 @@ export default function Description() {
 
           <PetPreferences types={serviceProfile.accepted_pet_types} sizes={serviceProfile.accepted_pet_sizes} />
 
-          <section className="bg-white p-6 rounded-xl shadow-sm border">
+          <section className="bg-white md:p-6  rounded-xl shadow-sm border">
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">مراجعات العملاء</h2>
 
             {serviceProfile.reviewsOfService?.length ? (

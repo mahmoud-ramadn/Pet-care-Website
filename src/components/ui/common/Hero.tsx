@@ -39,15 +39,16 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
                     path={item.path}
                     className={`
                       flex flex-col items-center justify-center gap-6 p-8
-                      transition-all duration-300  hover:shadow-xl
+                      transition-all bg-white duration-300  hover:shadow-xl
                       ${
                         cardUrl === item.path
-                          ? "bg-amber-400 ring-2 ring-white ring-offset-4"
+                          ? "bg-amber-400 "
                           : "backdrop-blur-sm hover:bg-white"
                       }
                     `}
                     title={item.path}
                     image={item.image}
+                    imageClassName="    rounded-lg"
                   />
                 ))}
               </SwiperWrapper>

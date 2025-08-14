@@ -54,7 +54,7 @@ export function ReviewItem({ review, reload }: ReviewItemProps) {
   }
 
   return (
-    <div className="group relative bg-white rounded-2xl p-6 mb-4 border border-gray-100 hover:border-gray-200 hover:shadow-lg transition-all duration-300 last:mb-0">
+    <div className="group relative bg-white rounded-2xl md:p-6 p-3 mb-4 border border-gray-100 hover:border-gray-200 hover:shadow-lg transition-all duration-300 last:mb-0">
       {/* Header */}
       <div className="flex items-start gap-4 mb-4">
         {/* Avatar with online indicator */}
@@ -84,7 +84,7 @@ export function ReviewItem({ review, reload }: ReviewItemProps) {
 
             <div className="flex items-center gap-2">
               {review?.createdAt && (
-                <div className="flex items-center gap-1 text-sm text-gray-500">
+                <div className="flex items-center  text-sm text-gray-500">
                   <Calendar className="w-3 h-3" />
                   <span>{formatDate(review.createdAt)}</span>
                 </div>
@@ -155,9 +155,8 @@ export function ReviewItem({ review, reload }: ReviewItemProps) {
         </div>
       </div>
 
-      {/* Edit form */}
       {open && isOwner && (
-        <div className="mt-4 p-4 bg-blue-50/50 rounded-xl border border-blue-100 animate-in slide-in-from-top-2 duration-300">
+        <div className="mt-4 md:p-4 p-2 bg-blue-50/50 rounded-xl border border-blue-100 animate-in slide-in-from-top-2 duration-300">
           <div className="flex items-center gap-2 mb-3">
             <Edit className="w-4 h-4 text-blue-600" />
             <h5 className="font-medium text-blue-900">تعديل المراجعة</h5>

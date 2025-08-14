@@ -56,8 +56,7 @@ export default function WriteReview({ writeReview, initialValues, isEdit = false
 
   return (
     <div className="w-full max-w-lg mx-auto my-10">
-      <div className="relative bg-gradient-to-br from-white to-gray-50 p-8 rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
-        {/* Decorative background elements */}
+      <div className="relative bg-gradient-to-br from-white to-gray-50 md:p-8 p-3 rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
         <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-blue-50 to-transparent rounded-full -translate-y-16 translate-x-16 opacity-60" />
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-purple-50 to-transparent rounded-full translate-y-12 -translate-x-12 opacity-60" />
 
