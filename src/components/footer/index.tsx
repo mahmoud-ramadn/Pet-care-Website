@@ -61,7 +61,7 @@ export default function Footer() {
                 <div className="relative group">
                   <Input
                     type="email"
-                    className="w-full bg-white/10 backdrop-blur-sm border-2 border-white/20 text-white placeholder:text-blue-200 focus:border-yellow-400 focus:bg-white/20 transition-all duration-300 rounded-xl px-6 py-4 pr-12"
+                    className="w-full bg-white/10 backdrop-blur-sm border-2 border-white/20 text-white placeholder:text-blue-200 focus:border-yellow-400 focus:bg-white/20 transition-all duration-300 rounded-xl px-6 py-6 pr-12"
                     placeholder={t("footer.emailPlaceholder")}
                   />
                   <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg px-4 py-2 font-semibold hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 hover:scale-105">
@@ -69,7 +69,6 @@ export default function Footer() {
                   </button>
                 </div>
 
-                {/* Social Media Icons */}
                 <div className="flex items-center space-x-4 pt-2">
                   <span className="text-blue-100 text-sm font-medium">Follow us:</span>
                   <div className="flex space-x-3">
@@ -130,7 +129,6 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Terms & Legal */}
             <div className="space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
@@ -157,7 +155,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Scroll to top button */}
           <div className="flex justify-center mb-8">
             <button
               onClick={scrollToTop}
@@ -169,7 +166,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom copyright section */}
         <div className="border-t border-white/20 bg-black/20 backdrop-blur-sm">
           <div className="container mx-auto px-4 py-6">
             <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">

@@ -40,7 +40,7 @@ export default function UserInfo() {
         <Button
           size="lg"
           variant="ghost"
-          className="flex items-center gap-3 rounded-xl bg-white hover:bg-gray-50 px-3 py-2 shadow-sm border border-gray-200 transition-all duration-200 hover:shadow-md"
+          className="flex items-center gap-3 rounded-xl  bg-white hover:bg-gray-50 px-3 py-2 shadow-sm border border-gray-200 transition-all duration-200 hover:shadow-md"
           aria-label="User menu"
         >
           <Avatar className="h-8 w-8 rounded-lg  overflow-hidden border border-gray-200">
@@ -58,7 +58,7 @@ export default function UserInfo() {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
-        className="min-w-56 rounded-xl border border-gray-200 shadow-xl bg-white p-1.5 will-change-[opacity,transform] data-[side=bottom]:animate-slideUpAndFade data-[side=right]:animate-slideLeftAndFade"
+        className="min-w-56 rounded-xl border z-10  border-gray-200 shadow-xl bg-white p-1.5 will-change-[opacity,transform] data-[side=bottom]:animate-slideUpAndFade data-[side=right]:animate-slideLeftAndFade"
         side={isMobile ? "bottom" : "right"}
         align="end"
         sideOffset={8}

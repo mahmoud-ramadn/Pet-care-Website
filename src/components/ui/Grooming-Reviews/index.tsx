@@ -11,30 +11,24 @@ export default function GroomingReviews() {
 
   return (
     <section className="relative py-20 overflow-hidden">
-      {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20"></div>
 
-      {/* Floating decorative elements */}
       <div className="absolute top-20 left-10 w-24 h-24 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-xl animate-float"></div>
       <div className="absolute bottom-32 right-16 w-32 h-32 bg-gradient-to-br from-yellow-400/10 to-orange-400/10 rounded-full blur-2xl animate-float-delayed"></div>
       <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-gradient-to-br from-pink-400/10 to-red-400/10 rounded-full blur-lg animate-pulse"></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Section Header */}
         <div className="text-center mb-16 space-y-6">
-          {/* Badge */}
           <div className="inline-flex items-center px-6 py-3 bg-white/80 backdrop-blur-sm border border-blue-200/50 rounded-full shadow-lg">
             <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 animate-pulse"></div>
             <span className="text-sm font-semibold text-blue-700">Customer Testimonials</span>
           </div>
 
-          {/* Title with enhanced styling */}
           <div className="space-y-4">
             <UiTitle className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent leading-tight">
               {t("groomingReview")}
             </UiTitle>
 
-            {/* Decorative elements under title */}
             <div className="flex items-center justify-center space-x-2">
               <div className="w-8 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
               <div className="w-12 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
@@ -42,47 +36,24 @@ export default function GroomingReviews() {
             </div>
           </div>
 
-          {/* Subtitle */}
           <p className="text-xl text-gray-600 font-light max-w-2xl mx-auto leading-relaxed">
             Discover what our amazing customers have to say about their pets' grooming experience
           </p>
         </div>
 
-        {/* Reviews Carousel with Enhanced Container */}
         <div className="relative">
-          {/* Background glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5 rounded-3xl blur-xl"></div>
 
-          {/* Main carousel container */}
-          <div className="relative bg-white/60 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/20">
             <SwiperWrapper isNavigation preview={4} className="grooming-reviews-swiper">
               {GroomingReviewsMock.map((item, index) => (
-                <div
-                  key={index}
-                  className="h-full transform transition-all duration-300 hover:scale-[1.02] hover:-translate-y-2"
-                  style={{
-                    animationDelay: `${index * 0.1}s`,
-                  }}
-                >
-                  <div className="relative h-full">
-                    {/* Card glow effect on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
-
-                    <div className="relative z-10 group">
-                      <GroomingCard {...item} />
-                    </div>
-                  </div>
-                </div>
+                
+                      <GroomingCard key={index} {...item} />
               ))}
             </SwiperWrapper>
-          </div>
 
-          {/* Side decorative elements */}
           <div className="absolute -top-6 -left-6 w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full opacity-20 animate-bounce"></div>
           <div className="absolute -bottom-6 -right-6 w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-30 animate-bounce delay-500"></div>
         </div>
 
-        {/* Bottom CTA Section */}
         <div className="text-center mt-16 space-y-6">
           <div className="max-w-md mx-auto">
             <p className="text-gray-600 mb-6 font-light">
@@ -102,7 +73,6 @@ export default function GroomingReviews() {
             </div>
           </div>
 
-          {/* Trust indicators */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 max-w-2xl mx-auto">
             <div className="text-center">
               <div className="text-3xl font-bold text-blue-600 mb-1">4.9★</div>
@@ -141,35 +111,7 @@ export default function GroomingReviews() {
         </svg>
       </div>
 
-      <style>{`
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0px) rotate(0deg);
-          }
-          50% {
-            transform: translateY(-20px) rotate(180deg);
-          }
-        }
-
-        @keyframes float-delayed {
-          0%,
-          100% {
-            transform: translateY(0px) rotate(0deg);
-          }
-          50% {
-            transform: translateY(-30px) rotate(-180deg);
-          }
-        }
-
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-
-        .animate-float-delayed {
-          animation: float-delayed 8s ease-in-out infinite;
-        }
-      `}</style>
+      
     </section>
   )
 }

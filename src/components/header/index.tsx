@@ -39,7 +39,7 @@ export default function Header() {
             : "bg-white/80 backdrop-blur-sm"
         }`}
       >
-        {/* Top promotional banner */}
+    
         <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 text-white text-center py-2 text-sm font-medium">
           <div className="flex items-center justify-center space-x-2">
             <SparklesIcon className="w-4 h-4 animate-pulse" />
@@ -89,7 +89,6 @@ export default function Header() {
               <div className="flex items-center space-x-4">
                 {token ? (
                   <>
-                    {/* Favorites */}
                     <Link
                       to="/shop/fav"
                       className="group relative p-2 text-gray-600 hover:text-red-500 transition-all duration-300"
@@ -97,13 +96,9 @@ export default function Header() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-pink-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <Heart className="w-5 h-5 relative z-10 group-hover:animate-pulse" />
-                      {/* Notification badge */}
-                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full flex items-center justify-center">
-                        <span className="text-xs text-white font-bold">2</span>
-                      </div>
+                     
                     </Link>
 
-                    {/* Shopping Cart */}
                     <Link
                       to="/shop/cart"
                       className="group relative p-2 text-gray-600 hover:text-blue-600 transition-all duration-300"
@@ -111,10 +106,7 @@ export default function Header() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <ShoppingBagIcon className="w-5 h-5 relative z-10 group-hover:animate-bounce" />
-                      {/* Cart badge */}
-                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full flex items-center justify-center">
-                        <span className="text-xs text-white font-bold">3</span>
-                      </div>
+                      
                     </Link>
 
                     <UserInfo />
@@ -139,7 +131,6 @@ export default function Header() {
                   </>
                 )}
 
-                {/* Language Toggle */}
                 <button
                   type="button"
                   onClick={toggleLanguage}
@@ -147,7 +138,7 @@ export default function Header() {
                   aria-label={t("toggleLanguage")}
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-blue-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <EarthIcon className="w-5 h-5 relative z-10 group-hover:animate-spin" />
+                  <EarthIcon className="w-5 h-5 relative z-5 group-hover:animate-spin" />
                 </button>
               </div>
 

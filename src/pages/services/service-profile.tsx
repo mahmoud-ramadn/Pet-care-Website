@@ -54,7 +54,6 @@ export default function Description() {
 
           <PetPreferences types={serviceProfile.accepted_pet_types} sizes={serviceProfile.accepted_pet_sizes} />
 
-          {/* المراجعات */}
           <section className="bg-white p-6 rounded-xl shadow-sm border">
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">مراجعات العملاء</h2>
 
@@ -83,7 +82,6 @@ export default function Description() {
           )}
         </div>
 
-        {/* الكارد الجانبي */}
         <div className="lg:col-span-1">
           <BookingCard
             price={serviceProfile.price}
