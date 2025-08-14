@@ -202,7 +202,7 @@ export default function ProductCard({
           <div className="absolute top-3 left-3 bg-gradient-to-r from-red-500 to-pink-500 text-white text-sm font-bold px-3 py-1 rounded-full shadow-lg animate-pulse">
             -{discount}%
           </div>
-        ):null}
+        ) : null}
 
         {/* Action Buttons */}
         {sourcePage !== "cart" && (

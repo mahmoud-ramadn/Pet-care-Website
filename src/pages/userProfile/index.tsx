@@ -5,12 +5,22 @@ import { Link, useParams } from "react-router"
 
 import UserProfileSkeleton from "@/components/ui/feedbacks/userProfile-skeleton"
 
-import { useGetMe, useUserMoments } from "@/hooks/user"
+import {  useOneUser, useUserMoments } from "@/hooks/user"
+import { useEffect } from "react"
 
 export default function UserProfile() {
   const id = useParams().id
+  
+  const { value, loading: userLoading ,retry} = useOneUser(id??"")
+  
   const { value: posts } = useUserMoments(id ?? "")
-  const { value, loading: userLoading } = useGetMe()
+
+
+useEffect(()=>{
+  if(id)
+retry()
+
+  },[id])
 
   if (userLoading) {
     return <UserProfileSkeleton />

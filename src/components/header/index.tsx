@@ -21,8 +21,7 @@ export default function Header() {
 
   // Debounce scroll handler for better performance
   const handleScroll = useCallback(() => {
-    console.log(isMobile)
-
+   if(isMobile)
     setScrolled(window.scrollY > 10)
   }, [])
 
@@ -118,7 +117,6 @@ export default function Header() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-pink-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                       <Heart className="w-5 h-5 relative z-10 group-hover:scale-110" />
-                    
                     </Link>
 
                     <Link
@@ -128,7 +126,6 @@ export default function Header() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                       <ShoppingBagIcon className="w-5 h-5 relative z-10 group-hover:scale-110" />
-                     
                     </Link>
 
                     <UserInfo />

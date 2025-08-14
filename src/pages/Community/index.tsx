@@ -8,10 +8,13 @@ import { CommunitySkeleton } from "@/components/ui/feedbacks/community-skeleton"
 import { MakeReact } from "@/apis/user"
 import CreatePostForm from "@/components/forms/CreatePost"
 import { useAllPosts } from "@/hooks/user"
+import { Link } from "react-router"
 
 export default function Community() {
   const { value: posts, loading, retry } = useAllPosts()
   const [DataPosts, setPosts] = useState(posts)
+
+  
 
   useEffect(() => {
     setPosts(posts)
@@ -68,7 +71,7 @@ export default function Community() {
         <div className="space-y-6">
           {DataPosts?.map((item, index) => (
             <article
-              key={item.post._id}
+              key={index}
               className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200/50 overflow-hidden hover:shadow-2xl hover:scale-[1.01] transition-all duration-300 animate-in fade-in-up"
               style={{ animationDelay: `${index * 100}ms` }}
             >
@@ -76,6 +79,8 @@ export default function Community() {
               <div className="flex items-center justify-between p-6 pb-4">
                 <div className="flex items-center space-x-4">
                   <div className="relative">
+                    <Link to={`/user/${item.post.userId}`}>
+                    
                     <img
                       src={item.post.userImage}
                       alt={item.post.userName}
@@ -83,6 +88,8 @@ export default function Community() {
                       height={48}
                       className="rounded-full object-cover ring-2 ring-gray-100 hover:ring-blue-300 transition-all duration-300"
                     />
+                    
+                    </Link>
                     <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
                   </div>
                   <div>
