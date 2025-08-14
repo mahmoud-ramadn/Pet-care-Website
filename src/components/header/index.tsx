@@ -163,8 +163,7 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(true)}
                 aria-label={t("openMenu")}
               >
-                  <Menu className="w-6 h-6" />
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-200"></div>
+                <Menu className="w-6 h-6" />
               </button>
             </div>
           </div>
@@ -268,7 +267,6 @@ export default function Header() {
               >
                 <Heart className="w-5 h-5 mr-3 text-red-500" />
                 <span className="font-medium text-gray-700 group-hover:text-red-600">{t("favoriteProducts")}</span>
-             
               </Link>
 
               <Link
@@ -278,7 +276,6 @@ export default function Header() {
               >
                 <ShoppingBagIcon className="w-5 h-5 mr-3 text-blue-500" />
                 <span className="font-medium text-gray-700 group-hover:text-blue-600">{t("shoppingCart")}</span>
-              
               </Link>
             </div>
           )}
