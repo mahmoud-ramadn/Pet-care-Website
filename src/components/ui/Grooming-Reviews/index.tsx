@@ -55,12 +55,7 @@ export default function GroomingReviews() {
 
           {/* Main carousel container */}
           <div className="relative bg-white/60 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/20">
-            <SwiperWrapper
-              isNavigation
-              preview={4}
-              className="grooming-reviews-swiper"
-     
-            >
+            <SwiperWrapper isNavigation preview={4} className="grooming-reviews-swiper">
               {GroomingReviewsMock.map((item, index) => (
                 <div
                   key={index}
@@ -146,7 +141,7 @@ export default function GroomingReviews() {
         </svg>
       </div>
 
-      <style >{`
+      <style>{`
         @keyframes float {
           0%,
           100% {

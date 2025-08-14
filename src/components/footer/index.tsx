@@ -185,7 +185,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <style >{`
+      <style>{`
         @keyframes float-slow {
           0%,
           100% {
