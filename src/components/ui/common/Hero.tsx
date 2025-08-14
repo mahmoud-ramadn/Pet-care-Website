@@ -40,11 +40,7 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
                     className={`
                       flex flex-col items-center justify-center gap-6 p-8
                       transition-all bg-white duration-300  hover:shadow-xl
-                      ${
-                        cardUrl === item.path
-                          ? "bg-amber-400 "
-                          : "backdrop-blur-sm hover:bg-white"
-                      }
+                      ${cardUrl === item.path ? "bg-amber-400 " : "backdrop-blur-sm hover:bg-white"}
                     `}
                     title={item.path}
                     image={item.image}
