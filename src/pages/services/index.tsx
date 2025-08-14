@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, Filter, Grid,  MapPin, Package, Search } from "lucide-react"
+import { ChevronLeft, ChevronRight, Filter, Grid, MapPin, Package, Search } from "lucide-react"
 
 import { useMemo, useState } from "react"
 

@@ -39,7 +39,6 @@ export default function Header() {
             : "bg-white/80 backdrop-blur-sm"
         }`}
       >
-    
         <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 text-white text-center py-2 text-sm font-medium">
           <div className="flex items-center justify-center space-x-2">
             <SparklesIcon className="w-4 h-4 animate-pulse" />
@@ -96,7 +95,6 @@ export default function Header() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-pink-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <Heart className="w-5 h-5 relative z-10 group-hover:animate-pulse" />
-                     
                     </Link>
 
                     <Link
@@ -106,7 +104,6 @@ export default function Header() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <ShoppingBagIcon className="w-5 h-5 relative z-10 group-hover:animate-bounce" />
-                      
                     </Link>
 
                     <UserInfo />

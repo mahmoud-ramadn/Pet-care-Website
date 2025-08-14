@@ -1,25 +1,15 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Edit3, MessageSquare, Send, Star } from "lucide-react";
-import { toast } from "sonner";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Edit3, MessageSquare, Send, Star } from "lucide-react"
+import { toast } from "sonner"
 
+import { useForm } from "react-hook-form"
 
+import { ButtonWithLoading } from "@/components/ui/button"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Slider } from "@/components/ui/slider"
+import { Textarea } from "@/components/ui/textarea"
 
-import { useForm } from "react-hook-form";
-
-
-
-import { ButtonWithLoading } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Slider } from "@/components/ui/slider";
-import { Textarea } from "@/components/ui/textarea";
-
-
-
-import { WriteReviewFormSchema, type WriteReviewFormSchemaType } from "./schema";
-
-
-
-
+import { WriteReviewFormSchema, type WriteReviewFormSchemaType } from "./schema"
 
 type WriteReviewProps = {
   writeReview: (values: WriteReviewFormSchemaType) => void

@@ -2,8 +2,8 @@ import { Star } from "lucide-react"
 
 export default function GroomingCard({ image, altImage, serviceName, address, price, ratingNum }: GroomingCardType) {
   return (
-    <div className="rounded-3xl border  overflow-hidden">
-      <img className=" w-full  max-h-[200px]" src={image} alt={altImage} />
+    <div className="rounded-3xl border border-primary  overflow-hidden">
+      <img className=" w-full  object-cover  max-h-[250px]" src={image} alt={altImage} />
       <div className=" py-5 px-3">
         <div className="flex  items-center">
           {[...Array(ratingNum)].map((_, i) => (

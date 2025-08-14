@@ -32,10 +32,7 @@ export default function SquareNavigation({
     >
       <div className="relative rounded-lg">
         <img
-          className={cn(
-            "w-36 h-36 object-cover transition-transform duration-500 ",
-            imageClassName
-          )}
+          className={cn("w-36 h-36 object-cover transition-transform duration-500 ", imageClassName)}
           src={image}
           alt={title}
           onError={(e) => {

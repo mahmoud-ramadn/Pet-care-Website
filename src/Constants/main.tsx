@@ -1,8 +1,16 @@
-import { Mail, MapIcon, PhoneCall } from "lucide-react"
+import { Mail, MapIcon, PhoneCall } from "lucide-react";
 
-import type { ReactElement } from "react"
 
-import { ProjectImages } from "./images"
+
+import type { ReactElement } from "react";
+
+
+
+import { ProjectImages } from "./images";
+
+
+
+
 
 type ContactLink = {
   icon: () => ReactElement
@@ -62,78 +70,75 @@ export const TermsAndConditions: TermsAndCondition[] = [
     link: "Help",
   },
 ]
-
 export const GroomingReviewsMock: GroomingReviewsMock[] = [
   {
     id: "1",
-    image: "https://placehold.co/100x100", // صورة وهمية
-    altImage: "Dog grooming image",
+    image:
+      "https://images.unsplash.com/photo-1594149929911-78975a43d4f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    altImage: "Professional dog grooming service",
     serviceName: "Happy Paws Grooming",
     address: "123 Pet Street, Cairo, Egypt",
     price: "EGP 250",
-    ratingNum: 1,
-  },
-  {
-    id: "2",
-    image: "https://placehold.co/100x100",
-    altImage: "Cat grooming image",
-    serviceName: "Royal Pet Spa",
-    address: "456 Animal Ave, Giza",
-    price: "EGP 300",
     ratingNum: 4,
   },
   {
+    id: "2",
+    image:
+      "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    altImage: "Cat being groomed by professional",
+    serviceName: "Royal Pet Spa",
+    address: "456 Animal Ave, Giza",
+    price: "EGP 300",
+    ratingNum: 5,
+  },
+  {
     id: "3",
-    image: "https://placehold.co/100x100",
-    altImage: "Pet salon",
+    image:
+      "https://images.unsplash.com/photo-1560743641-3914f2c45636?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    altImage: "Pet salon interior",
     serviceName: "Purrfect Cuts",
     address: "12 Zamalek Street, Cairo",
     price: "EGP 280",
-    ratingNum: 5,
-  },
-  {
-    id: "4",
-    image: "https://placehold.co/100x100",
-    altImage: "Mobile pet grooming van",
-    serviceName: "Groom On Wheels",
-    address: "Mobile service - Cairo & Giza",
-    price: "EGP 350",
-    ratingNum: 6,
+    ratingNum: 4,
   },
   {
     id: "5",
-    image: "https://placehold.co/100x100",
-    altImage: "Mobile pet grooming van",
-    serviceName: "Groom On Wheels",
-    address: "Mobile service - Cairo & Giza",
-    price: "EGP 350",
+    image:
+      "https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    altImage: "Dog bath in grooming van",
+    serviceName: "Pampered Pets Mobile",
+    address: "Across Greater Cairo",
+    price: "EGP 320",
     ratingNum: 5,
   },
   {
-    id: "5",
-    image: "https://placehold.co/100x100",
-    altImage: "Mobile pet grooming van",
-    serviceName: "Groom On Wheels",
-    address: "Mobile service - Cairo & Giza",
-    price: "EGP 350",
+    id: "6",
+    image:
+      "https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    altImage: "Professional pet styling",
+    serviceName: "Furry Friends Salon",
+    address: "89 Nile Corniche, Cairo",
+    price: "EGP 290",
+    ratingNum: 4,
+  },
+  {
+    id: "7",
+    image:
+      "https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    altImage: "Pet haircut in progress",
+    serviceName: "The Dapper Dog",
+    address: "33 Mohandeseen, Giza",
+    price: "EGP 270",
     ratingNum: 5,
   },
   {
-    id: "5",
-    image: "https://placehold.co/100x100",
-    altImage: "Mobile pet grooming van",
-    serviceName: "Groom On Wheels",
-    address: "Mobile service - Cairo & Giza",
-    price: "EGP 350",
-    ratingNum: 5,
-  },
-  {
-    id: "5",
-    image: "https://placehold.co/100x100",
-    altImage: "Mobile pet grooming van",
-    serviceName: "Groom On Wheels",
-    address: "Mobile service - Cairo & Giza",
-    price: "EGP 350",
+    id: "8",
+    image:
+      "https://images.unsplash.com/photo-1558788353-f76d92427f16?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    altImage: "Luxury pet grooming station",
+    serviceName: "Posh Paws",
+    address: "55 Maadi, Cairo",
+    price: "EGP 400",
     ratingNum: 5,
   },
 ]

@@ -28,13 +28,11 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
 
         {array && (
           <div className="absolute bottom-0 left-0 right-0">
-            <div className="container 
-             mx-auto px-4 pb-8">
-              <SwiperWrapper
-                preview={preview}
-                className="py-4"
-               
-              >
+            <div
+              className="container 
+             mx-auto px-4 pb-8"
+            >
+              <SwiperWrapper preview={preview} className="py-4">
                 {array.map((item) => (
                   <SquareNavigation
                     key={item.id}
@@ -48,7 +46,6 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
                           : "backdrop-blur-sm hover:bg-white"
                       }
                     `}
-                   
                     title={item.path}
                     image={item.image}
                   />

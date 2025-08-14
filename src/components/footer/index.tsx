@@ -172,9 +172,9 @@ export default function Footer() {
               <p className="text-blue-100 font-medium text-center md:text-left">{t("footer.rights")}</p>
 
               <div className="flex items-center space-x-2 text-blue-100">
-                <span>Made with</span>
+                <span>Made by</span>
                 <HeartIcon className="w-4 h-4 text-red-400 animate-pulse" />
-                <span>for pets</span>
+                <span>Mahmoud Ramadan </span>
               </div>
             </div>
           </div>

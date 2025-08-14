@@ -42,13 +42,11 @@ export default function GroomingReviews() {
         </div>
 
         <div className="relative">
-
-            <SwiperWrapper isNavigation preview={4} className="grooming-reviews-swiper">
-              {GroomingReviewsMock.map((item, index) => (
-                
-                      <GroomingCard key={index} {...item} />
-              ))}
-            </SwiperWrapper>
+          <SwiperWrapper isNavigation preview={4} className="grooming-reviews-swiper">
+            {GroomingReviewsMock.map((item, index) => (
+              <GroomingCard key={index} {...item} />
+            ))}
+          </SwiperWrapper>
 
           <div className="absolute -top-6 -left-6 w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full opacity-20 animate-bounce"></div>
           <div className="absolute -bottom-6 -right-6 w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-30 animate-bounce delay-500"></div>
@@ -110,8 +108,6 @@ export default function GroomingReviews() {
           </defs>
         </svg>
       </div>
-
-      
     </section>
   )
 }
