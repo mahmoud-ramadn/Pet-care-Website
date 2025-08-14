@@ -1,4 +1,5 @@
 import { useAtomValue } from "jotai"
+import { debounce } from "lodash-es"
 import { EarthIcon, Heart, Menu, ShoppingBagIcon, SparklesIcon, X } from "lucide-react"
 
 import { useCallback, useEffect, useState } from "react"
@@ -10,7 +11,6 @@ import { tokenAtom } from "@/atoms"
 import i18n from "@/i18n"
 
 import UserInfo from "./user-info"
-import { debounce } from "lodash-es"
 
 export default function Header() {
   const token = useAtomValue(tokenAtom)
@@ -19,11 +19,10 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024)
 
-  
   // Debounce scroll handler for better performance
   const handleScroll = useCallback(() => {
-    console.log(isMobile);
-    
+    console.log(isMobile)
+
     setScrolled(window.scrollY > 10)
   }, [])
 
@@ -119,9 +118,7 @@ export default function Header() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-pink-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                       <Heart className="w-5 h-5 relative z-10 group-hover:scale-110" />
-                      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                        2
-                      </span>
+                    
                     </Link>
 
                     <Link
@@ -131,9 +128,7 @@ export default function Header() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                       <ShoppingBagIcon className="w-5 h-5 relative z-10 group-hover:scale-110" />
-                      <span className="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                        3
-                      </span>
+                     
                     </Link>
 
                     <UserInfo />

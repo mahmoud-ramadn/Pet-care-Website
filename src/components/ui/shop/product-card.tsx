@@ -198,12 +198,11 @@ export default function ProductCard({
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-        {/* Discount Badge */}
-        {discount && (
+        {discount ? (
           <div className="absolute top-3 left-3 bg-gradient-to-r from-red-500 to-pink-500 text-white text-sm font-bold px-3 py-1 rounded-full shadow-lg animate-pulse">
             -{discount}%
           </div>
-        )}
+        ):null}
 
         {/* Action Buttons */}
         {sourcePage !== "cart" && (
@@ -215,9 +214,7 @@ export default function ProductCard({
         )}
       </div>
 
-      {/* Content */}
       <div className="p-6">
-        {/* Header */}
         <div className="flex justify-between items-start mb-3">
           <h3 className="font-bold text-xl text-gray-900 line-clamp-2 flex-1 mr-3 leading-tight">{name}</h3>
           {rating && reviewCount && (
