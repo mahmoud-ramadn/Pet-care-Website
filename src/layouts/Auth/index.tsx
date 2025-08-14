@@ -76,7 +76,6 @@ export default function AuthLayout() {
         <div className="absolute top-4 right-4 w-12 h-12 bg-gradient-to-br from-blue-400/20 to-purple-600/20 rounded-full blur-sm animate-pulse"></div>
         <div className="absolute bottom-4 left-4 w-8 h-8 bg-gradient-to-br from-purple-400/20 to-pink-600/20 rounded-full blur-sm animate-pulse delay-500"></div>
       </main>
-
     </div>
   )
 }

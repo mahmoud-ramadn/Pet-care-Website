@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react"
 import { ChevronDown, Sparkles, Star } from "lucide-react"
+
+import { useEffect, useState } from "react"
+
 import SwiperWrapper from "../SwiperWrapper"
 import SquareNavigation from "../common/squer-nav"
 
@@ -18,7 +20,7 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
 
   useEffect(() => {
     setIsVisible(true)
-    
+
     const handleScroll = () => setScrollY(window.scrollY)
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
@@ -29,7 +31,7 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
       {/* Enhanced Background with Parallax Effect */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed transition-all duration-1000 scale-105 group-hover:scale-110"
-        style={{ 
+        style={{
           backgroundImage: `url(${imageHero})`,
           transform: `translateY(${scrollY * 0.5}px)`,
         }}
@@ -37,7 +39,7 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
         {/* Multi-layer Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/60" />
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-purple-900/20" />
-        
+
         {/* Animated Particles */}
         <div className="absolute inset-0 opacity-30">
           {[...Array(20)].map((_, i) => (
@@ -68,7 +70,9 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
         </div>
 
         {/* Enhanced Title Section */}
-        <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+        <div
+          className={`transform transition-all duration-1000 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+        >
           {/* Subtitle/Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white/90 text-sm font-medium">
             <Sparkles className="w-4 h-4" />
@@ -85,7 +89,7 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
                 <div className="h-0.5 bg-gradient-to-r from-transparent via-white to-transparent w-24 mt-1 animate-pulse" />
               </div>
             </span>
-            
+
             {/* Glowing Text Effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 bg-clip-text text-transparent animate-pulse" />
           </h1>
@@ -128,19 +132,16 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
             <div className="relative backdrop-blur-md bg-black/20 rounded-2xl p-6 border border-white/10">
               <SwiperWrapper preview={preview} className="py-4">
                 {array.map((item, index) => (
-                  <div
-                    key={index
-                    }
-                  
-                  >
+                  <div key={index}>
                     <SquareNavigation
                       path={item.path}
                       className={`
                         relative overflow-hidden flex flex-col items-center justify-center gap-6 p-8
                         transition-all duration-300 hover:shadow-2xl rounded-2xl
-                        ${cardUrl === item.path 
-                          ? "bg-gradient-to-br from-amber-400 to-orange-500 text-white  " 
-                          : "bg-white/90 backdrop-blur-md hover:bg-white border border-white/20 hover:border-white/40"
+                        ${
+                          cardUrl === item.path
+                            ? "bg-gradient-to-br from-amber-400 to-orange-500 text-white  "
+                            : "bg-white/90 backdrop-blur-md hover:bg-white border border-white/20 hover:border-white/40"
                         }
                         before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/20 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-all before:duration-300
                       `}
@@ -148,7 +149,7 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
                       image={item.image}
                       imageClassName="rounded-xl shadow-md group-hover:shadow-xl transition-shadow duration-300"
                     />
-                    
+
                     {/* Card Glow Effect */}
                     {cardUrl === item.path && (
                       <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 to-orange-500 rounded-2xl blur opacity-30 z-10" />
@@ -160,8 +161,6 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
           </div>
         </div>
       )}
-
-    
     </div>
   )
 }

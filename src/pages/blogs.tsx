@@ -1,6 +1,6 @@
-import { BookOpen, Clock,   TrendingUp } from "lucide-react"
+import { BookOpen, Clock, TrendingUp } from "lucide-react"
 
-import {  useState } from "react"
+import { useState } from "react"
 
 import BlogCard from "@/components/ui/blogs/blog-card"
 import BlogSkeleton from "@/components/ui/blogs/blog-skeleton"
@@ -14,8 +14,6 @@ export default function Blogs() {
   const [searchTerm, setSearchTerm] = useState("")
 
   // Filter blogs based on search term and category
-
-
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-indigo-50/20">
@@ -60,9 +58,8 @@ export default function Blogs() {
       </div>
 
       <div className="container py-12">
-
         {/* Trending Section */}
-        {!loading && blogs  && (
+        {!loading && blogs && (
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-6">
               <TrendingUp className="w-6 h-6 text-orange-500" />
@@ -93,9 +90,7 @@ export default function Blogs() {
         )}
 
         {/* Blog Grid */}
-        <div
-          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 " : "space-y-6"}`}
-        >
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 " : "space-y-6"}`}>
           {loading ? (
             [...Array(6)].map((_, i) => (
               <div
@@ -106,7 +101,7 @@ export default function Blogs() {
                 <BlogSkeleton />
               </div>
             ))
-          ) :  blogs?.length? (
+          ) : blogs?.length ? (
             blogs.map((blog, index) => (
               <div
                 key={blog._id}
@@ -158,7 +153,7 @@ export default function Blogs() {
       </div>
 
       {/* Custom Styles */}
-      <style >{`
+      <style>{`
         @keyframes fadeIn {
           from {
             opacity: 0;

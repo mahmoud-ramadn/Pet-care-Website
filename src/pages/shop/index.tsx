@@ -436,7 +436,7 @@ export default function Shop() {
       </div>
 
       {/* Custom Styles */}
-      <style >{`
+      <style>{`
         @keyframes fadeIn {
           from {
             opacity: 0;

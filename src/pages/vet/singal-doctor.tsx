@@ -2,7 +2,6 @@ import { Award, Calendar, Clock, Heart, MapPin, MessageCircle, PawPrint, Phone, 
 
 import { useParams } from "react-router"
 
-
 import SwiperWrapper from "@/components/ui/SwiperWrapper"
 import { Button } from "@/components/ui/button"
 import DoctorSkeleton from "@/components/ui/feedbacks/doctorSkeleton"
@@ -50,16 +49,14 @@ export default function SingleDoctor() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
-      <div className="container py-8 space-y-8">
+      <div className="container md:py-8 py-4 space-y-8">
         {loading ? (
           <DoctorSkeleton />
         ) : doctor ? (
           <>
-            {/* Hero Section */}
             <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
-              <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-secondary/10 p-8">
+              <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-secondary/10 md:p-8 p-4">
                 <div className="flex flex-col lg:flex-row gap-8">
-                  {/* Doctor Image */}
                   <div className="lg:w-80 mx-auto lg:mx-0">
                     <div className="relative group">
                       <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
@@ -74,7 +71,6 @@ export default function SingleDoctor() {
                     </div>
                   </div>
 
-                  {/* Doctor Info */}
                   <div className="flex-1 space-y-6">
                     <div className="space-y-3">
                       <div className="flex items-center gap-2">
@@ -100,7 +96,6 @@ export default function SingleDoctor() {
                       </div>
                     </div>
 
-                    {/* Specializations */}
                     <div className="space-y-2">
                       <h3 className="font-semibold text-gray-700 flex items-center gap-2">
                         <Award className="w-4 h-4" />
@@ -118,7 +113,6 @@ export default function SingleDoctor() {
                       </div>
                     </div>
 
-                    {/* Accepted Pets */}
                     <div className="space-y-2">
                       <h3 className="font-semibold text-gray-700 flex items-center gap-2">
                         <PawPrint className="w-4 h-4" />
@@ -155,7 +149,7 @@ export default function SingleDoctor() {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex gap-4 pt-4">
+                    <div className="flex md:flex-row flex-col gap-4 pt-4">
                       <Button
                         asChild
                         className="flex-1 h-12 text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
@@ -183,9 +177,8 @@ export default function SingleDoctor() {
               </div>
             </div>
 
-            {/* About Section */}
             {doctor?.about && (
-              <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+              <div className="bg-white rounded-2xl shadow-lg md:p-8 p-4 border border-gray-100">
                 <h2 className="text-3xl font-bold mb-6 text-gray-900 flex items-center gap-3">
                   <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
                     <Users className="w-5 h-5 text-primary" />
@@ -227,7 +220,7 @@ export default function SingleDoctor() {
 
             {/* Reviews Section */}
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-              <div className="bg-gradient-to-r from-primary/5 to-secondary/5 p-8 border-b border-gray-100">
+              <div className="bg-gradient-to-r from-primary/5 to-secondary/5 md:p-8 p-4 border-b border-gray-100">
                 <h2 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
                   <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
                     <MessageCircle className="w-5 h-5 text-primary" />
@@ -237,13 +230,11 @@ export default function SingleDoctor() {
                 </h2>
               </div>
 
-              <div className="p-8">
+              <div className="md:p-8 p-4">
                 {doctor?.reviewsOfDoctor?.length ? (
                   <div className="space-y-6">
                     {doctor?.reviewsOfDoctor.map((review) => (
-                      <div key={review._id} className="border-l-4 border-primary/20 pl-6 py-2">
                         <ReviewItem review={review} reload={() => retry()} />
-                      </div>
                     ))}
                   </div>
                 ) : (
@@ -258,15 +249,12 @@ export default function SingleDoctor() {
               </div>
             </div>
 
-            {/* Write Review Section */}
-            <div className="bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl p-8 border border-primary/10">
               <WriteReview
                 writeReview={(data) => {
                   DoctorsWritereivew(data, id ?? "")
                   retry()
                 }}
               />
-            </div>
           </>
         ) : null}
       </div>

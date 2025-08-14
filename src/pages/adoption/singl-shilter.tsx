@@ -1,28 +1,31 @@
-import { Award, Calendar, CheckCircle, Clock, Heart, MapPin, MessageSquare, Navigation, Phone, Share2, Star, Users } from "lucide-react";
+import {
+  Award,
+  Calendar,
+  CheckCircle,
+  Clock,
+  Heart,
+  MapPin,
+  MessageSquare,
+  Navigation,
+  Phone,
+  Share2,
+  Star,
+  Users,
+} from "lucide-react"
 
+import { useMemo, useState } from "react"
+import { useParams } from "react-router"
 
+import SwiperWrapper from "@/components/ui/SwiperWrapper"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { ShelterSkeleton } from "@/components/ui/feedbacks/singl-shilter-skeleton"
+import { ReviewItem } from "@/components/ui/serviceProfile/ReviewItem"
 
-import { useMemo, useState } from "react";
-import { useParams } from "react-router";
-
-
-
-import SwiperWrapper from "@/components/ui/SwiperWrapper";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ShelterSkeleton } from "@/components/ui/feedbacks/singl-shilter-skeleton";
-import { ReviewItem } from "@/components/ui/serviceProfile/ReviewItem";
-
-
-
-import { ShilterWritereivew } from "@/apis/writeriewve";
-import WriteReview from "@/components/forms/write-review";
-import MapComponent from "@/components/map/MapComponent";
-import { useShilter } from "@/hooks/shilters";
-
-
-
-
+import { ShilterWritereivew } from "@/apis/writeriewve"
+import WriteReview from "@/components/forms/write-review"
+import MapComponent from "@/components/map/MapComponent"
+import { useShilter } from "@/hooks/shilters"
 
 export default function SinglShilter() {
   const { id } = useParams()
@@ -45,7 +48,7 @@ export default function SinglShilter() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30">
       <div className="container py-8">
         {/* Enhanced Shelter Header */}
-        <div className="relative overflow-hidden bg-gradient-to-br from-white to-gray-50/50 rounded-3xl shadow-lg border border-white/20 p-8 mb-12">
+        <div className="relative overflow-hidden bg-gradient-to-br from-white to-gray-50/50 rounded-3xl shadow-lg border border-white/20  md:p-8 p-4 mb-12">
           {/* Decorative Background Elements */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-blue-400/10 to-transparent rounded-full -translate-y-32 translate-x-32 blur-3xl" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-purple-400/10 to-transparent rounded-full translate-y-24 -translate-x-24 blur-2xl" />
@@ -197,7 +200,7 @@ export default function SinglShilter() {
 
         {/* Enhanced About Section */}
         <section className="mb-12">
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 md:p-8 px-3 py-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
               <div className="w-1 h-8 bg-gradient-to-b from-blue-500 to-indigo-500 rounded-full"></div>
               حول {shelter?.shelterName}
@@ -209,69 +212,71 @@ export default function SinglShilter() {
         </section>
 
         {/* Enhanced Map Section */}
-     <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-              <div className="bg-gradient-to-r from-blue-50 to-emerald-50 p-6 border-b border-gray-100">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                    <MapPin className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold text-gray-900">Shelter Location</h2>
-                    <p className="text-gray-600">Find us on the map</p>
-                  </div>
-                </div>
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+          <div className="bg-gradient-to-r from-blue-50 to-emerald-50 p-6 border-b border-gray-100">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                <MapPin className="w-5 h-5 text-blue-600" />
               </div>
-
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent pointer-events-none z-10" />
-
-                <div className="h-96 relative overflow-hidden z-3">
-                  <MapComponent
-                    latitude={shelter?.locations?.coordinates?.[0] ?? 0}
-                    longitude={shelter?.locations?.coordinates?.[1] ?? 0}
-                  />
-                </div>
-
-                <div className="absolute bottom-4 left-4 right-4 z-20">
-                  <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-white/50">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                        <MapPin className="w-5 h-5 text-emerald-600 z-1" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-gray-900">{shelter?.shelterName}</p>
-                        <p className="text-gray-600 text-sm">{shelter?.locations?.address}</p>
-                      </div>
-                      <Button
-                        size="sm"
-                        className="ml-auto bg-emerald-600 hover:bg-emerald-700"
-                        onClick={() => {
-                          const url = `https://www.google.com/maps/dir/?api=1&destination=${shelter?.locations?.coordinates?.[0]},${shelter?.locations?.coordinates?.[1]}`
-                          window.open(url, "_blank")
-                        }}
-                      >
-                        <Navigation className="w-4 h-4 mr-1" />
-                        Directions
-                      </Button>
-                    </div>
-                  </div>
-                </div>
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900">Shelter Location</h2>
+                <p className="text-gray-600">Find us on the map</p>
               </div>
             </div>
+          </div>
 
-        {/* Enhanced Reviews Section */}
-        <section className="bg-gradient-to-br from-white to-blue-50/30 p-8 rounded-2xl shadow-lg border border-gray-100 mb-8">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent pointer-events-none z-10" />
+
+            <div className="h-96 relative overflow-hidden z-3">
+              <MapComponent
+                latitude={shelter?.locations?.coordinates?.[0] ?? 0}
+                longitude={shelter?.locations?.coordinates?.[1] ?? 0}
+              />
+            </div>
+<div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 z-20">
+  <div className="bg-white/95 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-md sm:shadow-lg border border-white/50">
+    <div className="flex flex-col xs:flex-row items-start xs:items-center gap-2 sm:gap-3">
+      <div className="flex items-center gap-2 sm:gap-3 w-full xs:w-auto">
+        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
+          <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="font-semibold text-gray-900 text-sm sm:text-base truncate">{shelter?.shelterName}</p>
+          <p className="text-gray-600 text-xs sm:text-sm truncate">
+            {shelter?.locations?.address || 'Address not available'}
+          </p>
+        </div>
+      </div>
+      <Button
+        size="sm"
+        className="w-full xs:w-auto ml-0 xs:ml-auto bg-emerald-600 hover:bg-emerald-700 text-xs sm:text-sm px-3"
+        onClick={() => {
+          if (shelter?.locations?.coordinates?.[0] && shelter?.locations?.coordinates?.[1]) {
+            const url = `https://www.google.com/maps/dir/?api=1&destination=${shelter.locations.coordinates[0]},${shelter.locations.coordinates[1]}`
+            window.open(url, "_blank")
+          }
+        }}
+      >
+        <Navigation className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+        Directions
+      </Button>
+    </div>
+  </div>
+</div>
+          </div>
+        </div>
+
+        <section className="  rounded-2xl shadow-lg border border-gray-100 my-8 py-4">
           <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-            <div className="w-1 h-8 bg-gradient-to-b from-amber-500 to-orange-500 rounded-full"></div>
+            <div className="w-1 h-8 bg-gradient-to-b from-amber-500 to-orange-500 ml-3  rounded-full"></div>
             مراجعات العملاء
           </h2>
 
           {shelter?.reviewsOfShelter?.length ? (
             <div className="space-y-6">
               {shelter?.reviewsOfShelter?.map((review, idx) => (
-                <div key={review._id ?? idx} className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
-                  <ReviewItem review={review._id ? (review as Review) : null} reload={() => retry()} />
-                </div>
+                  <ReviewItem key={idx} review={review._id ? (review as Review) : null} reload={() => retry()} />
               ))}
             </div>
           ) : (
@@ -285,23 +290,14 @@ export default function SinglShilter() {
           )}
         </section>
 
-        {/* Enhanced Write Review Section */}
-        <section className="bg-gradient-to-br from-white to-green-50/30 p-8 rounded-2xl shadow-lg border border-gray-100">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-3">
-            <div className="w-1 h-8 bg-gradient-to-b from-green-500 to-emerald-500 rounded-full"></div>
-            مراجعتك
-          </h2>
-          <p className="text-gray-600 mb-6 text-lg">شاركنا تجربتك مع هذا المأوى</p>
+       
 
-          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
             <WriteReview
               writeReview={(data) => {
                 ShilterWritereivew(data, id ?? "")
                 retry()
               }}
             />
-          </div>
-        </section>
       </div>
     </div>
   )

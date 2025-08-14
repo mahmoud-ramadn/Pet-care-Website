@@ -1,7 +1,7 @@
 import { ArrowRight, Clock, Heart, MapPin, Star, Users } from "lucide-react"
 
 import { useState } from "react"
-import { Link } from "react-router"
+import { Link } from "react-router-dom"
 
 import { Button } from "../button"
 
@@ -20,9 +20,9 @@ export default function ShelterCard({ shelterImage, shelterName, locations, rate
       <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-all duration-500 -z-10" />
 
       {/* Content Container */}
-      <div className="relative flex items-stretch gap-6 p-6">
+      <div className="relative flex flex-col md:flex-row items-stretch gap-4 p-4 md:p-6">
         {/* Enhanced Image Section */}
-        <div className="relative flex-shrink-0 w-36 h-36 overflow-hidden rounded-2xl">
+        <div className="relative w-full md:w-36 h-48 md:h-36 overflow-hidden rounded-2xl">
           <img
             className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
             src={shelterImage || "/placeholder.jpg"}
@@ -54,20 +54,20 @@ export default function ShelterCard({ shelterImage, shelterName, locations, rate
 
         {/* Enhanced Content Section */}
         <div className="flex flex-col justify-between flex-grow">
-          <div className="space-y-3">
+          <div className="space-y-2 md:space-y-3">
             {/* Title with Gradient */}
-            <h3 className="text-2xl font-bold line-clamp-1 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+            <h3 className="text-xl md:text-2xl font-bold line-clamp-1 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
               {shelterName}
             </h3>
 
             {/* Enhanced Rating Section */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col xs:flex-row xs:items-center justify-between gap-2">
               <div className="flex items-center gap-2">
                 <div className="flex items-center gap-1">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      size={18}
+                      size={16}
                       className={`transition-all duration-300 ${
                         i < rating ? "fill-amber-400 text-amber-400 drop-shadow-sm" : "text-gray-300"
                       }`}
@@ -78,7 +78,7 @@ export default function ShelterCard({ shelterImage, shelterName, locations, rate
               </div>
 
               {/* Pet Count Badge */}
-              <div className="flex items-center gap-1 px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm font-medium">
+              <div className="flex items-center gap-1 px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm font-medium w-fit">
                 <Users className="w-4 h-4" />
                 <span>٢٥+ حيوان</span>
               </div>
@@ -88,40 +88,40 @@ export default function ShelterCard({ shelterImage, shelterName, locations, rate
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-gray-600">
                 <Clock className="w-4 h-4 text-green-500" />
-                <span className="font-medium text-green-600">مفتوح ٢٤ ساعة</span>
+                <span className="font-medium text-green-600 text-sm md:text-base">مفتوح ٢٤ ساعة</span>
               </div>
 
               {locations?.address && (
                 <div className="flex items-start gap-2 text-gray-600">
                   <MapPin className="w-4 h-4 mt-0.5 text-gray-400 flex-shrink-0" />
-                  <p className="text-sm line-clamp-2">{locations.address}</p>
+                  <p className="text-xs md:text-sm line-clamp-2">{locations.address}</p>
                 </div>
               )}
             </div>
 
             {/* Features Tags */}
-            <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-purple-50 text-purple-600 text-xs font-medium rounded-full">
+            <div className="flex flex-wrap gap-2 mt-2">
+              <span className="px-2 py-1 bg-purple-50 text-purple-600 text-xs font-medium rounded-full">
                 تبني مجاني
               </span>
-              <span className="px-3 py-1 bg-green-50 text-green-600 text-xs font-medium rounded-full">رعاية طبية</span>
+              <span className="px-2 py-1 bg-green-50 text-green-600 text-xs font-medium rounded-full">رعاية طبية</span>
             </div>
           </div>
 
           {/* Enhanced Action Section */}
-          <div className="pt-4 border-t border-gray-100 mt-4">
+          <div className="pt-3 md:pt-4 border-t border-gray-100 mt-3 md:mt-4">
             <Link to={`/get-shilter/${id}`} className="block">
               <Button
-                className={`group/btn relative w-full h-12 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 overflow-hidden ${
+                className={`group/btn relative w-full h-11 md:h-12 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 overflow-hidden ${
                   isHovered ? "scale-105" : ""
                 }`}
               >
                 {/* Button Background Effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700" />
 
-                <span className="relative flex items-center justify-center gap-2">
+                <span className="relative flex items-center justify-center gap-2 text-sm md:text-base">
                   <span>عرض الحيوانات</span>
-                  <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 group-hover/btn:translate-x-1" />
                 </span>
               </Button>
             </Link>
