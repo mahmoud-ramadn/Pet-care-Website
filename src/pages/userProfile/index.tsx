@@ -9,7 +9,7 @@ import { useGetMe, useUserMoments } from "@/hooks/user"
 
 export default function UserProfile() {
   const id = useParams().id
-  const { value: posts} = useUserMoments(id ?? "")
+  const { value: posts } = useUserMoments(id ?? "")
   const { value, loading: userLoading } = useGetMe()
 
   if (userLoading) {
@@ -86,8 +86,6 @@ export default function UserProfile() {
           )}
         </div>
 
-     
-
         <div>
           <h2 className="text-xl font-semibold mb-4">My Pets</h2>
           {value?.pet && value?.pet.length > 0 ? (
@@ -115,7 +113,7 @@ export default function UserProfile() {
       <div className="bg-white rounded-lg shadow-md p-6">
         <h2 className="text-xl font-semibold mb-6">Moments</h2>
 
-{ posts && posts.length > 0 ? (
+        {posts && posts.length > 0 ? (
           <div className="space-y-6">
             {posts.map(({ post }) => (
               <div key={post._id} className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow">
