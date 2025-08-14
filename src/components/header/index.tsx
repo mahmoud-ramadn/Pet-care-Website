@@ -105,13 +105,13 @@ export default function Header() {
             </div>
 
             {/* User Actions */}
-            <div className="flex items-center space-x-4 sm:space-x-6">
-              <div className="flex items-center space-x-2 sm:space-x-4">
+            <div className="flex items-center  z-10 relative ">
+              <div className="flex items-center md:space-x-2 sm:space-x-4">
                 {token ? (
                   <>
                     <Link
                       to="/shop/fav"
-                      className="group relative p-2 text-gray-600 hover:text-red-500 transition-all duration-200"
+                      className="group flex items-center justify-center relative p-2 text-gray-600 hover:text-red-500 transition-all duration-200"
                       aria-label={t("favoriteProducts")}
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-pink-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
@@ -120,7 +120,7 @@ export default function Header() {
 
                     <Link
                       to="/shop/cart"
-                      className="group relative p-2 text-gray-600 hover:text-blue-600 transition-all duration-200"
+                      className="group relative p-2 flex items-center justify-center  text-gray-600 hover:text-blue-600 transition-all duration-200"
                       aria-label={t("shoppingCart")}
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
@@ -158,16 +158,13 @@ export default function Header() {
                 </button>
               </div>
 
-              {/* Mobile Menu Button */}
               <button
                 className="lg:hidden p-2 text-gray-600 hover:text-blue-600 transition-colors duration-200 focus:outline-none"
                 onClick={() => setMobileMenuOpen(true)}
                 aria-label={t("openMenu")}
               >
-                <div className="relative">
                   <Menu className="w-6 h-6" />
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-200"></div>
-                </div>
               </button>
             </div>
           </div>
@@ -271,9 +268,7 @@ export default function Header() {
               >
                 <Heart className="w-5 h-5 mr-3 text-red-500" />
                 <span className="font-medium text-gray-700 group-hover:text-red-600">{t("favoriteProducts")}</span>
-                <span className="ml-auto bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  2
-                </span>
+             
               </Link>
 
               <Link
@@ -283,9 +278,7 @@ export default function Header() {
               >
                 <ShoppingBagIcon className="w-5 h-5 mr-3 text-blue-500" />
                 <span className="font-medium text-gray-700 group-hover:text-blue-600">{t("shoppingCart")}</span>
-                <span className="ml-auto bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  3
-                </span>
+              
               </Link>
             </div>
           )}

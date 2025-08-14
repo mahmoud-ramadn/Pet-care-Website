@@ -233,9 +233,7 @@ export default function SingleDoctor() {
               <div className="md:p-8 p-4">
                 {doctor?.reviewsOfDoctor?.length ? (
                   <div className="space-y-6">
-                    {doctor?.reviewsOfDoctor.map((review) => (
-                        <ReviewItem review={review} reload={() => retry()} />
-                    ))}
+                    {doctor?.reviewsOfDoctor.map((review) => <ReviewItem review={review} reload={() => retry()} />)}
                   </div>
                 ) : (
                   <div className="text-center py-12">
@@ -249,12 +247,12 @@ export default function SingleDoctor() {
               </div>
             </div>
 
-              <WriteReview
-                writeReview={(data) => {
-                  DoctorsWritereivew(data, id ?? "")
-                  retry()
-                }}
-              />
+            <WriteReview
+              writeReview={(data) => {
+                DoctorsWritereivew(data, id ?? "")
+                retry()
+              }}
+            />
           </>
         ) : null}
       </div>

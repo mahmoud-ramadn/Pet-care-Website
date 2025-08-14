@@ -234,36 +234,38 @@ export default function SinglShilter() {
                 longitude={shelter?.locations?.coordinates?.[1] ?? 0}
               />
             </div>
-<div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 z-20">
-  <div className="bg-white/95 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-md sm:shadow-lg border border-white/50">
-    <div className="flex flex-col xs:flex-row items-start xs:items-center gap-2 sm:gap-3">
-      <div className="flex items-center gap-2 sm:gap-3 w-full xs:w-auto">
-        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
-          <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600" />
-        </div>
-        <div className="flex-1 min-w-0">
-          <p className="font-semibold text-gray-900 text-sm sm:text-base truncate">{shelter?.shelterName}</p>
-          <p className="text-gray-600 text-xs sm:text-sm truncate">
-            {shelter?.locations?.address || 'Address not available'}
-          </p>
-        </div>
-      </div>
-      <Button
-        size="sm"
-        className="w-full xs:w-auto ml-0 xs:ml-auto bg-emerald-600 hover:bg-emerald-700 text-xs sm:text-sm px-3"
-        onClick={() => {
-          if (shelter?.locations?.coordinates?.[0] && shelter?.locations?.coordinates?.[1]) {
-            const url = `https://www.google.com/maps/dir/?api=1&destination=${shelter.locations.coordinates[0]},${shelter.locations.coordinates[1]}`
-            window.open(url, "_blank")
-          }
-        }}
-      >
-        <Navigation className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-        Directions
-      </Button>
-    </div>
-  </div>
-</div>
+            <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 z-20">
+              <div className="bg-white/95 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-md sm:shadow-lg border border-white/50">
+                <div className="flex flex-col xs:flex-row items-start xs:items-center gap-2 sm:gap-3">
+                  <div className="flex items-center gap-2 sm:gap-3 w-full xs:w-auto">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-gray-900 text-sm sm:text-base truncate">
+                        {shelter?.shelterName}
+                      </p>
+                      <p className="text-gray-600 text-xs sm:text-sm truncate">
+                        {shelter?.locations?.address || "Address not available"}
+                      </p>
+                    </div>
+                  </div>
+                  <Button
+                    size="sm"
+                    className="w-full xs:w-auto ml-0 xs:ml-auto bg-emerald-600 hover:bg-emerald-700 text-xs sm:text-sm px-3"
+                    onClick={() => {
+                      if (shelter?.locations?.coordinates?.[0] && shelter?.locations?.coordinates?.[1]) {
+                        const url = `https://www.google.com/maps/dir/?api=1&destination=${shelter.locations.coordinates[0]},${shelter.locations.coordinates[1]}`
+                        window.open(url, "_blank")
+                      }
+                    }}
+                  >
+                    <Navigation className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+                    Directions
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -276,7 +278,7 @@ export default function SinglShilter() {
           {shelter?.reviewsOfShelter?.length ? (
             <div className="space-y-6">
               {shelter?.reviewsOfShelter?.map((review, idx) => (
-                  <ReviewItem key={idx} review={review._id ? (review as Review) : null} reload={() => retry()} />
+                <ReviewItem key={idx} review={review._id ? (review as Review) : null} reload={() => retry()} />
               ))}
             </div>
           ) : (
@@ -290,14 +292,12 @@ export default function SinglShilter() {
           )}
         </section>
 
-       
-
-            <WriteReview
-              writeReview={(data) => {
-                ShilterWritereivew(data, id ?? "")
-                retry()
-              }}
-            />
+        <WriteReview
+          writeReview={(data) => {
+            ShilterWritereivew(data, id ?? "")
+            retry()
+          }}
+        />
       </div>
     </div>
   )
