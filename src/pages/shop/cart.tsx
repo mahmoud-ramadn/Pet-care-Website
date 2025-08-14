@@ -45,11 +45,11 @@ export default function Cart() {
   return (
     <div className="container px-4 py-8">
       <div className="flex items-center gap-4 mb-8">
-        <div className="p-3 bg-primary/10 rounded-full">
+        <div className="p-3 bg-primary/10 rounded-full shrink-0 ">
           <ShoppingCart className="w-6 h-6 text-primary" />
         </div>
-        <h1 className="text-3xl font-bold text-gray-800">Your Shopping Cart</h1>
-        <span className="ml-auto bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
+        <h1 className="lg:text-3xl text-lg font-bold text-gray-800">Your Shopping Cart</h1>
+        <span className="ml-auto bg-primary/10 text-primary px-4 py-2 shrink-0 rounded-full text-sm font-medium">
           {products.length} {products.length === 1 ? "item" : "items"}
         </span>
       </div>
