@@ -7,9 +7,9 @@ import { formatPriceEGP } from "@/lib/FormatPriceEGp"
 import { Button } from "@/components/ui/button"
 
 interface ProductCardProps extends ProductData {
-  name: string
-  desc: string
-  price: number
+  name?: string
+  desc?: string
+  price?: number
   priceAfterDiscount?: number
   discount?: number
   productImage?: string
