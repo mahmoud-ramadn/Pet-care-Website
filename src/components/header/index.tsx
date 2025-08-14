@@ -53,7 +53,7 @@ export default function Header() {
             {/* Logo & Navigation */}
             <div className="flex items-center lg:gap-x-12 md:gap-x-8">
               {/* Logo with enhanced styling */}
-              <Link to="/" className="group relative">
+              <Link to="/" className="group relative  shrink-0">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative p-2 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl group-hover:from-blue-100 group-hover:to-purple-100 transition-all duration-300 group-hover:scale-105">
                   <img
