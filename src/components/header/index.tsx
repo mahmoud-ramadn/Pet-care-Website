@@ -21,8 +21,7 @@ export default function Header() {
 
   // Debounce scroll handler for better performance
   const handleScroll = useCallback(() => {
-   if(isMobile)
-    setScrolled(window.scrollY > 10)
+    if (isMobile) setScrolled(window.scrollY > 10)
   }, [])
 
   useEffect(() => {

@@ -2,19 +2,17 @@ import { formatDistanceToNow } from "date-fns"
 import { Bookmark, Heart, MessageCircle, MoreHorizontal, Send, Share2 } from "lucide-react"
 
 import { useEffect, useState } from "react"
+import { Link } from "react-router"
 
 import { CommunitySkeleton } from "@/components/ui/feedbacks/community-skeleton"
 
 import { MakeReact } from "@/apis/user"
 import CreatePostForm from "@/components/forms/CreatePost"
 import { useAllPosts } from "@/hooks/user"
-import { Link } from "react-router"
 
 export default function Community() {
   const { value: posts, loading, retry } = useAllPosts()
   const [DataPosts, setPosts] = useState(posts)
-
-  
 
   useEffect(() => {
     setPosts(posts)
@@ -80,15 +78,13 @@ export default function Community() {
                 <div className="flex items-center space-x-4">
                   <div className="relative">
                     <Link to={`/user/${item.post.userId}`}>
-                    
-                    <img
-                      src={item.post.userImage}
-                      alt={item.post.userName}
-                      width={48}
-                      height={48}
-                      className="rounded-full object-cover ring-2 ring-gray-100 hover:ring-blue-300 transition-all duration-300"
-                    />
-                    
+                      <img
+                        src={item.post.userImage}
+                        alt={item.post.userName}
+                        width={48}
+                        height={48}
+                        className="rounded-full object-cover ring-2 ring-gray-100 hover:ring-blue-300 transition-all duration-300"
+                      />
                     </Link>
                     <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
                   </div>

@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react"
+import { ChevronDown, Sparkles, Star } from "lucide-react"
 import SwiperWrapper from "../SwiperWrapper"
 import SquareNavigation from "../common/squer-nav"
 
@@ -11,47 +13,155 @@ type HeroLayoutType = {
 }
 
 export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: Readonly<HeroLayoutType>) {
+  const [isVisible, setIsVisible] = useState(false)
+  const [scrollY, setScrollY] = useState(0)
+
+  useEffect(() => {
+    setIsVisible(true)
+    
+    const handleScroll = () => setScrollY(window.scrollY)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
-    <div className="relative h-[800px] w-full overflow-hidden">
+    <div className="relative h-[100vh] min-h-[800px] w-full overflow-hidden group">
+      {/* Enhanced Background with Parallax Effect */}
       <div
-        className="absolute inset-0 bg-cover bg-center transition-all duration-1000 group-hover:scale-105"
-        style={{ backgroundImage: `url(${imageHero})` }}
+        className="absolute inset-0 bg-cover bg-center bg-fixed transition-all duration-1000 scale-105 group-hover:scale-110"
+        style={{ 
+          backgroundImage: `url(${imageHero})`,
+          transform: `translateY(${scrollY * 0.5}px)`,
+        }}
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-black/20" />
+        {/* Multi-layer Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-purple-900/20" />
+        
+        {/* Animated Particles */}
+        <div className="absolute inset-0 opacity-30">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute animate-float"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${3 + Math.random() * 4}s`,
+              }}
+            >
+              <Star className="w-1 h-1 text-white/40 animate-pulse" />
+            </div>
+          ))}
+        </div>
       </div>
 
+      {/* Main Content */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
-        <h1 className="text-6xl font-bold text-white drop-shadow-xl md:text-7xl lg:text-8xl">
-          {MainTitle}
-          <span className="mx-auto mt-4 block h-1 w-24  transition-all duration-500 group-hover:w-32" />
-        </h1>
+        {/* Decorative Elements */}
+        <div className="absolute top-20 left-10 opacity-20">
+          <div className="w-32 h-32 border border-white/30 rounded-full animate-spin-slow"></div>
+        </div>
+        <div className="absolute top-32 right-16 opacity-20">
+          <div className="w-20 h-20 border border-white/30 rounded-full animate-pulse"></div>
+        </div>
 
-        {array && (
-          <div className="absolute bottom-0 left-0 right-0">
-            <div
-              className="container 
-             mx-auto px-4 pb-8"
-            >
+        {/* Enhanced Title Section */}
+        <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          {/* Subtitle/Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white/90 text-sm font-medium">
+            <Sparkles className="w-4 h-4" />
+            <span>مرحباً بكم</span>
+          </div>
+
+          {/* Main Title */}
+          <h1 className="relative text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white drop-shadow-2xl leading-tight">
+            <span className="relative inline-block">
+              {MainTitle}
+              {/* Animated Underline */}
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
+                <div className="h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent w-0 group-hover:w-32 transition-all duration-700 rounded-full" />
+                <div className="h-0.5 bg-gradient-to-r from-transparent via-white to-transparent w-24 mt-1 animate-pulse" />
+              </div>
+            </span>
+            
+            {/* Glowing Text Effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 bg-clip-text text-transparent animate-pulse" />
+          </h1>
+
+          {/* Subtitle Text */}
+          <p className="mt-8 text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed font-medium">
+            اكتشف عالماً جديداً من الإمكانيات والفرص المتميزة
+          </p>
+
+          {/* Call to Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 mt-10 justify-center">
+            <button className="group/btn px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 hover:from-amber-600 hover:to-orange-600">
+              <span className="flex items-center gap-2">
+                ابدأ الآن
+                <div className="w-0 group-hover/btn:w-5 transition-all duration-300 overflow-hidden">
+                  <ChevronDown className="w-5 h-5 rotate-[-90deg]" />
+                </div>
+              </span>
+            </button>
+            <button className="px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-xl backdrop-blur-md hover:bg-white/10 hover:border-white/50 transition-all duration-300">
+              اعرف المزيد
+            </button>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-32 animate-bounce">
+          <div className="flex flex-col items-center gap-2 text-white/70">
+            <span className="text-sm font-medium">تصفح المزيد</span>
+            <ChevronDown className="w-5 h-5" />
+          </div>
+        </div>
+      </div>
+
+      {/* Enhanced Navigation Cards */}
+      {array && (
+        <div className="absolute bottom-0 left-0 right-0 z-20">
+          <div className="container mx-auto px-4 pb-8">
+            {/* Background Blur Panel */}
+            <div className="relative backdrop-blur-md bg-black/20 rounded-2xl p-6 border border-white/10">
               <SwiperWrapper preview={preview} className="py-4">
-                {array.map((item) => (
-                  <SquareNavigation
-                    key={item.id}
-                    path={item.path}
-                    className={`
-                      flex flex-col items-center justify-center gap-6 p-8
-                      transition-all bg-white duration-300  hover:shadow-xl
-                      ${cardUrl === item.path ? "bg-amber-400 " : "backdrop-blur-sm hover:bg-white"}
-                    `}
-                    title={item.path}
-                    image={item.image}
-                    imageClassName="    rounded-lg"
-                  />
+                {array.map((item, index) => (
+                  <div
+                    key={index
+                    }
+                  
+                  >
+                    <SquareNavigation
+                      path={item.path}
+                      className={`
+                        relative overflow-hidden flex flex-col items-center justify-center gap-6 p-8
+                        transition-all duration-300 hover:shadow-2xl rounded-2xl
+                        ${cardUrl === item.path 
+                          ? "bg-gradient-to-br from-amber-400 to-orange-500 text-white  " 
+                          : "bg-white/90 backdrop-blur-md hover:bg-white border border-white/20 hover:border-white/40"
+                        }
+                        before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/20 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-all before:duration-300
+                      `}
+                      title={item.path}
+                      image={item.image}
+                      imageClassName="rounded-xl shadow-md group-hover:shadow-xl transition-shadow duration-300"
+                    />
+                    
+                    {/* Card Glow Effect */}
+                    {cardUrl === item.path && (
+                      <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 to-orange-500 rounded-2xl blur opacity-30 z-10" />
+                    )}
+                  </div>
                 ))}
               </SwiperWrapper>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+
+    
     </div>
   )
 }

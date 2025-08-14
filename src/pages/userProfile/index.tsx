@@ -1,26 +1,23 @@
 import { format } from "date-fns"
 import { Calendar, Camera, Crown, Edit, Heart, Mail, Phone, PlusCircle, User } from "lucide-react"
 
+import { useEffect } from "react"
 import { Link, useParams } from "react-router"
 
 import UserProfileSkeleton from "@/components/ui/feedbacks/userProfile-skeleton"
 
-import {  useOneUser, useUserMoments } from "@/hooks/user"
-import { useEffect } from "react"
+import { useOneUser, useUserMoments } from "@/hooks/user"
 
 export default function UserProfile() {
   const id = useParams().id
-  
-  const { value, loading: userLoading ,retry} = useOneUser(id??"")
-  
+
+  const { value, loading: userLoading, retry } = useOneUser(id ?? "")
+
   const { value: posts } = useUserMoments(id ?? "")
 
-
-useEffect(()=>{
-  if(id)
-retry()
-
-  },[id])
+  useEffect(() => {
+    if (id) retry()
+  }, [id])
 
   if (userLoading) {
     return <UserProfileSkeleton />
