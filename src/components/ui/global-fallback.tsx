@@ -34,7 +34,7 @@ export default function GlobalFallback() {
       <Loading />
 
       {/* Custom Animations */}
-      <style >{`
+      <style>{`
         @keyframes float {
           0%,
           100% {

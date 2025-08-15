@@ -243,7 +243,7 @@ export default function UserProfile() {
 
         {/* Moments Section */}
         <div className="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
-          <div className="p-6 border-b border-gray-100 bg-gradient-to-r from-purple-50 to-indigo-50">
+          <div className="md:p-6 p-3 border-b border-gray-100 bg-gradient-to-r from-purple-50 to-indigo-50">
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-3">
                 <Camera className="w-6 h-6 text-purple-600" />
@@ -258,7 +258,7 @@ export default function UserProfile() {
               </Link>
             </div>
           </div>
-          <div className="p-6">
+          <div className="md:p-6 p-3">
             {posts && posts.length > 0 ? (
               <div className="space-y-6">
                 {posts.map(({ post }) => (
@@ -267,7 +267,7 @@ export default function UserProfile() {
                     className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl border-2 border-gray-100 hover:border-purple-200 hover:shadow-lg transition-all duration-200 overflow-hidden"
                   >
                     {/* Post Header */}
-                    <div className="flex items-center p-6 pb-4">
+                    <div className="flex items-center md:p-6 p-3 pb-4">
                       <div className="relative">
                         <img
                           src={post.userImage || "/default-avatar.jpg"}
@@ -279,7 +279,7 @@ export default function UserProfile() {
                         />
                         <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></div>
                       </div>
-                      <div className="mr-4 flex-1">
+                      <div className="ml-4 flex-1">
                         <p className="font-bold text-gray-800">{post.userName}</p>
                         <div className="flex items-center gap-2 text-sm text-gray-500">
                           <Calendar className="w-4 h-4" />
