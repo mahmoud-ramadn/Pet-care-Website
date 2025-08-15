@@ -46,15 +46,13 @@ export default function UserProfile() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="max-w-6xl mx-auto p-4 space-y-8">
-        {/* Profile Header Card */}
         <div className="relative bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-blue-50 to-transparent rounded-full -translate-y-32 translate-x-32 opacity-60" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-purple-50 to-transparent rounded-full translate-y-24 -translate-x-24 opacity-60" />
 
-          <div className="relative p-8">
+          <div className="relative md:p-8 p-3 ">
             <div className="flex flex-col lg:flex-row items-start gap-8">
-              {/* Profile Picture */}
               <div className="relative group">
                 <div className="relative w-40 h-40 rounded-3xl overflow-hidden border-4 border-white shadow-xl group-hover:shadow-2xl transition-all duration-300">
                   <img
@@ -71,11 +69,10 @@ export default function UserProfile() {
                 </div>
               </div>
 
-              {/* Profile Info */}
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between mb-6">
                   <div className="space-y-3">
-                    <h1 className="text-4xl font-bold text-gray-800 flex items-center gap-3">
+                    <h1 className="text-4xl font-bold text-gray-800 flex items-center  justify-between gap-3">
                       {value?.name}
                       {value?.role === "admin" && <Crown className="w-8 h-8 text-yellow-500" />}
                     </h1>
@@ -96,14 +93,12 @@ export default function UserProfile() {
                       </div>
                     </div>
 
-                    {/* Role Badge */}
                     <div className="inline-flex items-center gap-2 px-4 py-2 border rounded-full text-sm font-semibold ${getRoleBadgeStyle(value?.role)}">
                       <User className="w-4 h-4" />
                       {value?.role}
                     </div>
                   </div>
 
-                  {/* Edit Button */}
                   <Link
                     to={`/Edit-user/${value?._id}`}
                     className="group relative p-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 rounded-2xl transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
@@ -116,7 +111,6 @@ export default function UserProfile() {
                   </Link>
                 </div>
 
-                {/* Stats */}
                 <div className="grid grid-cols-3 gap-6">
                   <div className="text-center p-4 bg-white/50 rounded-2xl border border-white/20">
                     <div className="text-2xl font-bold text-blue-600">{value?.favPet?.length || 0}</div>
