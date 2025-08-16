@@ -102,7 +102,7 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
           {/* Call to Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mt-10 justify-center">
             <button className="group/btn px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 hover:from-amber-600 hover:to-orange-600">
-              <span className="flex items-center gap-2">
+              <span className="flex  md:justify-center  justify-center items-center gap-2">
                 ابدأ الآن
                 <div className="w-0 group-hover/btn:w-5 transition-all duration-300 overflow-hidden">
                   <ChevronDown className="w-5 h-5 rotate-[-90deg]" />

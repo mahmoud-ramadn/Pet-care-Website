@@ -97,8 +97,8 @@ export default function ServicesCard({
             to={`/services/description/${serviceProfile?._id || serviceProfile}`}
             className="group/link flex items-center gap-1 px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-sm font-medium rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95"
           >
-            <Eye className="w-3 h-3 transition-transform duration-300 group-hover/link:scale-110" />
-            <span>View Details</span>
+            <Eye className="w-3 h-3  shrink-0  transition-transform duration-300 group-hover/link:scale-110" />
+            <span className=" shrink-0">View Details</span>
           </Link>
         </div>
       </div>
