@@ -59,9 +59,7 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
-        {/* Decorative Elements */}
         <div className="absolute top-20 left-10 opacity-20">
           <div className="w-32 h-32 border border-white/30 rounded-full animate-spin-slow"></div>
         </div>
@@ -69,37 +67,30 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
           <div className="w-20 h-20 border border-white/30 rounded-full animate-pulse"></div>
         </div>
 
-        {/* Enhanced Title Section */}
         <div
           className={`transform transition-all duration-1000 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
         >
-          {/* Subtitle/Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white/90 text-sm font-medium">
             <Sparkles className="w-4 h-4" />
             <span>مرحباً بكم</span>
           </div>
 
-          {/* Main Title */}
           <h1 className="relative text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white drop-shadow-2xl leading-tight">
             <span className="relative inline-block">
               {MainTitle}
-              {/* Animated Underline */}
               <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
                 <div className="h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent w-0 group-hover:w-32 transition-all duration-700 rounded-full" />
                 <div className="h-0.5 bg-gradient-to-r from-transparent via-white to-transparent w-24 mt-1 animate-pulse" />
               </div>
             </span>
 
-            {/* Glowing Text Effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 bg-clip-text text-transparent animate-pulse" />
           </h1>
 
-          {/* Subtitle Text */}
           <p className="mt-8 text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed font-medium">
             اكتشف عالماً جديداً من الإمكانيات والفرص المتميزة
           </p>
 
-          {/* Call to Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mt-10 justify-center">
             <button className="group/btn px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 hover:from-amber-600 hover:to-orange-600">
               <span className="flex  md:justify-center  justify-center items-center gap-2">
@@ -115,8 +106,7 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-32 animate-bounce">
+        <div className="absolute md:bottom-32 bottom-10 animate-bounce">
           <div className="flex flex-col items-center gap-2 text-white/70">
             <span className="text-sm font-medium">تصفح المزيد</span>
             <ChevronDown className="w-5 h-5" />
@@ -124,9 +114,8 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
         </div>
       </div>
 
-      {/* Enhanced Navigation Cards */}
       {array && (
-        <div className="absolute bottom-0 left-0 right-0 z-20">
+        <div className="absolute md:bottom-0    left-0 right-0 z-20">
           <div className="container mx-auto px-4 pb-8">
             {/* Background Blur Panel */}
             <div className="relative backdrop-blur-md bg-black/20 rounded-2xl p-6 border border-white/10">

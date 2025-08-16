@@ -60,20 +60,16 @@ export default function ServicesCard({
           </div>
         </div>
 
-        {/* Location */}
         <div className="flex items-center gap-2 text-gray-600">
           <MapPin className="w-4 h-4 text-gray-400" />
           <span className="text-sm font-medium">{city}</span>
         </div>
 
-        {/* Description */}
         {serviceProfile?.description && (
           <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed">{serviceProfile.description}</p>
         )}
 
-        {/* Rating and Actions */}
         <div className="flex items-center justify-between pt-2 border-t border-gray-100">
-          {/* Star Rating */}
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-0.5">
               {[...Array(5)].map((_, i) => (
@@ -92,7 +88,6 @@ export default function ServicesCard({
             </span>
           </div>
 
-          {/* View Details Link */}
           <Link
             to={`/services/description/${serviceProfile?._id || serviceProfile}`}
             className="group/link flex items-center gap-1 px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-sm font-medium rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95"
@@ -103,7 +98,6 @@ export default function ServicesCard({
         </div>
       </div>
 
-      {/* Hover Effect Border */}
       <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-blue-200 transition-colors duration-300 pointer-events-none"></div>
     </div>
   )
