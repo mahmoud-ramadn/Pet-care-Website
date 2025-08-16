@@ -1,3 +1,6 @@
-export default function CheckOut() {
-  return <div>chkeckout</div>
+
+export default function checkout() {
+  return (
+    <div>checkout</div>
+  )
 }

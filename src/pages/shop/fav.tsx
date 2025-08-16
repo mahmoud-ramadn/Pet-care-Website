@@ -1,4 +1,4 @@
-import {  Grid3X3, Heart, List, Search, ShoppingBag, Sparkles, Star, Zap } from "lucide-react"
+import { Grid3X3, Heart, List, Search, ShoppingBag, Sparkles, Star, Zap } from "lucide-react"
 import { toast } from "sonner"
 
 import { useEffect, useState } from "react"
@@ -195,25 +195,25 @@ export default function Fav() {
               <div className="relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-pink-200 transform hover:-translate-y-1">
                 <div className="absolute inset-0 bg-gradient-to-r from-pink-600/5 via-purple-600/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-                  <ProductCard
-                    sourcePage="fav"
-                    handleToggleFavorite={async () => {
-                      setLoadingIds((prev) => [...prev, product._id ?? ""])
-                      try {
-                        await addFavoriteProduct(product._id ?? "")
-                        setProducts((prev) => prev.filter((p) => p._id !== product._id))
-                        toast.success("Product removed from favorites")
-                      } catch (error) {
-                        console.error("Failed to update favorites:", error)
-                        toast.error("Failed to remove from favorites")
-                      } finally {
-                        setLoadingIds((prev) => prev.filter((id) => id !== product._id))
-                      }
-                    }}
-                    {...product}
-                    isLoading={loadingIds.includes(product._id ?? "")}
-                    isLoadingCart={false}
-                  />
+                <ProductCard
+                  sourcePage="fav"
+                  handleToggleFavorite={async () => {
+                    setLoadingIds((prev) => [...prev, product._id ?? ""])
+                    try {
+                      await addFavoriteProduct(product._id ?? "")
+                      setProducts((prev) => prev.filter((p) => p._id !== product._id))
+                      toast.success("Product removed from favorites")
+                    } catch (error) {
+                      console.error("Failed to update favorites:", error)
+                      toast.error("Failed to remove from favorites")
+                    } finally {
+                      setLoadingIds((prev) => prev.filter((id) => id !== product._id))
+                    }
+                  }}
+                  {...product}
+                  isLoading={loadingIds.includes(product._id ?? "")}
+                  isLoadingCart={false}
+                />
               </div>
             </div>
           ))}
@@ -243,7 +243,7 @@ export default function Fav() {
         )}
       </div>
 
-      <style >{`
+      <style>{`
         @keyframes fade-in {
           from {
             opacity: 0;

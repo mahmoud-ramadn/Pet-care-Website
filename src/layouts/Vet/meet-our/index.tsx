@@ -31,10 +31,8 @@ export default function MeetOur({
 }: Readonly<MeetOurType>) {
   return (
     <section className={cn("relative my-20 py-32 flex items-center justify-center overflow-hidden", className)}>
-      {/* Background gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
 
-      {/* Decorative elements */}
       <div className="absolute top-10 left-10 opacity-20">
         <Sparkles className="w-8 h-8 text-primary animate-pulse" />
       </div>
@@ -43,7 +41,6 @@ export default function MeetOur({
       </div>
 
       <div className="container relative z-10">
-        {/* Header section with enhanced spacing and animation */}
         <div className="text-center max-w-4xl mx-auto mb-16">
           <div className="inline-flex items-center justify-center p-1 mb-6 bg-primary/10 rounded-full">
             <span className="px-4 py-2 text-sm font-medium text-primary bg-white rounded-full shadow-sm">
@@ -58,13 +55,12 @@ export default function MeetOur({
           <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">{subTitle}</p>
         </div>
 
-        {/* Enhanced swiper with better spacing */}
         <div className="mb-16">
           <SwiperWrapper className="my-12 pb-8" preview={4}>
             {array.map((item, index) => (
               <div
                 key={item.id}
-                className="transform transition-all duration-300 hover:scale-105 hover:-translate-y-2"
+                className="transform  transition-all duration-300 hover:scale-100    "
                 style={{
                   animationDelay: `${index * 100}ms`,
                 }}
@@ -74,8 +70,6 @@ export default function MeetOur({
             ))}
           </SwiperWrapper>
         </div>
-
-        {/* Enhanced CTA button */}
         <div className="text-center">
           <Link to={path} className="inline-block group">
             <Button
@@ -97,7 +91,6 @@ export default function MeetOur({
             </Button>
           </Link>
 
-          {/* Subtle decorative line */}
           <div className="mt-8 flex items-center justify-center">
             <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-32" />
           </div>

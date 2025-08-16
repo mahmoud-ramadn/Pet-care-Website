@@ -1,5 +1,5 @@
 import { useAtom } from "jotai"
-import { ArrowRight, Gift, Shield, ShoppingCart, Star,  Truck } from "lucide-react"
+import { ArrowRight, Gift, Shield, ShoppingCart, Star, Truck } from "lucide-react"
 import { toast } from "sonner"
 
 import { useEffect, useState } from "react"
@@ -102,30 +102,29 @@ export default function Cart() {
             ) : (
               <div className="space-y-6">
                 {products.map((item, index) => (
-                  
-                      <ProductCard
-                      key={index}
-                        {...item.product}
-                        initialQuantity={item.quantity}
-                        showQuantityCounter={true}
-                        sourcePage="cart"
-                        isLoadingCart={loadingIds.includes(item._id)}
-                        handleToggleCart={async () => {
-                          setLoadingIds((prev) => [...prev, item._id])
-                          try {
-                            await addCartProduct(item.product._id)
-                            setProducts((prev) => prev.filter((p) => p._id !== item._id))
-                            toast.success("Product removed from cart")
-                          } catch {
-                            toast.error("Failed to remove product")
-                          } finally {
-                            setLoadingIds((prev) => prev.filter((id) => id !== item._id))
-                          }
-                        }}
-                        handleQuantityChange={(newQty) => {
-                          setProducts((prev) => prev.map((p) => (p._id === item._id ? { ...p, quantity: newQty } : p)))
-                        }}
-                      />
+                  <ProductCard
+                    key={index}
+                    {...item.product}
+                    initialQuantity={item.quantity}
+                    showQuantityCounter={true}
+                    sourcePage="cart"
+                    isLoadingCart={loadingIds.includes(item._id)}
+                    handleToggleCart={async () => {
+                      setLoadingIds((prev) => [...prev, item._id])
+                      try {
+                        await addCartProduct(item.product._id)
+                        setProducts((prev) => prev.filter((p) => p._id !== item._id))
+                        toast.success("Product removed from cart")
+                      } catch {
+                        toast.error("Failed to remove product")
+                      } finally {
+                        setLoadingIds((prev) => prev.filter((id) => id !== item._id))
+                      }
+                    }}
+                    handleQuantityChange={(newQty) => {
+                      setProducts((prev) => prev.map((p) => (p._id === item._id ? { ...p, quantity: newQty } : p)))
+                    }}
+                  />
                 ))}
               </div>
             )}
