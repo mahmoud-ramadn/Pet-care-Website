@@ -13,11 +13,9 @@ export default function Blogs() {
   const { value: blogs, loading } = useBlog()
   const [searchTerm, setSearchTerm] = useState("")
 
-  // Filter blogs based on search term and category
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-indigo-50/20">
-      {/* Hero Section */}
       <div className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
@@ -38,7 +36,6 @@ export default function Blogs() {
               اكتشف أحدث المقالات والنصائح حول رعاية الحيوانات الأليفة والتبني المسؤول
             </p>
 
-            {/* Featured Stats */}
             <div className="flex justify-center gap-8 mt-12">
               <div className="text-center">
                 <div className="text-3xl font-bold text-white">{blogs?.length || 0}</div>
@@ -58,7 +55,6 @@ export default function Blogs() {
       </div>
 
       <div className="container py-12">
-        {/* Trending Section */}
         {!loading && blogs && (
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-6">

@@ -15,7 +15,7 @@ export default function Vet() {
         array={MeetOurBestDoctorsMock}
         title="Meet Our Best Doctors"
         subTitle="We change your life & world with our valuable expert Doctors team"
-        className="bg-primary"
+        className=" bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20"
       />
       <MeetOur
         path="clinics"

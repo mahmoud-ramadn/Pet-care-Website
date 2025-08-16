@@ -45,9 +45,7 @@ export default function BlogCard({ plogImage, description, link }: Blog) {
         </div>
       </div>
 
-      {/* Content Section */}
       <div className="p-6 space-y-4">
-        {/* Category Badge */}
         <div className="flex items-center justify-between">
           <span className="px-3 py-1 bg-blue-100 text-blue-600 text-xs font-semibold rounded-full">مقالات</span>
           <div className="flex items-center gap-1 text-gray-400">
@@ -55,14 +53,12 @@ export default function BlogCard({ plogImage, description, link }: Blog) {
           </div>
         </div>
 
-        {/* Title */}
         <a href={link} target="_blank" rel="noopener noreferrer" className="block">
           <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2 leading-tight">
             {description}
           </h3>
         </a>
 
-        {/* Meta Information */}
         <div className="flex items-center justify-between text-sm text-gray-500">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center">
@@ -73,7 +69,6 @@ export default function BlogCard({ plogImage, description, link }: Blog) {
           <span>منذ يومين</span>
         </div>
 
-        {/* Enhanced Read More Button */}
         <a
           href={link}
           target="_blank"
@@ -87,7 +82,6 @@ export default function BlogCard({ plogImage, description, link }: Blog) {
           </div>
         </a>
 
-        {/* Interaction Bar */}
         <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
           <div className="flex items-center gap-4 text-gray-500">
             <button className="flex items-center gap-1 text-sm hover:text-blue-600 transition-colors">
@@ -128,7 +122,6 @@ export default function BlogCard({ plogImage, description, link }: Blog) {
         </div>
       </div>
 
-      {/* Decorative Corner Elements */}
       <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-blue-400/5 to-transparent rounded-br-full opacity-0 group-hover:opacity-100 transition-all duration-500" />
       <div className="absolute bottom-0 right-0 w-16 h-16 bg-gradient-to-tl from-purple-400/5 to-transparent rounded-tl-full opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100" />
     </div>

@@ -49,7 +49,7 @@ export default function MeetOur({
           </div>
 
           <UiTitle className="mb-6 bg-gradient-to-r from-gray-900 via-primary to-gray-900 bg-clip-text text-transparent">
-            {title}
+            {title} 
           </UiTitle>
 
           <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">{subTitle}</p>
