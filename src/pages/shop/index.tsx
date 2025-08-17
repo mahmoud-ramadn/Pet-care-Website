@@ -354,7 +354,9 @@ export default function Shop() {
         {/* Enhanced Products Grid */}
         <div
           className={`mb-16 ${
-            viewMode === "grid" ? "grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8" : "grid md:grid-cols-2  grid-cols-1 gap-8"
+            viewMode === "grid"
+              ? "grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8"
+              : "grid md:grid-cols-2  grid-cols-1 gap-8"
           }`}
         >
           {loading &&
@@ -546,7 +548,7 @@ export default function Shop() {
         </div>
       </div>
 
-      <style >{`
+      <style>{`
         @keyframes fadeIn {
           from {
             opacity: 0;
@@ -578,23 +580,6 @@ export default function Shop() {
         }
 
         /* Custom scrollbar */
-        ::-webkit-scrollbar {
-          width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-          background: #f1f5f9;
-          border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-          background: linear-gradient(to bottom, #8b5cf6, #ec4899);
-          border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(to bottom, #7c3aed, #db2777);
-        }
 
         /* Glass morphism effect */
         .glass {
