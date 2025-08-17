@@ -1,4 +1,16 @@
-import { Filter, Grid, List, Package, Search, ShoppingBagIcon, Star, TrendingUp } from "lucide-react"
+import {
+  Eye,
+  Filter,
+  Grid,
+  Heart,
+  List,
+  Package,
+  Search,
+  ShoppingBagIcon,
+  ShoppingCart,
+  Star,
+  TrendingUp,
+} from "lucide-react"
 import { toast } from "sonner"
 
 import { useEffect, useMemo, useState } from "react"
@@ -76,169 +88,260 @@ export default function Shop() {
   const hasMoreProducts = products && products.data.length >= query.limit
 
   const categories = [
-    { value: "medicine", label: "أدوية", icon: "💊" },
-    { value: "food", label: "طعام", icon: "🍖" },
-    { value: "toys", label: "ألعاب", icon: "🧸" },
-    { value: "grooming", label: "عناية", icon: "✂️" },
-    { value: "accessories", label: "إكسسوارات", icon: "🎀" },
+    { value: "medicine", label: "الأدوية", icon: "💊", color: "from-red-500 to-pink-500" },
+    { value: "food", label: "الطعام", icon: "🍖", color: "from-orange-500 to-yellow-500" },
+    { value: "toys", label: "الألعاب", icon: "🧸", color: "from-blue-500 to-cyan-500" },
+    { value: "grooming", label: "العناية", icon: "✂️", color: "from-purple-500 to-indigo-500" },
+    { value: "accessories", label: "الإكسسوارات", icon: "🎀", color: "from-pink-500 to-rose-500" },
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-indigo-50/20">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full translate-x-48 -translate-y-48 blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-white rounded-full -translate-x-32 translate-y-32 blur-3xl" />
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-zinc-50">
+      {/* Enhanced Hero Section */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full translate-x-48 -translate-y-48 blur-3xl animate-pulse" />
+          <div
+            className="absolute bottom-0 left-0 w-80 h-80 bg-white rounded-full -translate-x-32 translate-y-32 blur-3xl animate-pulse"
+            style={{ animationDelay: "1s" }}
+          />
+          <div
+            className="absolute top-1/3 left-1/2 w-64 h-64 bg-white rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl animate-pulse"
+            style={{ animationDelay: "2s" }}
+          />
         </div>
 
-        <div className="container relative z-10 py-20">
-          <div className="text-center space-y-6 max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white/90 text-sm font-medium mb-4">
-              <ShoppingBagIcon className="w-4 h-4" />
-              <span>متجر الحيوانات الأليفة</span>
+        {/* Floating Decorative Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div
+            className="absolute top-20 left-10 w-4 h-4 bg-white/30 rounded-full animate-bounce"
+            style={{ animationDelay: "0s", animationDuration: "3s" }}
+          />
+          <div
+            className="absolute top-32 right-20 w-3 h-3 bg-white/40 rounded-full animate-bounce"
+            style={{ animationDelay: "1s", animationDuration: "3s" }}
+          />
+          <div
+            className="absolute bottom-40 left-1/4 w-5 h-5 bg-white/20 rounded-full animate-bounce"
+            style={{ animationDelay: "2s", animationDuration: "3s" }}
+          />
+          <div
+            className="absolute top-2/3 right-1/3 w-2 h-2 bg-white/50 rounded-full animate-bounce"
+            style={{ animationDelay: "0.5s", animationDuration: "3s" }}
+          />
+        </div>
+
+        <div className="container relative z-10 py-24">
+          <div className="text-center space-y-8 max-w-5xl mx-auto">
+            {/* Premium Badge */}
+            <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/15 backdrop-blur-xl rounded-full border border-white/30 text-white/95 text-sm font-semibold mb-6 shadow-xl">
+              <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+              <ShoppingBagIcon className="w-5 h-5" />
+              <span>متجر الحيوانات الأليفة الأول في المنطقة</span>
+              <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
             </div>
 
-            <UiTitle className="text-5xl lg:text-6xl font-bold text-white drop-shadow-xl">اكتشف منتجات مذهلة</UiTitle>
+            {/* Main Title with Enhanced Typography */}
+            <div className="space-y-4">
+              <UiTitle className="text-6xl lg:text-7xl xl:text-8xl font-black text-white drop-shadow-2xl leading-tight">
+                اكتشف عالم
+                <span className="block bg-gradient-to-r from-yellow-300 via-orange-300 to-pink-300 bg-clip-text text-transparent">
+                  الحيوانات الأليفة
+                </span>
+              </UiTitle>
 
-            <p className="text-xl text-indigo-100 max-w-2xl mx-auto leading-relaxed">
-              اعثر على كل ما تحتاجه لحيوانك الأليف من مجموعتنا المختارة من المنتجات المميزة
-            </p>
+              <p className="text-xl lg:text-2xl text-purple-100 max-w-3xl mx-auto leading-relaxed font-medium">
+                منتجات عالية الجودة وخدمة استثنائية لأصدقائك ذوي الأربع أرجل
+              </p>
+            </div>
 
-            {/* Featured Stats */}
-            <div className="flex justify-center gap-8 mt-12">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-white">{products?.data?.length || 0}</div>
-                <div className="text-indigo-200 text-sm">منتج</div>
+            {/* Enhanced Stats Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-4xl mx-auto">
+              <div className="group bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-500 hover:scale-105 hover:shadow-2xl">
+                <div className="w-16 h-16 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500">
+                  <Package className="w-8 h-8 text-white" />
+                </div>
+                <div className="text-4xl font-black text-white mb-2">{products?.data?.length || 0}+</div>
+                <div className="text-purple-200 font-semibold">منتج متنوع ومميز</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-white">5.0</div>
-                <div className="text-indigo-200 text-sm">تقييم</div>
+
+              <div className="group bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-500 hover:scale-105 hover:shadow-2xl">
+                <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500">
+                  <Star className="w-8 h-8 text-white fill-white" />
+                </div>
+                <div className="text-4xl font-black text-white mb-2">5.0</div>
+                <div className="text-purple-200 font-semibold">تقييم العملاء</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-white">2K+</div>
-                <div className="text-indigo-200 text-sm">عميل سعيد</div>
+
+              <div className="group bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-500 hover:scale-105 hover:shadow-2xl">
+                <div className="w-16 h-16 bg-gradient-to-r from-pink-400 to-rose-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-500">
+                  <Heart className="w-8 h-8 text-white fill-white" />
+                </div>
+                <div className="text-4xl font-black text-white mb-2">10K+</div>
+                <div className="text-purple-200 font-semibold">عميل راضي</div>
               </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
+              <Button className="group bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-10 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-emerald-500/25 transition-all duration-300 transform hover:-translate-y-1">
+                <ShoppingCart className="w-5 h-5 mr-2 group-hover:animate-bounce" />
+                تصفح المنتجات الآن
+              </Button>
+              <Button
+                variant="outline"
+                className="group border-2 border-white/30 text-white hover:bg-white/10 px-10 py-4 rounded-2xl font-bold text-lg backdrop-blur-xl transition-all duration-300"
+              >
+                <Eye className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+                اعرف المزيد
+              </Button>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="container py-12">
+      <div className="container py-16">
         {/* Enhanced Search and Filter Section */}
-        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 mb-12 -mt-20 relative z-10">
-          {/* Search Bar */}
-          <div className="relative max-w-2xl mx-auto mb-8">
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-              <Input
-                type="search"
-                onChange={(e) => handleSearchChange(e.target.value)}
-                placeholder="ابحث عن المنتجات، العلامات التجارية، أو الفئات..."
-                className="w-full pl-12 pr-4 py-4 text-base rounded-xl border-gray-200 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 shadow-lg"
-              />
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/50 p-10 mb-16 -mt-32 relative z-10">
+          {/* Search Bar with Enhanced Design */}
+          <div className="relative max-w-3xl mx-auto mb-10">
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity" />
+              <div className="relative bg-white rounded-2xl border-2 border-gray-100 shadow-lg">
+                <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 h-6 w-6 text-gray-400" />
+                <Input
+                  type="search"
+                  onChange={(e) => handleSearchChange(e.target.value)}
+                  placeholder="ابحث عن المنتجات، العلامات التجارية، أو الفئات..."
+                  className="w-full pl-16 pr-6 py-6 text-lg rounded-2xl border-0 focus:ring-2 focus:ring-purple-500/20 focus:outline-none font-medium"
+                />
+              </div>
             </div>
           </div>
 
-          {/* Filters and Controls */}
-          <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
-            {/* Category Pills */}
-            <div className="flex items-center gap-3 flex-wrap">
-              <span className="text-gray-700 font-medium flex items-center gap-2">
-                <Filter className="w-4 h-4" />
+          {/* Enhanced Filters and Controls */}
+          <div className="flex flex-col xl:flex-row gap-8 items-center justify-between">
+            {/* Category Pills with Gradients */}
+            <div className="flex items-center gap-4 flex-wrap">
+              <span className="text-gray-800 font-bold text-lg flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
+                  <Filter className="w-5 h-5 text-white" />
+                </div>
                 الفئات:
               </span>
+
               <Button
                 variant={!query.category ? "default" : "outline"}
-                size="sm"
+                size="lg"
                 onClick={() => mutate({ category: "", page: 1 })}
-                className="rounded-full transition-all duration-300"
+                className={`rounded-2xl font-semibold px-6 py-3 transition-all duration-300 ${
+                  !query.category
+                    ? "bg-gradient-to-r from-gray-600 to-gray-700 text-white shadow-lg hover:shadow-xl"
+                    : "hover:bg-gray-50 border-2"
+                }`}
               >
-                الكل
+                جميع الفئات
               </Button>
+
               {categories.map((cat) => (
                 <Button
                   key={cat.value}
                   variant={query.category === cat.value ? "default" : "outline"}
-                  size="sm"
+                  size="lg"
                   onClick={() => mutate({ category: cat.value, page: 1 })}
-                  className={`rounded-full transition-all duration-300 ${
+                  className={`rounded-2xl font-semibold px-6 py-3 transition-all duration-300 ${
                     query.category === cat.value
-                      ? "bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg"
-                      : "hover:bg-indigo-50 hover:text-indigo-600 hover:border-indigo-200"
+                      ? `bg-gradient-to-r ${cat.color} text-white shadow-lg hover:shadow-xl scale-105`
+                      : "hover:bg-gray-50 hover:scale-105 border-2"
                   }`}
                 >
-                  <span className="mr-2">{cat.icon}</span>
+                  <span className="text-lg mr-2">{cat.icon}</span>
                   {cat.label}
                 </Button>
               ))}
             </div>
 
-            {/* View Mode Toggle */}
-            <div className="flex items-center gap-3">
-              <span className="text-gray-700 font-medium">عرض:</span>
-              <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-xl">
+            {/* Enhanced View Mode Toggle */}
+            <div className="flex items-center gap-4">
+              <span className="text-gray-800 font-bold text-lg">طريقة العرض:</span>
+              <div className="flex items-center gap-2 bg-gray-100 p-2 rounded-2xl">
                 <Button
                   variant={viewMode === "grid" ? "default" : "ghost"}
-                  size="sm"
+                  size="lg"
                   onClick={() => setViewMode("grid")}
-                  className={`p-2 rounded-lg transition-all duration-300 ${
-                    viewMode === "grid" ? "bg-white shadow-sm" : "hover:bg-white/50"
+                  className={`p-4 rounded-xl transition-all duration-300 ${
+                    viewMode === "grid"
+                      ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg scale-105"
+                      : "hover:bg-white/80"
                   }`}
                 >
-                  <Grid className="w-4 h-4" />
+                  <Grid className="w-5 h-5" />
                 </Button>
                 <Button
                   variant={viewMode === "list" ? "default" : "ghost"}
-                  size="sm"
+                  size="lg"
                   onClick={() => setViewMode("list")}
-                  className={`p-2 rounded-lg transition-all duration-300 ${
-                    viewMode === "list" ? "bg-white shadow-sm" : "hover:bg-white/50"
+                  className={`p-4 rounded-xl transition-all duration-300 ${
+                    viewMode === "list"
+                      ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg scale-105"
+                      : "hover:bg-white/80"
                   }`}
                 >
-                  <List className="w-4 h-4" />
+                  <List className="w-5 h-5" />
                 </Button>
               </div>
             </div>
           </div>
 
-          {/* Search Results Info */}
+          {/* Enhanced Search Results Info */}
           {searchValue && (
-            <div className="mt-6 p-4 bg-indigo-50 rounded-xl">
-              <p className="text-indigo-700">
-                تم العثور على <span className="font-semibold">{products?.data?.length || 0}</span> منتج يحتوي على "
-                {searchValue}"
-              </p>
+            <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl border border-blue-200/50">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
+                  <Search className="w-5 h-5 text-white" />
+                </div>
+                <p className="text-blue-800 font-semibold text-lg">
+                  تم العثور على{" "}
+                  <span className="text-2xl font-black text-purple-600">{products?.data?.length || 0}</span> منتج يحتوي
+                  على "<span className="text-purple-700 font-black">{searchValue}</span>"
+                </p>
+              </div>
             </div>
           )}
         </div>
 
-        {/* Featured Products Section */}
+        {/* Enhanced Featured Products Section */}
         {!loading && products && !searchValue && (
-          <div className="mb-12">
-            <div className="flex items-center gap-3 mb-6">
-              <TrendingUp className="w-6 h-6 text-orange-500" />
-              <h2 className="text-2xl font-bold text-gray-900">المنتجات الأكثر مبيعاً</h2>
+          <div className="mb-16">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center">
+                <TrendingUp className="w-7 h-7 text-white" />
+              </div>
+              <h2 className="text-3xl font-black text-gray-900">المنتجات الأكثر مبيعاً</h2>
+              <div className="flex-1 h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full opacity-20" />
             </div>
-            <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl p-6 border border-orange-100">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+            <div className="bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 rounded-3xl p-8 border-2 border-orange-200/30 shadow-xl">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {products.data.slice(0, 3).map((product, index) => (
                   <div
                     key={product._id}
-                    className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow"
+                    className="group flex items-center gap-6 p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-white/50"
                   >
-                    <div className="flex items-center justify-center w-10 h-10 bg-orange-500 text-white rounded-full font-bold">
+                    <div className="flex items-center justify-center w-14 h-14 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-2xl font-black text-xl group-hover:scale-110 transition-transform duration-300">
                       {index + 1}
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-semibold text-gray-900 line-clamp-1">{product.name}</h3>
-                      <div className="flex items-center gap-2 mt-1">
-                        <div className="flex items-center gap-1">
-                          <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
-                          <span className="text-sm text-gray-600">4.8</span>
+                      <h3 className="font-bold text-gray-900 text-lg mb-2 line-clamp-1 group-hover:text-orange-600 transition-colors">
+                        {product.name}
+                      </h3>
+                      <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2">
+                          <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+                          <span className="text-sm font-semibold text-gray-700">4.8</span>
                         </div>
-                        <span className="text-orange-600 font-bold">${product.price}</span>
+                        <span className="text-orange-600 font-black text-lg">${product.price}</span>
                       </div>
                     </div>
                   </div>
@@ -248,18 +351,18 @@ export default function Shop() {
           </div>
         )}
 
-        {/* Products Grid */}
+        {/* Enhanced Products Grid */}
         <div
-          className={`mb-10 ${
-            viewMode === "grid" ? "grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-8" : "space-y-4"
+          className={`mb-16 ${
+            viewMode === "grid" ? "grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8" : "grid md:grid-cols-2  grid-cols-1 gap-8"
           }`}
         >
           {loading &&
             [...Array(query.limit)].map((_, index) => (
               <div
                 key={`skeleton-${index}`}
-                className="transform transition-all duration-500 opacity-0 animate-fadeIn"
-                style={{ animationDelay: `${index * 100}ms`, animationFillMode: "forwards" }}
+                className="transform transition-all duration-700 opacity-0 animate-fadeIn"
+                style={{ animationDelay: `${index * 150}ms`, animationFillMode: "forwards" }}
               >
                 <ProductCardSkeleton />
               </div>
@@ -267,17 +370,17 @@ export default function Shop() {
 
           {!loading && (!products || products.data.length === 0) && (
             <div className="col-span-full">
-              <div className="text-center py-20">
-                <div className="w-32 h-32 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Package className="w-16 h-16 text-gray-400" />
+              <div className="text-center py-24">
+                <div className="w-40 h-40 bg-gradient-to-r from-gray-200 to-gray-300 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
+                  <Package className="w-20 h-20 text-gray-400" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  {searchValue ? "لم نجد منتجات تطابق بحثك" : "لا توجد منتجات متاحة"}
+                <h3 className="text-3xl font-black text-gray-900 mb-4">
+                  {searchValue ? "لم نجد منتجات تطابق بحثك" : "لا توجد منتجات متاحة حالياً"}
                 </h3>
-                <p className="text-gray-500 max-w-md mx-auto">
+                <p className="text-gray-600 max-w-lg mx-auto text-lg leading-relaxed">
                   {searchValue
-                    ? "جرب استخدام كلمات مختلفة أو تصفح الفئات المتاحة"
-                    : "سنقوم بإضافة منتجات جديدة قريباً. تابع معنا للحصول على أحدث المنتجات"}
+                    ? "جرب استخدام كلمات مختلفة أو تصفح الفئات المتاحة للعثور على ما تبحث عنه"
+                    : "نحن نعمل على إضافة منتجات جديدة ومثيرة. تابع معنا قريباً!"}
                 </p>
                 {searchValue && (
                   <Button
@@ -285,9 +388,9 @@ export default function Shop() {
                       handleSearchChange("")
                       mutate({ search: "", page: 1 })
                     }}
-                    className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl"
+                    className="mt-6 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-2xl px-8 py-4 font-bold text-lg shadow-xl"
                   >
-                    مسح البحث
+                    مسح البحث والعودة
                   </Button>
                 )}
               </div>
@@ -298,8 +401,8 @@ export default function Shop() {
             products?.data?.map((item, index) => (
               <div
                 key={item?._id}
-                className="transform transition-all duration-500 opacity-0 animate-fadeIn hover:scale-105"
-                style={{ animationDelay: `${index * 100}ms`, animationFillMode: "forwards" }}
+                className="transform transition-all duration-700 opacity-0 animate-fadeIn hover:scale-[1.02] group"
+                style={{ animationDelay: `${index * 150}ms`, animationFillMode: "forwards" }}
               >
                 <ProductCard
                   {...item}
@@ -340,12 +443,12 @@ export default function Shop() {
         </div>
 
         {/* Enhanced Pagination Section */}
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/50 p-8">
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
             {/* Items Per Page */}
-            <div className="flex items-center gap-3">
-              <span className="text-gray-700 font-medium">عدد العناصر في الصفحة:</span>
-              <div className="min-w-[120px]">
+            <div className="flex items-center gap-4">
+              <span className="text-gray-800 font-bold text-lg">عدد العناصر في الصفحة:</span>
+              <div className="min-w-[150px]">
                 <SelectList
                   placeholder="اختر العدد"
                   selectedValue={String(query.limit || 8)}
@@ -355,9 +458,9 @@ export default function Shop() {
               </div>
             </div>
 
-            {/* Pagination */}
+            {/* Enhanced Pagination */}
             <Pagination>
-              <PaginationContent>
+              <PaginationContent className="gap-2">
                 <PaginationItem>
                   <PaginationPrevious
                     href="#"
@@ -365,8 +468,10 @@ export default function Shop() {
                       e.preventDefault()
                       if (query.page > 1) mutate({ page: query.page - 1 })
                     }}
-                    className={`rounded-xl transition-all duration-300 ${
-                      query.page === 1 ? "opacity-50 cursor-not-allowed" : "hover:bg-indigo-50 hover:text-indigo-600"
+                    className={`rounded-2xl px-6 py-3 font-semibold transition-all duration-300 ${
+                      query.page === 1
+                        ? "opacity-50 cursor-not-allowed"
+                        : "hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:text-white hover:shadow-lg"
                     }`}
                   />
                 </PaginationItem>
@@ -379,7 +484,7 @@ export default function Shop() {
                         e.preventDefault()
                         mutate({ page: 1 })
                       }}
-                      className="rounded-xl hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-300"
+                      className="rounded-2xl px-4 py-3 font-semibold hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:text-white transition-all duration-300"
                     >
                       1
                     </PaginationLink>
@@ -391,7 +496,7 @@ export default function Shop() {
                     href="#"
                     isActive
                     onClick={(e) => e.preventDefault()}
-                    className="bg-indigo-600 text-white hover:bg-indigo-700 rounded-xl"
+                    className="bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 rounded-2xl px-4 py-3 font-bold shadow-lg"
                   >
                     {query.page}
                   </PaginationLink>
@@ -405,7 +510,7 @@ export default function Shop() {
                         e.preventDefault()
                         mutate({ page: query.page + 1 })
                       }}
-                      className="rounded-xl hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-300"
+                      className="rounded-2xl px-4 py-3 font-semibold hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:text-white transition-all duration-300"
                     >
                       {query.page + 1}
                     </PaginationLink>
@@ -419,8 +524,10 @@ export default function Shop() {
                       e.preventDefault()
                       if (hasMoreProducts) mutate({ page: query.page + 1 })
                     }}
-                    className={`rounded-xl transition-all duration-300 ${
-                      !hasMoreProducts ? "opacity-50 cursor-not-allowed" : "hover:bg-indigo-50 hover:text-indigo-600"
+                    className={`rounded-2xl px-6 py-3 font-semibold transition-all duration-300 ${
+                      !hasMoreProducts
+                        ? "opacity-50 cursor-not-allowed"
+                        : "hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:text-white hover:shadow-lg"
                     }`}
                   />
                 </PaginationItem>
@@ -428,27 +535,170 @@ export default function Shop() {
             </Pagination>
 
             {/* Results Info */}
-            <div className="text-sm text-gray-600">
-              صفحة {query.page} من {Math.ceil((products?.data?.length || 0) / query.limit)} صفحات
+            <div className="text-gray-700 font-semibold">
+              صفحة <span className="text-purple-600 font-black">{query.page}</span> من{" "}
+              <span className="text-purple-600 font-black">
+                {Math.ceil((products?.data?.length || 0) / query.limit)}
+              </span>{" "}
+              صفحات
             </div>
           </div>
         </div>
       </div>
 
-      {/* Custom Styles */}
-      <style>{`
+      <style >{`
         @keyframes fadeIn {
           from {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
           }
           to {
             opacity: 1;
             transform: translateY(0);
           }
         }
+
+        @keyframes slideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
         .animate-fadeIn {
-          animation: fadeIn 0.6s ease-out;
+          animation: fadeIn 0.8s ease-out;
+        }
+
+        .animate-slideInUp {
+          animation: slideInUp 0.6s ease-out;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+          background: #f1f5f9;
+          border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background: linear-gradient(to bottom, #8b5cf6, #ec4899);
+          border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(to bottom, #7c3aed, #db2777);
+        }
+
+        /* Glass morphism effect */
+        .glass {
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Gradient text animation */
+        @keyframes gradient-shift {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+
+        .animate-gradient {
+          background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+          background-size: 400% 400%;
+          animation: gradient-shift 15s ease infinite;
+        }
+
+        /* Floating animation */
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
+        }
+
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+
+        /* Pulse glow effect */
+        @keyframes pulse-glow {
+          0%,
+          100% {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+          }
+          50% {
+            box-shadow:
+              0 0 40px rgba(139, 92, 246, 0.6),
+              0 0 60px rgba(236, 72, 153, 0.3);
+          }
+        }
+
+        .animate-pulse-glow {
+          animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        /* Card hover effects */
+        .card-hover {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+          transform: translateY(-8px) scale(1.02);
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Button ripple effect */
+        @keyframes ripple {
+          0% {
+            transform: scale(0);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(4);
+            opacity: 0;
+          }
+        }
+
+        .ripple {
+          position: relative;
+          overflow: hidden;
+        }
+
+        .ripple:before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 0;
+          height: 0;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.5);
+          transform: translate(-50%, -50%);
+          transition:
+            width 0.6s,
+            height 0.6s;
+        }
+
+        .ripple:active:before {
+          width: 300px;
+          height: 300px;
         }
       `}</style>
     </div>
