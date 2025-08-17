@@ -60,10 +60,7 @@ export default function Community() {
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-4 rounded-full"></div>
         </div>
 
-        {/* Enhanced Create Post Form Container */}
-        <div className="mb-8 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200/50 p-6 hover:shadow-xl transition-all duration-300">
           <CreatePostForm onSuccess={retry} />
-        </div>
 
         {/* Enhanced Posts */}
         <div className="space-y-6">
