@@ -2,18 +2,20 @@ import type { ColumnDef } from "@tanstack/react-table"
 
 import { useMemo } from "react"
 
+import { formatPriceEGP } from "@/lib/FormatPriceEGp"
+
 import DataTable from "@/components/ui/data-table"
 
 import { useOrderUser } from "@/hooks/user"
-import { formatPriceEGP } from "@/lib/FormatPriceEGp"
 
 export default function UserOrderListing() {
   const { value: order, loading } = useOrderUser()
   const columns: ColumnDef<Order>[] = useMemo(() => {
     return [
       {
-        accessorKey: "totalOrderPrice", header: "  total Order Price",
-         cell: ({ row }) => {
+        accessorKey: "totalOrderPrice",
+        header: "  total Order Price",
+        cell: ({ row }) => {
           const TotalPirc = row?.original.totalOrderPrice
           if (!TotalPirc) return <span className="text-gray-400"> zero</span>
 
