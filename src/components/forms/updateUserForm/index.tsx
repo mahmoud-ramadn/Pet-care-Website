@@ -41,7 +41,7 @@ interface inputsValues {
 }
 
 type Props = {
-  value?: forData | null
+  value?: forData
 }
 
 export default function UserProfileUpdateForm({ value }: Props) {

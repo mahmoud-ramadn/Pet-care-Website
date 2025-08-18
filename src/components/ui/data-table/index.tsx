@@ -210,7 +210,7 @@ export default function DataTable<TData, TValue>({
                           index % 2 === 0 ? "bg-white" : "bg-gray-50/30"
                         )}
                       >
-                        {row.getVisibleCells().map((cell, cellIndex) => (
+                        {row.getVisibleCells().map((cell) => (
                           <TableCell
                             key={cell.id}
                             className={cn(

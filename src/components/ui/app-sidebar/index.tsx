@@ -1,5 +1,4 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
-import { Separator } from "@radix-ui/react-dropdown-menu"
 import {
   Bell,
   Cog,
@@ -10,11 +9,9 @@ import {
   LogOut,
   PawPrint,
   Settings,
-  SettingsIcon,
   ShoppingBagIcon,
   Star,
   Users,
-  UsersIcon,
 } from "lucide-react"
 
 import { Link, useLocation } from "react-router-dom"
@@ -122,7 +119,7 @@ export function AppSidebar() {
           </div>
 
           <nav className="space-y-2 px-4">
-            {(value?.role === "admin" ? navItems : userPage).map((item, index) => {
+            {(value?.role === "admin" ? navItems : userPage).map((item) => {
               const active = isActive(item.to)
               return (
                 <div key={item.to} className="relative group">
