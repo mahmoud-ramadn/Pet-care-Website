@@ -1,6 +1,5 @@
 import { apiClient } from "@/lib/api-client"
 
-
 type CheckoutInputs = {
   shippingAddress: {
     details: string

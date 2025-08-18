@@ -17,7 +17,7 @@ export default function UserOrderListing() {
         accessorKey: "cartItems",
         header: "cartItems",
         cell: ({ row }) => {
-          const quantity = row.original.cartItems
+          const quantity = row?.original?.cartItems
           if (!quantity) return <span className="text-gray-400">No quantity</span>
 
           return <span>{quantity.length}</span>
@@ -27,7 +27,7 @@ export default function UserOrderListing() {
         accessorKey: "shippingAddress",
         header: "shipping Address",
         cell: ({ row }) => {
-          const Addresss = row.original?.shippingAddress.city
+          const Addresss = row.original?.shippingAddress?.city
           if (!Addresss) return <span className="text-gray-400">No quantity</span>
 
           return <span>{Addresss}</span>
@@ -37,7 +37,7 @@ export default function UserOrderListing() {
         accessorKey: "shipping Address details ",
         header: "shipping Address",
         cell: ({ row }) => {
-          const Addresss = row.original?.shippingAddress.details
+          const Addresss = row.original?.shippingAddress?.details
           if (!Addresss) return <span className="text-gray-400">No quantity</span>
 
           return <span>{Addresss}</span>
