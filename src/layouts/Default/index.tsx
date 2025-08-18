@@ -1,7 +1,6 @@
 import { lazy } from "react"
 import { Outlet } from "react-router"
 
-
 const Header = lazy(() => import("@/components/header"))
 const Footer = lazy(() => import("@/components/footer"))
 
