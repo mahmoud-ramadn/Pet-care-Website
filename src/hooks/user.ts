@@ -20,14 +20,14 @@ export const useOneUser = (id: string) => {
   return useAsyncRetry(async () => {
     const response = await getOneUser(id)
 
-    return response
+    return response.data?.data
   })
 }
 export const useGetMe = () => {
   return useAsyncRetry(async () => {
     const response = await getMe()
 
-    return response
+    return response.data?.data
   })
 }
 

@@ -2,6 +2,8 @@ import type { ColumnDef } from "@tanstack/react-table"
 
 import { useMemo } from "react"
 
+import { formatPriceEGP } from "@/lib/FormatPriceEGp"
+
 import { AddItemDialog } from "@/components/ui/AddItem"
 import DataTable from "@/components/ui/data-table"
 
@@ -30,7 +32,14 @@ export default function ProductListing() {
       },
       {
         accessorKey: "price",
+
         header: "price",
+        cell: ({ row }) => {
+          const TotalPirc = row?.original.price
+          if (!TotalPirc) return <span className="text-gray-400"> zero</span>
+
+          return <span>{formatPriceEGP(TotalPirc)}</span>
+        },
       },
       {
         accessorKey: "category",

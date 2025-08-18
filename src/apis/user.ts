@@ -54,7 +54,7 @@ export const getOneUser = async (id: string) => {
     auth: true,
   })
 
-  return response.data?.data
+  return response
 }
 export const getMe = async () => {
   const response = await apiClient<GetOneUserResponse>({
@@ -63,7 +63,7 @@ export const getMe = async () => {
     auth: true,
   })
 
-  return response.data?.data
+  return response
 }
 
 interface inputsValues {
