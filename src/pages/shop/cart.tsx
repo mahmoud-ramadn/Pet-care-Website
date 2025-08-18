@@ -45,34 +45,37 @@ export default function Cart() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
       <div className="container px-4 py-8">
-        {/* Enhanced Header Section */}
-        <div className="relative mb-12">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-600/10 rounded-3xl blur-3xl"></div>
-          <div className="relative bg-white/80 backdrop-blur-sm border border-white/20 rounded-3xl p-8 shadow-xl">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-6">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur-lg opacity-30"></div>
-                  <div className="relative p-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl">
-                    <ShoppingCart className="w-8 h-8 text-white" />
-                  </div>
-                </div>
-                <div>
-                  <h1 className="lg:text-4xl text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
-                    Shopping Cart
-                  </h1>
-                  <p className="text-gray-500 mt-1">Review your selected items</p>
-                </div>
-              </div>
 
-              <div className="flex items-center gap-4">
-                <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-2xl font-semibold shadow-lg">
-                  {products.length} {products.length === 1 ? "Item" : "Items"}
-                </div>
-              </div>
-            </div>
+
+    <div className="relative mb-8 md:mb-12">
+  <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-600/10 rounded-2xl md:rounded-3xl blur-xl md:blur-3xl"></div>
+  <div className="relative bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl md:rounded-3xl p-5 md:p-8 shadow-lg md:shadow-xl">
+    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-0">
+      <div className="flex items-center gap-4 md:gap-6">
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl md:rounded-2xl blur-md md:blur-lg opacity-30"></div>
+          <div className="relative p-3 md:p-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl md:rounded-2xl">
+            <ShoppingCart className="w-6 h-6 md:w-8 md:h-8 text-white" />
           </div>
         </div>
+        <div>
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+            Shopping Cart
+          </h1>
+          <p className="text-gray-500 text-sm md:text-base mt-1">Review your selected items</p>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-start md:justify-end">
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl font-semibold shadow-md md:shadow-lg text-sm md:text-base">
+          {products.length} {products.length === 1 ? "Item" : "Items"}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
         <div className="grid lg:grid-cols-4 gap-12">
           {/* Cart Items Section */}

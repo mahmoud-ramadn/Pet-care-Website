@@ -69,12 +69,12 @@ export default function Description() {
           </section>
 
           {token && (
-              <WriteReview
-                writeReview={(data) => {
-                  serviceWritereivew(data, id ?? "")
-                  retry()
-                }}
-              />
+            <WriteReview
+              writeReview={(data) => {
+                serviceWritereivew(data, id ?? "")
+                retry()
+              }}
+            />
           )}
         </div>
 
