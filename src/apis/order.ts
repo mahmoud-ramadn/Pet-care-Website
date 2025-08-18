@@ -1,6 +1,5 @@
 import { apiClient } from "@/lib/api-client"
 
-import type { OrderResponseT } from "@/types/order"
 
 type CheckoutInputs = {
   shippingAddress: {
@@ -12,11 +11,11 @@ type CheckoutInputs = {
 }
 
 export const CreateOrder = async (inputs: CheckoutInputs, id: string) => {
-  const response = await apiClient<OrderResponseT>({
+  const response = await apiClient<Order>({
     url: `order/cashorder?cartId=${id}`,
     method: "POST",
     data: inputs,
     auth: true,
   })
-  return response.data
+  return response
 }

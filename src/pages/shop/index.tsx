@@ -53,7 +53,7 @@ export default function Shop() {
   const fetchCarts = async () => {
     try {
       const response = await getCartProducts()
-      setCart(response?.map((item) => item.product._id ?? "") || [])
+      setCart(response.cartItems?.map((item) => item.product._id ?? "") || [])
     } catch (error) {
       console.error("Error fetching favorites", error)
     }
