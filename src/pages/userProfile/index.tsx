@@ -105,7 +105,7 @@ export default function UserProfile() {
                     aria-label="تعديل الملف الشخصي"
                   >
                     <Edit className="w-6 h-6 text-white" />
-                    <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                    <div className="absolute top-14   left-0 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                       تعديل الملف الشخصي
                     </div>
                   </Link>

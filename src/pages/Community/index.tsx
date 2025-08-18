@@ -60,7 +60,7 @@ export default function Community() {
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-4 rounded-full"></div>
         </div>
 
-          <CreatePostForm onSuccess={retry} />
+        <CreatePostForm onSuccess={retry} />
 
         {/* Enhanced Posts */}
         <div className="space-y-6">
