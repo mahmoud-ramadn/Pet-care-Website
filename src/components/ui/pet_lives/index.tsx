@@ -81,37 +81,31 @@ export default function PetLives() {
               </div>
             </div>
 
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 pt-4">
+              <div className="group cursor-pointer">
+                <div className="flex items-center space-x-3 p-3 sm:p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl sm:rounded-2xl group-hover:from-blue-100 group-hover:to-blue-200 transition-all duration-300">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg sm:rounded-xl flex items-center justify-center text-white font-bold">
+                    ✓
+                  </div>
+                  <div>
+                    <div className="font-semibold text-sm sm:text-base text-gray-800">Expert Care</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Professional service</div>
+                  </div>
+                </div>
+              </div>
 
-
-
-
-<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 pt-4">
-  <div className="group cursor-pointer">
-    <div className="flex items-center space-x-3 p-3 sm:p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl sm:rounded-2xl group-hover:from-blue-100 group-hover:to-blue-200 transition-all duration-300">
-      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg sm:rounded-xl flex items-center justify-center text-white font-bold">
-        ✓
-      </div>
-      <div>
-        <div className="font-semibold text-sm sm:text-base text-gray-800">Expert Care</div>
-        <div className="text-xs sm:text-sm text-gray-600">Professional service</div>
-      </div>
-    </div>
-  </div>
-
-  <div className="group cursor-pointer">
-    <div className="flex items-center space-x-3 p-3 sm:p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl sm:rounded-2xl group-hover:from-purple-100 group-hover:to-purple-200 transition-all duration-300">
-      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center text-white font-bold">
-        ♥
-      </div>
-      <div>
-        <div className="font-semibold text-sm sm:text-base text-gray-800">With Love</div>
-        <div className="text-xs sm:text-sm text-gray-600">Caring approach</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
+              <div className="group cursor-pointer">
+                <div className="flex items-center space-x-3 p-3 sm:p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl sm:rounded-2xl group-hover:from-purple-100 group-hover:to-purple-200 transition-all duration-300">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center text-white font-bold">
+                    ♥
+                  </div>
+                  <div>
+                    <div className="font-semibold text-sm sm:text-base text-gray-800">With Love</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Caring approach</div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <div className="pt-6">
               <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 text-white font-semibold rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/25 hover:scale-105">
