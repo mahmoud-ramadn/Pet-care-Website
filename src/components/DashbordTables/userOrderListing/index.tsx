@@ -11,18 +11,36 @@ export default function UserOrderListing() {
   const columns: ColumnDef<Order>[] = useMemo(() => {
     return [
       { accessorKey: "totalOrderPrice", header: "  total Order Price" },
-      { accessorKey: "taxPrice", header: "taxPrice" },
       { accessorKey: "paymentMethodType", header: " payment Method Type" },
       { accessorKey: "isPaidAndDelivered", header: "is Paid And Delivered" },
-      { accessorKey: "shippingPrice", header: "shipping Price" },
       {
         accessorKey: "cartItems",
         header: "cartItems",
         cell: ({ row }) => {
-          const quantity = row.original.cartItems[0]
+          const quantity = row.original.cartItems
           if (!quantity) return <span className="text-gray-400">No quantity</span>
 
-          return <span>{quantity.quantity}</span>
+          return <span>{quantity.length}</span>
+        },
+      },
+      {
+        accessorKey: "shippingAddress",
+        header: "shipping Address",
+        cell: ({ row }) => {
+          const Addresss = row.original?.shippingAddress.city
+          if (!Addresss) return <span className="text-gray-400">No quantity</span>
+
+          return <span>{Addresss}</span>
+        },
+      },
+      {
+        accessorKey: "shipping Address details ",
+        header: "shipping Address",
+        cell: ({ row }) => {
+          const Addresss = row.original?.shippingAddress.details
+          if (!Addresss) return <span className="text-gray-400">No quantity</span>
+
+          return <span>{Addresss}</span>
         },
       },
     ]

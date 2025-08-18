@@ -25,7 +25,7 @@ const SuccessfulAdoptions = lazy(() => import("@/pages/adoption/sucessfull-adopt
 
 const Shop = lazy(() => import("@/pages/shop/index"))
 const Fav = lazy(() => import("@/pages/shop/fav"))
-const Checkout = lazy(() => import("@/pages/shop/checkout"))
+const CheckoutForm = lazy(() => import("@/pages/shop/checkout"))
 const Cart = lazy(() => import("@/pages/shop/cart"))
 const SingleShilter = lazy(() => import("@/pages/adoption/singl-shilter"))
 const BlogsPage = lazy(() => import("@/pages/blogs"))
@@ -135,8 +135,8 @@ export const DashboardRoutes: RouteObject = {
           Component: Fav,
         },
         {
-          path: "checkout",
-          Component: Checkout,
+          path: "checkout/:id",
+          Component: CheckoutForm,
         },
         {
           path: "cart",

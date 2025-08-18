@@ -48,17 +48,24 @@ type OrderResponse = {
   data: Order[]
 }
 
+type ShippingAddress = {
+  details: string
+  phone: string
+  city: string
+}
+
 type Order = {
   _id: string
   user: string
   cartItems: CartItem[]
   taxPrice: number
+  shippingAddress: ShippingAddress
   shippingPrice: number
   totalOrderPrice: number
-  paymentMethodType: "cash" | "card" | string // لو فيه أنواع دفع تانية ضيفها هنا
-  isPaidAndDelivered: "Yes" | "NO"
-  createdAt: string // ISO Date string
-  updatedAt: string // ISO Date string
+  paymentMethodType: "cash" | "card"
+  isPaidAndDelivered: boolean
+  createdAt: string // ISO string
+  updatedAt: string // ISO string
   __v: number
 }
 

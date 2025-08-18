@@ -61,7 +61,7 @@ export const getCartProducts = async () => {
     auth: true,
   })
 
-  return response.data.cartItems
+  return response.data
 }
 
 export const CreateProducts = async (inputs: CreateProductInputs) => {
