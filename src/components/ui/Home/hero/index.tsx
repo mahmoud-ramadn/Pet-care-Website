@@ -1,8 +1,75 @@
-import blob from "@/assets/images/landing page/blob 1.webp"
+import { useEffect, useRef, useState } from "react"
+
 import dog from "@/assets/images/landing page/cute-smiley-dog-wearing-sunglasses-removebg-preview 1 (2).webp"
 import imageHero from "@/assets/images/landing page/mainbackground.webp"
 
+// Custom hook for counter animation
+const useCounter = (end: number, duration: number = 2000, start: number = 0) => {
+  const [count, setCount] = useState(start)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    let startTime: number | null = null
+    let animationFrameId: number
+
+    const isElementInViewport = () => {
+      if (!ref.current) return false
+      const rect = ref.current.getBoundingClientRect()
+      return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      )
+    }
+
+    const animateCount = (timestamp: number) => {
+      if (!startTime) startTime = timestamp
+      const progress = timestamp - startTime
+      const percentage = Math.min(progress / duration, 1)
+
+      // Use easeOutQuart for smooth animation
+      const easeOutQuart = 1 - Math.pow(1 - percentage, 4)
+      const currentCount = Math.floor(easeOutQuart * (end - start) + start)
+
+      setCount(currentCount)
+
+      if (progress < duration) {
+        animationFrameId = requestAnimationFrame(animateCount)
+      } else {
+        setCount(end)
+      }
+    }
+
+    const handleScroll = () => {
+      if (isElementInViewport() && count !== end) {
+        animationFrameId = requestAnimationFrame(animateCount)
+        window.removeEventListener("scroll", handleScroll)
+      }
+    }
+
+    // Check if element is already in viewport on mount
+    if (isElementInViewport()) {
+      animationFrameId = requestAnimationFrame(animateCount)
+    } else {
+      window.addEventListener("scroll", handleScroll)
+    }
+
+    return () => {
+      cancelAnimationFrame(animationFrameId)
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [end, duration, start])
+
+  return [count, ref] as const
+}
+
 export default function Hero() {
+  // Using the custom counter hook for each stat
+  const [happyClientsCount, happyClientsRef] = useCounter(500)
+  const [ratingCount, ratingRef] = useCounter(5)
+  const [supportCount, supportRef] = useCounter(24)
+
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Background with overlay */}
@@ -10,12 +77,12 @@ export default function Hero() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${imageHero})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/30 via-blue-900/20 to-purple-900/40"></div>
       </div>
 
       {/* Decorative elements */}
-      <div className="absolute top-20 right-10 w-32 h-32 bg-yellow-400/20 rounded-full blur-xl animate-pulse"></div>
-      <div className="absolute bottom-40 left-20 w-20 h-20 bg-blue-400/20 rounded-full blur-lg animate-pulse delay-1000"></div>
+      <div className="absolute top-20 right-10 w-32 h-32 bg-blue-500/20 rounded-full blur-xl animate-pulse"></div>
+      <div className="absolute bottom-40 left-20 w-20 h-20 bg-purple-500/20 rounded-full blur-lg animate-pulse delay-1000"></div>
 
       <div className="container relative z-10 mx-auto px-4 py-12">
         <div className="min-h-screen flex items-center">
@@ -24,7 +91,7 @@ export default function Hero() {
             <div className="space-y-8 max-w-2xl">
               {/* Badge */}
               <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm font-medium text-white">
-                <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                <span className="w-2 h-2 bg-emerald-400 rounded-full mr-2 animate-pulse"></span>
                 Premium Pet Care Services
               </div>
 
@@ -32,12 +99,12 @@ export default function Hero() {
               <div className="space-y-4">
                 <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">
                   Taking Care of Your
-                  <span className="block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
+                  <span className="block bg-gradient-to-r from-blue-400 via-purple-500 to-indigo-600 bg-clip-text text-transparent">
                     Smart Dog!
                   </span>
                 </h1>
 
-                <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full"></div>
+                <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full"></div>
               </div>
 
               {/* Description */}
@@ -48,9 +115,9 @@ export default function Hero() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <button className="group relative px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-yellow-400/25">
+                <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25">
                   <span className="relative z-10">Book Appointment</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-700 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </button>
 
                 <button className="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white font-semibold rounded-full transition-all duration-300 hover:bg-white/20 hover:border-white/50">
@@ -60,16 +127,16 @@ export default function Hero() {
 
               {/* Stats */}
               <div className="grid grid-cols-3 gap-8 pt-8">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-yellow-400">500+</div>
+                <div className="text-center" ref={happyClientsRef}>
+                  <div className="text-3xl font-bold text-blue-400">{happyClientsCount}+</div>
                   <div className="text-sm text-white/70">Happy Clients</div>
                 </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-yellow-400">5★</div>
+                <div className="text-center" ref={ratingRef}>
+                  <div className="text-3xl font-bold text-blue-400">{ratingCount}★</div>
                   <div className="text-sm text-white/70">Rating</div>
                 </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-yellow-400">24/7</div>
+                <div className="text-center" ref={supportRef}>
+                  <div className="text-3xl font-bold text-blue-400">{supportCount}/7</div>
                   <div className="text-sm text-white/70">Support</div>
                 </div>
               </div>
@@ -78,28 +145,23 @@ export default function Hero() {
             {/* Image Section */}
             <div className="relative flex items-center justify-center lg:justify-end">
               {/* Floating elements */}
-              <div className="absolute top-10 right-20 w-3 h-3 bg-yellow-400 rounded-full animate-bounce"></div>
-              <div className="absolute top-32 right-10 w-2 h-2 bg-orange-400 rounded-full animate-bounce delay-500"></div>
-              <div className="absolute bottom-20 right-32 w-4 h-4 bg-red-400 rounded-full animate-bounce delay-1000"></div>
+              <div className="absolute top-10 right-20 w-3 h-3 bg-blue-400 rounded-full animate-bounce"></div>
+              <div className="absolute top-32 right-10 w-2 h-2 bg-purple-400 rounded-full animate-bounce delay-500"></div>
+              <div className="absolute bottom-20 right-32 w-4 h-4 bg-indigo-400 rounded-full animate-bounce delay-1000"></div>
 
               {/* Main image container */}
               <div className="relative group">
                 {/* Glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/30 to-orange-500/30 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-purple-600/30 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-500"></div>
 
                 {/* Blob background */}
-                <div className="relative z-10">
-                  <img
-                    src={blob}
-                    className="w-full max-w-[600px] drop-shadow-2xl transform group-hover:scale-105 transition-transform duration-500"
-                    alt="blob background"
-                  />
-
-                  {/* Dog image */}
+                <div className="relative z-10 shrink-0">
+                 
                   <img
                     src={dog}
                     alt="Happy dog wearing sunglasses"
-                    className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[420px] z-20 drop-shadow-2xl group-hover:scale-110 transition-all duration-500"
+                              className="w-full shrink-0  bg-violet-100/20 max-h-[300px] rounded-full max-w-[600px] drop-shadow-2xl transform group-hover:scale-105 transition-transform duration-500"
+
                   />
                 </div>
 
@@ -108,6 +170,12 @@ export default function Hero() {
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/5 rounded-full animate-spin-reverse"></div>
               </div>
             </div>
+
+
+
+
+
+            
           </div>
         </div>
       </div>

@@ -13,7 +13,6 @@ type ContactLink = {
 
 export const HeaderLinks: HeaderLinksType[] = [
   { href: "/", labelKey: "HomePageLink" },
-  { href: "/", labelKey: "AboutPageLink" },
   { href: "adoption", labelKey: "AdoptionPageLink" },
   { href: "Community", labelKey: "Community" },
   { href: "blogs", labelKey: "blogs" },

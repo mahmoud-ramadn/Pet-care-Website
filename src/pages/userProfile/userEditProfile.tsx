@@ -12,7 +12,7 @@ export default function UserEditProfile() {
         ...userData,
         role: userData.role as "admin" | "user",
         pets: userData.pets || [],
-        pet: undefined, 
+        pet: undefined,
       }
     : undefined
 
