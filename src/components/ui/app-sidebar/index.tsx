@@ -33,13 +33,7 @@ export function AppSidebar() {
   }
 
   const navItems = [
-    {
-      to: "/admin-dashboard",
-      icon: LayoutDashboardIcon,
-      text: "Dashboard",
-      badge: "Admin",
-      gradient: "from-purple-500 to-pink-500",
-    },
+    
     {
       to: "/products",
       icon: ShoppingBagIcon,
