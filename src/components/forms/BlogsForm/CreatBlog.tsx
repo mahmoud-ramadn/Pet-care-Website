@@ -1,28 +1,16 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { toast } from "sonner"
 
+import { useRef, useState } from "react"
+import { useForm } from "react-hook-form"
 
+import { ButtonWithLoading } from "@/components/ui/button"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormLoading, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
 
-import { useRef, useState } from "react";
-import { useForm } from "react-hook-form";
+import { creatblog } from "@/apis/blogs"
 
-
-
-import { ButtonWithLoading } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormLoading, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-
-
-
-import { creatblog } from "@/apis/blogs";
-
-
-
-import { BlogFormSchema, type TypeBlogFormSchema } from "./shema";
-
-
-
-
+import { BlogFormSchema, type TypeBlogFormSchema } from "./shema"
 
 type Props = {
   values?: TypeBlogFormSchema
@@ -111,7 +99,7 @@ export default function CreateBlogForm({ values, onSuccess }: Props) {
 
   return (
     <div>
-      <Form  value={form}>
+      <Form value={form}>
         <FormLoading loading={loading}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="mt-6 space-y-4">
             <div className="grid md:grid-cols-2 gap-4">

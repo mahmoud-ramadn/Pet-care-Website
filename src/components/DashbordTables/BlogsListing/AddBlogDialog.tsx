@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useState } from "react"
 
+import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
-
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import CreateBlogForm from "../../forms/BlogsForm/CreatBlog";
-
-
-
-
+import CreateBlogForm from "../../forms/BlogsForm/CreatBlog"
 
 export function AddBlogDialog() {
   const [open, setOpen] = useState(false)
@@ -23,7 +27,7 @@ export function AddBlogDialog() {
           <DialogTitle>Add new blog</DialogTitle>
           <DialogDescription>Make changes to your profile here. Click save when you&apos;re done.</DialogDescription>
         </DialogHeader>
-       <CreateBlogForm onSuccess={()=>setOpen(false)}/>
+        <CreateBlogForm onSuccess={() => setOpen(false)} />
         <DialogFooter>
           <DialogClose asChild>
             <Button variant="outline">Cancel</Button>

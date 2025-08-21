@@ -10,7 +10,6 @@ interface BlogApiResponse {
   data: Blog[]
 }
 
-
 interface CreateBlogApiResponse {
   status: "success" | "fail" | "error"
   data: {

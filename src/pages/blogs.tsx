@@ -1,6 +1,6 @@
-import { BookOpen, Clock, TrendingUp } from "lucide-react"
+import { BookOpen, ChevronLeft, ChevronRight, Clock, TrendingUp } from "lucide-react"
 
-import { useState } from "react"
+import { useMemo, useState } from "react"
 
 import BlogCard from "@/components/ui/blogs/blog-card"
 import BlogSkeleton from "@/components/ui/blogs/blog-skeleton"
@@ -9,9 +9,47 @@ import UiTitle from "@/components/ui/ui-title"
 
 import { useBlog } from "@/hooks/blogs"
 
+const BLOGS_PER_PAGE = 8 // Number of blogs to show per page
+
 export default function Blogs() {
   const { value: blogs, loading } = useBlog()
   const [searchTerm, setSearchTerm] = useState("")
+  const [currentPage, setCurrentPage] = useState(1)
+
+  // Calculate pagination data
+  const { paginatedBlogs, totalPages, startIndex, endIndex, totalBlogs } = useMemo(() => {
+    if (!blogs) return { paginatedBlogs: [], totalPages: 0, startIndex: 0, endIndex: 0, totalBlogs: 0 }
+
+    const filtered = searchTerm
+      ? blogs.filter((blog) => blog.description?.toLowerCase().includes(searchTerm.toLowerCase()))
+      : blogs
+
+    const total = filtered.length
+    const pages = Math.ceil(total / BLOGS_PER_PAGE)
+    const start = (currentPage - 1) * BLOGS_PER_PAGE
+    const end = Math.min(start + BLOGS_PER_PAGE, total)
+    const paginated = filtered.slice(start, end)
+
+    return {
+      paginatedBlogs: paginated,
+      totalPages: pages,
+      startIndex: start,
+      endIndex: end,
+      totalBlogs: total,
+    }
+  }, [blogs, searchTerm, currentPage])
+
+  // Reset to first page when search changes
+  const handleSearchChange = (term: string) => {
+    setSearchTerm(term)
+    setCurrentPage(1)
+  }
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+    // Scroll to top of blogs section
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-indigo-50/20">
@@ -84,10 +122,22 @@ export default function Blogs() {
           </div>
         )}
 
+        {/* Pagination Info */}
+        {!loading && totalBlogs > 0 && (
+          <div className="flex justify-between items-center mb-6">
+            <div className="text-sm text-gray-600">
+              عرض {startIndex + 1} - {endIndex} من {totalBlogs} مقال
+            </div>
+            <div className="text-sm text-gray-600">
+              الصفحة {currentPage} من {totalPages}
+            </div>
+          </div>
+        )}
+
         {/* Blog Grid */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 " : "space-y-6"}`}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {loading ? (
-            [...Array(6)].map((_, i) => (
+            [...Array(8)].map((_, i) => (
               <div
                 key={i}
                 className="transform transition-all duration-500 opacity-0 animate-fadeIn"
@@ -96,8 +146,8 @@ export default function Blogs() {
                 <BlogSkeleton />
               </div>
             ))
-          ) : blogs?.length ? (
-            blogs.map((blog, index) => (
+          ) : paginatedBlogs?.length ? (
+            paginatedBlogs.map((blog, index) => (
               <div
                 key={blog._id}
                 className="transform transition-all duration-500 opacity-0 animate-fadeIn hover:scale-105"
@@ -122,7 +172,7 @@ export default function Blogs() {
                 </p>
                 {searchTerm && (
                   <Button
-                    onClick={() => setSearchTerm("")}
+                    onClick={() => handleSearchChange("")}
                     className="mt-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl"
                   >
                     مسح البحث
@@ -133,15 +183,88 @@ export default function Blogs() {
           )}
         </div>
 
-        {/* Load More Section (if needed) */}
-        {!loading && blogs && (
-          <div className="text-center mt-12">
+        {/* Pagination Controls */}
+        {!loading && totalPages > 1 && (
+          <div className="flex items-center justify-center mt-12 gap-2">
+            {/* Previous Button */}
             <Button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
               variant="outline"
-              size="lg"
-              className="px-8 py-3 rounded-xl border-2 border-gray-200 hover:border-blue-500 hover:text-blue-600 transition-all duration-300"
+              size="sm"
+              className="px-3 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              تحميل المزيد من المقالات
+              <ChevronRight className="w-4 h-4" />
+              السابق
+            </Button>
+
+            {/* Page Numbers */}
+            <div className="flex items-center gap-1">
+              {/* First page */}
+              {currentPage > 3 && (
+                <>
+                  <Button
+                    onClick={() => handlePageChange(1)}
+                    variant="outline"
+                    size="sm"
+                    className="w-10 h-10 rounded-lg"
+                  >
+                    1
+                  </Button>
+                  {currentPage > 4 && <span className="px-2 text-gray-500">...</span>}
+                </>
+              )}
+
+              {/* Pages around current */}
+              {Array.from({ length: totalPages }, (_, i) => i + 1)
+                .filter(
+                  (page) =>
+                    page === currentPage ||
+                    page === currentPage - 1 ||
+                    page === currentPage + 1 ||
+                    (currentPage <= 2 && page <= 3) ||
+                    (currentPage >= totalPages - 1 && page >= totalPages - 2)
+                )
+                .map((page) => (
+                  <Button
+                    key={page}
+                    onClick={() => handlePageChange(page)}
+                    variant={currentPage === page ? "default" : "outline"}
+                    size="sm"
+                    className={`w-10 h-10 rounded-lg ${
+                      currentPage === page ? "bg-blue-600 hover:bg-blue-700 text-white" : ""
+                    }`}
+                  >
+                    {page}
+                  </Button>
+                ))}
+
+              {/* Last page */}
+              {currentPage < totalPages - 2 && (
+                <>
+                  {currentPage < totalPages - 3 && <span className="px-2 text-gray-500">...</span>}
+                  <Button
+                    onClick={() => handlePageChange(totalPages)}
+                    variant="outline"
+                    size="sm"
+                    className="w-10 h-10 rounded-lg"
+                  >
+                    {totalPages}
+                  </Button>
+                </>
+              )}
+            </div>
+
+            {/* Next Button */}
+            <Button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              variant="outline"
+              size="sm"
+              className="px-3 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              التالي
+              <ChevronLeft className="w-4 h-4" />
             </Button>
           </div>
         )}
