@@ -1,29 +1,29 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import { Bell, Cog, Crown, HelpCircleIcon, HomeIcon, LayoutDashboardIcon, LogOut, NewspaperIcon, PawPrint, Settings, ShoppingBagIcon, Star, Users, } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
+import {
+  Bell,
+  Cog,
+  Crown,
+  HelpCircleIcon,
+  HomeIcon,
+  LayoutDashboardIcon,
+  LogOut,
+  NewspaperIcon,
+  PawPrint,
+  Settings,
+  ShoppingBagIcon,
+  Star,
+  Users,
+} from "lucide-react"
 
+import { Link, useLocation } from "react-router-dom"
 
+import { cn } from "@/lib/utils"
 
-import { Link, useLocation } from "react-router-dom";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } from "@/components/ui/sidebar"
 
+import { useGetMe } from "@/hooks/user"
 
-
-import { cn } from "@/lib/utils";
-
-
-
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } from "@/components/ui/sidebar";
-
-
-
-import { useGetMe } from "@/hooks/user";
-
-
-
-import { Button } from "../button";
-
-
-
-
+import { Button } from "../button"
 
 export function AppSidebar() {
   const location = useLocation()

@@ -1,25 +1,13 @@
-import type { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table"
 
+import { useMemo, useState } from "react"
 
+import DataTable from "@/components/ui/data-table"
 
-import { useMemo, useState } from "react";
-
-
-
-import DataTable from "@/components/ui/data-table";
-
-
-
-import { useAllUsers } from "@/hooks/user";
-
-
-
-
+import { useAllUsers } from "@/hooks/user"
 
 export default function UsersListing() {
-    
   const { value: user, loading } = useAllUsers()
-  
 
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage, setItemsPerPage] = useState(5) // Default 10

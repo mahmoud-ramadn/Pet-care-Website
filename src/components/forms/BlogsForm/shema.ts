@@ -1,8 +1,4 @@
-import { z } from "zod";
-
-
-
-
+import { z } from "zod"
 
 export const BlogFormSchema = z.object({
   link: z.string().min(2, { message: "الرابط يجب أن يكون أطول من 2 حرف" }),

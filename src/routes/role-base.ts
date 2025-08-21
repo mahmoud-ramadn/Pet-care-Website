@@ -8,7 +8,7 @@ const Admin = lazy(() => import("@/pages/Dashborads/admin"))
 const products = lazy(() => import("@/pages/Dashborads/admin/products"))
 const services = lazy(() => import("@/pages/Dashborads/admin/services"))
 const orders = lazy(() => import("@/pages/Dashborads/user/order-user"))
-const users=lazy(()=>import('@/pages/Dashborads/admin/users'))
+const users = lazy(() => import("@/pages/Dashborads/admin/users"))
 const blogs = lazy(() => import("@/pages/Dashborads/admin/blogs"))
 
 export const RoleBase: RouteObject = {

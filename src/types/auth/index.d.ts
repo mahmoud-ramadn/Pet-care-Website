@@ -31,13 +31,10 @@ type User = {
   __v: number
 }
 
-
-
 type AllUsersApiResponse = {
   results: number
   data: UserData[]
 }
-
 
 type ErrorResponse = {
   status: "fail" | "error"
