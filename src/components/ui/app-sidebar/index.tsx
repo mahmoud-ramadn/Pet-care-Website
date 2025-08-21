@@ -1,28 +1,29 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
-import {
-  Bell,
-  Cog,
-  Crown,
-  HelpCircleIcon,
-  HomeIcon,
-  LayoutDashboardIcon,
-  LogOut,
-  PawPrint,
-  Settings,
-  ShoppingBagIcon,
-  Star,
-  Users,
-} from "lucide-react"
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import { Bell, Cog, Crown, HelpCircleIcon, HomeIcon, LayoutDashboardIcon, LogOut, NewspaperIcon, PawPrint, Settings, ShoppingBagIcon, Star, Users } from "lucide-react";
 
-import { Link, useLocation } from "react-router-dom"
 
-import { cn } from "@/lib/utils"
 
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } from "@/components/ui/sidebar"
+import { Link, useLocation } from "react-router-dom";
 
-import { useGetMe } from "@/hooks/user"
 
-import { Button } from "../button"
+
+import { cn } from "@/lib/utils";
+
+
+
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } from "@/components/ui/sidebar";
+
+
+
+import { useGetMe } from "@/hooks/user";
+
+
+
+import { Button } from "../button";
+
+
+
+
 
 export function AppSidebar() {
   const location = useLocation()
@@ -53,6 +54,13 @@ export function AppSidebar() {
       text: "Services",
       badge: "New",
       gradient: "from-orange-500 to-red-500",
+    },
+    {
+      to: "/table-blogs",
+      icon: NewspaperIcon,
+      text: "Blogs",
+      badge: "New",
+      gradient: "from-purple-500 to-green-500",
     },
   ]
 

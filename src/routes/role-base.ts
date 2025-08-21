@@ -8,6 +8,7 @@ const Admin = lazy(() => import("@/pages/Dashborads/admin"))
 const products = lazy(() => import("@/pages/Dashborads/admin/products"))
 const services = lazy(() => import("@/pages/Dashborads/admin/services"))
 const orders = lazy(() => import("@/pages/Dashborads/user/order-user"))
+const blogs = lazy(() => import("@/pages/Dashborads/admin/blogs"))
 
 export const RoleBase: RouteObject = {
   path: "",
@@ -24,6 +25,10 @@ export const RoleBase: RouteObject = {
     {
       path: "products",
       Component: products,
+    },
+    {
+      path: "table-blogs",
+      Component: blogs,
     },
     {
       path: "services-board",

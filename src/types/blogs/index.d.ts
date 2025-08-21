@@ -9,3 +9,12 @@ interface BlogApiResponse {
   status: "success" | "error"
   data: Blog[]
 }
+
+
+interface CreateBlogApiResponse {
+  status: "success" | "fail" | "error"
+  data: {
+    link: string
+    _id: string
+  }
+}
