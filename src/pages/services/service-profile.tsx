@@ -68,14 +68,8 @@ export default function Description() {
             )}
           </section>
 
-          {token && (
-            <WriteReview
-              writeReview={(data) => {
-                serviceWritereivew(data, id ?? "")
-                retry()
-              }}
-            />
-          )}
+          
+          
         </div>
 
         <div className="lg:col-span-1">
@@ -86,6 +80,15 @@ export default function Description() {
             to={serviceProfile.to}
             questions={serviceProfile.question1}
           />
+          {token && (
+            <WriteReview
+              writeReview={(data) => {
+                serviceWritereivew(data, id ?? "")
+                retry()
+              }}
+            />
+          )}
+
         </div>
       </div>
     </div>

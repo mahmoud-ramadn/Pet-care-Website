@@ -217,9 +217,12 @@ export default function SingleDoctor() {
                 </SwiperWrapper>
               </div>
             )}
+            
 
-            {/* Reviews Section */}
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+            <div className=" grid md:grid-cols-2 lg:grid-cols-4  items-start gap-x-5 grid-cols-1">
+
+
+            <div className=" lg:col-span-3 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
               <div className="bg-gradient-to-r from-primary/5 to-secondary/5 md:p-8 p-4 border-b border-gray-100">
                 <h2 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
                   <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
@@ -228,6 +231,8 @@ export default function SingleDoctor() {
                   Customer Reviews
                   <span className="text-lg font-normal text-gray-600">({doctor.numberOfRate})</span>
                 </h2>
+
+                
               </div>
 
               <div className="md:p-8 p-4">
@@ -253,6 +258,16 @@ export default function SingleDoctor() {
                 retry()
               }}
             />
+
+
+
+</div>
+
+
+
+
+
+
           </>
         ) : null}
       </div>

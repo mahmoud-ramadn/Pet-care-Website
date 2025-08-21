@@ -269,7 +269,9 @@ export default function SinglShilter() {
           </div>
         </div>
 
-        <section className="  rounded-2xl shadow-lg border border-gray-100 my-8 py-4">
+        <div className=" grid md:grid-cols-2 lg:grid-cols-4 gap-5 grid-cols-1">
+
+        <section className=" lg:col-span-3 rounded-2xl shadow-lg border border-gray-100 my-8 py-4">
           <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
             <div className="w-1 h-8 bg-gradient-to-b from-amber-500 to-orange-500 ml-3  rounded-full"></div>
             مراجعات العملاء
@@ -291,13 +293,14 @@ export default function SinglShilter() {
             </div>
           )}
         </section>
-
         <WriteReview
           writeReview={(data) => {
             ShilterWritereivew(data, id ?? "")
             retry()
           }}
         />
+
+        </div>
       </div>
     </div>
   )

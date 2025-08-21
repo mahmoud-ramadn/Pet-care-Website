@@ -178,7 +178,7 @@ export default function DataTable<TData, TValue>({
                               "py-4 px-4 sm:px-6 font-semibold text-gray-700 bg-gradient-to-b from-transparent to-gray-50/30",
                               "text-right", // RTL alignment
                               "whitespace-nowrap", // Prevent header text wrapping
-                               // RTL rounded corners
+                              // RTL rounded corners
                               "border-l border-gray-200/40 last:border-l-0" // RTL borders
                             )}
                           >
