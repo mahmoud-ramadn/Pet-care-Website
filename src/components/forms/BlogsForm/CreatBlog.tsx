@@ -1,16 +1,28 @@
-import { zodResolver } from "@hookform/resolvers/zod"
-import { toast } from "sonner"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
 
-import { useRef, useState } from "react"
-import { useForm } from "react-hook-form"
 
-import { ButtonWithLoading } from "@/components/ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormLoading, FormMessage } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
 
-import { creatblog } from "@/apis/blogs"
+import { useRef, useState } from "react";
+import { useForm } from "react-hook-form";
 
-import { BlogFormSchema, type TypeBlogFormSchema } from "./shema"
+
+
+import { ButtonWithLoading } from "@/components/ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormLoading, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+
+
+
+import { creatblog } from "@/apis/blogs";
+
+
+
+import { BlogFormSchema, type TypeBlogFormSchema } from "./shema";
+
+
+
+
 
 type Props = {
   values?: TypeBlogFormSchema
@@ -27,7 +39,7 @@ export default function CreateBlogForm({ values, onSuccess }: Props) {
     resolver: zodResolver(BlogFormSchema),
     defaultValues: {
       link: values?.link || "",
-      description: values?.description || "",
+      discription: values?.discription || "",
       blogImage: values?.blogImage || "",
     },
   })
@@ -78,7 +90,7 @@ export default function CreateBlogForm({ values, onSuccess }: Props) {
       setLoading(true)
       const formData = new FormData()
 
-      formData.append("discription", inputs.description)
+      formData.append("discription", inputs.discription)
       formData.append("link", inputs.link)
 
       if (inputs.blogImage instanceof File) {
@@ -105,7 +117,7 @@ export default function CreateBlogForm({ values, onSuccess }: Props) {
             <div className="grid md:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
-                name="description"
+                name="discription"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>الوصف</FormLabel>

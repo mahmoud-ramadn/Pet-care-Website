@@ -1,6 +1,6 @@
 import { useAsyncRetry } from "react-use"
 
-import { getAllPosts, getMe, getOneUser, getUserMoments, userOrder } from "@/apis/user"
+import { getAllPosts, getAllUser, getMe, getOneUser, getUserMoments, userOrder } from "@/apis/user"
 
 export const useUserMoments = (id: string) => {
   return useAsyncRetry(async () => {
@@ -21,6 +21,13 @@ export const useOneUser = (id: string) => {
     const response = await getOneUser(id)
 
     return response.data?.data
+  })
+}
+export const useAllUsers = () => {
+  return useAsyncRetry(async () => {
+    const response = await getAllUser()
+
+    return response
   })
 }
 export const useGetMe = () => {
