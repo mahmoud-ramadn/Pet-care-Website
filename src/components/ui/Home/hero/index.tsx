@@ -156,12 +156,10 @@ export default function Hero() {
 
                 {/* Blob background */}
                 <div className="relative z-10 shrink-0">
-                 
                   <img
                     src={dog}
                     alt="Happy dog wearing sunglasses"
-                              className="w-full shrink-0  bg-violet-100/20 max-h-[300px] rounded-full max-w-[600px] drop-shadow-2xl transform group-hover:scale-105 transition-transform duration-500"
-
+                    className="w-full shrink-0  bg-violet-100/20 max-h-[300px] rounded-full max-w-[600px] drop-shadow-2xl transform group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
 
@@ -170,12 +168,6 @@ export default function Hero() {
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/5 rounded-full animate-spin-reverse"></div>
               </div>
             </div>
-
-
-
-
-
-            
           </div>
         </div>
       </div>

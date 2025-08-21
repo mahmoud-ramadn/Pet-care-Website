@@ -155,8 +155,7 @@ export default function DataTable<TData, TValue>({
           <ScrollArea
             className={cn(
               "w-full",
-              // Responsive widths for different screen sizes
-              "max-w-[calc(100vw-2rem)]", // Mobile: full width minus padding
+              "max-w-[calc(100vw-2rem)]",
               "sm:max-w-[calc(100vw-3rem)]", // Small: adjust for larger padding
               "md:max-w-full", // Medium and up: full width
               className
@@ -169,7 +168,7 @@ export default function DataTable<TData, TValue>({
                   {table.getHeaderGroups().map((headerGroup) => (
                     <TableRow
                       key={headerGroup.id}
-                      className="border-b border-gray-200/60 bg-gradient-to-r from-gray-50/50 to-gray-100/30 hover:from-gray-100/60 hover:to-gray-50/40 transition-all duration-200"
+                      className="border-b border-gray-200/60 overflow-hidden  bg-gradient-to-r from-gray-50/50 to-gray-100/30 hover:from-gray-100/60 hover:to-gray-50/40 transition-all duration-200"
                     >
                       {headerGroup.headers.map((header) => {
                         return (
@@ -179,7 +178,7 @@ export default function DataTable<TData, TValue>({
                               "py-4 px-4 sm:px-6 font-semibold text-gray-700 bg-gradient-to-b from-transparent to-gray-50/30",
                               "text-right", // RTL alignment
                               "whitespace-nowrap", // Prevent header text wrapping
-                              "first:rounded-tr-2xl last:rounded-tl-2xl", // RTL rounded corners
+                               // RTL rounded corners
                               "border-l border-gray-200/40 last:border-l-0" // RTL borders
                             )}
                           >
