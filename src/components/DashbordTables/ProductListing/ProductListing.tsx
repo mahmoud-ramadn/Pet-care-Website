@@ -63,7 +63,7 @@ export default function ProductListing() {
   )
 
   return (
-    <div>
+    <div className=" space-y-7">
       <AddItemDialog />
       <DataTable columns={columns} loading={loading} data={products?.data ?? []} totalPages={products?.totalPages} />
     </div>
