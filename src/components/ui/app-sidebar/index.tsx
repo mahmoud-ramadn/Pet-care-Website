@@ -33,13 +33,7 @@ export function AppSidebar() {
   }
 
   const navItems = [
-    {
-      to: "/",
-      icon: HomeIcon,
-      text: "Pet Care Home",
-      badge: null,
-      gradient: "from-blue-500 to-cyan-500",
-    },
+    
     {
       to: "/admin-dashboard",
       icon: LayoutDashboardIcon,
@@ -228,8 +222,8 @@ export function AppSidebar() {
       </SidebarContent>
 
       {/* Enhanced Footer */}
-      <SidebarFooter className="p-4 border-t border-gray-200/60 bg-white/80 backdrop-blur-sm">
-        <div className="bg-gradient-to-r from-gray-50 to-white rounded-2xl p-4 shadow-sm border border-gray-100">
+      <SidebarFooter className="  p-4 border-t border-gray-200/60 bg-white/80 backdrop-blur-sm">
+        <Link to={'/'} className="bg-gradient-to-r from-gray-50 to-white rounded-2xl p-4 shadow-sm border border-gray-100">
           <div className="flex items-center gap-3">
             <div className="relative">
               <Avatar className=" rounded-full overflow-hidden ring-2 ring-white shadow-lg">
@@ -296,7 +290,7 @@ export function AppSidebar() {
               </Button>
             </div>
           </div>
-        </div>
+        </Link>
       </SidebarFooter>
     </Sidebar>
   )
