@@ -217,57 +217,43 @@ export default function SingleDoctor() {
                 </SwiperWrapper>
               </div>
             )}
-            
 
             <div className=" grid md:grid-cols-2 lg:grid-cols-4  items-start gap-x-5 grid-cols-1">
-
-
-            <div className=" lg:col-span-3 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-              <div className="bg-gradient-to-r from-primary/5 to-secondary/5 md:p-8 p-4 border-b border-gray-100">
-                <h2 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                    <MessageCircle className="w-5 h-5 text-primary" />
-                  </div>
-                  Customer Reviews
-                  <span className="text-lg font-normal text-gray-600">({doctor.numberOfRate})</span>
-                </h2>
-
-                
-              </div>
-
-              <div className="md:p-8 p-4">
-                {doctor?.reviewsOfDoctor?.length ? (
-                  <div className="space-y-6">
-                    {doctor?.reviewsOfDoctor.map((review) => <ReviewItem review={review} reload={() => retry()} />)}
-                  </div>
-                ) : (
-                  <div className="text-center py-12">
-                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <MessageCircle className="w-8 h-8 text-gray-400" />
+              <div className=" lg:col-span-3 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                <div className="bg-gradient-to-r from-primary/5 to-secondary/5 md:p-8 p-4 border-b border-gray-100">
+                  <h2 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
+                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                      <MessageCircle className="w-5 h-5 text-primary" />
                     </div>
-                    <p className="text-gray-500 text-lg">No reviews yet</p>
-                    <p className="text-gray-400">Be the first to leave a review!</p>
-                  </div>
-                )}
+                    Customer Reviews
+                    <span className="text-lg font-normal text-gray-600">({doctor.numberOfRate})</span>
+                  </h2>
+                </div>
+
+                <div className="md:p-8 p-4">
+                  {doctor?.reviewsOfDoctor?.length ? (
+                    <div className="space-y-6">
+                      {doctor?.reviewsOfDoctor.map((review) => <ReviewItem review={review} reload={() => retry()} />)}
+                    </div>
+                  ) : (
+                    <div className="text-center py-12">
+                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <MessageCircle className="w-8 h-8 text-gray-400" />
+                      </div>
+                      <p className="text-gray-500 text-lg">No reviews yet</p>
+                      <p className="text-gray-400">Be the first to leave a review!</p>
+                    </div>
+                  )}
+                </div>
               </div>
+
+              <WriteReview
+                writeReview={(data) => {
+                  DoctorsWritereivew(data, id ?? "")
+                  retry()
+                }}
+              />
             </div>
-
-            <WriteReview
-              writeReview={(data) => {
-                DoctorsWritereivew(data, id ?? "")
-                retry()
-              }}
-            />
-
-
-
-</div>
-
-
-
-
-
-
           </>
         ) : null}
       </div>

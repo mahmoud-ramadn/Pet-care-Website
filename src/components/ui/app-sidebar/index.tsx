@@ -140,7 +140,7 @@ export function AppSidebar() {
                       {/* Icon with gradient background */}
                       <div
                         className={cn(
-                          "relative w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200",
+                          "relative w-10 h-10 rounded-xl shrink-0 flex items-center justify-center transition-all duration-200",
                           active
                             ? `bg-gradient-to-br ${item.gradient} shadow-lg shadow-blue-200/30`
                             : "bg-gray-100 group-hover:bg-gray-200"

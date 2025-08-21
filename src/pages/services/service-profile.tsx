@@ -67,9 +67,6 @@ export default function Description() {
               <p className="text-gray-500">لا توجد مراجعات حتى الآن</p>
             )}
           </section>
-
-          
-          
         </div>
 
         <div className="lg:col-span-1">
@@ -88,7 +85,6 @@ export default function Description() {
               }}
             />
           )}
-
         </div>
       </div>
     </div>
