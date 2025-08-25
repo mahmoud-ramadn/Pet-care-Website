@@ -85,9 +85,6 @@ export const DeletePet = async (id: string) => {
   return response.message
 }
 
-
-
-
 export const AddPet = async (inputs: PetItem) => {
   const response = await apiClient<PetApiResponse>({
     url: `Pets/addpetuser`,

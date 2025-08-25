@@ -1,36 +1,23 @@
-import { useMutation } from "@tanstack/react-query";
-import type { ColumnDef } from "@tanstack/react-table";
-import {  CatIcon, Edit, MoreVerticalIcon, Trash2 } from "lucide-react";
-import { toast } from "sonner";
+import { useMutation } from "@tanstack/react-query"
+import type { ColumnDef } from "@tanstack/react-table"
+import { CatIcon, Edit, MoreVerticalIcon, Trash2 } from "lucide-react"
+import { toast } from "sonner"
 
+import { useEffect, useMemo, useState } from "react"
 
+import { Button } from "@/components/ui/button"
+import DataTable from "@/components/ui/data-table"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
-import { useEffect, useMemo, useState } from "react";
+import { DeletePet } from "@/apis/pet"
+import { useMyPets } from "@/hooks/pet"
 
-
-
-import { Button } from "@/components/ui/button";
-import DataTable from "@/components/ui/data-table";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-
-
-
-import { DeletePet } from "@/apis/pet";
-import { useMyPets } from "@/hooks/pet";
-
-
-
-import PetAddEditDialog from "./PetAddEditDialog";
-
-
-
-
+import PetAddEditDialog from "./PetAddEditDialog"
 
 export default function UserPetsListing() {
   const { value: pet, loading, retry } = useMyPets()
-    const [open, setOpen] = useState(false)
-    const [petItem, setPet] = useState<PetItem>()
-
+  const [open, setOpen] = useState(false)
+  const [petItem, setPet] = useState<PetItem>()
 
   const [currentPage, setCurrentPage] = useState(() => {
     if (typeof window !== "undefined") {
@@ -104,7 +91,6 @@ export default function UserPetsListing() {
               </DropdownMenuTrigger>
 
               <DropdownMenuContent className="w-48 rounded-xl shadow-xl border border-gray-200 p-2 bg-white/95 backdrop-blur-sm">
-              
                 <DropdownMenuItem className="flex items-center gap-3 cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-blue-50 hover:text-blue-700 transition-all duration-150 group">
                   <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-100 group-hover:bg-blue-200">
                     <Edit className="size-4 text-blue-600" />
@@ -183,25 +169,28 @@ export default function UserPetsListing() {
 
   return (
     <div className="space-y-6">
-      <Button onClick={()=>{
-                   setOpen(true)
-                   
-                   
-                   
-                   }}
-                   className="flex items-center gap-3 cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-green-50 hover:text-green-700 transition-all duration-150 group">
-                  <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-green-100 group-hover:bg-green-200">
-                    <CatIcon className="size-4 text-green-600" />
-                  </div>
-                  <span className="font-medium">Add Pets</span>
-        add pet
+      <Button
+        onClick={() => {
+          setOpen(true)
+        }}
+        className="flex items-center gap-3 cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-150 group"
+      >
+        <div className="flex items-center justify-center w-8 h-8 rounded-lg ">
+          <CatIcon className="size-4 " />
+        </div>
+        <span className="font-medium">Add Pets</span>
       </Button>
       <DataTable columns={columns} loading={loading} data={paginatedData} />
-                <PetAddEditDialog pet={petItem} open={open} setOpen={setOpen} onComplete={() => {
-                    retry()
-                    setPet(undefined)
-                    setOpen(false)
-                }}  />
+      <PetAddEditDialog
+        pet={petItem}
+        open={open}
+        setOpen={setOpen}
+        onComplete={() => {
+          retry()
+          setPet(undefined)
+          setOpen(false)
+        }}
+      />
 
       {/* Items per page and results info - Responsive layout */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">

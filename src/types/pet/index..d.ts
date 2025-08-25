@@ -20,5 +20,3 @@ type ShelterCardType = {
   time: string
   address: string
 }
-
-
