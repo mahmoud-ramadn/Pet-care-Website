@@ -1,5 +1,5 @@
-import AllUserOrdersListing from "@/components/DashbordTables/AllUsersOrdersListing";
+import AllUserOrdersListing from "@/components/DashbordTables/AllUsersOrdersListing"
 
 export default function AllUserOrders() {
-  return <AllUserOrdersListing/>
+  return <AllUserOrdersListing />
 }

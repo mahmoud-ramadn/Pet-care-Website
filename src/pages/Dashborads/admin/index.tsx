@@ -1,9 +1,17 @@
-import { Activity, DollarSign, ShoppingCart, TrendingUp, Users } from "lucide-react";
-import { CartesianGrid, Label, Line, LineChart, PolarRadiusAxis, RadialBar, RadialBarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-
-
-
-
+import { Activity, DollarSign, ShoppingCart, TrendingUp, Users } from "lucide-react"
+import {
+  CartesianGrid,
+  Label,
+  Line,
+  LineChart,
+  PolarRadiusAxis,
+  RadialBar,
+  RadialBarChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts"
 
 // -------------------- Types --------------------
 type PerformanceDatum = {

@@ -1,5 +1,5 @@
-import UserPetsListing from "@/components/DashbordTables/userPetsListing";
+import UserPetsListing from "@/components/DashbordTables/userPetsListing"
 
 export default function MyPets() {
-  return <UserPetsListing/>
+  return <UserPetsListing />
 }

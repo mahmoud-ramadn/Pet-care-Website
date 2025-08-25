@@ -64,7 +64,6 @@ export const useDogs = () => {
   })
 }
 
-
 export const useAllPets = () => {
   return useAsyncRetry(async () => {
     const response = await getAllPest()

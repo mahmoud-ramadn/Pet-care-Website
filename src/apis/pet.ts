@@ -1,8 +1,4 @@
-import { apiClient } from "@/lib/api-client";
-
-
-
-
+import { apiClient } from "@/lib/api-client"
 
 export const getAllSuccessFullAdoptions = async () => {
   const response = await apiClient<SuccessfulAdoptionsApiResponse>({
@@ -75,13 +71,12 @@ export const getMyPet = async () => {
   const response = await apiClient<PetApiResponse>({
     url: "Pets/getmypets",
     method: "GET",
-    auth:true
+    auth: true,
   })
   return response.data
 }
 
-
-export const DeletePet = async (id:string) => {
+export const DeletePet = async (id: string) => {
   const response = await apiClient<DeletePetApiResponse>({
     url: `Pets/deletePet/${id}`,
     method: "DELETE",
@@ -90,12 +85,11 @@ export const DeletePet = async (id:string) => {
   return response.message
 }
 
-
-export const AddPet = async (inputs:string) => {
+export const AddPet = async (inputs: string) => {
   const response = await apiClient<PetApiResponse>({
     url: `Pets/addpetuser`,
     method: "POST",
-    data:inputs,
+    data: inputs,
     auth: true,
   })
   return response.status

@@ -1,13 +1,7 @@
-import { lazy } from "react";
-import type { RouteObject } from "react-router";
+import { lazy } from "react"
+import type { RouteObject } from "react-router"
 
-
-
-import UserDashboardLayout from "@/layouts/userDashbord";
-
-
-
-
+import UserDashboardLayout from "@/layouts/userDashbord"
 
 const User = lazy(() => import("@/pages/Dashborads/user/user"))
 const Admin = lazy(() => import("@/pages/Dashborads/admin"))
@@ -17,7 +11,7 @@ const orders = lazy(() => import("@/pages/Dashborads/user/order-user"))
 const Allorders = lazy(() => import("@/pages/Dashborads/admin/allUsers-orders"))
 const users = lazy(() => import("@/pages/Dashborads/admin/users"))
 const blogs = lazy(() => import("@/pages/Dashborads/admin/blogs"))
-const MyPets=lazy(()=>import('@/pages/Dashborads/user/my-pets'))
+const MyPets = lazy(() => import("@/pages/Dashborads/user/my-pets"))
 
 export const RoleBase: RouteObject = {
   path: "",
