@@ -1,4 +1,4 @@
-import { Activity, DollarSign, ShoppingCart, TrendingUp, Users } from "lucide-react"
+import {  DogIcon, DollarSign, ShoppingCart, TrendingUp, Users } from "lucide-react"
 import {
   CartesianGrid,
   Label,
@@ -13,6 +13,9 @@ import {
   YAxis,
 } from "recharts"
 
+import { useAllOrderUsers, useAllUsers } from "@/hooks/user"
+import { useAllPets } from "@/hooks/pet"
+
 // -------------------- Types --------------------
 type PerformanceDatum = {
   name: string
@@ -24,6 +27,7 @@ type RadialDatum = {
   month: string
   desktop: number
   mobile: number
+  visitor?: number
 }
 
 type CardProps = {
@@ -44,7 +48,7 @@ type StatsCardProps = {
 const performanceData: PerformanceDatum[] = [
   { name: "Jan", users: 400, revenue: 2400 },
   { name: "Feb", users: 300, revenue: 1398 },
-  { name: "Mar", users: 200, revenue: 9800 },
+  { name: "Mar", users: 5000, revenue: 9800 },
   { name: "Apr", users: 278, revenue: 3908 },
   { name: "May", users: 189, revenue: 4800 },
   { name: "Jun", users: 239, revenue: 3800 },
@@ -53,10 +57,8 @@ const performanceData: PerformanceDatum[] = [
   { name: "Sep", users: 310, revenue: 4100 },
   { name: "Oct", users: 500, revenue: 6100 },
   { name: "Nov", users: 450, revenue: 5600 },
-  { name: "Dec", users: 600, revenue: 7200 },
+  { name: "Dec", users: 1000, revenue: 10000 },
 ]
-
-const radialData: RadialDatum[] = [{ month: "january", desktop: 1260, mobile: 570 }]
 
 // -------------------- UI Components --------------------
 const Card = ({ children, className = "" }: CardProps) => (
@@ -144,8 +146,9 @@ const PerformanceChart: React.FC = () => (
 )
 
 // -------------------- Radial Chart --------------------
-const VisitorsChart: React.FC = () => {
-  const totalVisitors = radialData[0].desktop + radialData[0].mobile
+const VisitorsChart: React.FC<{ data: RadialDatum[] }> = ({ data }) => {
+  const totalVisitors =
+    (data[0]?.desktop ?? 0) + (data[0]?.mobile ?? 0) + (typeof data[0]?.visitor === "number" ? data[0].visitor : 0)
 
   return (
     <Card>
@@ -156,7 +159,7 @@ const VisitorsChart: React.FC = () => {
       <CardContent className="flex justify-center">
         <div className="w-64 h-64">
           <ResponsiveContainer width="100%" height="100%">
-            <RadialBarChart data={radialData} startAngle={90} endAngle={-270} innerRadius={60} outerRadius={120}>
+            <RadialBarChart data={data} startAngle={90} endAngle={-270} innerRadius={60} outerRadius={120}>
               <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
                 <Label
                   content={({ viewBox }) => {
@@ -197,11 +200,11 @@ const VisitorsChart: React.FC = () => {
         <div className="flex justify-center items-center gap-6 text-sm">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-            <span className="text-gray-600">Desktop: {radialData[0].desktop.toLocaleString()}</span>
+            <span className="text-gray-600">Desktop: {data[0].desktop.toLocaleString()}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-            <span className="text-gray-600">Mobile: {radialData[0].mobile.toLocaleString()}</span>
+            <span className="text-gray-600">Mobile: {data[0].mobile.toLocaleString()}</span>
           </div>
         </div>
         <div className="flex justify-center items-center gap-2 mt-3 text-sm text-green-600">
@@ -214,10 +217,16 @@ const VisitorsChart: React.FC = () => {
 }
 
 export default function AdminDashboard() {
+  const { value: users } = useAllUsers()
+  const { value: orders } = useAllOrderUsers()
+  const { value: pets } = useAllPets()
+
+  const radialData: RadialDatum[] = [{ month: "January", desktop: 1260, mobile: 570, visitor: users?.length }]
+
   const statsData: StatsCardProps[] = [
     {
       title: "Total Users",
-      value: "1,245",
+      value: users?.length ?? "",
       change: "+12%",
       icon: Users,
       iconColor: "text-blue-500",
@@ -225,7 +234,7 @@ export default function AdminDashboard() {
     },
     {
       title: "Orders",
-      value: "320",
+      value: orders?.length ?? "",
       change: "+8%",
       icon: ShoppingCart,
       iconColor: "text-green-500",
@@ -241,9 +250,9 @@ export default function AdminDashboard() {
     },
     {
       title: "Active Sessions",
-      value: "85",
+      value: pets?.length??"",
       change: "+2",
-      icon: Activity,
+      icon: DogIcon,
       iconColor: "text-red-500",
       trend: "up",
     },
@@ -273,7 +282,7 @@ export default function AdminDashboard() {
             <PerformanceChart />
           </div>
           <div className="xl:col-span-1">
-            <VisitorsChart />
+            <VisitorsChart data={radialData} />
           </div>
         </div>
 

@@ -11,12 +11,10 @@ type Props = {
 }
 
 export default function PetAddEditDialog({ open, setOpen, isEdit = false, onComplete, pet }: Readonly<Props>) {
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent>
-        <DialogHeader>
-        </DialogHeader>
+        <DialogHeader></DialogHeader>
         <PetsForm isEdit={isEdit} onComplete={onComplete} pet={pet} />
       </DialogContent>
     </Dialog>
