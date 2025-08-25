@@ -1,4 +1,4 @@
-import {  DogIcon, DollarSign, ShoppingCart, TrendingUp, Users } from "lucide-react"
+import { DogIcon, DollarSign, ShoppingCart, TrendingUp, Users } from "lucide-react"
 import {
   CartesianGrid,
   Label,
@@ -13,8 +13,8 @@ import {
   YAxis,
 } from "recharts"
 
-import { useAllOrderUsers, useAllUsers } from "@/hooks/user"
 import { useAllPets } from "@/hooks/pet"
+import { useAllOrderUsers, useAllUsers } from "@/hooks/user"
 
 // -------------------- Types --------------------
 type PerformanceDatum = {
@@ -74,7 +74,7 @@ const CardHeader = ({ children, className = "" }: CardProps) => (
 )
 
 const CardContent = ({ children, className = "" }: CardProps) => (
-  <div className={`px-6 pb-6 ${className}`}>{children}</div>
+  <div className={`md:px-6 px-3 pb-6 ${className}`}>{children}</div>
 )
 
 const CardTitle = ({ children, className = "" }: CardProps) => (
@@ -109,8 +109,8 @@ const PerformanceChart: React.FC = () => (
     </CardHeader>
     <CardContent>
       <div className="h-80 w-full">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={performanceData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+        <ResponsiveContainer width="100%" height="100%" >
+          <LineChart data={performanceData} margin={{ top: 5, right: 10, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
             <XAxis dataKey="name" stroke="#666" fontSize={12} />
             <YAxis stroke="#666" fontSize={12} />
@@ -250,7 +250,7 @@ export default function AdminDashboard() {
     },
     {
       title: "Active Sessions",
-      value: pets?.length??"",
+      value: pets?.length ?? "",
       change: "+2",
       icon: DogIcon,
       iconColor: "text-red-500",

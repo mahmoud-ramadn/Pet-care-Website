@@ -34,7 +34,7 @@ export default function PetsForm({ isEdit = false, onComplete, values }: props) 
       name: values?.name || "",
       petImage: values?.petImage ?? "",
       gender: values?.gender || "",
-      weight: values?.weight|| 0,
+      weight: values?.weight || 0,
       type: values?.type || "",
     },
   })

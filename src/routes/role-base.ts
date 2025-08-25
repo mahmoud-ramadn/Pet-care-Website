@@ -11,7 +11,8 @@ const orders = lazy(() => import("@/pages/Dashborads/user/order-user"))
 const Allorders = lazy(() => import("@/pages/Dashborads/admin/allUsers-orders"))
 const users = lazy(() => import("@/pages/Dashborads/admin/users"))
 const blogs = lazy(() => import("@/pages/Dashborads/admin/blogs"))
-const MyPets = lazy(() => import("@/pages/Dashborads/user/my-pets"))
+const MyPets = lazy(() => import("@/pages/Dashborads/user/my-pets"));
+const DoctorsTable = lazy(() => import("@/pages/Dashborads/admin/doctors"));
 
 export const RoleBase: RouteObject = {
   path: "",
@@ -36,6 +37,11 @@ export const RoleBase: RouteObject = {
     {
       path: "table-users",
       Component: users,
+    },
+    {
+      path: "Doctors-table",
+      Component: DoctorsTable
+      ,
     },
     {
       path: "services-board",
