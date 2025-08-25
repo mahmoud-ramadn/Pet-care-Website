@@ -9,43 +9,43 @@ import { useServices } from "@/hooks/services"
 export default function ServiceListing() {
   const { value: services, loading } = useServices()
 
-const [currentPage, setCurrentPage] = useState(() => {
-      if (typeof window !== "undefined") {
-        const urlParams = new URLSearchParams(window.location.search)
-        return parseInt(urlParams.get("page") || "1", 10)
+  const [currentPage, setCurrentPage] = useState(() => {
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search)
+      return parseInt(urlParams.get("page") || "1", 10)
+    }
+    return 1
+  })
+
+  const [itemsPerPage, setItemsPerPage] = useState(() => {
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search)
+      return parseInt(urlParams.get("perPage") || "5", 10)
+    }
+    return 5
+  })
+
+  // Update URL when page or itemsPerPage changes
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search)
+      params.set("page", currentPage.toString())
+      params.set("perPage", itemsPerPage.toString())
+
+      const newUrl = `${window.location.pathname}?${params.toString()}`
+      window.history.replaceState({}, "", newUrl)
+    }
+  }, [currentPage, itemsPerPage])
+
+  // Reset to page 1 if current page exceeds total pages when data changes
+  useEffect(() => {
+    if (services && services?.length > 0) {
+      const totalPages = Math.ceil(services?.length / itemsPerPage)
+      if (currentPage > totalPages) {
+        setCurrentPage(1)
       }
-      return 1
-    })
-  
-    const [itemsPerPage, setItemsPerPage] = useState(() => {
-      if (typeof window !== "undefined") {
-        const urlParams = new URLSearchParams(window.location.search)
-        return parseInt(urlParams.get("perPage") || "5", 10)
-      }
-      return 5
-    })
-  
-    // Update URL when page or itemsPerPage changes
-    useEffect(() => {
-      if (typeof window !== "undefined") {
-        const params = new URLSearchParams(window.location.search)
-        params.set("page", currentPage.toString())
-        params.set("perPage", itemsPerPage.toString())
-  
-        const newUrl = `${window.location.pathname}?${params.toString()}`
-        window.history.replaceState({}, "", newUrl)
-      }
-    }, [currentPage, itemsPerPage])
-  
-    // Reset to page 1 if current page exceeds total pages when data changes
-    useEffect(() => {
-      if (services && services?.length > 0) {
-        const totalPages = Math.ceil(services?.length / itemsPerPage)
-        if (currentPage > totalPages) {
-          setCurrentPage(1)
-        }
-      }
-    }, [services, itemsPerPage, currentPage])
+    }
+  }, [services, itemsPerPage, currentPage])
 
   const columns: ColumnDef<ShuffledServiceType>[] = useMemo(() => {
     return [
@@ -148,7 +148,7 @@ const [currentPage, setCurrentPage] = useState(() => {
   // Pagination logic
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
-  const paginatedData =services?.slice(startIndex, endIndex) || []
+  const paginatedData = services?.slice(startIndex, endIndex) || []
   const totalPages = services ? Math.ceil(services.length / itemsPerPage) : 1
 
   // Helper function to get visible page numbers

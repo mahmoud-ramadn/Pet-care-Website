@@ -1,65 +1,52 @@
-import type { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table"
 
+import { useEffect, useMemo, useState } from "react"
 
+import DataTable from "@/components/ui/data-table"
 
-import { useEffect, useMemo, useState } from "react";
-
-
-
-import DataTable from "@/components/ui/data-table";
-
-
-
-import { useAllUsers } from "@/hooks/user";
-
-
-
-
+import { useAllUsers } from "@/hooks/user"
 
 export default function UsersListing() {
   const { value: user, loading } = useAllUsers()
 
+  // Initialize state from URL params or defaults
+  const [currentPage, setCurrentPage] = useState(() => {
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search)
+      return parseInt(urlParams.get("page") || "1", 10)
+    }
+    return 1
+  })
 
+  const [itemsPerPage, setItemsPerPage] = useState(() => {
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search)
+      return parseInt(urlParams.get("perPage") || "5", 10)
+    }
+    return 5
+  })
 
-    // Initialize state from URL params or defaults
-    const [currentPage, setCurrentPage] = useState(() => {
-      if (typeof window !== "undefined") {
-        const urlParams = new URLSearchParams(window.location.search)
-        return parseInt(urlParams.get("page") || "1", 10)
-      }
-      return 1
-    })
-  
-    const [itemsPerPage, setItemsPerPage] = useState(() => {
-      if (typeof window !== "undefined") {
-        const urlParams = new URLSearchParams(window.location.search)
-        return parseInt(urlParams.get("perPage") || "5", 10)
-      }
-      return 5
-    })
-  
-    // Update URL when page or itemsPerPage changes
-    useEffect(() => {
-      if (typeof window !== "undefined") {
-        const params = new URLSearchParams(window.location.search)
-        params.set("page", currentPage.toString())
-        params.set("perPage", itemsPerPage.toString())
-  
-        const newUrl = `${window.location.pathname}?${params.toString()}`
-        window.history.replaceState({}, "", newUrl)
-      }
-    }, [currentPage, itemsPerPage])
-  
-    // Reset to page 1 if current page exceeds total pages when data changes
-    useEffect(() => {
-      if (user && user.length > 0) {
-        const totalPages = Math.ceil(user.length / itemsPerPage)
-        if (currentPage > totalPages) {
-          setCurrentPage(1)
-        }
-      }
-    }, [user, itemsPerPage, currentPage])
+  // Update URL when page or itemsPerPage changes
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search)
+      params.set("page", currentPage.toString())
+      params.set("perPage", itemsPerPage.toString())
 
+      const newUrl = `${window.location.pathname}?${params.toString()}`
+      window.history.replaceState({}, "", newUrl)
+    }
+  }, [currentPage, itemsPerPage])
+
+  // Reset to page 1 if current page exceeds total pages when data changes
+  useEffect(() => {
+    if (user && user.length > 0) {
+      const totalPages = Math.ceil(user.length / itemsPerPage)
+      if (currentPage > totalPages) {
+        setCurrentPage(1)
+      }
+    }
+  }, [user, itemsPerPage, currentPage])
 
   const columns: ColumnDef<User>[] = useMemo(
     () => [
