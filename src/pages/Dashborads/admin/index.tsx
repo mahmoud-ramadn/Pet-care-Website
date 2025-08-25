@@ -1,17 +1,7 @@
-import { Activity, DollarSign, ShoppingCart, TrendingUp, Users } from "lucide-react"
-import {
-  CartesianGrid,
-  Label,
-  Line,
-  LineChart,
-  PolarRadiusAxis,
-  RadialBar,
-  RadialBarChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts"
+import { Activity, DollarSign, ShoppingCart, TrendingUp, Users } from "lucide-react";
+import { CartesianGrid, Label, Line, LineChart, PolarRadiusAxis, RadialBar, RadialBarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+
+
 
 
 
@@ -50,6 +40,12 @@ const performanceData: PerformanceDatum[] = [
   { name: "Apr", users: 278, revenue: 3908 },
   { name: "May", users: 189, revenue: 4800 },
   { name: "Jun", users: 239, revenue: 3800 },
+  { name: "Jul", users: 350, revenue: 4300 },
+  { name: "Aug", users: 420, revenue: 5200 },
+  { name: "Sep", users: 310, revenue: 4100 },
+  { name: "Oct", users: 500, revenue: 6100 },
+  { name: "Nov", users: 450, revenue: 5600 },
+  { name: "Dec", users: 600, revenue: 7200 },
 ]
 
 const radialData: RadialDatum[] = [{ month: "january", desktop: 1260, mobile: 570 }]
@@ -208,22 +204,6 @@ const VisitorsChart: React.FC = () => {
     </Card>
   )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export default function AdminDashboard() {
   const statsData: StatsCardProps[] = [

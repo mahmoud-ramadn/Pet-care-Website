@@ -1,11 +1,13 @@
 import { useAsyncRetry } from "react-use"
 
 import {
+  getAllPest,
   getAllSuccessFullAdoptions,
   getCats,
   getCatsForKids,
   getDogs,
   getDogsForKids,
+  getMyPet,
   getTopCollection,
   getTopCollectionCat,
   getTopCollectionDog,
@@ -58,6 +60,20 @@ export const useCats = () => {
 export const useDogs = () => {
   return useAsyncRetry(async () => {
     const response = await getDogs()
+    return response
+  })
+}
+
+
+export const useAllPets = () => {
+  return useAsyncRetry(async () => {
+    const response = await getAllPest()
+    return response
+  })
+}
+export const useMyPets = () => {
+  return useAsyncRetry(async () => {
+    const response = await getMyPet()
     return response
   })
 }

@@ -1,29 +1,29 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
-import {
-  Bell,
-  Cog,
-  Crown,
-  HelpCircleIcon,
-  HomeIcon,
-  LayoutDashboardIcon,
-  LogOut,
-  NewspaperIcon,
-  PawPrint,
-  Settings,
-  ShoppingBagIcon,
-  Star,
-  Users,
-} from "lucide-react"
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import { Bell, Cog, Crown, DogIcon, HelpCircleIcon, LayoutDashboardIcon, LogOut, NewspaperIcon, PawPrint, Settings, ShoppingBagIcon, ShoppingBasket, Star, Users } from "lucide-react";
 
-import { Link, useLocation } from "react-router-dom"
 
-import { cn } from "@/lib/utils"
 
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } from "@/components/ui/sidebar"
+import { Link, useLocation } from "react-router-dom";
 
-import { useGetMe } from "@/hooks/user"
 
-import { Button } from "../button"
+
+import { cn } from "@/lib/utils";
+
+
+
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } from "@/components/ui/sidebar";
+
+
+
+import { useGetMe } from "@/hooks/user";
+
+
+
+import { Button } from "../button";
+
+
+
+
 
 export function AppSidebar() {
   const location = useLocation()
@@ -69,22 +69,29 @@ export function AppSidebar() {
       badge: null,
       gradient: "from-violet-500 to-blue-500",
     },
+    {
+      to: "/All-users-orders",
+      icon: ShoppingBasket,
+      text: "All Orders",
+      badge: null,
+      gradient: "from-gray-500 to-red-500",
+    },
   ]
 
   const userPage = [
-    {
-      to: "/",
-      icon: HomeIcon,
-      text: "Pet Care Home",
-      badge: null,
-      gradient: "from-blue-500 to-cyan-500",
-    },
     {
       to: "/orders",
       icon: LayoutDashboardIcon,
       text: "My Orders",
       badge: null,
       gradient: "from-indigo-500 to-purple-500",
+    },
+    {
+      to: "/my-pets",
+      icon: DogIcon,
+      text: "My Pets",
+      badge: null,
+      gradient: "from-white-500 to-orange-500",
     },
   ]
 

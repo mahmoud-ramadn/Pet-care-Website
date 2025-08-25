@@ -18,3 +18,7 @@ type PetApiResponse = {
   status?: string
   data?: PetItem[]
 }
+
+type DeletePetApiResponse = {
+  message?: string
+}
