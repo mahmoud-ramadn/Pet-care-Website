@@ -15,3 +15,15 @@ export const getDoctor = async (id: string) => {
   })
   return response.updatedDoc
 }
+
+
+
+export const CreateDoctor = async (inputs:Doctor) => {
+  const response = await apiClient<Doctor>({
+    url: `doctors/add-doctor`,
+    data:inputs,
+    method: "POST",
+    auth:true
+  })
+  return response
+}

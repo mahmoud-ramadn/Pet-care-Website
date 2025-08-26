@@ -109,7 +109,7 @@ const PerformanceChart: React.FC = () => (
     </CardHeader>
     <CardContent>
       <div className="h-80 w-full">
-        <ResponsiveContainer width="100%" height="100%" >
+        <ResponsiveContainer width="100%" height="100%">
           <LineChart data={performanceData} margin={{ top: 5, right: 10, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
             <XAxis dataKey="name" stroke="#666" fontSize={12} />
@@ -249,7 +249,7 @@ export default function AdminDashboard() {
       trend: "up",
     },
     {
-      title: "Active Sessions",
+      title: "Pet",
       value: pets?.length ?? "",
       change: "+2",
       icon: DogIcon,

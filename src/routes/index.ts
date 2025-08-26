@@ -9,6 +9,7 @@ import { DashboardRoutes } from "./dashboard"
 import { RoleBase } from "./role-base"
 
 const NotFound = lazy(() => import("@/pages/not-found"))
+const UI = lazy(() => import("@/pages/ui-components"))
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
         path: "*",
         Component: NotFound,
       },
+      {
+        path:'ui',
+        Component:UI
+      }
     ],
   },
 ])

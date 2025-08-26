@@ -122,6 +122,7 @@
 //         </div>
 //     )
 // }
+import MultiSelectDemo from "@/components/ui/mulitSelection"
 import SwiperWrapper from "@/components/ui/SwiperWrapper"
 import UiTitle from "@/components/ui/ui-title"
 
@@ -139,6 +140,9 @@ export default function UiComponents() {
       <UiTitle>
          Grooming Reviews
       </UiTitle>
+
+
+      <MultiSelectDemo/>
     </div>
   )
 }

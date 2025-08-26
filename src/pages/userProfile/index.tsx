@@ -401,13 +401,13 @@ export default function UserProfile() {
                     className="group bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl border-2 border-gray-100 hover:border-purple-200 hover:shadow-lg transition-all duration-200 overflow-hidden"
                   >
                     <div className="flex items-center p-4 sm:p-6 pb-3 sm:pb-4">
-                      <div className="relative">
+                      <div className="relative ">
                         <img
                           src={post.userImage || "/default-avatar.jpg"}
                           alt={`${post.userName}'s profile`}
-                          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-white shadow-lg"
+                          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full aspect-[3/10]  border-2 border-white shadow-lg"
                           onError={(e) => {
-                            ;(e.target as HTMLImageElement).src = "/default-avatar.jpg"
+                            (e.target as HTMLImageElement).src = "/default-avatar.jpg"
                           }}
                         />
                         <div className="absolute -bottom-0.5 sm:-bottom-1 -right-0.5 sm:-right-1 w-3 h-3 sm:w-4 sm:h-4 bg-green-500 border-2 border-white rounded-full"></div>

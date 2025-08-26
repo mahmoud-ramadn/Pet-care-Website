@@ -6,6 +6,8 @@ import DataTable from "@/components/ui/data-table"
 
 import { useDoctors } from "@/hooks/doctors"
 
+import { AddDoctorDialog } from "./AddDoctorDialog"
+
 export default function DoctorsListing() {
   const { value: doctor, loading } = useDoctors()
 
@@ -25,7 +27,6 @@ export default function DoctorsListing() {
     return 5
   })
 
-  // Update URL when page or itemsPerPage changes
   useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search)
@@ -37,7 +38,6 @@ export default function DoctorsListing() {
     }
   }, [currentPage, itemsPerPage])
 
-  // Reset to page 1 if current page exceeds total pages when data changes
   useEffect(() => {
     if (doctor && doctor?.length > 0) {
       const totalPages = Math.ceil(doctor?.length / itemsPerPage)
@@ -49,80 +49,78 @@ export default function DoctorsListing() {
 
   const columns: ColumnDef<Doctor>[] = useMemo(
     () => [
-        {
-            accessorKey: "phone",
+      {
+        accessorKey: "phone",
         header: "Phone",
-    },
+      },
       {
         accessorKey: "rate",
         header: "Rating",
       },
       {
-          accessorKey: "specialized_in",
-          header: "Specialized",
-          cell: ({ row }) => {
-              const product = row.original
-              
-              if (!product?.specialized_in || product.specialized_in.length === 0) {
-                  return <span className="text-gray-400">لا يوجد</span>
-                }
-                
-                return (
-                    <div className="flex   justify-center   flex-wrap gap-2">
+        accessorKey: "specialized_in",
+        header: "Specialized",
+        cell: ({ row }) => {
+          const product = row.original
+
+          if (!product?.specialized_in || product.specialized_in.length === 0) {
+            return <span className="text-gray-400">لا يوجد</span>
+          }
+
+          return (
+            <div className="flex   justify-center   flex-wrap gap-2">
               {product.specialized_in.map((spec, index) => (
-                  <span key={index} className="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-700">
+                <span key={index} className="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-700">
                   {spec}
                 </span>
               ))}
             </div>
           )
         },
-    },
-    {
-  accessorKey: "imagesProfile",
-  header: "Profile Images",
-  cell: ({ row }) => {
-    const images = row.original.imagesProfile
+      },
+      {
+        accessorKey: "imagesProfile",
+        header: "Profile Images",
+        cell: ({ row }) => {
+          const images = row.original.imagesProfile
 
-    if (!images || images.length === 0) {
-      return <span className="text-gray-400">لايوجد</span>
-    }
+          if (!images || images.length === 0) {
+            return <span className="text-gray-400">لايوجد</span>
+          }
 
-    return (
-      <div className="flex gap-2">
-        {images.slice(0, 3).map((img: string, idx: number) => (
-          <img
-            key={idx}
-            src={img}
-            alt={`profile-${idx}`}
-            className="w-10 h-10 object-cover rounded-full border"
-          />
-        ))}
-        {images.length > 3 && (
-          <span className="text-xs text-gray-500">+{images.length - 3}</span>
-        )}
-      </div>
-    )
-  },
-},
+          return (
+            <div className="flex gap-2">
+              {images.slice(0, 3).map((img: string, idx: number) => (
+                <img
+                  key={idx}
+                  src={img}
+                  alt={`profile-${idx}`}
+                  className="w-10 h-10 object-cover rounded-full border"
+                />
+              ))}
+              {images.length > 3 && <span className="text-xs text-gray-500">+{images.length - 3}</span>}
+            </div>
+          )
+        },
+      },
 
-    {
+      {
         accessorKey: "doctorImage",
         header: "Doctor Image",
         cell: ({ row }) => {
-            const product = row.original
-            if (!product?.doctorImage) return <span className=" text-gray-400"> لايوجد </span>
-            
-            return (
-                <img className="size-20 rounded-md object-cover border" src={product?.doctorImage} alt={product?._id} />
-            )
+          const product = row.original
+          if (!product?.doctorImage) return <span className=" text-gray-400"> لايوجد </span>
+
+          return (
+            <img className="size-20 rounded-md object-cover border" src={product?.doctorImage} alt={product?._id} />
+          )
         },
         id: "product-image",
-    },
-    {
-      accessorKey: "name",
-      header: "Name",
-    },
+      },
+      {
+        accessorKey: "name",
+        header: "Name",
+      },
     ],
     []
   )
@@ -132,7 +130,6 @@ export default function DoctorsListing() {
   const paginatedData = doctor?.slice(startIndex, endIndex) || []
   const totalPages = doctor ? Math.ceil(doctor?.length / itemsPerPage) : 1
 
-  // Helper function to get visible page numbers
   const getVisiblePages = () => {
     const delta = 2
     const range = []
@@ -161,9 +158,10 @@ export default function DoctorsListing() {
 
   return (
     <div className=" space-y-7">
+      <AddDoctorDialog />
+
       <DataTable columns={columns} loading={loading} data={paginatedData} />
 
-      {/* Items per page and results info - Responsive layout */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div className="flex items-center gap-3 bg-gray-50 rounded-lg px-4 py-2.5 border border-gray-200 w-fit">
           <span className="text-sm font-medium text-gray-700 whitespace-nowrap">Show:</span>
@@ -174,7 +172,7 @@ export default function DoctorsListing() {
               onChange={(e) => {
                 const newItemsPerPage = Number(e.target.value)
                 setItemsPerPage(newItemsPerPage)
-                setCurrentPage(1) // Reset to first page when changing items per page
+                setCurrentPage(1)
               }}
               className="appearance-none bg-white border-2 border-gray-200 rounded-lg px-3 py-1.5 pr-8 text-sm font-medium text-gray-700 hover:border-blue-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all cursor-pointer min-w-0"
             >
@@ -192,7 +190,6 @@ export default function DoctorsListing() {
           </div>
         </div>
 
-        {/* Results info */}
         <div className="text-sm text-gray-600 text-center sm:text-right">
           Showing <span className="font-medium">{startIndex + 1}</span>-
           <span className="font-medium">{Math.min(endIndex, doctor?.length || 0)}</span> of{" "}
@@ -200,9 +197,7 @@ export default function DoctorsListing() {
         </div>
       </div>
 
-      {/* Pagination controls - Responsive */}
       <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-        {/* Mobile pagination - Simple */}
         <div className="flex sm:hidden items-center gap-2 w-full">
           <button
             onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
@@ -231,9 +226,7 @@ export default function DoctorsListing() {
           </button>
         </div>
 
-        {/* Desktop pagination - Full featured */}
         <div className="hidden sm:flex items-center gap-2">
-          {/* Previous button */}
           <button
             onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
             disabled={currentPage === 1}
@@ -245,7 +238,6 @@ export default function DoctorsListing() {
             Previous
           </button>
 
-          {/* Page numbers */}
           <div className="flex items-center gap-1">
             {totalPages > 1 &&
               getVisiblePages().map((page, index) => {
