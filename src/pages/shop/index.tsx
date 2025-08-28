@@ -96,7 +96,7 @@ export default function Shop() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-zinc-50">
+    <div className="min-h-screen bg-background">
       {/* Enhanced Hero Section */}
       <div className="relative overflow-hidden bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600">
         {/* Animated Background Elements */}
@@ -203,18 +203,18 @@ export default function Shop() {
 
       <div className="container py-16">
         {/* Enhanced Search and Filter Section */}
-        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/50 p-10 mb-16 -mt-32 relative z-10">
+        <div className="bg-background/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-border/50 p-10 mb-16 -mt-32 relative z-10">
           {/* Search Bar with Enhanced Design */}
           <div className="relative max-w-3xl mx-auto mb-10">
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity" />
-              <div className="relative bg-white rounded-2xl border-2 border-gray-100 shadow-lg">
-                <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 h-6 w-6 text-gray-400" />
+              <div className="relative bg-background rounded-2xl border-2 border-border shadow-lg">
+                <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 h-6 w-6 text-foreground/60" />
                 <Input
                   type="search"
                   onChange={(e) => handleSearchChange(e.target.value)}
                   placeholder="ابحث عن المنتجات، العلامات التجارية، أو الفئات..."
-                  className="w-full pl-16 pr-6 py-6 text-lg rounded-2xl border-0 focus:ring-2 focus:ring-purple-500/20 focus:outline-none font-medium"
+                  className="w-full pl-16 pr-6 py-6 text-lg rounded-2xl border-0 focus:ring-2 focus:ring-purple-500/20 focus:outline-none font-medium bg-background text-foreground"
                 />
               </div>
             </div>
@@ -224,7 +224,7 @@ export default function Shop() {
           <div className="flex flex-col xl:flex-row gap-8 items-center justify-between">
             {/* Category Pills with Gradients */}
             <div className="flex items-center gap-4 flex-wrap">
-              <span className="text-gray-800 font-bold text-lg flex items-center gap-3">
+              <span className="text-foreground font-bold text-lg flex items-center gap-3">
                 <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
                   <Filter className="w-5 h-5 text-white" />
                 </div>
@@ -264,8 +264,8 @@ export default function Shop() {
 
             {/* Enhanced View Mode Toggle */}
             <div className="flex items-center gap-4">
-              <span className="text-gray-800 font-bold text-lg">طريقة العرض:</span>
-              <div className="flex items-center gap-2 bg-gray-100 p-2 rounded-2xl">
+              <span className="text-foreground font-bold text-lg">طريقة العرض:</span>
+              <div className="flex items-center gap-2 bg-foreground/10 p-2 rounded-2xl">
                 <Button
                   variant={viewMode === "grid" ? "default" : "ghost"}
                   size="lg"
@@ -273,7 +273,7 @@ export default function Shop() {
                   className={`p-4 rounded-xl transition-all duration-300 ${
                     viewMode === "grid"
                       ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg scale-105"
-                      : "hover:bg-white/80"
+                      : "hover:bg-background/80"
                   }`}
                 >
                   <Grid className="w-5 h-5" />
@@ -285,7 +285,7 @@ export default function Shop() {
                   className={`p-4 rounded-xl transition-all duration-300 ${
                     viewMode === "list"
                       ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg scale-105"
-                      : "hover:bg-white/80"
+                      : "hover:bg-background/80"
                   }`}
                 >
                   <List className="w-5 h-5" />
@@ -318,7 +318,7 @@ export default function Shop() {
               <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center">
                 <TrendingUp className="w-7 h-7 text-white" />
               </div>
-              <h2 className="text-3xl font-black text-gray-900">المنتجات الأكثر مبيعاً</h2>
+              <h2 className="text-3xl font-black text-foreground">المنتجات الأكثر مبيعاً</h2>
               <div className="flex-1 h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full opacity-20" />
             </div>
 
@@ -327,19 +327,19 @@ export default function Shop() {
                 {products.data.slice(0, 3).map((product, index) => (
                   <div
                     key={product._id}
-                    className="group flex items-center gap-6 p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-white/50"
+                    className="group flex items-center gap-6 p-6 bg-background/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-border/50"
                   >
                     <div className="flex items-center justify-center w-14 h-14 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-2xl font-black text-xl group-hover:scale-110 transition-transform duration-300">
                       {index + 1}
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-bold text-gray-900 text-lg mb-2 line-clamp-1 group-hover:text-orange-600 transition-colors">
+                      <h3 className="font-bold text-foreground text-lg mb-2 line-clamp-1 group-hover:text-orange-600 transition-colors">
                         {product.name}
                       </h3>
                       <div className="flex items-center gap-4">
                         <div className="flex items-center gap-2">
                           <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
-                          <span className="text-sm font-semibold text-gray-700">4.8</span>
+                          <span className="text-sm font-semibold text-foreground/80">4.8</span>
                         </div>
                         <span className="text-orange-600 font-black text-lg">${product.price}</span>
                       </div>
@@ -373,13 +373,13 @@ export default function Shop() {
           {!loading && (!products || products.data.length === 0) && (
             <div className="col-span-full">
               <div className="text-center py-24">
-                <div className="w-40 h-40 bg-gradient-to-r from-gray-200 to-gray-300 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
-                  <Package className="w-20 h-20 text-gray-400" />
+                <div className="w-40 h-40 bg-gradient-to-r from-foreground/10 to-foreground/20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
+                  <Package className="w-20 h-20 text-foreground/50" />
                 </div>
-                <h3 className="text-3xl font-black text-gray-900 mb-4">
+                <h3 className="text-3xl font-black text-foreground mb-4">
                   {searchValue ? "لم نجد منتجات تطابق بحثك" : "لا توجد منتجات متاحة حالياً"}
                 </h3>
-                <p className="text-gray-600 max-w-lg mx-auto text-lg leading-relaxed">
+                <p className="text-foreground/80 max-w-lg mx-auto text-lg leading-relaxed">
                   {searchValue
                     ? "جرب استخدام كلمات مختلفة أو تصفح الفئات المتاحة للعثور على ما تبحث عنه"
                     : "نحن نعمل على إضافة منتجات جديدة ومثيرة. تابع معنا قريباً!"}
@@ -445,11 +445,11 @@ export default function Shop() {
         </div>
 
         {/* Enhanced Pagination Section */}
-        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/50 p-8">
+        <div className="bg-background/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-border/50 p-8">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
             {/* Items Per Page */}
             <div className="flex items-center gap-4">
-              <span className="text-gray-800 font-bold text-lg">عدد العناصر في الصفحة:</span>
+              <span className="text-foreground font-bold text-lg">عدد العناصر في الصفحة:</span>
               <div className="min-w-[150px]">
                 <SelectList
                   placeholder="اختر العدد"
@@ -537,7 +537,7 @@ export default function Shop() {
             </Pagination>
 
             {/* Results Info */}
-            <div className="text-gray-700 font-semibold">
+            <div className="text-foreground/80 font-semibold">
               صفحة <span className="text-purple-600 font-black">{query.page}</span> من{" "}
               <span className="text-purple-600 font-black">
                 {Math.ceil((products?.data?.length || 0) / query.limit)}

@@ -43,11 +43,11 @@ export default function Cart() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
+    <div className="min-h-screen bg-background">
       <div className="container px-4 py-8">
         <div className="relative mb-8 md:mb-12">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-600/10 rounded-2xl md:rounded-3xl blur-xl md:blur-3xl"></div>
-          <div className="relative bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl md:rounded-3xl p-5 md:p-8 shadow-lg md:shadow-xl">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-indigo-600/10 rounded-2xl md:rounded-3xl blur-xl md:blur-3xl"></div>
+          <div className="relative bg-background/80 backdrop-blur-sm border border-border/20 rounded-2xl md:rounded-3xl p-5 md:p-8 shadow-lg md:shadow-xl">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-0">
               <div className="flex items-center gap-4 md:gap-6">
                 <div className="relative">
@@ -57,10 +57,10 @@ export default function Cart() {
                   </div>
                 </div>
                 <div>
-                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
                     Shopping Cart
                   </h1>
-                  <p className="text-gray-500 text-sm md:text-base mt-1">Review your selected items</p>
+                  <p className="text-foreground/70 text-sm md:text-base mt-1">Review your selected items</p>
                 </div>
               </div>
 
@@ -78,13 +78,13 @@ export default function Cart() {
           <div className="lg:col-span-3 space-y-8">
             {!products.length ? (
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-gray-100 to-blue-50 rounded-3xl blur-xl opacity-50"></div>
-                <div className="relative bg-white/90 backdrop-blur-sm border-2 border-dashed border-gray-200 rounded-3xl p-16 text-center shadow-xl">
+                <div className="absolute inset-0 bg-gradient-to-r from-foreground/5 to-foreground/10 rounded-3xl blur-xl opacity-50"></div>
+                <div className="relative bg-background/90 backdrop-blur-sm border-2 border-dashed border-border rounded-3xl p-16 text-center shadow-xl">
                   <div className="mx-auto w-48 h-48 mb-8">
-                    <Empty className="text-gray-300 w-full h-full" />
+                    <Empty className="text-foreground/40 w-full h-full" />
                   </div>
-                  <h3 className="text-3xl font-bold text-gray-800 mb-4">Your Cart is Empty</h3>
-                  <p className="text-gray-500 mb-8 max-w-md mx-auto text-lg">
+                  <h3 className="text-3xl font-bold text-foreground mb-4">Your Cart is Empty</h3>
+                  <p className="text-foreground/80 mb-8 max-w-md mx-auto text-lg">
                     Discover amazing products and start building your perfect collection!
                   </p>
                   <Button
@@ -135,8 +135,8 @@ export default function Cart() {
               {/* Order Summary Card */}
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-3xl blur-2xl"></div>
-                <div className="relative bg-white/90 backdrop-blur-sm border border-white/20 rounded-3xl p-8 shadow-2xl">
-                  <h2 className="text-2xl font-bold text-gray-800 mb-8 pb-4 border-b border-gray-100 flex items-center gap-3">
+                <div className="relative bg-background/90 backdrop-blur-sm border border-border/20 rounded-3xl p-8 shadow-2xl">
+                  <h2 className="text-2xl font-bold text-foreground mb-8 pb-4 border-b border-border flex items-center gap-3">
                     <div className="p-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg">
                       <ShoppingCart className="w-5 h-5 text-white" />
                     </div>
@@ -144,34 +144,34 @@ export default function Cart() {
                   </h2>
 
                   <div className="space-y-6 mb-8">
-                    <div className="flex justify-between items-center py-4 border-b border-gray-50">
-                      <span className="text-gray-600 flex items-center gap-2">
+                    <div className="flex justify-between items-center py-4 border-b border-border/50">
+                      <span className="text-foreground/80 flex items-center gap-2">
                         <Gift className="w-4 h-4" />
                         Subtotal
                       </span>
                       <span className="font-semibold text-lg">{formatPriceEGP(totalPrice)}</span>
                     </div>
 
-                    <div className="flex justify-between items-center py-4 border-b border-gray-50">
-                      <span className="text-gray-600 flex items-center gap-2">
+                    <div className="flex justify-between items-center py-4 border-b border-border/50">
+                      <span className="text-foreground/80 flex items-center gap-2">
                         <Truck className="w-4 h-4" />
                         Shipping
                       </span>
-                      <span className="text-emerald-600 font-semibold flex items-center gap-1">
-                        <span className="text-xs bg-emerald-100 px-2 py-1 rounded-full">FREE</span>
+                      <span className="text-emerald-400 font-semibold flex items-center gap-1">
+                        <span className="text-xs bg-emerald-400/15 px-2 py-1 rounded-full">FREE</span>
                       </span>
                     </div>
 
-                    <div className="flex justify-between items-center py-4 border-b border-gray-50">
-                      <span className="text-gray-600 flex items-center gap-2">
+                    <div className="flex justify-between items-center py-4 border-b border-border/50">
+                      <span className="text-foreground/80 flex items-center gap-2">
                         <Shield className="w-4 h-4" />
                         Tax
                       </span>
                       <span className="font-semibold">{formatPriceEGP(0)}</span>
                     </div>
 
-                    <div className="pt-6 border-t-2 border-gray-200 flex justify-between items-center">
-                      <span className="text-xl font-bold text-gray-800">Total</span>
+                    <div className="pt-6 border-t-2 border-border flex justify-between items-center">
+                      <span className="text-xl font-bold text-foreground">Total</span>
                       <div className="text-right">
                         <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                           {formatPriceEGP(totalPrice)}
@@ -207,25 +207,25 @@ export default function Cart() {
               </div>
 
               {/* Trust Badges */}
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-100">
-                <h3 className="font-semibold text-gray-800 mb-4 flex items-center gap-2">
+              <div className="bg-background/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-border/50">
+                <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                   <Shield className="w-5 h-5 text-blue-600" />
                   Why Shop With Us?
                 </h3>
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-sm text-gray-600">
+                  <div className="flex items-center gap-3 text-sm text-foreground/80">
                     <div className="p-1 bg-emerald-100 rounded-full">
                       <Truck className="w-3 h-3 text-emerald-600" />
                     </div>
                     Free shipping on all orders
                   </div>
-                  <div className="flex items-center gap-3 text-sm text-gray-600">
+                  <div className="flex items-center gap-3 text-sm text-foreground/80">
                     <div className="p-1 bg-blue-100 rounded-full">
                       <Shield className="w-3 h-3 text-blue-600" />
                     </div>
                     Secure payment protection
                   </div>
-                  <div className="flex items-center gap-3 text-sm text-gray-600">
+                  <div className="flex items-center gap-3 text-sm text-foreground/80">
                     <div className="p-1 bg-yellow-100 rounded-full">
                       <Star className="w-3 h-3 text-yellow-600" />
                     </div>

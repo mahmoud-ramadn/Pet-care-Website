@@ -49,14 +49,12 @@ export default function Community() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
+    <div className="min-h-screen bg-background">
       <div className="container max-w-2xl mx-auto py-8 px-4">
         {/* Enhanced Header */}
         <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
-            Community
-          </h1>
-          <p className="text-gray-600 text-lg">Connect, share, and discover amazing content</p>
+          <h1 className="text-4xl font-bold text-foreground mb-2">Community</h1>
+          <p className="text-foreground/80 text-lg">Connect, share, and discover amazing content</p>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-4 rounded-full"></div>
         </div>
 
@@ -67,7 +65,7 @@ export default function Community() {
           {DataPosts?.map((item, index) => (
             <article
               key={index}
-              className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200/50 overflow-hidden hover:shadow-2xl hover:scale-[1.01] transition-all duration-300 animate-in fade-in-up"
+              className="bg-background/90 backdrop-blur-sm rounded-2xl shadow-lg border border-border/50 overflow-hidden hover:shadow-2xl hover:scale-[1.01] transition-all duration-300 animate-in fade-in-up"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               {/* Enhanced Post Header */}
@@ -86,16 +84,16 @@ export default function Community() {
                     <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
                   </div>
                   <div>
-                    <p className="font-bold text-gray-900 hover:text-blue-600 cursor-pointer transition-colors duration-200">
+                    <p className="font-bold text-foreground hover:text-blue-600 cursor-pointer transition-colors duration-200">
                       {item.post.userName}
                     </p>
-                    <p className="text-gray-500 text-sm flex items-center">
-                      <span className="w-1 h-1 bg-gray-400 rounded-full mr-2"></span>
+                    <p className="text-foreground/70 text-sm flex items-center">
+                      <span className="w-1 h-1 bg-foreground/50 rounded-full mr-2"></span>
                       {formatDistanceToNow(new Date(item.post.createdAt), { addSuffix: true })}
                     </p>
                   </div>
                 </div>
-                <button className="text-gray-400 hover:text-gray-600 hover:bg-gray-100 p-2 rounded-full transition-all duration-200">
+                <button className="text-foreground/60 hover:text-foreground hover:bg-foreground/10 p-2 rounded-full transition-all duration-200">
                   <MoreHorizontal size={20} />
                 </button>
               </div>
@@ -103,9 +101,9 @@ export default function Community() {
               {/* Enhanced Post Description */}
               {item.post.description && (
                 <div className="px-6 pb-4">
-                  <div className="bg-gray-50/50 rounded-xl p-4 border-l-4 border-blue-500">
-                    <span className="font-semibold text-gray-900 mr-2">{item.post.userName}</span>
-                    <span className="text-gray-700 leading-relaxed">{item.post.description}</span>
+                  <div className="bg-foreground/5 rounded-xl p-4 border-l-4 border-blue-500">
+                    <span className="font-semibold text-foreground mr-2">{item.post.userName}</span>
+                    <span className="text-foreground/80 leading-relaxed">{item.post.description}</span>
                   </div>
                 </div>
               )}
@@ -153,25 +151,25 @@ export default function Community() {
                 {/* Enhanced Likes Count */}
                 {item.post.likesNumber > 0 && (
                   <div className="mb-4">
-                    <p className="font-bold text-gray-900 bg-gradient-to-r from-pink-500 to-red-500 bg-clip-text text-transparent">
+                    <p className="font-bold text-foreground">
                       {item.post.likesNumber} {item.post.likesNumber === 1 ? "like" : "likes"}
                     </p>
                   </div>
                 )}
 
                 {/* Enhanced Comments Section */}
-                <button className="text-gray-500 hover:text-gray-700 text-sm font-medium mb-4 hover:underline transition-all duration-200">
+                <button className="text-foreground/70 hover:text-foreground text-sm font-medium mb-4 hover:underline transition-all duration-200">
                   View all comments
                 </button>
 
                 {/* Enhanced Comment Input */}
-                <div className="flex items-center bg-gray-50/70 rounded-full px-4 py-3 border border-gray-200 hover:border-blue-300 focus-within:border-blue-500 focus-within:bg-white transition-all duration-300">
+                <div className="flex items-center bg-foreground/5 rounded-full px-4 py-3 border border-border hover:border-blue-300 focus-within:border-blue-500 focus-within:bg-background transition-all duration-300">
                   <input
                     type="text"
                     placeholder="Add a thoughtful comment..."
-                    className="flex-1 text-sm outline-none bg-transparent placeholder-gray-400 font-medium"
+                    className="flex-1 text-sm outline-none bg-transparent placeholder-foreground/60 font-medium text-foreground"
                   />
-                  <button className="text-blue-500 hover:text-blue-600 font-bold text-sm ml-3 flex items-center space-x-1 hover:bg-blue-50 px-3 py-1 rounded-full transition-all duration-200">
+                  <button className="text-blue-500 hover:text-blue-600 font-bold text-sm ml-3 flex items-center space-x-1 hover:bg-blue-500/10 px-3 py-1 rounded-full transition-all duration-200">
                     <Send size={16} />
                     <span>Post</span>
                   </button>
@@ -184,12 +182,12 @@ export default function Community() {
         {/* Empty State Enhancement */}
         {DataPosts?.length === 0 && (
           <div className="text-center py-16">
-            <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-12 border border-gray-200">
+            <div className="bg-foreground/5 rounded-2xl p-12 border border-border">
               <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full mx-auto mb-6 flex items-center justify-center">
                 <MessageCircle size={32} className="text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">No posts yet</h3>
-              <p className="text-gray-600 mb-6">Be the first to share something amazing with the community!</p>
+              <h3 className="text-2xl font-bold text-foreground mb-4">No posts yet</h3>
+              <p className="text-foreground/80 mb-6">Be the first to share something amazing with the community!</p>
               <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
             </div>
           </div>

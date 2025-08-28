@@ -60,8 +60,8 @@ export default function Header() {
       <header
         className={`sticky top-0 z-50 w-full transition-all duration-300 ${
           scrolled
-            ? "bg-white/95 backdrop-blur-xl shadow-xl shadow-blue-500/10 border-b border-blue-100/20"
-            : "bg-white/80 backdrop-blur-sm"
+            ? "bg-background/95 backdrop-blur-xl shadow-xl shadow-blue-500/10 border-b border-border"
+            : "bg-background/80 backdrop-blur-sm"
         }`}
       >
         {/* Promo Banner */}
@@ -94,7 +94,7 @@ export default function Header() {
                   {HeaderLinks.map((item) => (
                     <li key={item.labelKey}>
                       <Link
-                        className="group relative py-2 px-1 font-medium text-gray-700 hover:text-blue-600 transition-all duration-200"
+                        className="group relative py-2 px-1 font-medium text-foreground hover:text-blue-600 transition-all duration-200"
                         to={item.href}
                       >
                         <span className="relative z-10">{t(item.labelKey)}</span>
@@ -113,7 +113,7 @@ export default function Header() {
                   <>
                     <Link
                       to="/shop/fav"
-                      className="group flex items-center justify-center relative p-2 text-gray-600 hover:text-red-500 transition-all duration-200"
+                      className="group flex items-center justify-center relative p-2 text-foreground hover:text-red-500 transition-all duration-200"
                       aria-label={t("favoriteProducts")}
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-pink-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
@@ -122,7 +122,7 @@ export default function Header() {
 
                     <Link
                       to="/shop/cart"
-                      className="group relative p-2 flex items-center justify-center  text-gray-600 hover:text-blue-600 transition-all duration-200"
+                      className="group relative p-2 flex items-center justify-center  text-foreground hover:text-blue-600 transition-all duration-200"
                       aria-label={t("shoppingCart")}
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
@@ -152,7 +152,7 @@ export default function Header() {
                 <button
                   type="button"
                   onClick={toggleLanguage}
-                  className="group relative p-2 text-gray-600 hover:text-green-600 transition-all duration-200"
+                  className="group relative p-2 text-foreground hover:text-green-600 transition-all duration-200"
                   aria-label={t("toggleLanguage")}
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-blue-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
@@ -162,7 +162,7 @@ export default function Header() {
                 <button
                   type="button"
                   onClick={toggleTheme}
-                  className="group relative p-2 text-gray-600 hover:text-yellow-600 transition-all duration-200"
+                  className="group relative p-2 text-foreground hover:text-yellow-600 transition-all duration-200"
                   aria-label={t("toggleTheme")}
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-yellow-50 to-blue-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
@@ -175,7 +175,7 @@ export default function Header() {
               </div>
 
               <button
-                className="lg:hidden p-2 text-gray-600 hover:text-blue-600 transition-colors duration-200 focus:outline-none"
+                className="lg:hidden p-2 text-foreground hover:text-blue-600 transition-colors duration-200 focus:outline-none"
                 onClick={() => setMobileMenuOpen(true)}
                 aria-label={t("openMenu")}
               >
@@ -201,18 +201,18 @@ export default function Header() {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed top-0 right-0 h-full w-80 max-w-full bg-white/95 backdrop-blur-xl shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`lg:hidden fixed top-0 right-0 h-full w-80 max-w-full bg-background/95 backdrop-blur-xl shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-100">
           <div className="flex items-center space-x-3">
             <img className="h-8 w-8" src="/logo.webp" alt="logo" loading="lazy" />
-            <span className="font-bold text-gray-800">{t("menu")}</span>
+            <span className="font-bold text-foreground">{t("menu")}</span>
           </div>
           <button
             onClick={closeMobileMenu}
-            className="p-2 text-gray-500 hover:text-red-500 transition-colors duration-200 focus:outline-none group"
+            className="p-2 text-foreground/70 hover:text-red-500 transition-colors duration-200 focus:outline-none group"
             aria-label={t("closeMenu")}
           >
             <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-200" />
@@ -230,7 +230,7 @@ export default function Header() {
                     to={item.href}
                     onClick={closeMobileMenu}
                   >
-                    <span className="font-medium text-gray-700 group-hover:text-blue-600 transition-colors duration-200">
+                    <span className="font-medium text-foreground group-hover:text-blue-600 transition-colors duration-200">
                       {t(item.labelKey)}
                     </span>
                   </Link>
@@ -247,7 +247,7 @@ export default function Header() {
               className="group flex items-center w-full py-3 px-4 bg-gradient-to-r from-green-50 to-blue-50 hover:from-green-100 hover:to-blue-100 rounded-lg transition-all duration-200 active:scale-95"
             >
               <EarthIcon className="w-5 h-5 mr-3 text-green-600 group-hover:rotate-12" />
-              <span className="font-medium text-gray-700 group-hover:text-green-600 transition-colors duration-200">
+              <span className="font-medium text-foreground group-hover:text-green-600 transition-colors duration-200">
                 {t("toggleLanguage")}
               </span>
             </button>
@@ -268,7 +268,7 @@ export default function Header() {
               ) : (
                 <Moon className="w-5 h-5 mr-3 text-blue-600 group-hover:rotate-12" />
               )}
-              <span className="font-medium text-gray-700 group-hover:text-yellow-600 transition-colors duration-200">
+              <span className="font-medium text-foreground group-hover:text-yellow-600 transition-colors duration-200">
                 {t("toggleTheme")}
               </span>
             </button>
@@ -303,7 +303,7 @@ export default function Header() {
                 onClick={closeMobileMenu}
               >
                 <Heart className="w-5 h-5 mr-3 text-red-500" />
-                <span className="font-medium text-gray-700 group-hover:text-red-600">{t("favoriteProducts")}</span>
+                <span className="font-medium text-foreground group-hover:text-red-600">{t("favoriteProducts")}</span>
               </Link>
 
               <Link
@@ -312,7 +312,7 @@ export default function Header() {
                 onClick={closeMobileMenu}
               >
                 <ShoppingBagIcon className="w-5 h-5 mr-3 text-blue-500" />
-                <span className="font-medium text-gray-700 group-hover:text-blue-600">{t("shoppingCart")}</span>
+                <span className="font-medium text-foreground group-hover:text-blue-600">{t("shoppingCart")}</span>
               </Link>
             </div>
           )}
