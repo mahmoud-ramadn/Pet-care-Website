@@ -78,8 +78,7 @@ export default function UserProfileUpdateForm({ value }: Props) {
         description: "تم حفظ جميع التغييرات",
         duration: 4000,
       })
-    } catch (error) {
-      console.error("Error updating profile:", error)
+    } catch {
       toast.error("حدث خطأ أثناء التحديث", {
         description: "يرجى المحاولة مرة أخرى",
       })
@@ -92,18 +91,18 @@ export default function UserProfileUpdateForm({ value }: Props) {
     <div className="max-w-2xl mx-auto p-6">
       {/* Header Section */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full shadow-lg mb-4">
-          <Edit3 className="w-8 h-8 text-white" />
+        <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full shadow-lg mb-4">
+          <Edit3 className="w-8 h-8 text-primary-foreground" />
         </div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">تحديث الملف الشخصي</h1>
-        <p className="text-gray-600">قم بتحديث معلوماتك الشخصية وصورة الملف الشخصي</p>
+        <h1 className="text-3xl font-bold text-foreground mb-2">تحديث الملف الشخصي</h1>
+        <p className="text-muted-foreground">قم بتحديث معلوماتك الشخصية وصورة الملف الشخصي</p>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 p-6 border-b border-gray-100">
+      <div className="bg-card rounded-2xl shadow-xl border border-border overflow-hidden">
+        <div className="bg-gradient-to-r from-accent/20 via-primary/10 to-secondary/10 p-6 border-b border-border">
           <div className="flex items-center space-x-3 rtl:space-x-reverse">
-            <User className="w-6 h-6 text-blue-600" />
-            <h2 className="text-xl font-semibold text-gray-900">المعلومات الشخصية</h2>
+            <User className="w-6 h-6 text-primary" />
+            <h2 className="text-xl font-semibold text-foreground">المعلومات الشخصية</h2>
           </div>
         </div>
 
@@ -117,7 +116,7 @@ export default function UserProfileUpdateForm({ value }: Props) {
                   name="profileImage"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-lg font-medium text-gray-900 flex items-center gap-2">
+                      <FormLabel className="text-lg font-medium text-foreground flex items-center gap-2">
                         <Camera className="w-5 h-5" />
                         صورة الملف الشخصي
                       </FormLabel>
@@ -136,14 +135,14 @@ export default function UserProfileUpdateForm({ value }: Props) {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base font-medium text-gray-900 flex items-center gap-2">
+                        <FormLabel className="text-base font-medium text-foreground flex items-center gap-2">
                           <User className="w-4 h-4" />
                           اسم المستخدم
                         </FormLabel>
                         <FormControl>
                           <Input
                             placeholder="اسم المستخدم"
-                            className="h-12 border-2 border-gray-200 focus:border-blue-500 rounded-xl"
+                            className="h-12 border-2 border-input focus:border-primary bg-background text-foreground rounded-xl"
                             {...field}
                           />
                         </FormControl>
@@ -157,7 +156,7 @@ export default function UserProfileUpdateForm({ value }: Props) {
                     name="phoneNumber"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base font-medium text-gray-900 flex items-center gap-2">
+                        <FormLabel className="text-base font-medium text-foreground flex items-center gap-2">
                           <Phone className="w-4 h-4" />
                           رقم الهاتف
                         </FormLabel>
@@ -165,7 +164,7 @@ export default function UserProfileUpdateForm({ value }: Props) {
                           <Input
                             type="tel"
                             placeholder="رقم الهاتف"
-                            className="h-12 border-2 border-gray-200 focus:border-blue-500 rounded-xl"
+                            className="h-12 border-2 border-input focus:border-primary bg-background text-foreground rounded-xl"
                             {...field}
                           />
                         </FormControl>
@@ -179,14 +178,14 @@ export default function UserProfileUpdateForm({ value }: Props) {
                     name="email"
                     render={({ field }) => (
                       <FormItem className="md:col-span-2">
-                        <FormLabel className="text-base font-medium text-gray-900 flex items-center gap-2">
+                        <FormLabel className="text-base font-medium text-foreground flex items-center gap-2">
                           <Mail className="w-4 h-4" />
                           البريد الإلكتروني
                         </FormLabel>
                         <FormControl>
                           <Input
                             placeholder="example@email.com"
-                            className="h-12 border-2 border-gray-200 focus:border-blue-500 rounded-xl"
+                            className="h-12 border-2 border-input focus:border-primary bg-background text-foreground rounded-xl"
                             {...field}
                           />
                         </FormControl>
@@ -197,11 +196,11 @@ export default function UserProfileUpdateForm({ value }: Props) {
                 </div>
 
                 {/* Submit */}
-                <div className="pt-6 border-t border-gray-100">
+                <div className="pt-6 border-t border-border">
                   <ButtonWithLoading
                     type="submit"
                     size="lg"
-                    className="w-full h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all"
+                    className="w-full h-14 bg-gradient-to-r from-primary to-secondary hover:from-primary hover:to-secondary text-primary-foreground font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all"
                     loading={loading}
                     onClick={form.handleSubmit(onSubmit)}
                   >
@@ -216,14 +215,14 @@ export default function UserProfileUpdateForm({ value }: Props) {
       </div>
 
       {/* Help Text */}
-      <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+      <div className="mt-6 p-4 bg-accent/20 border border-accent rounded-xl">
         <div className="flex items-start space-x-3 rtl:space-x-reverse">
-          <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-            <Check className="w-4 h-4 text-white" />
+          <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+            <Check className="w-4 h-4 text-primary-foreground" />
           </div>
           <div>
-            <h3 className="text-sm font-medium text-blue-900">نصائح مفيدة</h3>
-            <ul className="mt-2 text-sm text-blue-700 space-y-1">
+            <h3 className="text-sm font-medium text-foreground">نصائح مفيدة</h3>
+            <ul className="mt-2 text-sm text-muted-foreground space-y-1">
               <li>• استخدم صورة واضحة وحديثة</li>
               <li>• تأكد من أن بياناتك صحيحة ومحدثة</li>
               <li>• حجم الصورة يجب أن يكون أقل من 5 ميجابايت</li>

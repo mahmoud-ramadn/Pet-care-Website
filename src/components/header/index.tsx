@@ -65,7 +65,7 @@ export default function Header() {
         }`}
       >
         {/* Promo Banner */}
-        <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 text-white text-center py-2 text-sm font-medium">
+        <div className="bg-gradient-to-r from-primary via-secondary to-primary text-foreground text-center py-2 text-sm font-medium">
           <div className="container mx-auto px-4 flex items-center justify-center space-x-2 overflow-hidden">
             <SparklesIcon className="w-4 h-4 animate-pulse flex-shrink-0" />
             <span className="truncate">🎉 Special Offer: 20% off all grooming services this week!</span>
@@ -78,8 +78,8 @@ export default function Header() {
             {/* Logo and Desktop Navigation */}
             <div className="flex items-center lg:gap-x-12 md:gap-x-8">
               <Link to="/" className="group relative shrink-0" aria-label="Home">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="relative p-2 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl group-hover:from-blue-100 group-hover:to-purple-100 transition-all duration-300 group-hover:scale-105">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative p-2 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl group-hover:from-primary/20 group-hover:to-secondary/20 transition-all duration-300 group-hover:scale-105">
                   <img
                     className="h-10 w-10 md:h-12 md:w-12 object-contain drop-shadow-sm"
                     src="/logo.webp"
@@ -98,7 +98,7 @@ export default function Header() {
                         to={item.href}
                       >
                         <span className="relative z-10">{t(item.labelKey)}</span>
-                        <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300"></div>
+                        <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-300"></div>
                       </Link>
                     </li>
                   ))}
@@ -122,7 +122,7 @@ export default function Header() {
 
                     <Link
                       to="/shop/cart"
-                      className="group relative p-2 flex items-center justify-center  text-foreground hover:text-blue-600 transition-all duration-200"
+                      className="group relative p-2 flex items-center justify-center  text-foreground hover:text-primary transition-all duration-200"
                       aria-label={t("shoppingCart")}
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
@@ -152,7 +152,7 @@ export default function Header() {
                 <button
                   type="button"
                   onClick={toggleLanguage}
-                  className="group relative p-2 text-foreground hover:text-green-600 transition-all duration-200"
+                  className="group relative p-2 text-foreground hover:text-primary transition-all duration-200"
                   aria-label={t("toggleLanguage")}
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-blue-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
@@ -162,7 +162,7 @@ export default function Header() {
                 <button
                   type="button"
                   onClick={toggleTheme}
-                  className="group relative p-2 text-foreground hover:text-yellow-600 transition-all duration-200"
+                  className="group relative p-2 text-foreground hover:text-primary transition-all duration-200"
                   aria-label={t("toggleTheme")}
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-yellow-50 to-blue-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
@@ -175,7 +175,7 @@ export default function Header() {
               </div>
 
               <button
-                className="lg:hidden p-2 text-foreground hover:text-blue-600 transition-colors duration-200 focus:outline-none"
+                className="lg:hidden p-2 text-foreground hover:text-primary transition-colors duration-200 focus:outline-none"
                 onClick={() => setMobileMenuOpen(true)}
                 aria-label={t("openMenu")}
               >
@@ -226,11 +226,11 @@ export default function Header() {
               {HeaderLinks.map((item) => (
                 <li key={item.labelKey}>
                   <Link
-                    className="group flex items-center py-3 px-4 bg-gradient-to-r from-gray-500 to-blue-500 hover:from-blue-50 hover:to-purple-50 rounded-lg transition-all duration-200 active:scale-95"
+                    className="group flex items-center py-3 px-4 bg-gradient-to-r from-accent to-primary hover:from-accent/20 hover:to-primary/20 rounded-lg transition-all duration-200 active:scale-95"
                     to={item.href}
                     onClick={closeMobileMenu}
                   >
-                    <span className="font-medium  group-hover:text-blue-600 transition-colors duration-200">
+                    <span className="font-medium text-foreground group-hover:text-primary transition-colors duration-200">
                       {t(item.labelKey)}
                     </span>
                   </Link>
@@ -244,10 +244,10 @@ export default function Header() {
             <button
               type="button"
               onClick={toggleLanguage}
-              className="group flex items-center w-full py-3 px-4 bg-gradient-to-r from-green-50 to-blue-50 hover:from-green-100 hover:to-blue-100 rounded-lg transition-all duration-200 active:scale-95"
+              className="group flex items-center w-full py-3 px-4 bg-gradient-to-r from-accent/20 to-primary/20 hover:from-accent/30 hover:to-primary/30 rounded-lg transition-all duration-200 active:scale-95"
             >
-              <EarthIcon className="w-5 h-5 mr-3 text-green-600 group-hover:rotate-12" />
-              <span className="font-medium text-black group-hover:text-green-600 transition-colors duration-200">
+              <EarthIcon className="w-5 h-5 mr-3 text-primary group-hover:rotate-12" />
+              <span className="font-medium text-foreground group-hover:text-primary transition-colors duration-200">
                 {t("toggleLanguage")}
               </span>
             </button>
@@ -261,14 +261,14 @@ export default function Header() {
                 toggleTheme()
                 if (mobileMenuOpen) closeMobileMenu()
               }}
-              className="group flex items-center w-full py-3 px-4 bg-gradient-to-r from-yellow-50 to-blue-50 hover:from-yellow-100 hover:to-blue-100 rounded-lg transition-all duration-200 active:scale-95"
+              className="group flex items-center w-full py-3 px-4 bg-gradient-to-r from-accent/20 to-primary/20 hover:from-accent/30 hover:to-primary/30 rounded-lg transition-all duration-200 active:scale-95"
             >
               {theme === "dark" ? (
-                <Sun className="w-5 h-5 mr-3 text-yellow-600 group-hover:rotate-12" />
+                <Sun className="w-5 h-5 mr-3 text-primary group-hover:rotate-12" />
               ) : (
-                <Moon className="w-5 h-5 mr-3 text-blue-600 group-hover:rotate-12" />
+                <Moon className="w-5 h-5 mr-3 text-primary group-hover:rotate-12" />
               )}
-              <span className="font-medium  text-black group-hover:text-yellow-600 transition-colors duration-200">
+              <span className="font-medium  text-foreground group-hover:text-primary transition-colors duration-200">
                 {t("toggleTheme")}
               </span>
             </button>
@@ -278,14 +278,14 @@ export default function Header() {
           {!token && (
             <div className="space-y-3 pt-4 border-t border-gray-100">
               <Link
-                className="block py-3 px-6 bg-gradient-to-r from-blue-600 to-purple-600   text-primary rounded-xl text-center font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-200 active:scale-95"
+                className="block py-3 px-6 bg-gradient-to-r from-primary to-secondary   text-foreground rounded-xl text-center font-medium hover:from-primary hover:to-secondary transition-all duration-200 active:scale-95"
                 to="/Signup"
                 onClick={closeMobileMenu}
               >
                 {t("SignupPageLink")}
               </Link>
               <Link
-                className="block py-3 px-6 border-2 border-blue-600 text-blue-600 rounded-xl text-center font-medium hover:bg-blue-600 hover:text-white transition-all duration-200 active:scale-95"
+                className="block py-3 px-6 border-2 border-primary text-primary rounded-xl text-center font-medium hover:bg-primary/20 transition-all duration-200 active:scale-95"
                 to="/login"
                 onClick={closeMobileMenu}
               >
