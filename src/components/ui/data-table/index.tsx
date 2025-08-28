@@ -215,8 +215,9 @@ export default function DataTable<TData, TValue>({
                             className={cn(
                               "py-4 px-4 sm:px-6 transition-all duration-200",
                               "text-right", // RTL alignment
-                              "border-l border-gray-200/20 last:border-l-0 group-hover:border-blue-200/40", // RTL borders
+                              "border-l border-gray-200/20 last:border-l-0 group-hover:border-blue-200/40 text-black", // RTL borders
                               // Responsive text sizing
+                              
                               "text-sm sm:text-base"
                             )}
                           >
