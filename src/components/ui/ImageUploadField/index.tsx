@@ -11,7 +11,7 @@ type Props = {
   onChange: (file?: File) => void
 }
 
-export default function ImageUploadField({ label = "الصورة الرئيسية", value, onChange }: Props) {
+export default function ImageUploadField({ label = "", value, onChange }: Props) {
   const [preview, setPreview] = useState<string | null>(null)
   const [isDragOver, setIsDragOver] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)

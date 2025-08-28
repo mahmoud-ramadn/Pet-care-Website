@@ -27,8 +27,8 @@ export default function SquareNavigation({
       className={cn(
         "group relative flex flex-col items-center justify-center gap-6 p-8",
         "bg-gradient-to-br from-white via-gray-50/50 to-white",
-        "backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl",
-        "border border-gray-200/50 hover:border-primary/30",
+        "backdrop-blur-sm rounded-2xl border border-blue-200 ",
+        " hover:border-primary/30",
         "transition-all duration-500 transform  ",
         "overflow-hidden",
         "before:absolute before:inset-0 before:bg-gradient-to-br before:from-primary/5 before:via-transparent before:to-secondary/5",
@@ -53,7 +53,7 @@ export default function SquareNavigation({
         {/* Gradient border effect */}
         <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-        <div className="relative bg-gradient-to-br from-white to-gray-50 rounded-xl p-4 shadow-md group-hover:shadow-xl transition-all duration-500 border border-gray-100">
+        <div className="relative bg-gradient-to-br from-white to-gray-50 rounded-xl  shadow-md group-hover:shadow-xl transition-all duration-500 border border-gray-100">
           <img
             className={cn(
               "size-32 object-cover rounded-lg transition-all duration-700",

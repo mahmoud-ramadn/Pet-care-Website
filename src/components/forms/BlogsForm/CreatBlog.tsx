@@ -1,29 +1,17 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { toast } from "sonner"
 
+import { useState } from "react"
+import { useForm } from "react-hook-form"
 
+import ImageUploadField from "@/components/ui/ImageUploadField"
+import { ButtonWithLoading } from "@/components/ui/button"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormLoading, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { creatblog } from "@/apis/blogs"
 
-
-
-import ImageUploadField from "@/components/ui/ImageUploadField";
-import { ButtonWithLoading } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormLoading, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-
-
-
-import { creatblog } from "@/apis/blogs";
-
-
-
-import { BlogFormSchema, type TypeBlogFormSchema } from "./shema";
-
-
-
-
+import { BlogFormSchema, type TypeBlogFormSchema } from "./shema"
 
 type Props = {
   values?: TypeBlogFormSchema
@@ -100,18 +88,17 @@ export default function CreateBlogForm({ values, onSuccess }: Props) {
                 )}
               />
               <div className="md:col-span-2">
-
-              <FormField
-              control={form.control}
-              name="blogImage"
-              render={({ field }) => (
-                <ImageUploadField
-                  label="صورة المدونة"
-                  value={field.value}
-                  onChange={(file) => field.onChange(file)}
+                <FormField
+                  control={form.control}
+                  name="blogImage"
+                  render={({ field }) => (
+                    <ImageUploadField
+                      label="صورة المدونة"
+                      value={field.value}
+                      onChange={(file) => field.onChange(file)}
+                    />
+                  )}
                 />
-              )}
-            />
               </div>
             </div>
 

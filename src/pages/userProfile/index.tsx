@@ -228,7 +228,7 @@ export default function UserProfile() {
 
                               {/* Action Button */}
                               <Link
-                               to={""}
+                                to={""}
                                 className="flex items-center justify-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-lg sm:rounded-xl hover:from-pink-600 hover:to-rose-600 transition-all duration-200 font-medium text-xs sm:text-sm shadow-md sm:shadow-lg hover:shadow-xl transform hover:scale-105 group/btn whitespace-nowrap"
                               >
                                 <span className="hidden sm:inline">عرض التفاصيل</span>

@@ -1,24 +1,12 @@
-import type { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table"
 
+import { useEffect, useMemo, useState } from "react"
 
+import DataTable from "@/components/ui/data-table"
 
-import { useEffect, useMemo, useState } from "react";
+import { useBlog } from "@/hooks/blogs"
 
-
-
-import DataTable from "@/components/ui/data-table";
-
-
-
-import { useBlog } from "@/hooks/blogs";
-
-
-
-import { AddBlogDialog } from "./AddBlogDialog";
-
-
-
-
+import { AddBlogDialog } from "./AddBlogDialog"
 
 export default function BlogsListing() {
   const { value: blog, loading } = useBlog()

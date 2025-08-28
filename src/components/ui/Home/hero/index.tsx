@@ -70,6 +70,9 @@ export default function Hero() {
   const [ratingCount, ratingRef] = useCounter(5)
   const [supportCount, supportRef] = useCounter(24)
 
+  // State for image loading
+  const [imageLoaded, setImageLoaded] = useState(false)
+
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Background with overlay */}
@@ -80,7 +83,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900/30 via-blue-900/20 to-purple-900/40"></div>
       </div>
 
-      {/* Decorative elements */}
+      {/* Simplified decorative elements */}
       <div className="absolute top-20 right-10 w-32 h-32 bg-blue-500/20 rounded-full blur-xl animate-pulse"></div>
       <div className="absolute bottom-40 left-20 w-20 h-20 bg-purple-500/20 rounded-full blur-lg animate-pulse delay-1000"></div>
 
@@ -142,30 +145,48 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Image Section */}
             <div className="relative flex items-center justify-center lg:justify-end">
-              {/* Floating elements */}
               <div className="absolute top-10 right-20 w-3 h-3 bg-blue-400 rounded-full animate-bounce"></div>
-              <div className="absolute top-32 right-10 w-2 h-2 bg-purple-400 rounded-full animate-bounce delay-500"></div>
               <div className="absolute bottom-20 right-32 w-4 h-4 bg-indigo-400 rounded-full animate-bounce delay-1000"></div>
 
-              {/* Main image container */}
               <div className="relative group">
-                {/* Glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-purple-600/30 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
-                {/* Blob background */}
-                <div className="relative z-10 shrink-0">
+                <div className="relative z-10">
+                  {!imageLoaded && (
+                    <div className="w-full max-w-[300px] h-[300px] bg-violet-100/20 rounded-full animate-pulse flex items-center justify-center">
+                      <div className="w-16 h-16 border-4 border-blue-400/30 border-t-blue-400 rounded-full animate-spin"></div>
+                    </div>
+                  )}
+
                   <img
                     src={dog}
                     alt="Happy dog wearing sunglasses"
-                    className="w-full shrink-0  bg-violet-100/20 max-h-[300px] rounded-full max-w-[600px] drop-shadow-2xl transform group-hover:scale-105 transition-transform duration-500"
+                    width={300}
+                    height={300}
+                    loading="lazy"
+                    decoding="async"
+                    onLoad={() => setImageLoaded(true)}
+                    className={`
+                      max-w-[300px] max-h-[300px] w-full h-auto 
+                      bg-violet-100/20 rounded-full object-cover
+                      transition-all duration-500 will-change-transform
+                      ${imageLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"}
+                      hover:scale-105
+                    `}
+                    style={{
+                      filter: "drop-shadow(0 25px 25px rgba(0, 0, 0, 0.15))",
+                    }}
                   />
                 </div>
 
-                {/* Decorative rings */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border-2 border-white/10 rounded-full animate-spin-slow"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/5 rounded-full animate-spin-reverse"></div>
+                <div
+                  className="absolute top-1/2 left-1/2 w-[350px] h-[350px] border border-white/10 rounded-full pointer-events-none"
+                  style={{
+                    transform: "translate(-50%, -50%)",
+                    animation: "spin 20s linear infinite",
+                  }}
+                ></div>
               </div>
             </div>
           </div>

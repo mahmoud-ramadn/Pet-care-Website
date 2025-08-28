@@ -1,25 +1,13 @@
-import type { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table"
 
+import { useMemo } from "react"
 
+import { formatPriceEGP } from "@/lib/FormatPriceEGp"
 
-import { useMemo } from "react";
+import { AddItemDialog } from "@/components/ui/AddItem"
+import DataTable from "@/components/ui/data-table"
 
-
-
-import { formatPriceEGP } from "@/lib/FormatPriceEGp";
-
-
-
-import { AddItemDialog } from "@/components/ui/AddItem";
-import DataTable from "@/components/ui/data-table";
-
-
-
-import { useProducts } from "@/hooks/product";
-
-
-
-
+import { useProducts } from "@/hooks/product"
 
 export default function ProductListing() {
   const { value: products, loading } = useProducts()

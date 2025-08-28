@@ -125,7 +125,6 @@ export default function UserProfileUpdateForm({ value }: Props) {
                         <ImageUpload
                           value={field.value}
                           onChange={(file) => field.onChange(file)}
-                          label="اختر صورة أو اسحبها هنا"
                         />
                       </FormControl>
                       <FormMessage />
