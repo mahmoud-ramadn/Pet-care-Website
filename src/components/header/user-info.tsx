@@ -40,7 +40,7 @@ export default function UserInfo() {
         <Button
           size="lg"
           variant="ghost"
-          className="flex items-center gap-3 rounded-xl  bg-white hover:bg-gray-50 px-3 py-2 shadow-sm border border-gray-200 transition-all duration-200 hover:shadow-md"
+          className="flex items-center gap-3 rounded-xl   dark:bg-gradient-to-r from-black to to-blue-700 bg-white hover:bg-gray-50  shadow-sm border border-gray-200 transition-all duration-200 hover:shadow-md"
           aria-label="User menu"
         >
           <Avatar className="h-8 w-8 rounded-lg  overflow-hidden border border-gray-200">
@@ -50,21 +50,21 @@ export default function UserInfo() {
             </AvatarFallback>
           </Avatar>
           <div className="hidden md:block text-left text-sm leading-tight">
-            <p className="font-semibold text-gray-800 truncate max-w-[120px]">{value?.name}</p>
-            <p className="text-xs text-gray-500 truncate max-w-[120px]">{value?.email}</p>
+            <p className="font-semibold dark:text-white text-gray-800 truncate max-w-[120px]">{value?.name}</p>
+            <p className="text-xs dark:text-white text-gray-500 truncate max-w-[120px]">{value?.email}</p>
           </div>
           <ChevronDown className="ml-1 size-4 text-gray-500 transition-transform duration-200 group-data-[state=open]:rotate-180" />
         </Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
-        className="min-w-56 rounded-xl border z-10  border-gray-200 shadow-xl bg-white p-1.5 will-change-[opacity,transform] data-[side=bottom]:animate-slideUpAndFade data-[side=right]:animate-slideLeftAndFade"
+        className="min-w-56 rounded-xl border z-10  border-gray-200 shadow-xl dark:bg-gradient-to-r from-black to to-blue-700 bg-white p-1.5 will-change-[opacity,transform] data-[side=bottom]:animate-slideUpAndFade data-[side=right]:animate-slideLeftAndFade"
         side={isMobile ? "bottom" : "right"}
         align="end"
         sideOffset={8}
         collisionPadding={16}
       >
-        <DropdownMenuLabel className="p-3 font-normal hover:bg-gray-50 rounded-lg transition-colors">
+        <DropdownMenuLabel className="p-3 font-normal rounded-lg transition-colors">
           <div className="flex items-center gap-3">
             <Avatar className="h-10 w-10 rounded-lg border border-gray-200">
               <AvatarImage
@@ -77,7 +77,7 @@ export default function UserInfo() {
               </AvatarFallback>
             </Avatar>
             <Link to={`/user/${value?._id}`} className="text-sm overflow-hidden">
-              <p className="font-semibold  dark:text-blue-950">{value?.name}</p>
+              <p className="font-semibold  dark:text-white">{value?.name}</p>
               <p className="text-xs text-gray-500 truncate">{value?.email}</p>
             </Link>
           </div>
