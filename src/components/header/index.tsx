@@ -226,11 +226,11 @@ export default function Header() {
               {HeaderLinks.map((item) => (
                 <li key={item.labelKey}>
                   <Link
-                    className="group flex items-center py-3 px-4 bg-gradient-to-r from-gray-50 to-blue-50 hover:from-blue-50 hover:to-purple-50 rounded-lg transition-all duration-200 active:scale-95"
+                    className="group flex items-center py-3 px-4 bg-gradient-to-r from-gray-500 to-blue-500 hover:from-blue-50 hover:to-purple-50 rounded-lg transition-all duration-200 active:scale-95"
                     to={item.href}
                     onClick={closeMobileMenu}
                   >
-                    <span className="font-medium text-foreground group-hover:text-blue-600 transition-colors duration-200">
+                    <span className="font-medium  group-hover:text-blue-600 transition-colors duration-200">
                       {t(item.labelKey)}
                     </span>
                   </Link>
@@ -247,7 +247,7 @@ export default function Header() {
               className="group flex items-center w-full py-3 px-4 bg-gradient-to-r from-green-50 to-blue-50 hover:from-green-100 hover:to-blue-100 rounded-lg transition-all duration-200 active:scale-95"
             >
               <EarthIcon className="w-5 h-5 mr-3 text-green-600 group-hover:rotate-12" />
-              <span className="font-medium text-foreground group-hover:text-green-600 transition-colors duration-200">
+              <span className="font-medium text-black group-hover:text-green-600 transition-colors duration-200">
                 {t("toggleLanguage")}
               </span>
             </button>
@@ -268,7 +268,7 @@ export default function Header() {
               ) : (
                 <Moon className="w-5 h-5 mr-3 text-blue-600 group-hover:rotate-12" />
               )}
-              <span className="font-medium text-foreground group-hover:text-yellow-600 transition-colors duration-200">
+              <span className="font-medium  text-black group-hover:text-yellow-600 transition-colors duration-200">
                 {t("toggleTheme")}
               </span>
             </button>
@@ -278,7 +278,7 @@ export default function Header() {
           {!token && (
             <div className="space-y-3 pt-4 border-t border-gray-100">
               <Link
-                className="block py-3 px-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl text-center font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-200 active:scale-95"
+                className="block py-3 px-6 bg-gradient-to-r from-blue-600 to-purple-600   text-primary rounded-xl text-center font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-200 active:scale-95"
                 to="/Signup"
                 onClick={closeMobileMenu}
               >
@@ -299,7 +299,7 @@ export default function Header() {
             <div className="space-y-1 pt-4 border-t border-gray-100">
               <Link
                 to="/shop/fav"
-                className="group flex items-center py-3 px-4 bg-gradient-to-r from-red-50 to-pink-50 hover:from-red-100 hover:to-pink-100 rounded-lg transition-all duration-200 active:scale-95"
+                className="group flex items-center py-3 px-4 bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-100 hover:to-pink-100 rounded-lg transition-all duration-200 active:scale-95"
                 onClick={closeMobileMenu}
               >
                 <Heart className="w-5 h-5 mr-3 text-red-500" />
@@ -308,7 +308,7 @@ export default function Header() {
 
               <Link
                 to="/shop/cart"
-                className="group flex items-center py-3 px-4 bg-gradient-to-r from-blue-50 to-purple-50 hover:from-blue-100 hover:to-purple-100 rounded-lg transition-all duration-200 active:scale-95"
+                className="group flex items-center py-3 px-4 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-100 hover:to-purple-100 rounded-lg transition-all duration-200 active:scale-95"
                 onClick={closeMobileMenu}
               >
                 <ShoppingBagIcon className="w-5 h-5 mr-3 text-blue-500" />
