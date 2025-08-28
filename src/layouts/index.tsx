@@ -5,6 +5,8 @@ import { Suspense, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { Outlet } from "react-router"
 
+import ErrorBoundary from "@/components/ui/ErrorBoundary"
+import LayoutWrapper from "@/components/ui/LayoutWrapper"
 import GlobalFallback from "@/components/ui/global-fallback"
 
 import { TanstackProvider } from "@/components/global-provider/tanstack-provider"
@@ -23,9 +25,13 @@ export default function Layout() {
     <main>
       <NuqsAdapter>
         <TanstackProvider>
-          <Suspense fallback={<GlobalFallback />}>
-            <Outlet />
-          </Suspense>
+          <ErrorBoundary>
+            <LayoutWrapper>
+              <Suspense fallback={<GlobalFallback />}>
+                <Outlet />
+              </Suspense>
+            </LayoutWrapper>
+          </ErrorBoundary>
           <Toaster />
         </TanstackProvider>
       </NuqsAdapter>

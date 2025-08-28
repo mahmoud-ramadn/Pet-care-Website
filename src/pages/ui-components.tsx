@@ -122,23 +122,34 @@
 //         </div>
 //     )
 // }
+import ErrorTest from "@/components/ui/ErrorTest"
 import SwiperWrapper from "@/components/ui/SwiperWrapper"
 import MultiSelectDemo from "@/components/ui/mulitSelection"
 import UiTitle from "@/components/ui/ui-title"
 
 export default function UiComponents() {
   return (
-    <div className=" container">
-      <SwiperWrapper>
-        {[...Array(8)].map((_, i) => (
-          <div key={i} className="h-40 bg-blue-500 text-white flex items-center justify-center rounded">
-            Slide {i + 1}
-          </div>
-        ))}
-      </SwiperWrapper>
-      <UiTitle>Grooming Reviews</UiTitle>
+    <div className="container py-10 space-y-10">
+      <div>
+        <UiTitle>Error Handling Test</UiTitle>
+        <ErrorTest />
+      </div>
 
-      <MultiSelectDemo />
+      <div>
+        <UiTitle>Swiper Demo</UiTitle>
+        <SwiperWrapper>
+          {[...Array(8)].map((_, i) => (
+            <div key={i} className="h-40 bg-blue-500 text-white flex items-center justify-center rounded">
+              Slide {i + 1}
+            </div>
+          ))}
+        </SwiperWrapper>
+      </div>
+
+      <div>
+        <UiTitle>Grooming Reviews</UiTitle>
+        <MultiSelectDemo />
+      </div>
     </div>
   )
 }

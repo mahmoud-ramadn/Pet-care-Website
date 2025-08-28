@@ -24,12 +24,12 @@ export const router = createBrowserRouter([
       AuthRoutes,
       RoleBase,
       {
-        path: "*",
-        Component: NotFound,
-      },
-      {
         path: "ui",
         Component: UI,
+      },
+      {
+        path: "*",
+        Component: NotFound,
       },
     ],
   },
