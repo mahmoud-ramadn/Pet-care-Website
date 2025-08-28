@@ -9,6 +9,16 @@
   "SignupPageLink": "Create an Account",
   "LoginPageLink": "login",
   "toggleLanguage": " toggleLanguage",
+  "toggleTheme": "Toggle theme",
+  "favoriteProducts": "Favorite products",
+  "shoppingCart": "Shopping cart",
+  "openMenu": "Open menu",
+  "closeMenu": "Close menu",
+  "menu": "Menu",
+  "header": {
+    "promo": "🎉 Special Offer: 20% off all grooming services this week!",
+    "logoAlt": "Pet Care Logo"
+  },
   "footer": {
     "getInTouch": "Let's Get In Touch",
     "emailPlaceholder": "Enter Your Email",
@@ -20,12 +30,26 @@
   "groomingReview": "Grooming Review",
   "mainHeroText": "Your Pets, our priority",
   "mainHeroParagraph": "Spend extra time & love with Dog walking",
+  "hero": {
+    "badge": "Premium Pet Care Services",
+    "headingPrefix": "Taking Care of Your",
+    "headingEmphasis": "Smart Dog!",
+    "description": "Experience premium products and exceptional services designed specifically for your beloved furry companion",
+    "ctaBook": "Book Appointment",
+    "ctaLearn": "Learn More",
+    "stats": {
+      "happyClients": "Happy Clients",
+      "rating": "Rating",
+      "support": "Support"
+    },
+    "altDog": "Happy dog wearing sunglasses"
+  },
   "petLives": {
     "title": "Your Pet lives for the day, the hour, even for the moment.",
     "desc1": "All employees at Scooby have been carefully selected. Each employee always has the safety and care of your Pet in mind.",
     "desc2": "Contact Us to schedule your services today!"
   },
-  "adoption":{
-    "HeroText":"Find your new best friend"
+  "adoption": {
+    "HeroText": "Find your new best friend"
   }
 }

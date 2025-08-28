@@ -1,6 +1,6 @@
 import { useAtomValue } from "jotai"
 import { debounce } from "lodash-es"
-import { EarthIcon, Heart, Menu, ShoppingBagIcon, SparklesIcon, X } from "lucide-react"
+import { EarthIcon, Heart, Menu, Moon, ShoppingBagIcon, SparklesIcon, Sun, X } from "lucide-react"
 
 import { useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -8,6 +8,7 @@ import { Link } from "react-router-dom"
 
 import { HeaderLinks } from "@/Constants/main"
 import { tokenAtom } from "@/atoms"
+import { useTheme } from "@/components/global-provider/theme-provider"
 import i18n from "@/i18n"
 
 import UserInfo from "./user-info"
@@ -18,11 +19,12 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024)
+  const { theme, toggleTheme } = useTheme()
 
   // Debounce scroll handler for better performance
   const handleScroll = useCallback(() => {
     if (isMobile) setScrolled(window.scrollY > 10)
-  }, [])
+  }, [isMobile])
 
   useEffect(() => {
     const debouncedScroll = debounce(handleScroll, 50)
@@ -156,6 +158,20 @@ export default function Header() {
                   <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-blue-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                   <EarthIcon className="w-5 h-5 relative z-5 group-hover:rotate-12" />
                 </button>
+
+                <button
+                  type="button"
+                  onClick={toggleTheme}
+                  className="group relative p-2 text-gray-600 hover:text-yellow-600 transition-all duration-200"
+                  aria-label={t("toggleTheme")}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-50 to-blue-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                  {theme === "dark" ? (
+                    <Sun className="w-5 h-5 relative z-5 group-hover:rotate-12" />
+                  ) : (
+                    <Moon className="w-5 h-5 relative z-5 group-hover:rotate-12" />
+                  )}
+                </button>
               </div>
 
               <button
@@ -233,6 +249,27 @@ export default function Header() {
               <EarthIcon className="w-5 h-5 mr-3 text-green-600 group-hover:rotate-12" />
               <span className="font-medium text-gray-700 group-hover:text-green-600 transition-colors duration-200">
                 {t("toggleLanguage")}
+              </span>
+            </button>
+          </div>
+
+          {/* Theme Toggle */}
+          <div className="mb-6">
+            <button
+              type="button"
+              onClick={() => {
+                toggleTheme()
+                if (mobileMenuOpen) closeMobileMenu()
+              }}
+              className="group flex items-center w-full py-3 px-4 bg-gradient-to-r from-yellow-50 to-blue-50 hover:from-yellow-100 hover:to-blue-100 rounded-lg transition-all duration-200 active:scale-95"
+            >
+              {theme === "dark" ? (
+                <Sun className="w-5 h-5 mr-3 text-yellow-600 group-hover:rotate-12" />
+              ) : (
+                <Moon className="w-5 h-5 mr-3 text-blue-600 group-hover:rotate-12" />
+              )}
+              <span className="font-medium text-gray-700 group-hover:text-yellow-600 transition-colors duration-200">
+                {t("toggleTheme")}
               </span>
             </button>
           </div>

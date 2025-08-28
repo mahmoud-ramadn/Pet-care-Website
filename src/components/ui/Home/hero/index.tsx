@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import { useTranslation } from "react-i18next"
 
 import dog from "@/assets/images/landing page/cute-smiley-dog-wearing-sunglasses-removebg-preview 1 (2).webp"
 import imageHero from "@/assets/images/landing page/mainbackground.webp"
@@ -65,6 +66,7 @@ const useCounter = (end: number, duration: number = 2000, start: number = 0) => 
 }
 
 export default function Hero() {
+  const { t } = useTranslation()
   // Using the custom counter hook for each stat
   const [happyClientsCount, happyClientsRef] = useCounter(500)
   const [ratingCount, ratingRef] = useCounter(5)
@@ -95,15 +97,15 @@ export default function Hero() {
               {/* Badge */}
               <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm font-medium text-white">
                 <span className="w-2 h-2 bg-emerald-400 rounded-full mr-2 animate-pulse"></span>
-                Premium Pet Care Services
+                {t("hero.badge")}
               </div>
 
               {/* Main heading */}
               <div className="space-y-4">
                 <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">
-                  Taking Care of Your
+                  {t("hero.headingPrefix")}
                   <span className="block bg-gradient-to-r from-blue-400 via-purple-500 to-indigo-600 bg-clip-text text-transparent">
-                    Smart Dog!
+                    {t("hero.headingEmphasis")}
                   </span>
                 </h1>
 
@@ -111,20 +113,17 @@ export default function Hero() {
               </div>
 
               {/* Description */}
-              <p className="text-xl text-white/90 leading-relaxed font-light max-w-lg">
-                Experience premium products and exceptional services designed specifically for your beloved furry
-                companion
-              </p>
+              <p className="text-xl text-white/90 leading-relaxed font-light max-w-lg">{t("hero.description")}</p>
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25">
-                  <span className="relative z-10">Book Appointment</span>
+                  <span className="relative z-10">{t("hero.ctaBook")}</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-700 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </button>
 
                 <button className="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white font-semibold rounded-full transition-all duration-300 hover:bg-white/20 hover:border-white/50">
-                  Learn More
+                  {t("hero.ctaLearn")}
                 </button>
               </div>
 
@@ -132,15 +131,15 @@ export default function Hero() {
               <div className="grid grid-cols-3 gap-8 pt-8">
                 <div className="text-center" ref={happyClientsRef}>
                   <div className="text-3xl font-bold text-blue-400">{happyClientsCount}+</div>
-                  <div className="text-sm text-white/70">Happy Clients</div>
+                  <div className="text-sm text-white/70">{t("hero.stats.happyClients")}</div>
                 </div>
                 <div className="text-center" ref={ratingRef}>
                   <div className="text-3xl font-bold text-blue-400">{ratingCount}★</div>
-                  <div className="text-sm text-white/70">Rating</div>
+                  <div className="text-sm text-white/70">{t("hero.stats.rating")}</div>
                 </div>
                 <div className="text-center" ref={supportRef}>
                   <div className="text-3xl font-bold text-blue-400">{supportCount}/7</div>
-                  <div className="text-sm text-white/70">Support</div>
+                  <div className="text-sm text-white/70">{t("hero.stats.support")}</div>
                 </div>
               </div>
             </div>
@@ -161,7 +160,7 @@ export default function Hero() {
 
                   <img
                     src={dog}
-                    alt="Happy dog wearing sunglasses"
+                    alt={t("hero.altDog")}
                     width={300}
                     height={300}
                     loading="lazy"

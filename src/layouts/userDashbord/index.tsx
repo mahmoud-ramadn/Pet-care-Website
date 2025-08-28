@@ -7,10 +7,13 @@ import { cn } from "@/lib/utils"
 import { AppSidebar } from "@/components/ui/app-sidebar"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 
+import i18n from "@/i18n"
+
 export default function UserDashboardLayout() {
+  const isRtl = i18n.dir() === "rtl"
   return (
     <SidebarProvider>
-      <div className="relative flex h-screen w-full overflow-hidden">
+      <div className={cn("relative flex h-screen w-full overflow-hidden", isRtl ? "flex-row-reverse" : "flex-row")}>
         <AppSidebar />
 
         <div className="relative flex flex-1 flex-col overflow-hidden">

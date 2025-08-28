@@ -122,10 +122,7 @@ export default function UserProfileUpdateForm({ value }: Props) {
                         صورة الملف الشخصي
                       </FormLabel>
                       <FormControl>
-                        <ImageUpload
-                          value={field.value}
-                          onChange={(file) => field.onChange(file)}
-                        />
+                        <ImageUpload value={field.value} onChange={(file) => field.onChange(file)} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
