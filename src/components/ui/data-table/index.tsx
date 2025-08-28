@@ -313,7 +313,7 @@ export default function DataTable<TData, TValue>({
 
       {/* Enhanced Pagination */}
       {totalPages && (
-        <div className="bg-white rounded-2xl border border-gray-200/60 shadow-sm p-4">
+        <div className="dark:bg-primary bg-white rounded-2xl border border-gray-200/60 shadow-sm p-4">
           <DataTablePagination
             table={table}
             isStatic={isStatic}

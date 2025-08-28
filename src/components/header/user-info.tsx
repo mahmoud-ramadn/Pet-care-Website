@@ -77,7 +77,7 @@ export default function UserInfo() {
               </AvatarFallback>
             </Avatar>
             <Link to={`/user/${value?._id}`} className="text-sm overflow-hidden">
-              <p className="font-semibold truncate">{value?.name}</p>
+              <p className="font-semibold  dark:text-blue-950">{value?.name}</p>
               <p className="text-xs text-gray-500 truncate">{value?.email}</p>
             </Link>
           </div>
