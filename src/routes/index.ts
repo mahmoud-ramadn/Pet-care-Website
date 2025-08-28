@@ -28,9 +28,9 @@ export const router = createBrowserRouter([
         Component: NotFound,
       },
       {
-        path:'ui',
-        Component:UI
-      }
+        path: "ui",
+        Component: UI,
+      },
     ],
   },
 ])

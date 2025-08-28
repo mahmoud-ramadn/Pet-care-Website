@@ -228,7 +228,7 @@ export default function UserProfile() {
 
                               {/* Action Button */}
                               <Link
-                                to={`/pets/${petId}`}
+                               to={""}
                                 className="flex items-center justify-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-lg sm:rounded-xl hover:from-pink-600 hover:to-rose-600 transition-all duration-200 font-medium text-xs sm:text-sm shadow-md sm:shadow-lg hover:shadow-xl transform hover:scale-105 group/btn whitespace-nowrap"
                               >
                                 <span className="hidden sm:inline">عرض التفاصيل</span>
@@ -301,7 +301,7 @@ export default function UserProfile() {
                     </div>
 
                     <Link
-                      to="/pets"
+                      to={""}
                       className="group inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-xl sm:rounded-2xl hover:from-pink-600 hover:to-rose-600 transition-all duration-200 font-medium shadow-lg hover:shadow-xl transform hover:scale-105 text-sm sm:text-base"
                     >
                       <PlusCircle className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:rotate-90" />
@@ -340,7 +340,7 @@ export default function UserProfile() {
                       <div className="flex items-center justify-between">
                         <p className="font-semibold text-gray-700 text-sm sm:text-base truncate">Pet ID: {petId._id}</p>
                         <Link
-                          to={`/pets/${petId}`}
+                          to={""}
                           className="text-green-600 hover:text-green-700 font-medium text-xs sm:text-sm px-2 sm:px-3 py-1 bg-green-100 rounded-lg hover:bg-green-200 transition-colors whitespace-nowrap"
                         >
                           عرض
@@ -407,7 +407,7 @@ export default function UserProfile() {
                           alt={`${post.userName}'s profile`}
                           className="w-10 h-10 sm:w-12 sm:h-12 rounded-full aspect-[3/10]  border-2 border-white shadow-lg"
                           onError={(e) => {
-                            (e.target as HTMLImageElement).src = "/default-avatar.jpg"
+                            ;(e.target as HTMLImageElement).src = "/default-avatar.jpg"
                           }}
                         />
                         <div className="absolute -bottom-0.5 sm:-bottom-1 -right-0.5 sm:-right-1 w-3 h-3 sm:w-4 sm:h-4 bg-green-500 border-2 border-white rounded-full"></div>

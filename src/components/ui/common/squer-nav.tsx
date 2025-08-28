@@ -53,7 +53,6 @@ export default function SquareNavigation({
         {/* Gradient border effect */}
         <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-        {/* Image background with enhanced styling */}
         <div className="relative bg-gradient-to-br from-white to-gray-50 rounded-xl p-4 shadow-md group-hover:shadow-xl transition-all duration-500 border border-gray-100">
           <img
             className={cn(

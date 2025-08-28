@@ -122,27 +122,23 @@
 //         </div>
 //     )
 // }
-import MultiSelectDemo from "@/components/ui/mulitSelection"
 import SwiperWrapper from "@/components/ui/SwiperWrapper"
+import MultiSelectDemo from "@/components/ui/mulitSelection"
 import UiTitle from "@/components/ui/ui-title"
 
 export default function UiComponents() {
   return (
     <div className=" container">
-      <SwiperWrapper
-      >
+      <SwiperWrapper>
         {[...Array(8)].map((_, i) => (
           <div key={i} className="h-40 bg-blue-500 text-white flex items-center justify-center rounded">
             Slide {i + 1}
           </div>
         ))}
       </SwiperWrapper>
-      <UiTitle>
-         Grooming Reviews
-      </UiTitle>
+      <UiTitle>Grooming Reviews</UiTitle>
 
-
-      <MultiSelectDemo/>
+      <MultiSelectDemo />
     </div>
   )
 }

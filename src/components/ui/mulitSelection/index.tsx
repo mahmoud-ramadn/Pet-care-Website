@@ -194,9 +194,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 const MultiSelectDemo = () => {
   const [value, setValue] = useState<Option[]>([])
 
-  const techOptions: Option[] = [
-    
-  ]
+  const techOptions: Option[] = []
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">

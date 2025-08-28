@@ -2,6 +2,7 @@ import { useAtomValue } from "jotai"
 
 import { useParams } from "react-router-dom"
 
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ServiceProfileSkeleton } from "@/components/ui/feedbacks/service-profile-skeleton"
 import { BookingCard } from "@/components/ui/serviceProfile/BookingCard"
 import { PetPreferences } from "@/components/ui/serviceProfile/PetPreferences"
@@ -25,12 +26,41 @@ export default function Description() {
   if (loading) return <ServiceProfileSkeleton />
   if (!serviceProfile) return <div className="text-center text-gray-500 py-12">Service not found</div>
 
+  // Helper function to format FAQ data
+  const getFAQData = () => {
+    const faqs = []
+
+    if (serviceProfile.question1 && serviceProfile.question1.length >= 2) {
+      faqs.push({
+        question: serviceProfile.question1[0],
+        answer: serviceProfile.question1[1],
+      })
+    }
+
+    if (serviceProfile.question2 && serviceProfile.question2.length >= 2) {
+      faqs.push({
+        question: serviceProfile.question2[0],
+        answer: serviceProfile.question2[1],
+      })
+    }
+
+    if (serviceProfile.question3 && serviceProfile.question3.length >= 2) {
+      faqs.push({
+        question: serviceProfile.question3[0],
+        answer: serviceProfile.question3[1],
+      })
+    }
+
+    return faqs
+  }
+
+  const faqData = getFAQData()
+
   return (
     <div className="container py-10 space-y-10">
       <ServiceHeader name={serviceProfile.name} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-        {/* المحتوى الرئيسي */}
         <div className="lg:col-span-2 space-y-10">
           <ServiceInfo
             name={serviceProfile.name}
@@ -54,7 +84,25 @@ export default function Description() {
 
           <PetPreferences types={serviceProfile.accepted_pet_types} sizes={serviceProfile.accepted_pet_sizes} />
 
-          <section className="bg-white md:p-6  rounded-xl shadow-sm border">
+          {faqData.length > 0 && (
+            <section className="bg-white p-6 rounded-xl shadow-sm border">
+              <h2 className="text-2xl font-semibold mb-6 text-gray-800">الأسئلة الشائعة</h2>
+              <Accordion type="single" collapsible className="w-full">
+                {faqData.map((faq, index) => (
+                  <AccordionItem key={index} value={`item-${index}`} className="border-gray-200">
+                    <AccordionTrigger className=" hover:no-underline py-4 px-2">
+                      <span className="text-gray-800 font-medium text-lg leading-relaxed">{faq.question}</span>
+                    </AccordionTrigger>
+                    <AccordionContent className=" px-2 pb-4">
+                      <div className="text-gray-600 leading-relaxed whitespace-pre-line">{faq.answer}</div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </section>
+          )}
+
+          <section className="bg-white md:p-6 rounded-xl shadow-sm border">
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">مراجعات العملاء</h2>
 
             {serviceProfile.reviewsOfService?.length ? (

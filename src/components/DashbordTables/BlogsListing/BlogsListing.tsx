@@ -1,12 +1,24 @@
-import type { ColumnDef } from "@tanstack/react-table"
+import type { ColumnDef } from "@tanstack/react-table";
 
-import { useEffect, useMemo, useState } from "react"
 
-import DataTable from "@/components/ui/data-table"
 
-import { useBlog } from "@/hooks/blogs"
+import { useEffect, useMemo, useState } from "react";
 
-import { AddBlogDialog } from "./AddBlogDialog"
+
+
+import DataTable from "@/components/ui/data-table";
+
+
+
+import { useBlog } from "@/hooks/blogs";
+
+
+
+import { AddBlogDialog } from "./AddBlogDialog";
+
+
+
+
 
 export default function BlogsListing() {
   const { value: blog, loading } = useBlog()
@@ -57,29 +69,27 @@ export default function BlogsListing() {
       },
       {
         accessorKey: "link",
-        header: "Blog description",
+        header: "Blog Link",
         cell: ({ row }) => {
           const Blog = row.original
-          if (!Blog?.plogImage) return <span className=" text-gray-400"> لايوجد </span>
-
+          if (!Blog?.plogImage) return <span className="text-gray-400"> لايوجد </span>
           return (
-            <a href={Blog.link} target="_blank">
+            <a href={Blog.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
               {Blog.link}
             </a>
           )
         },
-        id: "product-image",
+        id: "blog-link", // ✅ unique id
       },
       {
         accessorKey: "plogImage",
         header: "Blog Image",
         cell: ({ row }) => {
           const product = row.original
-          if (!product?.plogImage) return <span className=" text-gray-400"> لايوجد </span>
-
+          if (!product?.plogImage) return <span className="text-gray-400"> لايوجد </span>
           return <img className="size-20 rounded-md object-cover border" src={product?.plogImage} alt={product?._id} />
         },
-        id: "product-image",
+        id: "blog-image", // ✅ unique id
       },
     ],
     []

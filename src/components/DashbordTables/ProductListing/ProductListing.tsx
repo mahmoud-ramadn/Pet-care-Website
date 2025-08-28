@@ -1,13 +1,25 @@
-import type { ColumnDef } from "@tanstack/react-table"
+import type { ColumnDef } from "@tanstack/react-table";
 
-import { useMemo } from "react"
 
-import { formatPriceEGP } from "@/lib/FormatPriceEGp"
 
-import { AddItemDialog } from "@/components/ui/AddItem"
-import DataTable from "@/components/ui/data-table"
+import { useMemo } from "react";
 
-import { useProducts } from "@/hooks/product"
+
+
+import { formatPriceEGP } from "@/lib/FormatPriceEGp";
+
+
+
+import { AddItemDialog } from "@/components/ui/AddItem";
+import DataTable from "@/components/ui/data-table";
+
+
+
+import { useProducts } from "@/hooks/product";
+
+
+
+
 
 export default function ProductListing() {
   const { value: products, loading } = useProducts()
@@ -29,6 +41,11 @@ export default function ProductListing() {
       {
         accessorKey: "priceAfterDiscount",
         header: "Product Discount	",
+        cell: ({ row }) => {
+          const discounted = row.original.priceAfterDiscount
+          if (!discounted) return <span className="text-gray-400"> لايوجد خصم </span>
+          return <span>{formatPriceEGP(discounted)}</span>
+        },
       },
       {
         accessorKey: "price",

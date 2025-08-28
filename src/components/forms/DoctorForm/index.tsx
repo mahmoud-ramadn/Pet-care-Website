@@ -1,10 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Camera, FileText, Heart, ImagePlus, Phone, Plus, Star, Stethoscope, Upload, User, X } from "lucide-react"
+import { Camera, FileText, Heart, ImagePlus, Phone, Plus, Star, Stethoscope, User, X } from "lucide-react"
 import { toast } from "sonner"
 
 import { useEffect, useRef, useState } from "react"
 import { useForm } from "react-hook-form"
 
+import ImageUploadField from "@/components/ui/ImageUploadField"
 import { Badge } from "@/components/ui/badge"
 import { ButtonWithLoading } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -17,6 +18,7 @@ import { CreateDoctor } from "@/apis/doctors"
 import { DoctorFormSchema, type typeDoctorFormSchema } from "./shecma"
 
 // Predefined options
+
 const PET_TYPES_OPTIONS = [
   { value: "dogs", label: "كلاب", emoji: "🐕" },
   { value: "cats", label: "قطط", emoji: "🐱" },
@@ -50,12 +52,10 @@ export default function DoctorForm({ values, onSuccess }: Props) {
   const [loading, setLoading] = useState(false)
   const [previewImage, setPreviewImage] = useState<string | null>(null)
   const [imagesPreview, setImagesPreview] = useState<{ file: File; preview: string }[]>([])
-  const [isDragOver, setIsDragOver] = useState(false)
   const [isMultiDragOver, setIsMultiDragOver] = useState(false)
   const [newPetType, setNewPetType] = useState("")
   const [newSpecialization, setNewSpecialization] = useState("")
 
-  const fileInputRef = useRef<HTMLInputElement>(null)
   const multiFilesInputRef = useRef<HTMLInputElement>(null)
 
   const form = useForm<typeDoctorFormSchema>({
@@ -95,53 +95,6 @@ export default function DoctorForm({ values, onSuccess }: Props) {
   }, [values?.doctorImage])
 
   // Single image handlers
-  const handleImageChange = (file: File) => {
-    if (file && file.type.startsWith("image/")) {
-      // Clean up previous object URL
-      if (previewImage && previewImage.startsWith("blob:")) {
-        URL.revokeObjectURL(previewImage)
-      }
-
-      form.setValue("doctorImage", file)
-      const newPreviewUrl = URL.createObjectURL(file)
-      setPreviewImage(newPreviewUrl)
-    } else {
-      toast.error("يرجى اختيار ملف صورة صالح")
-    }
-  }
-
-  const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) handleImageChange(file)
-  }
-
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault()
-    setIsDragOver(true)
-  }
-
-  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault()
-    setIsDragOver(false)
-  }
-
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault()
-    setIsDragOver(false)
-    const files = e.dataTransfer.files
-    if (files.length > 0) handleImageChange(files[0])
-  }
-
-  const removeImage = () => {
-    // Clean up object URL
-    if (previewImage && previewImage.startsWith("blob:")) {
-      URL.revokeObjectURL(previewImage)
-    }
-
-    form.setValue("doctorImage", undefined)
-    setPreviewImage(null)
-    if (fileInputRef.current) fileInputRef.current.value = ""
-  }
 
   // Multiple images handlers
   const handleMultiImagesChange = (files: FileList) => {
@@ -571,77 +524,16 @@ export default function DoctorForm({ values, onSuccess }: Props) {
                 </h3>
 
                 {/* Single Image */}
+
                 <FormField
                   control={form.control}
                   name="doctorImage"
-                  render={() => (
-                    <FormItem className="mb-6 sm:mb-8">
-                      <FormLabel className="text-base sm:text-lg font-medium">الصورة الرئيسية</FormLabel>
-                      <FormControl>
-                        <div>
-                          <input
-                            type="file"
-                            accept="image/*"
-                            onChange={handleFileInputChange}
-                            ref={fileInputRef}
-                            className="hidden"
-                          />
-
-                          {!previewImage ? (
-                            <div
-                              className={`border-2 border-dashed rounded-xl p-6 sm:p-8 text-center cursor-pointer transition-all duration-300 ${
-                                isDragOver
-                                  ? "border-blue-400 bg-blue-50 scale-105"
-                                  : "border-gray-300 hover:border-gray-400 hover:bg-gray-50"
-                              }`}
-                              onDragOver={handleDragOver}
-                              onDragLeave={handleDragLeave}
-                              onDrop={handleDrop}
-                              onClick={() => fileInputRef.current?.click()}
-                            >
-                              <div className="flex flex-col items-center justify-center space-y-3 sm:space-y-4">
-                                <div className="p-3 sm:p-4 bg-gray-100 rounded-full">
-                                  <Upload className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400" />
-                                </div>
-                                <div className="text-gray-600">
-                                  <p className="text-base sm:text-lg font-medium">اسحب الصورة هنا أو اضغط للاختيار</p>
-                                  <p className="text-sm text-gray-500 mt-1">PNG, JPG, GIF حتى 10MB</p>
-                                </div>
-                              </div>
-                            </div>
-                          ) : (
-                            <div className="relative group">
-                              <div className="relative w-full max-w-sm sm:max-w-md mx-auto">
-                                <img
-                                  src={previewImage}
-                                  alt="doctor preview"
-                                  className="w-full h-48 sm:h-64 object-cover rounded-xl border-4 border-gray-200 shadow-lg"
-                                />
-                                <div className="absolute inset-0 bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 rounded-xl flex items-center justify-center">
-                                  <button
-                                    type="button"
-                                    onClick={removeImage}
-                                    className="opacity-0 group-hover:opacity-100 bg-red-500 hover:bg-red-600 text-white rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center transition-all duration-300 transform scale-90 group-hover:scale-100"
-                                  >
-                                    <X className="w-4 h-4 sm:w-5 sm:h-5" />
-                                  </button>
-                                </div>
-                              </div>
-                              <div className="text-center mt-4">
-                                <button
-                                  type="button"
-                                  onClick={() => fileInputRef.current?.click()}
-                                  className="text-blue-600 hover:text-blue-700 underline text-sm font-medium"
-                                >
-                                  تغيير الصورة
-                                </button>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
+                  render={({ field }) => (
+                    <ImageUploadField
+                      label="الصورة الرئيسية"
+                      value={field.value}
+                      onChange={(file) => field.onChange(file)}
+                    />
                   )}
                 />
 

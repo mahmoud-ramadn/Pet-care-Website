@@ -45,4 +45,3 @@ interface DoctorApiResponse {
 type DoctorsResponse = {
   doctors: Doctor[]
 }
-
