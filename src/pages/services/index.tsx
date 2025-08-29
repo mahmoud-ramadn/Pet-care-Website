@@ -11,10 +11,12 @@ import UiTitle from "@/components/ui/ui-title"
 import { ProjectImages } from "@/Constants/images"
 import { allEgyptGovernorates, servicesMenu } from "@/Constants/main"
 import { useServices, useServicesQueryFilter } from "@/hooks/services"
+import { useTranslation } from "react-i18next"
 
 const pageSizeOptions = [4, 8, 20, 30]
 
 export default function Services() {
+  const { t } = useTranslation()
   const { value: services, loading, retry } = useServices()
   const { query, mutate } = useServicesQueryFilter()
 
@@ -60,7 +62,7 @@ export default function Services() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30">
-      <Hero MainTitle="Find what you are looking for near you" imageHero={ProjectImages.services.HeroServices} />
+      <Hero MainTitle={t('services.HeroText')} imageHero={ProjectImages.services.HeroServices} />
 
       {/* Enhanced Filters Section */}
       <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-10 shadow-sm">

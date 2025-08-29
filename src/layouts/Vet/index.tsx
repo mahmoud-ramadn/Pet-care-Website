@@ -21,7 +21,7 @@ export default function VeterinaryLayout() {
           array={VetNavigationLink}
           cardUrl={lastSegment}
           imageHero={ProjectImages.vet.vetHeroIMage}
-          MainTitle="We care about your Pets"
+          MainTitle="Veterinary.description"
         />
         <main className="pt-40 pb-20">
           <Outlet />

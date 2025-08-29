@@ -49,20 +49,7 @@
   "groomingReview": "Grooming Review",
   "mainHeroText": "Your Pets, our priority",
   "mainHeroParagraph": "Spend extra time & love with Dog walking",
-  "hero": {
-    "badge": "Premium Pet Care Services",
-    "headingPrefix": "Taking Care of Your",
-    "headingEmphasis": "Smart Dog!",
-    "description": "Experience premium products and exceptional services designed specifically for your beloved furry companion",
-    "ctaBook": "Book Appointment",
-    "ctaLearn": "Learn More",
-    "stats": {
-      "happyClients": "Happy Clients",
-      "rating": "Rating",
-      "support": "Support"
-    },
-    "altDog": "Happy dog wearing sunglasses"
-  },
+
   "petLives": {
     "title": "Your Pet lives for the day, the hour, even for the moment.",
     "desc1": "All employees at Scooby have been carefully selected. Each employee always has the safety and care of your Pet in mind.",
@@ -75,6 +62,24 @@
     "adoption": "Adoption",
     "more": "More"
   },
+  "adoption": {
+    "HeroText": "Find your new best friend",
+    "description": "Discover a world of new possibilities and exceptional opportunities"
+  },
+
+  "services": {
+    "HeroText": "Find what you are looking for near you",
+    "description": "We offer a variety of services to meet your pet's needs"
+  },
+  "Veterinary": {
+    "description": "Specialized medical care for your pets"
+  },
+  "AdoptionNavigationLink": {
+    "shelters": "Shelters",
+    "dogs": "Dogs",
+    "cats": "Cats"
+  },
+
   "register": {
     "title": "Create a new account",
     "subtitle": "Fill in the details to create your personal account",
@@ -283,6 +288,5 @@
       "play": " Play",
       "nextScene": "Next"
     }
-    
   }
 }

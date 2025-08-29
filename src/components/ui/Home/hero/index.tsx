@@ -1,8 +1,9 @@
+import { Pause, Play } from "lucide-react"
+
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 
 import { Button } from "../../button"
-import { Pause, Play } from "lucide-react"
 
 // Type definitions
 interface MousePosition {
@@ -235,7 +236,15 @@ const InteractiveShowcase = () => {
               onClick={() => setIsPlaying(!isPlaying)}
               className={`px-8 py-4 bg-gradient-to-r ${currentSceneData.accent} text-white font-bold rounded-full hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-2xl`}
             >
-              {isPlaying ? <span className="flex  gap-2">{t("hero.controls.pause")} <Pause /> </span> : <span className="flex  gap-2">{t("hero.controls.play")} <Play /> </span>}
+              {isPlaying ? (
+                <span className="flex  gap-2">
+                  {t("hero.controls.pause")} <Pause />{" "}
+                </span>
+              ) : (
+                <span className="flex  gap-2">
+                  {t("hero.controls.play")} <Play />{" "}
+                </span>
+              )}
             </Button>
 
             <Button

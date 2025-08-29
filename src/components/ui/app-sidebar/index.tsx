@@ -255,11 +255,11 @@ export function AppSidebar() {
       <SidebarFooter className="  p-4 border-t border-gray-200/60 bg-white/80 backdrop-blur-sm">
         <Link
           to={"/"}
-          className="bg-gradient-to-r from-gray-50 to-white rounded-2xl p-4 shadow-sm border border-gray-100"
+          className="dark:bg-blue-950 rounded-2xl p-4 shadow-sm border border-gray-100"
         >
           <div className="flex items-center gap-3">
             <div className="relative">
-              <Avatar className=" rounded-full overflow-hidden ring-2 ring-white shadow-lg">
+              <Avatar className=" rounded-full overflow-hidden shadow-lg">
                 <AvatarImage
                   src={value?.profileImage}
                   alt={value?.name}

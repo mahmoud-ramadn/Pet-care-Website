@@ -1,7 +1,7 @@
 {
   "welcome": "مرحبًا يا محمود!",
   "logout": "تسجيل الخروج",
-  "HomePageLink": "الرئيسة",
+  "HomePageLink": "الرئيسية",
   "AboutPageLink": "من نحن",
   "AdoptionPageLink": "التبني",
   "Community": "مجتمع",
@@ -63,8 +63,21 @@
     "more": "المزيد"
   },
   "adoption": {
-    "HeroText": "ابحث عن أفضل صديق جديد لك"
+    "HeroText": "ابحث عن أفضل صديق جديد لك",
+    "description": "اكتشف عالماً جديداً من الإمكانيات والفرص المتميزة"
   },
+  "services": {
+    "HeroText":"ابحث عمّا تبحث عنه بالقرب منك"
+  },
+  "Veterinary": {
+    "description": "رعاية طبية متخصصة لحيواناتك الأليفة"
+  },
+  "AdoptionNavigationLink": {
+    "shelters": "ملاجئ",
+    "dogs": "كلاب",
+    "cats": "قطط"
+  },
+
   "register": {
     "title": "إنشاء حساب جديد",
     "subtitle": "املأ البيانات لإنشاء حسابك الشخصي",

@@ -4,11 +4,12 @@ import { useEffect, useState } from "react"
 
 import SwiperWrapper from "../SwiperWrapper"
 import SquareNavigation from "../common/squer-nav"
+import { useTranslation } from "react-i18next"
 
 type HeroLayoutType = {
   imageHero: string
   cardUrl?: string
-  MainTitle: string
+  MainTitle?: string
   array?: AdoptionNavigationLink[]
   className?: string
   preview?: number
@@ -17,6 +18,8 @@ type HeroLayoutType = {
 export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: Readonly<HeroLayoutType>) {
   const [isVisible, setIsVisible] = useState(false)
   const [scrollY, setScrollY] = useState(0)
+    const { t } = useTranslation()
+  
 
   useEffect(() => {
     setIsVisible(true)
@@ -77,7 +80,7 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
 
           <h1 className="relative text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white drop-shadow-2xl leading-tight">
             <span className="relative inline-block">
-              {MainTitle}
+              {MainTitle && t(MainTitle)}
               <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
                 <div className="h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent w-0 group-hover:w-32 transition-all duration-700 rounded-full" />
                 <div className="h-0.5 bg-gradient-to-r from-transparent via-white to-transparent w-24 mt-1 animate-pulse" />
@@ -88,7 +91,7 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
           </h1>
 
           <p className="mt-8 text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed font-medium">
-            اكتشف عالماً جديداً من الإمكانيات والفرص المتميزة
+             {t("adoption.description")}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mt-10 justify-center">
@@ -134,7 +137,7 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
                         }
                         before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/20 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-all before:duration-300
                       `}
-                      title={item.path}
+                      title={item.label ? t(item.label) : ""}
                       image={item.image}
                       imageClassName="rounded-xl shadow-md group-hover:shadow-xl transition-shadow duration-300"
                     />
