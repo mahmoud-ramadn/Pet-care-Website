@@ -5,6 +5,10 @@
   "AboutPageLink": "About Us",
   "AdoptionPageLink": "Adoption",
   "ContactUsPageLink": "Contact Us",
+  "Community": "Community",
+  "Blogs": "blogs",
+  "Vet": "vet",
+  "Shop": "shop",
   "ServicesPageLink": "Services",
   "SignupPageLink": "Create an Account",
   "LoginPageLink": "login",
@@ -15,6 +19,10 @@
   "openMenu": "Open menu",
   "closeMenu": "Close menu",
   "menu": "Menu",
+  "userMenu": "User menu",
+  "adminDashboard": "Admin Dashboard",
+  "userDashboard": "User Dashboard",
+  "notifications": "Notifications",
   "header": {
     "promo": "🎉 Special Offer: 20% off all grooming services this week!",
     "logoAlt": "Pet Care Logo"
@@ -22,6 +30,9 @@
   "footer": {
     "getInTouch": "Let's Get In Touch",
     "emailPlaceholder": "Enter Your Email",
+    "newsletterBlurb": "Stay updated with our latest news, special offers, and pet care tips.",
+    "subscribe": "Subscribe",
+    "followUs": "Follow us:",
     "rights": "all rights reserved © 2025",
     "terms": "Terms & Conditions",
     "termsList": ["Privacy Policy", "Refund Policy", "User Agreement"]
@@ -51,5 +62,34 @@
   },
   "adoption": {
     "HeroText": "Find your new best friend"
+  },
+  "register": {
+    "title": "Create a new account",
+    "subtitle": "Fill in the details to create your personal account",
+    "nameLabel": "Name",
+    "namePlaceholder": "Your full name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "example@email.com",
+    "passwordLabel": "Password",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "Re-enter your password",
+    "passwordsMatch": "Passwords match",
+    "submit": "Create account",
+    "or": "or",
+    "haveAccount": "Already have an account?",
+    "login": "Log in",
+    "emailExists": "Email already exists"
+  },
+  "login": {
+    "title": "Log in",
+    "subtitle": "Enter your account details to continue",
+    "emailLabel": "Email",
+    "emailPlaceholder": "example@email.com",
+    "passwordLabel": "Password",
+    "submit": "Log in",
+    "or": "or",
+    "noAccount": "Don't have an account?",
+    "createAccount": "Create a new account",
+    "invalidCredentials": "Email or password is incorrect."
   }
 }

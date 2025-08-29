@@ -3,6 +3,7 @@ import { toast } from "sonner"
 
 import { useRef, useState } from "react"
 import { useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
 
 import { ButtonWithLoading } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -24,6 +25,7 @@ export default function CreatePostForm({ values, onSuccess }: Props) {
   const [previewImage, setPreviewImage] = useState<string | null>(null)
   const [isDragOver, setIsDragOver] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const { t } = useTranslation()
 
   const form = useForm<CreatePostSchema>({
     resolver: zodResolver(createPostSchema),
@@ -89,7 +91,7 @@ export default function CreatePostForm({ values, onSuccess }: Props) {
 
       await CreatePostCommunity(formData as unknown as CreatePostInputs)
 
-      toast.success("تم اضافة المنشور بنجاح")
+      toast.success(t("createPost.toastCreated"))
 
       form.reset()
       setPreviewImage(null)
@@ -97,7 +99,7 @@ export default function CreatePostForm({ values, onSuccess }: Props) {
         onSuccess()
       }
     } catch {
-      toast.error("فشل اضافة المنشور، خطأ غير متوقع")
+      toast.error(t("createPost.toastFailed"))
     } finally {
       setLoading(false)
     }
@@ -111,7 +113,9 @@ export default function CreatePostForm({ values, onSuccess }: Props) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
           </svg>
         </div>
-        <h2 className="text-xl font-semibold text-gray-800">{values ? "تحديث المنشور" : "إنشاء منشور جديد"}</h2>
+        <h2 className="text-xl font-semibold text-gray-800">
+          {values ? t("createPost.titleUpdate") : t("createPost.titleNew")}
+        </h2>
       </div>
 
       <Form value={form}>
@@ -132,11 +136,11 @@ export default function CreatePostForm({ values, onSuccess }: Props) {
                           d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
                         />
                       </svg>
-                      وصف المنشور
+                      {t("createPost.descLabel")}
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="اكتب وصفاً مميزاً للمنشور..."
+                        placeholder={t("createPost.descPlaceholder")}
                         className="h-12 rounded-xl border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all duration-200 text-right bg-white/70 backdrop-blur-sm"
                         {...field}
                       />
@@ -160,7 +164,7 @@ export default function CreatePostForm({ values, onSuccess }: Props) {
                           d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
                         />
                       </svg>
-                      حالة المنشور
+                      {t("createPost.statusLabel")}
                     </FormLabel>
                     <div className="flex items-center space-x-3 p-4 rounded-xl bg-gray-50/70 border border-gray-200 transition-all duration-200 hover:bg-gray-100/70">
                       <Checkbox
@@ -170,7 +174,7 @@ export default function CreatePostForm({ values, onSuccess }: Props) {
                         className="data-[state=checked]:bg-blue-500 data-[state=checked]:border-blue-500"
                       />
                       <label htmlFor="onlyMe" className="text-sm font-medium text-gray-700 cursor-pointer select-none">
-                        خاص بي فقط
+                        {t("createPost.onlyMe")}
                       </label>
                       {field.value && (
                         <div className="flex items-center gap-1 text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded-full">
@@ -181,7 +185,7 @@ export default function CreatePostForm({ values, onSuccess }: Props) {
                               clipRule="evenodd"
                             />
                           </svg>
-                          خاص
+                          {t("createPost.private")}
                         </div>
                       )}
                     </div>
@@ -204,7 +208,7 @@ export default function CreatePostForm({ values, onSuccess }: Props) {
                           d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
                         />
                       </svg>
-                      صورة المنشور (اختياري)
+                      {t("createPost.imageLabel")}
                     </FormLabel>
                     <FormControl>
                       <div className="space-y-2">
@@ -266,9 +270,9 @@ export default function CreatePostForm({ values, onSuccess }: Props) {
                                   isDragOver ? "text-blue-600" : "text-gray-700 group-hover:text-blue-600"
                                 }`}
                               >
-                                {isDragOver ? "اتركها هنا!" : "انقر أو اسحب الصورة هنا"}
+                                {isDragOver ? t("createPost.dropActive") : t("createPost.dropIdle")}
                               </p>
-                              <p className="mt-1 text-sm text-gray-500">PNG, JPG, GIF حتى 10MB</p>
+                              <p className="mt-1 text-sm text-gray-500">{t("createPost.imageHint")}</p>
                             </div>
                           </div>
                         ) : (
@@ -294,7 +298,7 @@ export default function CreatePostForm({ values, onSuccess }: Props) {
                               </svg>
                             </button>
                             <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1 text-xs font-medium text-gray-700">
-                              صورة المنشور
+                              {t("createPost.imageBadge")}
                             </div>
                           </div>
                         )}
@@ -324,7 +328,7 @@ export default function CreatePostForm({ values, onSuccess }: Props) {
                       />
                     </svg>
                   )}
-                  {values ? "تحديث المنشور" : "نشر الآن"}
+                  {values ? t("createPost.submitUpdate") : t("createPost.submitNew")}
                 </span>
               </ButtonWithLoading>
             </div>

@@ -4,15 +4,26 @@
   "HomePageLink": "الرئيسة",
   "AboutPageLink": "من نحن",
   "AdoptionPageLink": "التبني",
+  "Community": "مجتمع",
+  "Blogs": "مدونات",
+  "Vet": "الطب البيطري",
+  "Shop": "المتجر",
   "ContactUsPageLink": "تواصل معنا",
   "ServicesPageLink": "خدماتنا",
   "SignupPageLink": "إنشاء حساب",
   "toggleLanguage": " تبديل بين اللغات   ",
   "toggleTheme": "تبديل السمة",
   "LoginPageLink": "الدخول",
+  "userMenu": "قائمة المستخدم",
+  "adminDashboard": "لوحة تحكم المسؤول",
+  "userDashboard": "لوحة تحكم المستخدم",
+  "notifications": "الإشعارات",
   "footer": {
     "getInTouch": "تواصل معنا",
     "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "newsletterBlurb": "ابقَ على اطلاع بآخر أخبارنا والعروض الخاصة ونصائح رعاية الحيوانات.",
+    "subscribe": "اشترك",
+    "followUs": "تابعنا:",
     "rights": "جميع الحقوق محفوظة © 2025",
     "terms": "الشروط والأحكام",
     "termsList": ["سياسة الخصوصية", "سياسة الاسترجاع", "اتفاقية المستخدم"]
@@ -51,5 +62,34 @@
   },
   "adoption": {
     "HeroText": "ابحث عن أفضل صديق جديد لك"
+  },
+  "register": {
+    "title": "إنشاء حساب جديد",
+    "subtitle": "املأ البيانات لإنشاء حسابك الشخصي",
+    "nameLabel": "الاسم",
+    "namePlaceholder": "اسمك الكامل",
+    "emailLabel": "البريد الإلكتروني",
+    "emailPlaceholder": "example@email.com",
+    "passwordLabel": "كلمة المرور",
+    "confirmPasswordLabel": "تأكيد كلمة المرور",
+    "confirmPasswordPlaceholder": "أعد إدخال كلمة المرور",
+    "passwordsMatch": "كلمات المرور متطابقة",
+    "submit": "إنشاء الحساب",
+    "or": "أو",
+    "haveAccount": "لديك حساب بالفعل؟",
+    "login": "تسجيل الدخول",
+    "emailExists": "البريد الإلكتروني مستخدم بالفعل"
+  },
+  "login": {
+    "title": "تسجيل الدخول",
+    "subtitle": "أدخل بيانات حسابك للمتابعة",
+    "emailLabel": "البريد الإلكتروني",
+    "emailPlaceholder": "example@email.com",
+    "passwordLabel": "كلمة المرور",
+    "submit": "تسجيل الدخول",
+    "or": "أو",
+    "noAccount": "ليس لديك حساب؟",
+    "createAccount": "إنشاء حساب جديد",
+    "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة."
   }
 }

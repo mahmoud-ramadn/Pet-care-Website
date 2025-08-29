@@ -5,6 +5,7 @@ import { toast } from "sonner"
 
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
 import { Link, useNavigate } from "react-router"
 
 import { ButtonWithLoading } from "@/components/ui/button"
@@ -20,6 +21,7 @@ export default function LoginForm() {
   const setToken = useSetAtom(tokenAtom)
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
+  const { t } = useTranslation()
 
   const form = useForm<LoginFormSchema>({
     resolver: zodResolver(loginFormSchema),
@@ -42,9 +44,8 @@ export default function LoginForm() {
 
       toast.success(response.status)
       navigate("/")
-    } catch (error) {
-      console.log(error)
-      toast.error("Email or password is incorrect.")
+    } catch {
+      toast.error(t("login.invalidCredentials"))
     }
   }
 
@@ -60,9 +61,9 @@ export default function LoginForm() {
           <LogIn className="w-8 h-8 text-white" />
         </div>
         <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-indigo-800 bg-clip-text text-transparent tracking-tight">
-          تسجيل الدخول
+          {t("login.title")}
         </h2>
-        <p className="text-gray-600 font-medium">أدخل بيانات حسابك للمتابعة</p>
+        <p className="text-gray-600 font-medium">{t("login.subtitle")}</p>
       </div>
 
       <Form value={form}>
@@ -74,12 +75,12 @@ export default function LoginForm() {
               <FormItem className="space-y-2">
                 <FormLabel className="text-gray-700 font-semibold flex items-center gap-2">
                   <Mail className="w-4 h-4 text-blue-500" />
-                  البريد الإلكتروني
+                  {t("login.emailLabel")}
                 </FormLabel>
                 <FormControl>
                   <div className="relative">
                     <Input
-                      placeholder="example@email.com"
+                      placeholder={t("login.emailPlaceholder")}
                       {...field}
                       className="pl-4 pr-11 h-12 bg-white/70 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 hover:bg-white/90 focus:bg-white shadow-sm"
                     />
@@ -100,7 +101,7 @@ export default function LoginForm() {
               <FormItem className="space-y-2">
                 <FormLabel className="text-gray-700 font-semibold flex items-center gap-2">
                   <Lock className="w-4 h-4 text-blue-500" />
-                  كلمة المرور
+                  {t("login.passwordLabel")}
                 </FormLabel>
                 <FormControl>
                   <div className="relative">
@@ -135,7 +136,7 @@ export default function LoginForm() {
             loading={form.formState.isSubmitting}
           >
             <LogIn className="w-5 h-5 ml-2" />
-            تسجيل الدخول
+            {t("login.submit")}
           </ButtonWithLoading>
         </form>
       </Form>
@@ -144,17 +145,17 @@ export default function LoginForm() {
       <div className="text-center relative z-10">
         <div className="flex items-center justify-center gap-4 mb-4">
           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-          <span className="text-gray-500 text-sm font-medium">أو</span>
+          <span className="text-gray-500 text-sm font-medium">{t("login.or")}</span>
           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
         </div>
 
         <p className="text-gray-600">
-          ليس لديك حساب؟{" "}
+          {t("login.noAccount")}{" "}
           <Link
             to="/signup"
             className="text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200 hover:underline decoration-2 underline-offset-2"
           >
-            إنشاء حساب جديد
+            {t("login.createAccount")}
           </Link>
         </p>
       </div>

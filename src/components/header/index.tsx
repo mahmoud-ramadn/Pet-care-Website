@@ -68,7 +68,7 @@ export default function Header() {
         <div className="bg-gradient-to-r from-primary via-secondary to-primary text-foreground text-center py-2 text-sm font-medium">
           <div className="container mx-auto px-4 flex items-center justify-center space-x-2 overflow-hidden">
             <SparklesIcon className="w-4 h-4 animate-pulse flex-shrink-0" />
-            <span className="truncate">🎉 Special Offer: 20% off all grooming services this week!</span>
+            <span className="truncate">{t("header.promo")}</span>
             <SparklesIcon className="w-4 h-4 animate-pulse flex-shrink-0" />
           </div>
         </div>
@@ -83,7 +83,7 @@ export default function Header() {
                   <img
                     className="h-10 w-10 md:h-12 md:w-12 object-contain drop-shadow-sm"
                     src="/logo.webp"
-                    alt="Pet Care Logo"
+                    alt={t("header.logoAlt")}
                     loading="lazy"
                   />
                 </div>

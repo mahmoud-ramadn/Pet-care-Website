@@ -53,6 +53,7 @@ export default function Services() {
   const clearFilters = () => {
     mutate({ serviceType: "", location: "" })
     setPage(1)
+    retry()
   }
 
   const hasActiveFilters = query.serviceType || query.location

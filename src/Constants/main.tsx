@@ -15,7 +15,7 @@ export const HeaderLinks: HeaderLinksType[] = [
   { href: "/", labelKey: "HomePageLink" },
   { href: "adoption", labelKey: "AdoptionPageLink" },
   { href: "Community", labelKey: "Community" },
-  { href: "blogs", labelKey: "blogs" },
+  { href: "blogs", labelKey: "Blogs" },
   { href: "vet", labelKey: "Vet" },
   { href: "shop", labelKey: "Shop" },
   { href: "services", labelKey: "ServicesPageLink" },
@@ -163,6 +163,7 @@ export const VetNavigationLink: AdoptionNavigationLink[] = [
     image: ProjectImages.vet.clinics,
   },
 ]
+
 export const HomNavigationLink: HomeBoxNavigationLink[] = [
   {
     id: "1",

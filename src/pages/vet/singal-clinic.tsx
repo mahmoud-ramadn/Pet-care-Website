@@ -27,7 +27,7 @@ export default function SingleClinic() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-blue-50">
+    <div className="min-h-screen ">
       <div className="container py-8 space-y-8">
         {loading ? (
           <ClinicSkeleton />

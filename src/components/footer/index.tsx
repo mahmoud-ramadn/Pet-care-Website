@@ -53,7 +53,7 @@ export default function Footer() {
                   <h3 className="font-bold text-white text-xl md:text-2xl">{t("footer.getInTouch")}</h3>
                 </div>
                 <p className="text-blue-100 leading-relaxed font-light text-sm md:text-base">
-                  Stay updated with our latest news, special offers, and pet care tips.
+                  {t("footer.newsletterBlurb")}
                 </p>
               </div>
 
@@ -65,12 +65,12 @@ export default function Footer() {
                     placeholder={t("footer.emailPlaceholder")}
                   />
                   <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg px-3 py-1 md:px-4 md:py-2 text-sm md:text-base font-semibold hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 hover:scale-105">
-                    Subscribe
+                    {t("footer.subscribe")}
                   </button>
                 </div>
 
                 <div className="flex items-center space-x-4 pt-2">
-                  <span className="text-blue-100 text-sm font-medium">Follow us:</span>
+                  <span className="text-blue-100 text-sm font-medium">{t("footer.followUs")}</span>
                   <div className="flex space-x-2 md:space-x-3">
                     <SocialIcon
                       href="#"

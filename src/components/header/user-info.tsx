@@ -10,6 +10,7 @@ import {
 } from "@radix-ui/react-dropdown-menu"
 import { ChevronDown, LogOut, PillIcon, UserIcon } from "lucide-react"
 
+import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
 import { useLogout } from "@/hooks/auth"
@@ -21,6 +22,7 @@ const isMobile = typeof window !== "undefined" && window.innerWidth < 768
 
 export default function UserInfo() {
   const { value } = useGetMe()
+  const { t } = useTranslation()
 
   const logout = useLogout()
 
@@ -41,7 +43,7 @@ export default function UserInfo() {
           size="lg"
           variant="ghost"
           className="flex items-center gap-3 rounded-xl   dark:bg-gradient-to-r from-black to to-blue-700 bg-white hover:bg-gray-50  shadow-sm border border-gray-200 transition-all duration-200 hover:shadow-md"
-          aria-label="User menu"
+          aria-label={t("userMenu")}
         >
           <Avatar className="h-8 w-8 rounded-lg  overflow-hidden border border-gray-200">
             <AvatarImage src={value?.profileImage} alt={value?.name} className="object-cover  size-full " />
@@ -95,7 +97,7 @@ export default function UserInfo() {
                 <div className="p-1.5 bg-blue-50 rounded-lg text-blue-600">
                   <UserIcon size={16} />
                 </div>
-                Admin Dashboard
+                {t("adminDashboard")}
               </Link>
             </DropdownMenuItem>
           ) : (
@@ -107,7 +109,7 @@ export default function UserInfo() {
                 <div className="p-1.5 bg-blue-50 rounded-lg text-blue-600">
                   <UserIcon size={16} />
                 </div>
-                User Dashboard
+                {t("userDashboard")}
               </Link>
             </DropdownMenuItem>
           )}
@@ -116,7 +118,7 @@ export default function UserInfo() {
             <div className="p-1.5 bg-purple-50 rounded-lg text-purple-600">
               <PillIcon size={16} />
             </div>
-            Notifications
+            {t("notifications")}
           </DropdownMenuItem>
         </DropdownMenuGroup>
 
@@ -129,7 +131,7 @@ export default function UserInfo() {
           <div className="p-1.5 bg-red-50 rounded-lg text-red-600">
             <LogOut size={16} />
           </div>
-          Log out
+          {t("logout")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
