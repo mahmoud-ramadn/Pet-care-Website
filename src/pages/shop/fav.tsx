@@ -2,6 +2,7 @@ import { Grid3X3, Heart, List, Search, ShoppingBag, Sparkles, Star, Zap } from "
 import { toast } from "sonner"
 
 import { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
 
 // import { Link } from "react-router" // Simulated for demo
 
@@ -13,6 +14,7 @@ import { addFavoriteProduct } from "@/apis/product"
 import { useFavoriteProducts } from "@/hooks/product"
 
 export default function Fav() {
+  const { t } = useTranslation()
   const { value, loading } = useFavoriteProducts()
   const [products, setProducts] = useState<Product[]>([])
   const [loadingIds, setLoadingIds] = useState<string[]>([])
@@ -76,10 +78,8 @@ export default function Fav() {
               </div>
             </div>
 
-            <h3 className="text-3xl font-bold text-foreground mb-4">No Favorites Yet</h3>
-            <p className="text-foreground/80 mb-8 text-lg max-w-md mx-auto">
-              Start building your wishlist by adding products you love to your favorites!
-            </p>
+            <h3 className="text-3xl font-bold text-foreground mb-4">{t("favorites.noFavorites")}</h3>
+            <p className="text-foreground/80 mb-8 text-lg max-w-md mx-auto">{t("favorites.noFavoritesDesc")}</p>
 
             <div className="space-y-4">
               <a
@@ -87,22 +87,22 @@ export default function Fav() {
                 className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-2xl font-semibold text-lg transform hover:scale-105 transition-all duration-200 shadow-xl hover:shadow-2xl"
               >
                 <ShoppingBag className="w-5 h-5" />
-                Discover Products
+                {t("favorites.discoverProducts")}
                 <Sparkles className="w-5 h-5" />
               </a>
 
               <div className="flex items-center justify-center gap-6 text-sm text-foreground/70 mt-6">
                 <div className="flex items-center gap-2">
                   <Heart className="w-4 h-4 text-pink-500" />
-                  <span>Save favorites</span>
+                  <span>{t("favorites.saveFavorites")}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Star className="w-4 h-4 text-yellow-500" />
-                  <span>Easy access</span>
+                  <span>{t("favorites.easyAccess")}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Zap className="w-4 h-4 text-blue-500" />
-                  <span>Quick purchase</span>
+                  <span>{t("favorites.quickPurchase")}</span>
                 </div>
               </div>
             </div>
@@ -128,10 +128,11 @@ export default function Fav() {
                   </div>
                 </div>
                 <div>
-                  <h1 className="text-4xl font-bold text-foreground">Your Favorites</h1>
+                  <h1 className="text-4xl font-bold text-foreground">{t("favorites.title")}</h1>
                   <p className="text-foreground/70 mt-1">
-                    {filteredProducts?.length} {filteredProducts?.length === 1 ? "product" : "products"} in your
-                    wishlist
+                    {filteredProducts?.length}{" "}
+                    {filteredProducts?.length === 1 ? t("favorites.product") : t("favorites.products")}{" "}
+                    {t("favorites.inWishlist")}
                   </p>
                 </div>
               </div>
@@ -142,7 +143,7 @@ export default function Fav() {
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-foreground/60 w-5 h-5" />
                   <input
                     type="text"
-                    placeholder="Search favorites..."
+                    placeholder={t("favorites.searchPlaceholder")}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pl-10 pr-4 py-3 bg-background/60 backdrop-blur-sm border border-border rounded-xl text-foreground focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all w-full sm:w-64"
@@ -155,9 +156,9 @@ export default function Fav() {
                     onChange={(e) => setSortBy(e.target.value as "name" | "price" | "date")}
                     className="px-4 py-3 bg-background/60 backdrop-blur-sm border border-border rounded-xl text-foreground focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
                   >
-                    <option value="date">Sort by Date</option>
-                    <option value="name">Sort by Name</option>
-                    <option value="price">Sort by Price</option>
+                    <option value="date">{t("favorites.sortByDate")}</option>
+                    <option value="name">{t("favorites.sortByName")}</option>
+                    <option value="price">{t("favorites.sortByPrice")}</option>
                   </select>
 
                   <button
@@ -175,7 +176,7 @@ export default function Fav() {
         {/* Products Grid */}
         <div
           className={`grid gap-8 ${
-            viewMode === "grid" ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" : "grid-cols-1"
+            viewMode === "grid" ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" : "grid-cols-2"
           }`}
         >
           {filteredProducts?.map((product, index) => (
@@ -198,10 +199,10 @@ export default function Fav() {
                     try {
                       await addFavoriteProduct(product._id ?? "")
                       setProducts((prev) => prev.filter((p) => p._id !== product._id))
-                      toast.success("Product removed from favorites")
+                      toast.success(t("favorites.productRemoved"))
                     } catch (error) {
                       console.error("Failed to update favorites:", error)
-                      toast.error("Failed to remove from favorites")
+                      toast.error(t("favorites.failedToRemove"))
                     } finally {
                       setLoadingIds((prev) => prev.filter((id) => id !== product._id))
                     }
@@ -221,16 +222,14 @@ export default function Fav() {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-pink-600/10 to-purple-600/10 rounded-3xl blur-2xl"></div>
               <div className="relative bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">Love More Products?</h3>
-                <p className="text-gray-600 mb-6 max-w-md mx-auto">
-                  Continue exploring our collection to find more amazing products you'll love.
-                </p>
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">{t("favorites.loveMoreProducts")}</h3>
+                <p className="text-gray-600 mb-6 max-w-md mx-auto">{t("favorites.loveMoreProductsDesc")}</p>
                 <a
                   href="/shop"
                   className="inline-flex items-center gap-3 bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white px-8 py-4 rounded-2xl font-semibold transform hover:scale-105 transition-all duration-200 shadow-xl"
                 >
                   <ShoppingBag className="w-5 h-5" />
-                  Browse More Products
+                  {t("favorites.browseMoreProducts")}
                   <Sparkles className="w-5 h-5" />
                 </a>
               </div>

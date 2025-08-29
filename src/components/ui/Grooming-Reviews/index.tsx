@@ -11,7 +11,7 @@ export default function GroomingReviews() {
 
   return (
     <section className="relative py-20 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20"></div>
+      <div className="absolute inset-0 light:bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20"></div>
 
       <div className="absolute top-20 left-10 w-24 h-24 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-xl animate-float"></div>
       <div className="absolute bottom-32 right-16 w-32 h-32 bg-gradient-to-br from-yellow-400/10 to-orange-400/10 rounded-full blur-2xl animate-float-delayed"></div>
@@ -54,9 +54,7 @@ export default function GroomingReviews() {
 
         <div className="text-center mt-16 space-y-6">
           <div className="max-w-md mx-auto">
-            <p className="text-gray-600 mb-6 font-light">
-              {t("testimonials.cta")}
-            </p>
+            <p className="text-gray-600 mb-6 font-light">{t("testimonials.cta")}</p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/25 hover:scale-105">

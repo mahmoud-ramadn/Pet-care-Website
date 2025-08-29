@@ -4,6 +4,7 @@ import { toast } from "sonner"
 
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
 
 import ImageUpload from "@/components/ui/ImageUploadField"
 import { ButtonWithLoading } from "@/components/ui/button"
@@ -12,7 +13,7 @@ import { Input } from "@/components/ui/input"
 
 import { updateUserProfile } from "@/apis/user"
 
-import { UpdateUserProfileFormSchema, type UpdateUserProfileFormSchemaType } from "./schema"
+import { type UpdateUserProfileFormSchemaType, createUpdateUserProfileFormSchema } from "./schema"
 
 interface inputsValues {
   name: string
@@ -35,10 +36,11 @@ type Props = {
 }
 
 export default function UserProfileUpdateForm({ value }: Props) {
+  const { t } = useTranslation()
   const [loading, setLoading] = useState(false)
 
   const form = useForm<UpdateUserProfileFormSchemaType>({
-    resolver: zodResolver(UpdateUserProfileFormSchema),
+    resolver: zodResolver(createUpdateUserProfileFormSchema(t)),
     defaultValues: {
       name: value?.name || "",
       phoneNumber: value?.phoneNumber || "",
@@ -74,13 +76,13 @@ export default function UserProfileUpdateForm({ value }: Props) {
       }
 
       await updateUserProfile(formData as unknown as inputsValues)
-      toast.success("تم تحديث الملف الشخصي بنجاح", {
-        description: "تم حفظ جميع التغييرات",
+      toast.success(t("updateUserForm.profileUpdated"), {
+        description: t("updateUserForm.profileUpdatedDesc"),
         duration: 4000,
       })
     } catch {
-      toast.error("حدث خطأ أثناء التحديث", {
-        description: "يرجى المحاولة مرة أخرى",
+      toast.error(t("updateUserForm.updateError"), {
+        description: t("updateUserForm.updateErrorDesc"),
       })
     } finally {
       setLoading(false)
@@ -90,19 +92,19 @@ export default function UserProfileUpdateForm({ value }: Props) {
   return (
     <div className="max-w-2xl mx-auto p-6">
       {/* Header Section */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-8 relative">
         <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full shadow-lg mb-4">
           <Edit3 className="w-8 h-8 text-primary-foreground" />
         </div>
-        <h1 className="text-3xl font-bold text-foreground mb-2">تحديث الملف الشخصي</h1>
-        <p className="text-muted-foreground">قم بتحديث معلوماتك الشخصية وصورة الملف الشخصي</p>
+        <h1 className="text-3xl font-bold text-foreground mb-2">{t("updateUserForm.title")}</h1>
+        <p className="text-muted-foreground">{t("updateUserForm.subtitle")}</p>
       </div>
 
       <div className="bg-card rounded-2xl shadow-xl border border-border overflow-hidden">
         <div className="bg-gradient-to-r from-accent/20 via-primary/10 to-secondary/10 p-6 border-b border-border">
           <div className="flex items-center space-x-3 rtl:space-x-reverse">
             <User className="w-6 h-6 text-primary" />
-            <h2 className="text-xl font-semibold text-foreground">المعلومات الشخصية</h2>
+            <h2 className="text-xl font-semibold text-foreground">{t("updateUserForm.personalInfo")}</h2>
           </div>
         </div>
 
@@ -110,7 +112,6 @@ export default function UserProfileUpdateForm({ value }: Props) {
           <Form value={form}>
             <FormLoading loading={loading}>
               <div className="space-y-8">
-                {/* Profile Image */}
                 <FormField
                   control={form.control}
                   name="profileImage"
@@ -118,7 +119,7 @@ export default function UserProfileUpdateForm({ value }: Props) {
                     <FormItem>
                       <FormLabel className="text-lg font-medium text-foreground flex items-center gap-2">
                         <Camera className="w-5 h-5" />
-                        صورة الملف الشخصي
+                        {t("updateUserForm.profileImage")}
                       </FormLabel>
                       <FormControl>
                         <ImageUpload value={field.value} onChange={(file) => field.onChange(file)} />
@@ -128,7 +129,6 @@ export default function UserProfileUpdateForm({ value }: Props) {
                   )}
                 />
 
-                {/* Form Fields */}
                 <div className="grid md:grid-cols-2 gap-6">
                   <FormField
                     control={form.control}
@@ -137,11 +137,11 @@ export default function UserProfileUpdateForm({ value }: Props) {
                       <FormItem>
                         <FormLabel className="text-base font-medium text-foreground flex items-center gap-2">
                           <User className="w-4 h-4" />
-                          اسم المستخدم
+                          {t("updateUserForm.username")}
                         </FormLabel>
                         <FormControl>
                           <Input
-                            placeholder="اسم المستخدم"
+                            placeholder={t("updateUserForm.usernamePlaceholder")}
                             className="h-12 border-2 border-input focus:border-primary bg-background text-foreground rounded-xl"
                             {...field}
                           />
@@ -158,12 +158,12 @@ export default function UserProfileUpdateForm({ value }: Props) {
                       <FormItem>
                         <FormLabel className="text-base font-medium text-foreground flex items-center gap-2">
                           <Phone className="w-4 h-4" />
-                          رقم الهاتف
+                          {t("updateUserForm.phoneNumber")}
                         </FormLabel>
                         <FormControl>
                           <Input
                             type="tel"
-                            placeholder="رقم الهاتف"
+                            placeholder={t("updateUserForm.phoneNumberPlaceholder")}
                             className="h-12 border-2 border-input focus:border-primary bg-background text-foreground rounded-xl"
                             {...field}
                           />
@@ -180,11 +180,11 @@ export default function UserProfileUpdateForm({ value }: Props) {
                       <FormItem className="md:col-span-2">
                         <FormLabel className="text-base font-medium text-foreground flex items-center gap-2">
                           <Mail className="w-4 h-4" />
-                          البريد الإلكتروني
+                          {t("updateUserForm.email")}
                         </FormLabel>
                         <FormControl>
                           <Input
-                            placeholder="example@email.com"
+                            placeholder={t("updateUserForm.emailPlaceholder")}
                             className="h-12 border-2 border-input focus:border-primary bg-background text-foreground rounded-xl"
                             {...field}
                           />
@@ -195,7 +195,6 @@ export default function UserProfileUpdateForm({ value }: Props) {
                   />
                 </div>
 
-                {/* Submit */}
                 <div className="pt-6 border-t border-border">
                   <ButtonWithLoading
                     type="submit"
@@ -205,7 +204,7 @@ export default function UserProfileUpdateForm({ value }: Props) {
                     onClick={form.handleSubmit(onSubmit)}
                   >
                     <Save className="w-5 h-5 mr-2" />
-                    حفظ التغييرات
+                    {t("updateUserForm.saveChanges")}
                   </ButtonWithLoading>
                 </div>
               </div>
@@ -214,18 +213,17 @@ export default function UserProfileUpdateForm({ value }: Props) {
         </div>
       </div>
 
-      {/* Help Text */}
       <div className="mt-6 p-4 bg-accent/20 border border-accent rounded-xl">
         <div className="flex items-start space-x-3 rtl:space-x-reverse">
           <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
             <Check className="w-4 h-4 text-primary-foreground" />
           </div>
           <div>
-            <h3 className="text-sm font-medium text-foreground">نصائح مفيدة</h3>
+            <h3 className="text-sm font-medium text-foreground">{t("updateUserForm.helpfulTips")}</h3>
             <ul className="mt-2 text-sm text-muted-foreground space-y-1">
-              <li>• استخدم صورة واضحة وحديثة</li>
-              <li>• تأكد من أن بياناتك صحيحة ومحدثة</li>
-              <li>• حجم الصورة يجب أن يكون أقل من 5 ميجابايت</li>
+              <li>• {t("updateUserForm.tip1")}</li>
+              <li>• {t("updateUserForm.tip2")}</li>
+              <li>• {t("updateUserForm.tip3")}</li>
             </ul>
           </div>
         </div>

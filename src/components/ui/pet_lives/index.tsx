@@ -8,7 +8,7 @@ export default function PetLives() {
   return (
     <section className="relative py-20 overflow-hidden">
       {/* Background decorative elements */}
-      <div className="absolute top-10 left-10 w-20 h-20 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-xl animate-pulse"></div>
+      <div className="absolute top-10 left-10 w-20 h-20 light:bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-xl animate-pulse"></div>
       <div className="absolute bottom-20 right-20 w-32 h-32 bg-gradient-to-br from-yellow-400/20 to-orange-400/20 rounded-full blur-2xl animate-pulse delay-1000"></div>
 
       <div className="container mx-auto px-4">
@@ -55,7 +55,7 @@ export default function PetLives() {
             {/* Main heading */}
             <div className="space-y-4">
               <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
-                <span className="bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+                <span className=" bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text dark:text-white text-transparent">
                   {t("petLives.title")}
                 </span>
               </h2>

@@ -68,7 +68,7 @@
     "desc1": "All employees at Scooby have been carefully selected. Each employee always has the safety and care of your Pet in mind.",
     "desc2": "Contact Us to schedule your services today!"
   },
-    "HomNavigationLink": {
+  "HomNavigationLink": {
     "vet": "Vet",
     "services": "Services",
     "shop": "Shop",
@@ -92,6 +92,54 @@
     "login": "Log in",
     "emailExists": "Email already exists"
   },
+  "shop": {
+    "hero": {
+      "badge": "First Pet Store in the Region",
+      "title": "Discover the World of",
+      "titleEmphasis": "Pets",
+      "subtitle": "High-quality products and exceptional service for your four-legged friends",
+      "stats": {
+        "products": "Diverse Products",
+        "rating": "Customer Rating",
+        "customers": "Happy Customers"
+      },
+      "cta": {
+        "browse": "Browse Products Now",
+        "learnMore": "Learn More"
+      }
+    },
+    "search": {
+      "placeholder": "Search for products, brands, or categories...",
+      "results": "Found",
+      "products": "products containing",
+      "clearSearch": "Clear Search and Return"
+    },
+    "filters": {
+      "categories": "Categories:",
+      "allCategories": "All Categories",
+      "medicine": "Medicine",
+      "food": "Food",
+      "toys": "Toys",
+      "grooming": "Grooming",
+      "accessories": "Accessories",
+      "viewMode": "View Mode:"
+    },
+    "featured": {
+      "title": "Best Selling Products",
+      "rating": "Rating",
+      "noProducts": "No products available at the moment",
+      "noProductsDesc": "We are working on adding new and exciting products. Stay tuned soon!",
+      "noSearchResults": "No products match your search",
+      "noSearchResultsDesc": "Try using different words or browse available categories to find what you're looking for"
+    },
+    "pagination": {
+      "itemsPerPage": "Items per page:",
+      "selectCount": "Select count",
+      "page": "Page",
+      "of": "of",
+      "pages": "pages"
+    }
+  },
   "login": {
     "title": "Log in",
     "subtitle": "Enter your account details to continue",
@@ -103,5 +151,151 @@
     "noAccount": "Don't have an account?",
     "createAccount": "Create a new account",
     "invalidCredentials": "Email or password is incorrect."
+  },
+  "favorites": {
+    "title": "Your Favorites",
+    "noFavorites": "No Favorites Yet",
+    "noFavoritesDesc": "Start building your wishlist by adding products you love to your favorites!",
+    "discoverProducts": "Discover Products",
+    "saveFavorites": "Save favorites",
+    "easyAccess": "Easy access",
+    "quickPurchase": "Quick purchase",
+    "searchPlaceholder": "Search favorites...",
+    "sortByDate": "Sort by Date",
+    "sortByName": "Sort by Name",
+    "sortByPrice": "Sort by Price",
+    "product": "product",
+    "products": "products",
+    "inWishlist": "in your wishlist",
+    "loveMoreProducts": "Love More Products?",
+    "loveMoreProductsDesc": "Continue exploring our collection to find more amazing products you'll love.",
+    "browseMoreProducts": "Browse More Products",
+    "productRemoved": "Product removed from favorites",
+    "failedToRemove": "Failed to remove from favorites"
+  },
+  "createPost": {
+    "titleNew": "Create New Post",
+    "titleUpdate": "Update Post",
+    "descLabel": "Description",
+    "descPlaceholder": "What's on your mind?",
+    "statusLabel": "Post Status",
+    "onlyMe": "Only me",
+    "private": "Private",
+    "imageLabel": "Post Image",
+    "dropActive": "Drop your image here!",
+    "dropIdle": "Click to upload or drag & drop",
+    "imageHint": "PNG, JPG, GIF up to 10MB",
+    "imageBadge": "Image uploaded",
+    "submitNew": "Create Post",
+    "submitUpdate": "Update Post",
+    "toastCreated": "Post created successfully!",
+    "toastFailed": "Failed to create post"
+  },
+  "community": {
+    "title": "Community",
+    "subtitle": "Connect, share, and discover amazing content",
+    "noPosts": "No posts yet",
+    "noPostsDesc": "Be the first to share something amazing with the community!",
+    "viewAllComments": "View all comments",
+    "addComment": "Add a thoughtful comment...",
+    "postComment": "Post",
+    "like": "like",
+    "likes": "likes"
+  },
+  "userProfile": {
+    "errorTitle": "Sorry, an error occurred",
+    "errorDesc": "Failed to load user data",
+    "backToHome": "Back to Home",
+    "editProfile": "Edit Profile",
+    "favoritePets": "Favorite Pets",
+    "favoritePetsDesc": "Your distinguished pets",
+    "noFavoritePets": "No favorite pets",
+    "noFavoritePetsDesc": "Start adding your favorite pets to see them here and follow their news",
+    "browsePets": "Browse Pets",
+    "myPets": "My Pets",
+    "noPets": "No pets registered yet",
+    "registerNewPet": "Register New Pet",
+    "moments": "Special Moments",
+    "addMoment": "Add Moment",
+    "noMoments": "No moments yet",
+    "noMomentsDesc": "Start sharing your special moments with the community",
+    "createFirstMoment": "Create First Moment",
+    "viewDetails": "View Details",
+    "view": "View",
+    "andMore": "and more",
+    "otherPets": "other pets",
+    "type": "Type",
+    "weight": "Weight",
+    "kg": "kg",
+    "clickToInteract": "Click to interact",
+    "petId": "Pet ID"
+  },
+  "updateUserForm": {
+    "title": "Update Profile",
+    "subtitle": "Update your personal information and profile picture",
+    "personalInfo": "Personal Information",
+    "profileImage": "Profile Picture",
+    "username": "Username",
+    "usernamePlaceholder": "Username",
+    "phoneNumber": "Phone Number",
+    "phoneNumberPlaceholder": "Phone Number",
+    "email": "Email",
+    "emailPlaceholder": "example@email.com",
+    "saveChanges": "Save Changes",
+    "profileUpdated": "Profile updated successfully",
+    "profileUpdatedDesc": "All changes have been saved",
+    "updateError": "An error occurred during update",
+    "updateErrorDesc": "Please try again",
+    "helpfulTips": "Helpful Tips",
+    "tip1": "Use a clear and recent image",
+    "tip2": "Make sure your data is correct and up to date",
+    "tip3": "Image size should be less than 5MB",
+    "validation": {
+      "nameRequired": "Name is required",
+      "nameEmpty": "Name cannot be empty",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email address",
+      "phoneRequired": "Phone number is required",
+      "phoneMinLength": "Phone number must be 8 digits or more",
+      "imageUrlInvalid": "Invalid image URL",
+      "imageFileInvalid": "Invalid image file"
+    }
+  },
+  "hero": {
+    "scene1": {
+      "name": "Pet Care Excellence",
+      "description": "Professional care for your beloved companions"
+    },
+    "scene2": {
+      "name": "Veterinary Services",
+      "description": "Expert medical care for your pets"
+    },
+    "scene3": {
+      "name": "Pet Adoption",
+      "description": "Find your perfect furry friend"
+    },
+    "scene4": {
+      "name": "Pet Community",
+      "description": "Connect with fellow pet lovers"
+    },
+    "controls": {
+      "pause": "⏸ Pause",
+      "play": "▶ Play",
+      "nextScene": "🎭 Next Scene"
+    },
+    "stats": {
+      "activeParticles": "Active Particles",
+      "mouseX": "Mouse X",
+      "mouseY": "Mouse Y",
+      "scene": "Scene"
+    },
+    "hints": {
+      "moveMouse": "Move mouse to control environment",
+      "clickParticles": "Click anywhere to create particles"
+    },
+    "status": {
+      "live": "🟢 Live",
+      "paused": "🔴 Paused"
+    }
   }
 }

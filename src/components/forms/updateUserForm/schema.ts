@@ -1,16 +1,57 @@
 import { z } from "zod"
 
-export const UpdateUserProfileFormSchema = z.object({
-  name: z.string({ required_error: "الاسم مطلوب" }).trim().min(1, { message: "الاسم لا يمكن أن يكون فارغًا" }),
+// Function to create schema with translations
+export const createUpdateUserProfileFormSchema = (t: (key: string) => string) => {
+  return z.object({
+    name: z
+      .string({
+        required_error: t("updateUserForm.validation.nameRequired"),
+      })
+      .trim()
+      .min(1, {
+        message: t("updateUserForm.validation.nameEmpty"),
+      }),
 
-  email: z.string({ required_error: "البريد الإلكتروني مطلوب" }).email({ message: "البريد الإلكتروني غير صالح" }),
+    email: z
+      .string({
+        required_error: t("updateUserForm.validation.emailRequired"),
+      })
+      .email({
+        message: t("updateUserForm.validation.emailInvalid"),
+      }),
+
+    phoneNumber: z
+      .string({
+        required_error: t("updateUserForm.validation.phoneRequired"),
+      })
+      .min(8, {
+        message: t("updateUserForm.validation.phoneMinLength"),
+      }),
+
+    profileImage: z
+      .union([
+        z.string().url({
+          message: t("updateUserForm.validation.imageUrlInvalid"),
+        }),
+        z.instanceof(File, {
+          message: t("updateUserForm.validation.imageFileInvalid"),
+        }),
+      ])
+      .optional(),
+  })
+}
+
+export const UpdateUserProfileFormSchema = z.object({
+  name: z.string({ required_error: "Name is required" }).trim().min(1, { message: "Name cannot be empty" }),
+
+  email: z.string({ required_error: "Email is required" }).email({ message: "Invalid email address" }),
 
   phoneNumber: z
-    .string({ required_error: "رقم الهاتف مطلوب" })
-    .min(8, { message: "رقم الهاتف يجب أن يكون 8 أرقام أو أكثر" }),
+    .string({ required_error: "Phone number is required" })
+    .min(8, { message: "Phone number must be 8 digits or more" }),
 
   profileImage: z
-    .union([z.string().url({ message: "رابط الصورة غير صالح" }), z.instanceof(File, { message: "ملف صورة غير صالح" })])
+    .union([z.string().url({ message: "Invalid image URL" }), z.instanceof(File, { message: "Invalid image file" })])
     .optional(),
 })
 

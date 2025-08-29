@@ -3,7 +3,7 @@ import type { ColumnDef } from "@tanstack/react-table"
 import { CatIcon, MoreVerticalIcon, Trash2 } from "lucide-react"
 import { toast } from "sonner"
 
-import { lazy, Suspense, useEffect, useMemo, useState } from "react"
+import { Suspense, lazy, useEffect, useMemo, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import DataTable from "@/components/ui/data-table"
@@ -92,7 +92,6 @@ export default function UserPetsListing() {
               </DropdownMenuTrigger>
 
               <DropdownMenuContent className="w-48 rounded-xl shadow-xl border border-gray-200 p-2 bg-white/95 backdrop-blur-sm">
-              
                 <DropdownMenuItem
                   onClick={() => MakeDeletPet(pet?._id ?? "")}
                   className="flex items-center gap-3 cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-red-50 hover:text-red-700 group"
@@ -173,21 +172,17 @@ export default function UserPetsListing() {
       </Button>
       <DataTable columns={columns} loading={loading} data={paginatedData} />
       <Suspense>
-
-
-      <PetAddEditDialog
-        pet={petItem}
-        open={open}
-        setOpen={setOpen}
-        onComplete={() => {
-          retry()
-          setPet(undefined)
-          setOpen(false)
-        }}
-
+        <PetAddEditDialog
+          pet={petItem}
+          open={open}
+          setOpen={setOpen}
+          onComplete={() => {
+            retry()
+            setPet(undefined)
+            setOpen(false)
+          }}
         />
-        </Suspense>
-    
+      </Suspense>
 
       {/* Items per page and results info - Responsive layout */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">

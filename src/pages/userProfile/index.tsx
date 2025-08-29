@@ -2,6 +2,7 @@ import { format } from "date-fns"
 import { Calendar, Camera, Crown, Edit, Heart, Mail, Phone, PlusCircle, User } from "lucide-react"
 
 import { useEffect } from "react"
+import { useTranslation } from "react-i18next"
 import { Link, useParams } from "react-router"
 
 import UserProfileSkeleton from "@/components/ui/feedbacks/userProfile-skeleton"
@@ -20,6 +21,7 @@ const getRoleBadgeStyle = (role: string) => {
 }
 
 export default function UserProfile() {
+  const { t } = useTranslation()
   const id = useParams().id
 
   const { value, loading: userLoading, retry } = useOneUser(id ?? "")
@@ -40,13 +42,13 @@ export default function UserProfile() {
           <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <User className="w-8 h-8 text-red-500" />
           </div>
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">عذراً، حدث خطأ</h2>
-          <p className="text-red-500 mb-6 text-sm sm:text-base">فشل في تحميل بيانات المستخدم</p>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">{t("userProfile.errorTitle")}</h2>
+          <p className="text-red-500 mb-6 text-sm sm:text-base">{t("userProfile.errorDesc")}</p>
           <Link
             to="/"
             className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium text-sm sm:text-base"
           >
-            العودة للرئيسية
+            {t("userProfile.backToHome")}
           </Link>
         </div>
       </div>
@@ -54,7 +56,7 @@ export default function UserProfile() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+    <div className="min-h-screen light:bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="max-w-7xl mx-auto p-3 sm:p-4 lg:p-6 space-y-6 sm:space-y-8">
         {/* Profile Header */}
         <div className="relative bg-gradient-to-br from-white to-gray-50 rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl border border-gray-100 overflow-hidden">
@@ -128,7 +130,7 @@ export default function UserProfile() {
                   >
                     <Edit className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     <div className="absolute top-12 sm:top-14 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
-                      تعديل الملف الشخصي
+                      {t("userProfile.editProfile")}
                     </div>
                   </Link>
                 </div>
@@ -139,17 +141,17 @@ export default function UserProfile() {
                     <div className="text-lg sm:text-xl lg:text-2xl font-bold text-blue-600">
                       {value?.favPet?.length || 0}
                     </div>
-                    <div className="text-xs sm:text-sm text-gray-600">الحيوانات المفضلة</div>
+                    <div className="text-xs sm:text-sm text-gray-600">{t("userProfile.favoritePets")}</div>
                   </div>
                   <div className="text-center p-2 sm:p-3 lg:p-4 bg-white/50 rounded-xl sm:rounded-2xl border border-white/20">
                     <div className="text-lg sm:text-xl lg:text-2xl font-bold text-green-600">
                       {value?.pet?.length || 0}
                     </div>
-                    <div className="text-xs sm:text-sm text-gray-600">حيواناتي</div>
+                    <div className="text-xs sm:text-sm text-gray-600">{t("userProfile.myPets")}</div>
                   </div>
                   <div className="text-center p-2 sm:p-3 lg:p-4 bg-white/50 rounded-xl sm:rounded-2xl border border-white/20">
                     <div className="text-lg sm:text-xl lg:text-2xl font-bold text-purple-600">{posts?.length || 0}</div>
-                    <div className="text-xs sm:text-sm text-gray-600">اللحظات</div>
+                    <div className="text-xs sm:text-sm text-gray-600">{t("userProfile.moments")}</div>
                   </div>
                 </div>
               </div>
@@ -173,9 +175,9 @@ export default function UserProfile() {
                   <div className="p-1.5 sm:p-2 bg-pink-100 rounded-lg sm:rounded-xl">
                     <Heart className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-pink-600" />
                   </div>
-                  الحيوانات المفضلة
+                  {t("userProfile.favoritePets")}
                 </h2>
-                <p className="text-gray-600 text-xs sm:text-sm">حيواناتك الأليفة المميزة</p>
+                <p className="text-gray-600 text-xs sm:text-sm">{t("userProfile.favoritePetsDesc")}</p>
               </div>
             </div>
 
@@ -213,14 +215,14 @@ export default function UserProfile() {
                                   <div className="flex items-center gap-1 sm:gap-2 px-2 py-1 sm:px-3 bg-blue-100 rounded-full">
                                     <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full"></div>
                                     <span className="text-xs sm:text-sm font-medium text-blue-700">
-                                      النوع: {petId?.type}
+                                      {t("userProfile.type")}: {petId?.type}
                                     </span>
                                   </div>
 
                                   <div className="flex items-center gap-1 sm:gap-2 px-2 py-1 sm:px-3 bg-green-100 rounded-full">
                                     <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full"></div>
                                     <span className="text-xs sm:text-sm font-medium text-green-700">
-                                      الوزن: {petId?.weight} كجم
+                                      {t("userProfile.weight")}: {petId?.weight} {t("userProfile.kg")}
                                     </span>
                                   </div>
                                 </div>
@@ -231,8 +233,8 @@ export default function UserProfile() {
                                 to={""}
                                 className="flex items-center justify-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-lg sm:rounded-xl hover:from-pink-600 hover:to-rose-600 transition-all duration-200 font-medium text-xs sm:text-sm shadow-md sm:shadow-lg hover:shadow-xl transform hover:scale-105 group/btn whitespace-nowrap"
                               >
-                                <span className="hidden sm:inline">عرض التفاصيل</span>
-                                <span className="sm:hidden">عرض</span>
+                                <span className="hidden sm:inline">{t("userProfile.viewDetails")}</span>
+                                <span className="sm:hidden">{t("userProfile.view")}</span>
                                 <svg
                                   className="w-3 h-3 sm:w-4 sm:h-4 transition-transform group-hover/btn:translate-x-1"
                                   fill="none"
@@ -272,8 +274,9 @@ export default function UserProfile() {
                           ))}
                         </div>
                         <span className="text-gray-600 font-medium text-xs sm:text-sm">
-                          وأكثر من <span className="text-pink-600 font-bold">{value?.favPet.length - 3}</span> حيوانات
-                          أخرى
+                          {t("userProfile.andMore")}{" "}
+                          <span className="text-pink-600 font-bold">{value?.favPet.length - 3}</span>{" "}
+                          {t("userProfile.otherPets")}
                         </span>
                       </div>
                     </div>
@@ -294,9 +297,11 @@ export default function UserProfile() {
                     </div>
 
                     <div className="space-y-2">
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-700">لا توجد حيوانات مفضلة</h3>
+                      <h3 className="text-base sm:text-lg font-semibold text-gray-700">
+                        {t("userProfile.noFavoritePets")}
+                      </h3>
                       <p className="text-gray-500 max-w-sm mx-auto text-sm sm:text-base">
-                        ابدأ بإضافة حيواناتك المفضلة لتراها هنا وتتابع أخبارهم
+                        {t("userProfile.noFavoritePetsDesc")}
                       </p>
                     </div>
 
@@ -305,7 +310,7 @@ export default function UserProfile() {
                       className="group inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-xl sm:rounded-2xl hover:from-pink-600 hover:to-rose-600 transition-all duration-200 font-medium shadow-lg hover:shadow-xl transform hover:scale-105 text-sm sm:text-base"
                     >
                       <PlusCircle className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:rotate-90" />
-                      <span>تصفح الحيوانات</span>
+                      <span>{t("userProfile.browsePets")}</span>
                       <svg
                         className="w-3 h-3 sm:w-4 sm:h-4 transition-transform group-hover:translate-x-1"
                         fill="none"
@@ -326,7 +331,7 @@ export default function UserProfile() {
             <div className="p-4 sm:p-6 border-b border-gray-100 bg-gradient-to-r from-green-50 to-emerald-50">
               <h2 className="text-xl sm:text-2xl font-bold text-gray-800 flex items-center gap-2 sm:gap-3">
                 <User className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
-                حيواناتي الأليفة
+                {t("userProfile.myPets")}
               </h2>
             </div>
             <div className="p-4 sm:p-6">
@@ -338,12 +343,14 @@ export default function UserProfile() {
                       className="group p-3 sm:p-4 border-2 border-gray-100 rounded-xl sm:rounded-2xl hover:border-green-200 hover:bg-green-50 transition-all duration-200"
                     >
                       <div className="flex items-center justify-between">
-                        <p className="font-semibold text-gray-700 text-sm sm:text-base truncate">Pet ID: {petId._id}</p>
+                        <p className="font-semibold text-gray-700 text-sm sm:text-base truncate">
+                          {t("userProfile.petId")}: {petId._id}
+                        </p>
                         <Link
                           to={""}
                           className="text-green-600 hover:text-green-700 font-medium text-xs sm:text-sm px-2 sm:px-3 py-1 bg-green-100 rounded-lg hover:bg-green-200 transition-colors whitespace-nowrap"
                         >
-                          عرض
+                          {t("userProfile.view")}
                         </Link>
                       </div>
                     </div>
@@ -351,7 +358,7 @@ export default function UserProfile() {
                   {value?.pet.length > 3 && (
                     <div className="text-center py-2">
                       <span className="text-gray-500 text-xs sm:text-sm">
-                        وأكثر من {value?.pet.length - 3} حيوانات أخرى
+                        {t("userProfile.andMore")} {value?.pet.length - 3} {t("userProfile.otherPets")}
                       </span>
                     </div>
                   )}
@@ -361,13 +368,13 @@ export default function UserProfile() {
                   <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <User className="w-6 h-6 sm:w-8 sm:h-8 text-green-400" />
                   </div>
-                  <p className="text-gray-500 mb-4 text-sm sm:text-base">لم تسجل أي حيوانات بعد</p>
+                  <p className="text-gray-500 mb-4 text-sm sm:text-base">{t("userProfile.noPets")}</p>
                   <Link
                     to="/pets/register"
                     className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-green-600 text-white rounded-lg sm:rounded-xl hover:bg-green-700 transition-colors text-xs sm:text-sm font-medium"
                   >
                     <PlusCircle className="w-3 h-3 sm:w-4 sm:h-4" />
-                    تسجيل حيوان جديد
+                    {t("userProfile.registerNewPet")}
                   </Link>
                 </div>
               )}
@@ -381,14 +388,14 @@ export default function UserProfile() {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
               <h2 className="text-xl sm:text-2xl font-bold text-gray-800 flex items-center gap-2 sm:gap-3">
                 <Camera className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" />
-                اللحظات المميزة
+                {t("userProfile.moments")}
               </h2>
               <Link
                 to="/Community"
                 className="inline-flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-purple-600 text-white rounded-lg sm:rounded-xl hover:bg-purple-700 transition-colors text-xs sm:text-sm font-medium"
               >
                 <PlusCircle className="w-3 h-3 sm:w-4 sm:h-4" />
-                إضافة لحظة
+                {t("userProfile.addMoment")}
               </Link>
             </div>
           </div>
@@ -443,7 +450,7 @@ export default function UserProfile() {
                           <span className="font-medium text-sm sm:text-base">{post.likesNumber}</span>
                         </button>
                         <div className="flex items-center gap-2 text-gray-400 text-xs sm:text-sm">
-                          <span>انقر للتفاعل</span>
+                          <span>{t("userProfile.clickToInteract")}</span>
                         </div>
                       </div>
                     </div>
@@ -455,16 +462,14 @@ export default function UserProfile() {
                 <div className="w-16 h-16 sm:w-20 sm:h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                   <Camera className="w-8 h-8 sm:w-10 sm:h-10 text-purple-400" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">لا توجد لحظات بعد</h3>
-                <p className="text-gray-500 mb-4 sm:mb-6 text-sm sm:text-base">
-                  ابدأ بمشاركة لحظاتك المميزة مع المجتمع
-                </p>
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">{t("userProfile.noMoments")}</h3>
+                <p className="text-gray-500 mb-4 sm:mb-6 text-sm sm:text-base">{t("userProfile.noMomentsDesc")}</p>
                 <Link
                   to="/moments/create"
                   className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 font-medium shadow-lg hover:shadow-xl transform hover:scale-105 text-sm sm:text-base"
                 >
                   <PlusCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-                  إنشاء أول لحظة
+                  {t("userProfile.createFirstMoment")}
                 </Link>
               </div>
             )}

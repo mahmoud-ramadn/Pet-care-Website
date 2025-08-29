@@ -95,6 +95,54 @@
     "login": "تسجيل الدخول",
     "emailExists": "البريد الإلكتروني مستخدم بالفعل"
   },
+  "shop": {
+    "hero": {
+      "badge": "متجر الحيوانات الأليفة الأول في المنطقة",
+      "title": "اكتشف عالم",
+      "titleEmphasis": "الحيوانات الأليفة",
+      "subtitle": "منتجات عالية الجودة وخدمة استثنائية لأصدقائك ذوي الأربع أرجل",
+      "stats": {
+        "products": "منتج متنوع ومميز",
+        "rating": "تقييم العملاء",
+        "customers": "عميل راضي"
+      },
+      "cta": {
+        "browse": "تصفح المنتجات الآن",
+        "learnMore": "اعرف المزيد"
+      }
+    },
+    "search": {
+      "placeholder": "ابحث عن المنتجات، العلامات التجارية، أو الفئات...",
+      "results": "تم العثور على",
+      "products": "منتج يحتوي على",
+      "clearSearch": "مسح البحث والعودة"
+    },
+    "filters": {
+      "categories": "الفئات:",
+      "allCategories": "جميع الفئات",
+      "medicine": "الأدوية",
+      "food": "الطعام",
+      "toys": "الألعاب",
+      "grooming": "العناية",
+      "accessories": "الإكسسوارات",
+      "viewMode": "طريقة العرض:"
+    },
+    "featured": {
+      "title": "المنتجات الأكثر مبيعاً",
+      "rating": "التقييم",
+      "noProducts": "لا توجد منتجات متاحة حالياً",
+      "noProductsDesc": "نحن نعمل على إضافة منتجات جديدة ومثيرة. تابع معنا قريباً!",
+      "noSearchResults": "لم نجد منتجات تطابق بحثك",
+      "noSearchResultsDesc": "جرب استخدام كلمات مختلفة أو تصفح الفئات المتاحة للعثور على ما تبحث عنه"
+    },
+    "pagination": {
+      "itemsPerPage": "عدد العناصر في الصفحة:",
+      "selectCount": "اختر العدد",
+      "page": "صفحة",
+      "of": "من",
+      "pages": "صفحات"
+    }
+  },
   "login": {
     "title": "تسجيل الدخول",
     "subtitle": "أدخل بيانات حسابك للمتابعة",
@@ -106,5 +154,151 @@
     "noAccount": "ليس لديك حساب؟",
     "createAccount": "إنشاء حساب جديد",
     "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة."
+  },
+  "favorites": {
+    "title": "المفضلة لديك",
+    "noFavorites": "لا توجد مفضلة بعد",
+    "noFavoritesDesc": "ابدأ في بناء قائمة أمنياتك بإضافة المنتجات التي تحبها إلى المفضلة!",
+    "discoverProducts": "اكتشف المنتجات",
+    "saveFavorites": "احفظ المفضلة",
+    "easyAccess": "وصول سهل",
+    "quickPurchase": "شراء سريع",
+    "searchPlaceholder": "البحث في المفضلة...",
+    "sortByDate": "ترتيب حسب التاريخ",
+    "sortByName": "ترتيب حسب الاسم",
+    "sortByPrice": "ترتيب حسب السعر",
+    "product": "منتج",
+    "products": "منتجات",
+    "inWishlist": "في قائمة أمنياتك",
+    "loveMoreProducts": "هل تحب المزيد من المنتجات؟",
+    "loveMoreProductsDesc": "استمر في استكشاف مجموعتنا للعثور على المزيد من المنتجات المذهلة التي ستحبها.",
+    "browseMoreProducts": "تصفح المزيد من المنتجات",
+    "productRemoved": "تم إزالة المنتج من المفضلة",
+    "failedToRemove": "فشل في إزالة المنتج من المفضلة"
+  },
+  "createPost": {
+    "titleNew": "إنشاء منشور جديد",
+    "titleUpdate": "تحديث المنشور",
+    "descLabel": "الوصف",
+    "descPlaceholder": "ماذا يدور في ذهنك؟",
+    "statusLabel": "حالة المنشور",
+    "onlyMe": "فقط أنا",
+    "private": "خاص",
+    "imageLabel": "صورة المنشور",
+    "dropActive": "أفلت صورتك هنا!",
+    "dropIdle": "انقر للرفع أو اسحب وأفلت",
+    "imageHint": "PNG، JPG، GIF حتى 10 ميجابايت",
+    "imageBadge": "تم رفع الصورة",
+    "submitNew": "إنشاء منشور",
+    "submitUpdate": "تحديث المنشور",
+    "toastCreated": "تم إنشاء المنشور بنجاح!",
+    "toastFailed": "فشل في إنشاء المنشور"
+  },
+  "community": {
+    "title": "المجتمع",
+    "subtitle": "تواصل، شارك، واكتشف محتوى مذهل",
+    "noPosts": "لا توجد منشورات بعد",
+    "noPostsDesc": "كن أول من يشارك شيئًا مذهلاً مع المجتمع!",
+    "viewAllComments": "عرض جميع التعليقات",
+    "addComment": "أضف تعليقًا ذكيًا...",
+    "postComment": "نشر",
+    "like": "إعجاب",
+    "likes": "إعجابات"
+  },
+  "userProfile": {
+    "errorTitle": "عذراً، حدث خطأ",
+    "errorDesc": "فشل في تحميل بيانات المستخدم",
+    "backToHome": "العودة للرئيسية",
+    "editProfile": "تعديل الملف الشخصي",
+    "favoritePets": "الحيوانات المفضلة",
+    "favoritePetsDesc": "حيواناتك الأليفة المميزة",
+    "noFavoritePets": "لا توجد حيوانات مفضلة",
+    "noFavoritePetsDesc": "ابدأ بإضافة حيواناتك المفضلة لتراها هنا وتتابع أخبارهم",
+    "browsePets": "تصفح الحيوانات",
+    "myPets": "حيواناتي الأليفة",
+    "noPets": "لم تسجل أي حيوانات بعد",
+    "registerNewPet": "تسجيل حيوان جديد",
+    "moments": "اللحظات المميزة",
+    "addMoment": "إضافة لحظة",
+    "noMoments": "لا توجد لحظات بعد",
+    "noMomentsDesc": "ابدأ بمشاركة لحظاتك المميزة مع المجتمع",
+    "createFirstMoment": "إنشاء أول لحظة",
+    "viewDetails": "عرض التفاصيل",
+    "view": "عرض",
+    "andMore": "وأكثر من",
+    "otherPets": "حيوانات أخرى",
+    "type": "النوع",
+    "weight": "الوزن",
+    "kg": "كجم",
+    "clickToInteract": "انقر للتفاعل",
+    "petId": "معرف الحيوان"
+  },
+  "updateUserForm": {
+    "title": "تحديث الملف الشخصي",
+    "subtitle": "قم بتحديث معلوماتك الشخصية وصورة الملف الشخصي",
+    "personalInfo": "المعلومات الشخصية",
+    "profileImage": "صورة الملف الشخصي",
+    "username": "اسم المستخدم",
+    "usernamePlaceholder": "اسم المستخدم",
+    "phoneNumber": "رقم الهاتف",
+    "phoneNumberPlaceholder": "رقم الهاتف",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "example@email.com",
+    "saveChanges": "حفظ التغييرات",
+    "profileUpdated": "تم تحديث الملف الشخصي بنجاح",
+    "profileUpdatedDesc": "تم حفظ جميع التغييرات",
+    "updateError": "حدث خطأ أثناء التحديث",
+    "updateErrorDesc": "يرجى المحاولة مرة أخرى",
+    "helpfulTips": "نصائح مفيدة",
+    "tip1": "استخدم صورة واضحة وحديثة",
+    "tip2": "تأكد من أن بياناتك صحيحة ومحدثة",
+    "tip3": "حجم الصورة يجب أن يكون أقل من 5 ميجابايت",
+    "validation": {
+      "nameRequired": "الاسم مطلوب",
+      "nameEmpty": "الاسم لا يمكن أن يكون فارغًا",
+      "emailRequired": "البريد الإلكتروني مطلوب",
+      "emailInvalid": "البريد الإلكتروني غير صالح",
+      "phoneRequired": "رقم الهاتف مطلوب",
+      "phoneMinLength": "رقم الهاتف يجب أن يكون 8 أرقام أو أكثر",
+      "imageUrlInvalid": "رابط الصورة غير صالح",
+      "imageFileInvalid": "ملف صورة غير صالح"
+    }
+  },
+  "hero": {
+    "scene1": {
+      "name": "التميز في رعاية الحيوانات",
+      "description": "رعاية احترافية لرفقائك المحبوبين"
+    },
+    "scene2": {
+      "name": "الخدمات البيطرية",
+      "description": "رعاية طبية متخصصة لحيواناتك الأليفة"
+    },
+    "scene3": {
+      "name": "تبني الحيوانات",
+      "description": "اعثر على صديقك المثالي ذي الفراء"
+    },
+    "scene4": {
+      "name": "مجتمع الحيوانات الأليفة",
+      "description": "تواصل مع محبي الحيوانات الآخرين"
+    },
+    "controls": {
+      "pause": "⏸ إيقاف مؤقت",
+      "play": "▶ تشغيل",
+      "nextScene": "🎭 المشهد التالي"
+    },
+    "stats": {
+      "activeParticles": "الجسيمات النشطة",
+      "mouseX": "الماوس X",
+      "mouseY": "الماوس Y",
+      "scene": "المشهد"
+    },
+    "hints": {
+      "moveMouse": "حرك الماوس للتحكم في البيئة",
+      "clickParticles": "انقر في أي مكان لإنشاء جسيمات"
+    },
+    "status": {
+      "live": "🟢 مباشر",
+      "paused": "🔴 متوقف مؤقت"
+    }
   }
 }

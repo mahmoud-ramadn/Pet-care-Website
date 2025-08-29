@@ -1,19 +1,15 @@
-import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
-
-
-
-
+import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog"
 
 type Props = {
   open: boolean
   setOpen: (open: boolean) => void
   isEdit?: boolean
-    petId?: string | null
+  petId?: string | null
   onComplete?: (value?: PetApiResponse) => void
 }
 
 export default function PetEditDialog({ open, setOpen, petId }: Readonly<Props>) {
-console.log(petId);
+  console.log(petId)
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

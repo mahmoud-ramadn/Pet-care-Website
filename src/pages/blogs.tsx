@@ -52,7 +52,7 @@ export default function Blogs() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-indigo-50/20">
+    <div className="min-h-screen light:bg-gradient-to-br from-gray-50 via-blue-50/30 to-indigo-50/20">
       <div className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">

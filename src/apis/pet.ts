@@ -1,8 +1,4 @@
-import { apiClient } from "@/lib/api-client";
-
-
-
-
+import { apiClient } from "@/lib/api-client"
 
 export const getAllSuccessFullAdoptions = async () => {
   const response = await apiClient<SuccessfulAdoptionsApiResponse>({
@@ -98,7 +94,6 @@ export const AddPet = async (inputs: PetItem) => {
   })
   return response.status
 }
-
 
 export const UpdatePet = async (id: string, inputs: PetItem) => {
   const response = await apiClient<PetApiResponse>({

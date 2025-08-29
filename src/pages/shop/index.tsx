@@ -14,6 +14,7 @@ import {
 import { toast } from "sonner"
 
 import { useEffect, useMemo, useState } from "react"
+import { useTranslation } from "react-i18next"
 
 import { Button } from "@/components/ui/button"
 import SelectList from "@/components/ui/common/select"
@@ -35,6 +36,7 @@ import { useProducts, useQuestionsQueryFilterState } from "@/hooks/product"
 import { useDebouncedInput } from "@/hooks/useDebounceInput"
 
 export default function Shop() {
+  const { t, i18n } = useTranslation()
   const { value: products, loading } = useProducts()
   const { query, mutate } = useQuestionsQueryFilterState()
   const [fav, setFav] = useState<string[]>([])
@@ -62,7 +64,12 @@ export default function Shop() {
   useEffect(() => {
     fetchFavorites()
     fetchCarts()
-  }, [])
+
+    // Set initial document direction based on current language
+    const currentLang = i18n.language || "en"
+    document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr"
+    document.documentElement.lang = currentLang
+  }, [i18n.language])
 
   const {
     value: searchValue,
@@ -88,11 +95,11 @@ export default function Shop() {
   const hasMoreProducts = products && products.data.length >= query.limit
 
   const categories = [
-    { value: "medicine", label: "الأدوية", icon: "💊", color: "from-red-500 to-pink-500" },
-    { value: "food", label: "الطعام", icon: "🍖", color: "from-orange-500 to-yellow-500" },
-    { value: "toys", label: "الألعاب", icon: "🧸", color: "from-blue-500 to-cyan-500" },
-    { value: "grooming", label: "العناية", icon: "✂️", color: "from-purple-500 to-indigo-500" },
-    { value: "accessories", label: "الإكسسوارات", icon: "🎀", color: "from-pink-500 to-rose-500" },
+    { value: "medicine", label: t("shop.filters.medicine"), icon: "💊", color: "from-red-500 to-pink-500" },
+    { value: "food", label: t("shop.filters.food"), icon: "🍖", color: "from-orange-500 to-yellow-500" },
+    { value: "toys", label: t("shop.filters.toys"), icon: "🧸", color: "from-blue-500 to-cyan-500" },
+    { value: "grooming", label: t("shop.filters.grooming"), icon: "✂️", color: "from-purple-500 to-indigo-500" },
+    { value: "accessories", label: t("shop.filters.accessories"), icon: "🎀", color: "from-pink-500 to-rose-500" },
   ]
 
   return (
@@ -133,26 +140,27 @@ export default function Shop() {
         </div>
 
         <div className="container relative z-10 py-24">
+       
           <div className="text-center space-y-8 max-w-5xl mx-auto">
             {/* Premium Badge */}
             <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/15 backdrop-blur-xl rounded-full border border-white/30 text-white/95 text-sm font-semibold mb-6 shadow-xl">
               <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
               <ShoppingBagIcon className="w-5 h-5" />
-              <span>متجر الحيوانات الأليفة الأول في المنطقة</span>
+              <span>{t("shop.hero.badge")}</span>
               <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
             </div>
 
             {/* Main Title with Enhanced Typography */}
             <div className="space-y-4">
               <UiTitle className="text-6xl lg:text-7xl xl:text-8xl font-black text-white drop-shadow-2xl leading-tight">
-                اكتشف عالم
+                {t("shop.hero.title")}
                 <span className="block bg-gradient-to-r from-yellow-300 via-orange-300 to-pink-300 bg-clip-text text-transparent">
-                  الحيوانات الأليفة
+                  {t("shop.hero.titleEmphasis")}
                 </span>
               </UiTitle>
 
               <p className="text-xl lg:text-2xl text-purple-100 max-w-3xl mx-auto leading-relaxed font-medium">
-                منتجات عالية الجودة وخدمة استثنائية لأصدقائك ذوي الأربع أرجل
+                {t("shop.hero.subtitle")}
               </p>
             </div>
 
@@ -163,7 +171,7 @@ export default function Shop() {
                   <Package className="w-8 h-8 text-white" />
                 </div>
                 <div className="text-4xl font-black text-white mb-2">{products?.data?.length || 0}+</div>
-                <div className="text-purple-200 font-semibold">منتج متنوع ومميز</div>
+                <div className="text-purple-200 font-semibold">{t("shop.hero.stats.products")}</div>
               </div>
 
               <div className="group bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-500 hover:scale-105 hover:shadow-2xl">
@@ -171,7 +179,7 @@ export default function Shop() {
                   <Star className="w-8 h-8 text-white fill-white" />
                 </div>
                 <div className="text-4xl font-black text-white mb-2">5.0</div>
-                <div className="text-purple-200 font-semibold">تقييم العملاء</div>
+                <div className="text-purple-200 font-semibold">{t("shop.hero.stats.rating")}</div>
               </div>
 
               <div className="group bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-500 hover:scale-105 hover:shadow-2xl">
@@ -179,7 +187,7 @@ export default function Shop() {
                   <Heart className="w-8 h-8 text-white fill-white" />
                 </div>
                 <div className="text-4xl font-black text-white mb-2">10K+</div>
-                <div className="text-purple-200 font-semibold">عميل راضي</div>
+                <div className="text-purple-200 font-semibold">{t("shop.hero.stats.customers")}</div>
               </div>
             </div>
 
@@ -187,14 +195,14 @@ export default function Shop() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
               <Button className="group bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-10 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-emerald-500/25 transition-all duration-300 transform hover:-translate-y-1">
                 <ShoppingCart className="w-5 h-5 mr-2 group-hover:animate-bounce" />
-                تصفح المنتجات الآن
+                {t("shop.hero.cta.browse")}
               </Button>
               <Button
                 variant="outline"
                 className="group border-2 border-white/30 text-white hover:bg-white/10 px-10 py-4 rounded-2xl font-bold text-lg backdrop-blur-xl transition-all duration-300"
               >
                 <Eye className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-                اعرف المزيد
+                {t("shop.hero.cta.learnMore")}
               </Button>
             </div>
           </div>
@@ -204,6 +212,7 @@ export default function Shop() {
       <div className="container py-16">
         {/* Enhanced Search and Filter Section */}
         <div className="bg-background/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-border/50 p-10 mb-16 -mt-32 relative z-10">
+         
           {/* Search Bar with Enhanced Design */}
           <div className="relative max-w-3xl mx-auto mb-10">
             <div className="relative group">
@@ -213,7 +222,7 @@ export default function Shop() {
                 <Input
                   type="search"
                   onChange={(e) => handleSearchChange(e.target.value)}
-                  placeholder="ابحث عن المنتجات، العلامات التجارية، أو الفئات..."
+                  placeholder={t("shop.search.placeholder")}
                   className="w-full pl-16 pr-6 py-6 text-lg rounded-2xl border-0 focus:ring-2 focus:ring-purple-500/20 focus:outline-none font-medium bg-background text-foreground"
                 />
               </div>
@@ -228,7 +237,7 @@ export default function Shop() {
                 <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
                   <Filter className="w-5 h-5 text-white" />
                 </div>
-                الفئات:
+                {t("shop.filters.categories")}
               </span>
 
               <Button
@@ -241,7 +250,7 @@ export default function Shop() {
                     : "hover:bg-gray-50 border-2"
                 }`}
               >
-                جميع الفئات
+                {t("shop.filters.allCategories")}
               </Button>
 
               {categories.map((cat) => (
@@ -264,7 +273,7 @@ export default function Shop() {
 
             {/* Enhanced View Mode Toggle */}
             <div className="flex items-center gap-4">
-              <span className="text-foreground font-bold text-lg">طريقة العرض:</span>
+              <span className="text-foreground font-bold text-lg">{t("shop.filters.viewMode")}</span>
               <div className="flex items-center gap-2 bg-foreground/10 p-2 rounded-2xl">
                 <Button
                   variant={viewMode === "grid" ? "default" : "ghost"}
@@ -302,9 +311,9 @@ export default function Shop() {
                   <Search className="w-5 h-5 text-white" />
                 </div>
                 <p className="text-blue-800 font-semibold text-lg">
-                  تم العثور على{" "}
-                  <span className="text-2xl font-black text-purple-600">{products?.data?.length || 0}</span> منتج يحتوي
-                  على "<span className="text-purple-700 font-black">{searchValue}</span>"
+                  {t("shop.search.results")}{" "}
+                  <span className="text-2xl font-black text-purple-600">{products?.data?.length || 0}</span>{" "}
+                  {t("shop.search.products")} "<span className="text-purple-700 font-black">{searchValue}</span>"
                 </p>
               </div>
             </div>
@@ -318,7 +327,7 @@ export default function Shop() {
               <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center">
                 <TrendingUp className="w-7 h-7 text-white" />
               </div>
-              <h2 className="text-3xl font-black text-foreground">المنتجات الأكثر مبيعاً</h2>
+              <h2 className="text-3xl font-black text-foreground">{t("shop.featured.title")}</h2>
               <div className="flex-1 h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full opacity-20" />
             </div>
 
@@ -339,7 +348,9 @@ export default function Shop() {
                       <div className="flex items-center gap-4">
                         <div className="flex items-center gap-2">
                           <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
-                          <span className="text-sm font-semibold text-foreground/80">4.8</span>
+                          <span className="text-sm font-semibold text-foreground/80">
+                            {t("shop.featured.rating")}: 4.8
+                          </span>
                         </div>
                         <span className="text-orange-600 font-black text-lg">${product.price}</span>
                       </div>
@@ -377,12 +388,10 @@ export default function Shop() {
                   <Package className="w-20 h-20 text-foreground/50" />
                 </div>
                 <h3 className="text-3xl font-black text-foreground mb-4">
-                  {searchValue ? "لم نجد منتجات تطابق بحثك" : "لا توجد منتجات متاحة حالياً"}
+                  {searchValue ? t("shop.featured.noSearchResults") : t("shop.featured.noProducts")}
                 </h3>
                 <p className="text-foreground/80 max-w-lg mx-auto text-lg leading-relaxed">
-                  {searchValue
-                    ? "جرب استخدام كلمات مختلفة أو تصفح الفئات المتاحة للعثور على ما تبحث عنه"
-                    : "نحن نعمل على إضافة منتجات جديدة ومثيرة. تابع معنا قريباً!"}
+                  {searchValue ? t("shop.featured.noSearchResultsDesc") : t("shop.featured.noProductsDesc")}
                 </p>
                 {searchValue && (
                   <Button
@@ -392,7 +401,7 @@ export default function Shop() {
                     }}
                     className="mt-6 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-2xl px-8 py-4 font-bold text-lg shadow-xl"
                   >
-                    مسح البحث والعودة
+                    {t("shop.search.clearSearch")}
                   </Button>
                 )}
               </div>
@@ -449,10 +458,10 @@ export default function Shop() {
           <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
             {/* Items Per Page */}
             <div className="flex items-center gap-4">
-              <span className="text-foreground font-bold text-lg">عدد العناصر في الصفحة:</span>
+              <span className="text-foreground font-bold text-lg">{t("shop.pagination.itemsPerPage")}</span>
               <div className="min-w-[150px]">
                 <SelectList
-                  placeholder="اختر العدد"
+                  placeholder={t("shop.pagination.selectCount")}
                   selectedValue={String(query.limit || 8)}
                   handleValueChange={(value: string) => mutate({ limit: Number(value), page: 1 })}
                   selectList={["2", "4", "8", "12", "24", "32"]}
@@ -538,17 +547,31 @@ export default function Shop() {
 
             {/* Results Info */}
             <div className="text-foreground/80 font-semibold">
-              صفحة <span className="text-purple-600 font-black">{query.page}</span> من{" "}
+              {t("shop.pagination.page")} <span className="text-purple-600 font-black">{query.page}</span>{" "}
+              {t("shop.pagination.of")}{" "}
               <span className="text-purple-600 font-black">
                 {Math.ceil((products?.data?.length || 0) / query.limit)}
               </span>{" "}
-              صفحات
+              {t("shop.pagination.pages")}
             </div>
           </div>
         </div>
       </div>
 
       <style>{`
+        /* RTL Support */
+        [dir="rtl"] .rtl-flip {
+          transform: scaleX(-1);
+        }
+        
+        [dir="rtl"] .rtl-text-right {
+          text-align: right;
+        }
+        
+        [dir="rtl"] .rtl-text-left {
+          text-align: left;
+        }
+        
         @keyframes fadeIn {
           from {
             opacity: 0;

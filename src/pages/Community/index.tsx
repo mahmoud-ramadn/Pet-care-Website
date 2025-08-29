@@ -2,6 +2,7 @@ import { formatDistanceToNow } from "date-fns"
 import { Bookmark, Heart, MessageCircle, MoreHorizontal, Send, Share2 } from "lucide-react"
 
 import { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { Link } from "react-router"
 
 import { CommunitySkeleton } from "@/components/ui/feedbacks/community-skeleton"
@@ -11,6 +12,7 @@ import CreatePostForm from "@/components/forms/CreatePost"
 import { useAllPosts } from "@/hooks/user"
 
 export default function Community() {
+  const { t } = useTranslation()
   const { value: posts, loading, retry } = useAllPosts()
   const [DataPosts, setPosts] = useState(posts)
 
@@ -53,8 +55,8 @@ export default function Community() {
       <div className="container max-w-2xl mx-auto py-8 px-4">
         {/* Enhanced Header */}
         <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold text-foreground mb-2">Community</h1>
-          <p className="text-foreground/80 text-lg">Connect, share, and discover amazing content</p>
+          <h1 className="text-4xl font-bold text-foreground mb-2">{t("community.title")}</h1>
+          <p className="text-foreground/80 text-lg">{t("community.subtitle")}</p>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-4 rounded-full"></div>
         </div>
 
@@ -152,26 +154,26 @@ export default function Community() {
                 {item.post.likesNumber > 0 && (
                   <div className="mb-4">
                     <p className="font-bold text-foreground">
-                      {item.post.likesNumber} {item.post.likesNumber === 1 ? "like" : "likes"}
+                      {item.post.likesNumber} {item.post.likesNumber === 1 ? t("community.like") : t("community.likes")}
                     </p>
                   </div>
                 )}
 
                 {/* Enhanced Comments Section */}
                 <button className="text-foreground/70 hover:text-foreground text-sm font-medium mb-4 hover:underline transition-all duration-200">
-                  View all comments
+                  {t("community.viewAllComments")}
                 </button>
 
                 {/* Enhanced Comment Input */}
                 <div className="flex items-center bg-foreground/5 rounded-full px-4 py-3 border border-border hover:border-blue-300 focus-within:border-blue-500 focus-within:bg-background transition-all duration-300">
                   <input
                     type="text"
-                    placeholder="Add a thoughtful comment..."
+                    placeholder={t("community.addComment")}
                     className="flex-1 text-sm outline-none bg-transparent placeholder-foreground/60 font-medium text-foreground"
                   />
                   <button className="text-blue-500 hover:text-blue-600 font-bold text-sm ml-3 flex items-center space-x-1 hover:bg-blue-500/10 px-3 py-1 rounded-full transition-all duration-200">
                     <Send size={16} />
-                    <span>Post</span>
+                    <span>{t("community.postComment")}</span>
                   </button>
                 </div>
               </div>
@@ -186,8 +188,8 @@ export default function Community() {
               <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full mx-auto mb-6 flex items-center justify-center">
                 <MessageCircle size={32} className="text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-4">No posts yet</h3>
-              <p className="text-foreground/80 mb-6">Be the first to share something amazing with the community!</p>
+              <h3 className="text-2xl font-bold text-foreground mb-4">{t("community.noPosts")}</h3>
+              <p className="text-foreground/80 mb-6">{t("community.noPostsDesc")}</p>
               <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
             </div>
           </div>
