@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
+
 import { Button } from "../../button"
+import { Pause, Play } from "lucide-react"
 
 // Type definitions
 interface MousePosition {
@@ -160,7 +162,6 @@ const InteractiveShowcase = () => {
       }}
     >
       <div className="absolute inset-0">
-        {/* Animated grid */}
         <div
           className="absolute inset-0 opacity-20"
           style={{
@@ -208,10 +209,8 @@ const InteractiveShowcase = () => {
         ))}
       </div>
 
-      {/* Main content */}
       <div className="relative z-10 min-h-screen bg-blue-950/20   flex items-center justify-center p-8">
         <div className="text-center max-w-4xl">
-          {/* Main title with morphing effect */}
           <div className="relative mb-8">
             <h1
               className={`text-6xl md:text-8xl font-black text-transparent bg-gradient-to-r ${currentSceneData.accent} bg-clip-text mb-4 transition-all duration-1000`}
@@ -227,16 +226,16 @@ const InteractiveShowcase = () => {
             />
           </div>
 
-          {/* Description */}
-          <p className="text-2xl  dark:text-white text-blue-950 mb-12 font-medium tracking-wide">{currentSceneData.description}</p>
+          <p className="text-2xl  dark:text-white text-blue-950 mb-12 font-medium tracking-wide">
+            {currentSceneData.description}
+          </p>
 
-          {/* Interactive controls */}
           <div className="flex flex-wrap gap-6 justify-center mb-12">
             <Button
               onClick={() => setIsPlaying(!isPlaying)}
               className={`px-8 py-4 bg-gradient-to-r ${currentSceneData.accent} text-white font-bold rounded-full hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-2xl`}
             >
-              {isPlaying ? t("hero.controls.pause") : t("hero.controls.play")}
+              {isPlaying ? <span className="flex  gap-2">{t("hero.controls.pause")} <Pause /> </span> : <span className="flex  gap-2">{t("hero.controls.play")} <Play /> </span>}
             </Button>
 
             <Button
@@ -246,17 +245,9 @@ const InteractiveShowcase = () => {
               {t("hero.controls.nextScene")}
             </Button>
           </div>
-
-       
-
         </div>
       </div>
 
-    
-
-     
-
-      {/* CSS for additional animations */}
       <style>{`
         .animation-delay-500 {
           animation-delay: 0.5s;

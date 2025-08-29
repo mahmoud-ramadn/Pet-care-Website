@@ -140,7 +140,6 @@ export default function Shop() {
         </div>
 
         <div className="container relative z-10 py-24">
-       
           <div className="text-center space-y-8 max-w-5xl mx-auto">
             {/* Premium Badge */}
             <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/15 backdrop-blur-xl rounded-full border border-white/30 text-white/95 text-sm font-semibold mb-6 shadow-xl">
@@ -212,7 +211,6 @@ export default function Shop() {
       <div className="container py-16">
         {/* Enhanced Search and Filter Section */}
         <div className="bg-background/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-border/50 p-10 mb-16 -mt-32 relative z-10">
-         
           {/* Search Bar with Enhanced Design */}
           <div className="relative max-w-3xl mx-auto mb-10">
             <div className="relative group">

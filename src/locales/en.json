@@ -279,23 +279,10 @@
       "description": "Connect with fellow pet lovers"
     },
     "controls": {
-      "pause": "⏸ Pause",
-      "play": "▶ Play",
-      "nextScene": "🎭 Next Scene"
-    },
-    "stats": {
-      "activeParticles": "Active Particles",
-      "mouseX": "Mouse X",
-      "mouseY": "Mouse Y",
-      "scene": "Scene"
-    },
-    "hints": {
-      "moveMouse": "Move mouse to control environment",
-      "clickParticles": "Click anywhere to create particles"
-    },
-    "status": {
-      "live": "🟢 Live",
-      "paused": "🔴 Paused"
+      "pause": " Pause",
+      "play": " Play",
+      "nextScene": "Next"
     }
+    
   }
 }
