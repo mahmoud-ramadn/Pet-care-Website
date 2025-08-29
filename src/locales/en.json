@@ -23,6 +23,14 @@
   "adminDashboard": "Admin Dashboard",
   "userDashboard": "User Dashboard",
   "notifications": "Notifications",
+  "Customer Testimonials": "Customer Testimonials",
+  "testimonials.sectionTitle": "Discover what our wonderful customers have to say about their pets’ grooming experience",
+  "testimonials.cta": "Ready to give your pet the premium grooming experience they deserve?",
+  "testimonials.averageRating": "Average Rating",
+  "statics.pet": "Happy Pets",
+  "statics.satisfaction": "Satisfaction",
+  "statics.experience": "Experience",
+
   "header": {
     "promo": "🎉 Special Offer: 20% off all grooming services this week!",
     "logoAlt": "Pet Care Logo"
@@ -60,8 +68,12 @@
     "desc1": "All employees at Scooby have been carefully selected. Each employee always has the safety and care of your Pet in mind.",
     "desc2": "Contact Us to schedule your services today!"
   },
-  "adoption": {
-    "HeroText": "Find your new best friend"
+    "HomNavigationLink": {
+    "vet": "Vet",
+    "services": "Services",
+    "shop": "Shop",
+    "adoption": "Adoption",
+    "more": "More"
   },
   "register": {
     "title": "Create a new account",

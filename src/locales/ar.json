@@ -18,6 +18,14 @@
   "adminDashboard": "لوحة تحكم المسؤول",
   "userDashboard": "لوحة تحكم المستخدم",
   "notifications": "الإشعارات",
+  "Customer Testimonials": "شهادات العملاء",
+  "testimonials.sectionTitle": "اكتشف ما يقوله عملاؤنا الرائعون عن تجربة العناية بالحيوانات الأليفة الخاصة بهم",
+  "testimonials.cta": "هل أنت مستعد لمنح حيوانك الأليف تجربة العناية الفائقة التي يستحقها؟",
+  "testimonials.averageRating": "متوسط التقييم",
+  "statics.pet": "حيوانات سعيدة",
+  "statics.satisfaction": "الرضا",
+  "statics.experience": "التجربة",
+
   "footer": {
     "getInTouch": "تواصل معنا",
     "emailPlaceholder": "أدخل بريدك الإلكتروني",
@@ -59,6 +67,13 @@
     "title": "حيوانك الأليف يعيش لليوم، للساعة، وحتى للحظة.",
     "desc1": "تم اختيار جميع الموظفين في سكوبى بعناية. كل موظف يضع دائمًا سلامة ورعاية حيوانك الأليف في الاعتبار.",
     "desc2": "تواصل معنا لحجز خدماتك اليوم!"
+  },
+  "HomNavigationLink": {
+    "vet": "الطب البيطري",
+    "services": "خدمات",
+    "shop": "متجر",
+    "adoption": "التبني",
+    "more": "المزيد"
   },
   "adoption": {
     "HeroText": "ابحث عن أفضل صديق جديد لك"

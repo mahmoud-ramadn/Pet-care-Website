@@ -3,6 +3,7 @@ import { Mail, MapIcon, PhoneCall } from "lucide-react"
 import type { ReactElement } from "react"
 
 import { ProjectImages } from "./images"
+import { t } from "i18next"
 
 type ContactLink = {
   icon: () => ReactElement
@@ -139,6 +140,7 @@ export const AdoptionNavigationLink: AdoptionNavigationLink[] = [
     id: "1",
     path: "shilter",
     image: ProjectImages.adoption.shelter,
+  
   },
   {
     id: "2",
@@ -169,26 +171,31 @@ export const HomNavigationLink: HomeBoxNavigationLink[] = [
     id: "1",
     path: "vet",
     image: ProjectImages.HomSquerNav.Veterinary,
+    label:t('HomNavigationLink.vet')
   },
   {
     id: "2",
     path: "services",
     image: ProjectImages.HomSquerNav.DayCare,
+    label:t('HomNavigationLink.services')
   },
   {
     id: "3",
     path: "shop",
     image: ProjectImages.HomSquerNav.Suppllies,
+    label:t('HomNavigationLink.shop') 
   },
   {
     id: "4",
     path: "Adoption",
     image: ProjectImages.HomSquerNav.Adoption,
+    label:t('HomNavigationLink.adoption')
   },
   {
     id: "5",
     path: "More",
     image: ProjectImages.HomSquerNav.PetFoot,
+    label:t('HomNavigationLink.more')
   },
 ]
 

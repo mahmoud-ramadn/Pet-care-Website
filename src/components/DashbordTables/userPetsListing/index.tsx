@@ -1,9 +1,9 @@
 import { useMutation } from "@tanstack/react-query"
 import type { ColumnDef } from "@tanstack/react-table"
-import { CatIcon, Edit, MoreVerticalIcon, Trash2 } from "lucide-react"
+import { CatIcon, MoreVerticalIcon, Trash2 } from "lucide-react"
 import { toast } from "sonner"
 
-import { useEffect, useMemo, useState } from "react"
+import { lazy, Suspense, useEffect, useMemo, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import DataTable from "@/components/ui/data-table"
@@ -12,11 +12,12 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { DeletePet } from "@/apis/pet"
 import { useMyPets } from "@/hooks/pet"
 
-import PetAddEditDialog from "./PetAddEditDialog"
+const PetAddEditDialog = lazy(() => import("./PetAddEditDialog"))
 
 export default function UserPetsListing() {
   const { value: pet, loading, retry } = useMyPets()
   const [open, setOpen] = useState(false)
+
   const [petItem, setPet] = useState<PetItem>()
 
   const [currentPage, setCurrentPage] = useState(() => {
@@ -91,17 +92,7 @@ export default function UserPetsListing() {
               </DropdownMenuTrigger>
 
               <DropdownMenuContent className="w-48 rounded-xl shadow-xl border border-gray-200 p-2 bg-white/95 backdrop-blur-sm">
-                <DropdownMenuItem className="flex items-center gap-3 cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-blue-50 hover:text-blue-700 transition-all duration-150 group">
-                  <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-100 group-hover:bg-blue-200">
-                    <Edit className="size-4 text-blue-600" />
-                  </div>
-                  <span className="font-medium">Edit Pets</span>
-                </DropdownMenuItem>
-
-                <div className="my-1">
-                  <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
-                </div>
-
+              
                 <DropdownMenuItem
                   onClick={() => MakeDeletPet(pet?._id ?? "")}
                   className="flex items-center gap-3 cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-red-50 hover:text-red-700 group"
@@ -181,6 +172,9 @@ export default function UserPetsListing() {
         <span className="font-medium">Add Pets</span>
       </Button>
       <DataTable columns={columns} loading={loading} data={paginatedData} />
+      <Suspense>
+
+
       <PetAddEditDialog
         pet={petItem}
         open={open}
@@ -190,7 +184,10 @@ export default function UserPetsListing() {
           setPet(undefined)
           setOpen(false)
         }}
-      />
+
+        />
+        </Suspense>
+    
 
       {/* Items per page and results info - Responsive layout */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">

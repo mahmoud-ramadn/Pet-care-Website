@@ -12,7 +12,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormLoading, FormMes
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-// 👈 use your reusable component
 
 import { AddPet } from "@/apis/pet"
 
@@ -68,7 +67,7 @@ export default function PetsForm({ isEdit = false, onComplete, values }: props) 
 
   return (
     <div>
-      <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
+      <Card className="shadow-xl border-0   light:bg-white/80 backdrop-blur-sm">
         <CardHeader className="text-center pb-8">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg">
             <PawPrint className="h-8 w-8 text-white" />
@@ -96,7 +95,6 @@ export default function PetsForm({ isEdit = false, onComplete, values }: props) 
                       <FormControl>
                         <ImageUpload value={field.value} onChange={(file) => field.onChange(file)} />
                       </FormControl>
-                      <FormMessage />
                     </FormItem>
                   )}
                 />

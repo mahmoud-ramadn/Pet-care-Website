@@ -21,7 +21,7 @@ export default function GroomingReviews() {
         <div className="text-center mb-16 space-y-6">
           <div className="inline-flex items-center px-6 py-3 bg-white/80 backdrop-blur-sm border border-blue-200/50 rounded-full shadow-lg">
             <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 animate-pulse"></div>
-            <span className="text-sm font-semibold text-blue-700">Customer Testimonials</span>
+            <span className="text-sm font-semibold text-blue-700">{t("Customer Testimonials")}</span>
           </div>
 
           <div className="space-y-4">
@@ -37,7 +37,7 @@ export default function GroomingReviews() {
           </div>
 
           <p className="text-xl text-gray-600 font-light max-w-2xl mx-auto leading-relaxed">
-            Discover what our amazing customers have to say about their pets' grooming experience
+            {t("testimonials.sectionTitle")}
           </p>
         </div>
 
@@ -55,7 +55,7 @@ export default function GroomingReviews() {
         <div className="text-center mt-16 space-y-6">
           <div className="max-w-md mx-auto">
             <p className="text-gray-600 mb-6 font-light">
-              Ready to give your pet the premium grooming experience they deserve?
+              {t("testimonials.cta")}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -74,19 +74,19 @@ export default function GroomingReviews() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 max-w-2xl mx-auto">
             <div className="text-center">
               <div className="text-3xl font-bold text-blue-600 mb-1">4.9★</div>
-              <div className="text-sm text-gray-500">Average Rating</div>
+              <div className="text-sm text-gray-500">{t("testimonials.averageRating")}</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-purple-600 mb-1">500+</div>
-              <div className="text-sm text-gray-500">Happy Pets</div>
+              <div className="text-sm text-gray-500">{t("statics.pet")}</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-pink-600 mb-1">98%</div>
-              <div className="text-sm text-gray-500">Satisfaction</div>
+              <div className="text-sm text-gray-500">{t("statics.satisfaction")}</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-orange-600 mb-1">5yrs</div>
-              <div className="text-sm text-gray-500">Experience</div>
+              <div className="text-sm text-gray-500">{t("statics.experience")}</div>
             </div>
           </div>
         </div>
