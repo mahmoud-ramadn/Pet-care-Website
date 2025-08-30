@@ -111,19 +111,13 @@ export default function Header() {
               <div className="flex items-center md:space-x-2 sm:space-x-4">
                 {token ? (
                   <>
-                     <Link
-                to="/shop/fav"
-                className="hidden sm:block"
-              >
-                <Heart className="w-5 h-5 mr-3 text-white" />
-              </Link>
+                    <Link to="/shop/fav" className="hidden sm:block">
+                      <Heart className="w-5 h-5 mr-3  dark:text-white" />
+                    </Link>
 
-              <Link
-                to="/shop/cart"
-                className="hidden sm:block"
-              >
-                <ShoppingBagIcon className="w-5 h-5 mr-3 text-white" />
-              </Link>
+                    <Link to="/shop/cart" className="hidden sm:block">
+                      <ShoppingBagIcon className="w-5 h-5 mr-3 dark:text-white" />
+                    </Link>
                     <UserInfo />
                   </>
                 ) : (
