@@ -1,3 +1,5 @@
+import { Helmet } from "react-helmet"
+
 import TemplatePlanningVeterinary from "@/components/ui/common/TempletPlanningVeterinary"
 
 import { MeetOurBestDoctorsMock } from "@/Constants/main"
@@ -6,7 +8,11 @@ import MeetOur from "@/layouts/Vet/meet-our"
 
 export default function Vet() {
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>Veterinary Services</title>
+        <meta name="description" content="Providing the best veterinary services for your pets" />
+      </Helmet>
       <TemplatePlanningVeterinary title="Providing our best veterinary Services" array={VeterinaryServicesData} />
       <MeetOur
         path="doctors"
@@ -23,8 +29,9 @@ export default function Vet() {
         ButtonText="See all Clinics"
         array={MeetOurBestDoctorsMock}
         title="Meet Our Best Clinics"
+        className="  bg-white"
         subTitle="We change your life & world with valuable expert Clinics"
       />
-    </div>
+    </>
   )
 }

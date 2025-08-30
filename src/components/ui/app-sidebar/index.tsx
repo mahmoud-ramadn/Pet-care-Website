@@ -4,11 +4,10 @@ import {
   Cog,
   Crown,
   DogIcon,
-  HelpCircleIcon,
+  Globe,
   LayoutDashboardIcon,
   LogOut,
   NewspaperIcon,
-  PawPrint,
   Settings,
   ShoppingBagIcon,
   ShoppingBasket,
@@ -24,6 +23,7 @@ import { cn } from "@/lib/utils"
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } from "@/components/ui/sidebar"
 
 import { useGetMe } from "@/hooks/user"
+import i18n from "@/i18n"
 
 import { Button } from "../button"
 
@@ -31,6 +31,10 @@ export function AppSidebar() {
   const location = useLocation()
   const { value } = useGetMe()
 
+  const toggleLang = () => {
+    const newLang = i18n.language === "en" ? "ar" : "en"
+    i18n.changeLanguage(newLang)
+  }
   const isActive = (path: string) => {
     return location.pathname === path
   }
@@ -109,16 +113,6 @@ export function AppSidebar() {
       {/* Enhanced Header */}
       <SidebarHeader className="px-6 py-6 border-b border-gray-200/60 bg-white/80 backdrop-blur-sm">
         <div className="flex items-center gap-3">
-          {/* Logo with enhanced styling */}
-          <div className="relative">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-700 flex items-center justify-center shadow-lg shadow-blue-200/50">
-              <PawPrint className="w-5 h-5 text-white" />
-            </div>
-            <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
-              <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-            </div>
-          </div>
-
           {/* Brand */}
           <div className="flex items-center gap-2">
             <img src="/logo.webp" alt="logo" className="w-8 h-8 rounded-lg shadow-sm" />
@@ -253,12 +247,9 @@ export function AppSidebar() {
 
       {/* Enhanced Footer */}
       <SidebarFooter className="  p-4 border-t border-gray-200/60 bg-white/80 backdrop-blur-sm">
-        <Link
-          to={"/"}
-          className="dark:bg-blue-950 rounded-2xl p-4 shadow-sm border border-gray-100"
-        >
+        <div className="dark:bg-blue-950 rounded-2xl p-4 shadow-sm border border-gray-100">
           <div className="flex items-center gap-3">
-            <div className="relative">
+            <Link to={`/user/${value?.id}`} className="relative">
               <Avatar className=" rounded-full overflow-hidden shadow-lg">
                 <AvatarImage
                   src={value?.profileImage}
@@ -281,7 +272,7 @@ export function AppSidebar() {
                   <Crown className="w-3 h-3 text-white" />
                 </div>
               )}
-            </div>
+            </Link>
 
             {/* User Info */}
             <div className="flex-1 min-w-0">
@@ -307,23 +298,23 @@ export function AppSidebar() {
               </Button>
 
               <Button
+                onClick={toggleLang}
                 variant="ghost"
                 size="icon"
-                className="h-8 w-8 rounded-lg hover:bg-gray-100 transition-all duration-200 group"
+                className="h-8 w-8 rounded-lg hover:bg-green-50 hover:text-green-600 transition-all duration-200 group"
               >
-                <HelpCircleIcon className="h-4 w-4 group-hover:rotate-12 transition-transform duration-200" />
+                <Globe className="h-4 w-4 group-hover:rotate-12 transition-transform duration-200" />
               </Button>
 
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 rounded-lg hover:bg-red-50 hover:text-red-600 transition-all duration-200 group"
+              <Link
+                to="/"
+                className="h-8 w-8 flex items-center justify-center rounded-lg hover:bg-red-50 hover:text-red-600 transition-all duration-200 group"
               >
                 <LogOut className="h-4 w-4 group-hover:-translate-x-0.5 transition-transform duration-200" />
-              </Button>
+              </Link>
             </div>
           </div>
-        </Link>
+        </div>
       </SidebarFooter>
     </Sidebar>
   )

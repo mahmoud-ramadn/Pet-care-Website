@@ -1,10 +1,10 @@
 import { ChevronDown, Sparkles, Star } from "lucide-react"
 
 import { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
 
 import SwiperWrapper from "../SwiperWrapper"
 import SquareNavigation from "../common/squer-nav"
-import { useTranslation } from "react-i18next"
 
 type HeroLayoutType = {
   imageHero: string
@@ -18,8 +18,7 @@ type HeroLayoutType = {
 export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: Readonly<HeroLayoutType>) {
   const [isVisible, setIsVisible] = useState(false)
   const [scrollY, setScrollY] = useState(0)
-    const { t } = useTranslation()
-  
+  const { t } = useTranslation()
 
   useEffect(() => {
     setIsVisible(true)
@@ -91,7 +90,7 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
           </h1>
 
           <p className="mt-8 text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed font-medium">
-             {t("adoption.description")}
+            {t("adoption.description")}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mt-10 justify-center">

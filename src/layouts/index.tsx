@@ -28,7 +28,9 @@ export default function Layout() {
           <ErrorBoundary>
             <LayoutWrapper>
               <Suspense fallback={<GlobalFallback />}>
-                <Outlet />
+                <main className="min-h-screen">
+                  <Outlet />
+                </main>
               </Suspense>
             </LayoutWrapper>
           </ErrorBoundary>

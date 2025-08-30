@@ -66,12 +66,18 @@
     "HeroText": "ابحث عن أفضل صديق جديد لك",
     "description": "اكتشف عالماً جديداً من الإمكانيات والفرص المتميزة"
   },
+
   "services": {
-    "HeroText":"ابحث عمّا تبحث عنه بالقرب منك"
+    "HeroText": "ابحث عمّا تبحث عنه بالقرب منك"
   },
   "Veterinary": {
     "description": "رعاية طبية متخصصة لحيواناتك الأليفة"
   },
+  "VetNavigationLink": {
+    "doctors": "الأطباء",
+    "clinics": "العيادات"
+  },
+
   "AdoptionNavigationLink": {
     "shelters": "ملاجئ",
     "dogs": "كلاب",

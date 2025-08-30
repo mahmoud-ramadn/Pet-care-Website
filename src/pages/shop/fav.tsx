@@ -2,6 +2,7 @@ import { Grid3X3, Heart, List, Search, ShoppingBag, Sparkles, Star, Zap } from "
 import { toast } from "sonner"
 
 import { useEffect, useState } from "react"
+import { Helmet } from "react-helmet"
 import { useTranslation } from "react-i18next"
 
 // import { Link } from "react-router" // Simulated for demo
@@ -113,132 +114,137 @@ export default function Fav() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
-        {/* Enhanced Header */}
-        <div className="relative mb-12">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-indigo-600/10 rounded-3xl blur-3xl"></div>
-          <div className="relative bg-background/80 backdrop-blur-sm border border-border/20 rounded-3xl p-8 shadow-xl">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-              <div className="flex items-center gap-6">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl blur-lg opacity-30"></div>
-                  <div className="relative p-4 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl">
-                    <Heart className="w-8 h-8 text-white" />
+    <>
+      <Helmet>
+        <title>Favorites</title>
+        <meta name="description" content="View and manage your favorite products" />
+      </Helmet>
+      <div className="min-h-screen bg-background">
+        <div className="container mx-auto px-4 py-8">
+          {/* Enhanced Header */}
+          <div className="relative mb-12">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-indigo-600/10 rounded-3xl blur-3xl"></div>
+            <div className="relative bg-background/80 backdrop-blur-sm border border-border/20 rounded-3xl p-8 shadow-xl">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <div className="flex items-center gap-6">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl blur-lg opacity-30"></div>
+                    <div className="relative p-4 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl">
+                      <Heart className="w-8 h-8 text-white" />
+                    </div>
+                  </div>
+                  <div>
+                    <h1 className="text-4xl font-bold text-foreground">{t("favorites.title")}</h1>
+                    <p className="text-foreground/70 mt-1">
+                      {filteredProducts?.length}{" "}
+                      {filteredProducts?.length === 1 ? t("favorites.product") : t("favorites.products")}{" "}
+                      {t("favorites.inWishlist")}
+                    </p>
                   </div>
                 </div>
-                <div>
-                  <h1 className="text-4xl font-bold text-foreground">{t("favorites.title")}</h1>
-                  <p className="text-foreground/70 mt-1">
-                    {filteredProducts?.length}{" "}
-                    {filteredProducts?.length === 1 ? t("favorites.product") : t("favorites.products")}{" "}
-                    {t("favorites.inWishlist")}
-                  </p>
+
+                {/* Search and Controls */}
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-foreground/60 w-5 h-5" />
+                    <input
+                      type="text"
+                      placeholder={t("favorites.searchPlaceholder")}
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="pl-10 pr-4 py-3 bg-background/60 backdrop-blur-sm border border-border rounded-xl text-foreground focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all w-full sm:w-64"
+                    />
+                  </div>
+
+                  <div className="flex gap-2">
+                    <select
+                      value={sortBy}
+                      onChange={(e) => setSortBy(e.target.value as "name" | "price" | "date")}
+                      className="px-4 py-3 bg-background/60 backdrop-blur-sm border border-border rounded-xl text-foreground focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                    >
+                      <option value="date">{t("favorites.sortByDate")}</option>
+                      <option value="name">{t("favorites.sortByName")}</option>
+                      <option value="price">{t("favorites.sortByPrice")}</option>
+                    </select>
+
+                    <button
+                      onClick={() => setViewMode(viewMode === "grid" ? "list" : "grid")}
+                      className="p-3 bg-background/60 backdrop-blur-sm border border-border rounded-xl hover:bg-background/80 transition-all"
+                    >
+                      {viewMode === "grid" ? <List className="w-5 h-5" /> : <Grid3X3 className="w-5 h-5" />}
+                    </button>
+                  </div>
                 </div>
               </div>
+            </div>
+          </div>
 
-              {/* Search and Controls */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-foreground/60 w-5 h-5" />
-                  <input
-                    type="text"
-                    placeholder={t("favorites.searchPlaceholder")}
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10 pr-4 py-3 bg-background/60 backdrop-blur-sm border border-border rounded-xl text-foreground focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all w-full sm:w-64"
+          {/* Products Grid */}
+          <div
+            className={`grid gap-8 ${
+              viewMode === "grid" ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" : "grid-cols-2"
+            }`}
+          >
+            {filteredProducts?.map((product, index) => (
+              <div
+                key={product._id}
+                className="group relative animate-fade-in"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="absolute -top-2 -right-2 z-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full p-2 shadow-lg transform group-hover:scale-110 transition-transform duration-200">
+                  <Heart className="w-4 h-4 text-white fill-current" />
+                </div>
+
+                <div className="relative bg-background rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-border hover:border-blue-300/40 transform hover:-translate-y-1">
+                  <div className="absolute inset-0 bg-gradient-to-r from-pink-600/5 via-purple-600/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                  <ProductCard
+                    sourcePage="fav"
+                    handleToggleFavorite={async () => {
+                      setLoadingIds((prev) => [...prev, product._id ?? ""])
+                      try {
+                        await addFavoriteProduct(product._id ?? "")
+                        setProducts((prev) => prev.filter((p) => p._id !== product._id))
+                        toast.success(t("favorites.productRemoved"))
+                      } catch (error) {
+                        console.error("Failed to update favorites:", error)
+                        toast.error(t("favorites.failedToRemove"))
+                      } finally {
+                        setLoadingIds((prev) => prev.filter((id) => id !== product._id))
+                      }
+                    }}
+                    {...product}
+                    isLoading={loadingIds.includes(product._id ?? "")}
+                    isLoadingCart={false}
                   />
                 </div>
+              </div>
+            ))}
+          </div>
 
-                <div className="flex gap-2">
-                  <select
-                    value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value as "name" | "price" | "date")}
-                    className="px-4 py-3 bg-background/60 backdrop-blur-sm border border-border rounded-xl text-foreground focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+          {/* Enhanced Footer Section */}
+          {filteredProducts?.length > 0 && (
+            <div className="mt-16 text-center">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-pink-600/10 to-purple-600/10 rounded-3xl blur-2xl"></div>
+                <div className="relative bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                  <h3 className="text-2xl font-bold text-gray-800 mb-4">{t("favorites.loveMoreProducts")}</h3>
+                  <p className="text-gray-600 mb-6 max-w-md mx-auto">{t("favorites.loveMoreProductsDesc")}</p>
+                  <a
+                    href="/shop"
+                    className="inline-flex items-center gap-3 bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white px-8 py-4 rounded-2xl font-semibold transform hover:scale-105 transition-all duration-200 shadow-xl"
                   >
-                    <option value="date">{t("favorites.sortByDate")}</option>
-                    <option value="name">{t("favorites.sortByName")}</option>
-                    <option value="price">{t("favorites.sortByPrice")}</option>
-                  </select>
-
-                  <button
-                    onClick={() => setViewMode(viewMode === "grid" ? "list" : "grid")}
-                    className="p-3 bg-background/60 backdrop-blur-sm border border-border rounded-xl hover:bg-background/80 transition-all"
-                  >
-                    {viewMode === "grid" ? <List className="w-5 h-5" /> : <Grid3X3 className="w-5 h-5" />}
-                  </button>
+                    <ShoppingBag className="w-5 h-5" />
+                    {t("favorites.browseMoreProducts")}
+                    <Sparkles className="w-5 h-5" />
+                  </a>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
 
-        {/* Products Grid */}
-        <div
-          className={`grid gap-8 ${
-            viewMode === "grid" ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" : "grid-cols-2"
-          }`}
-        >
-          {filteredProducts?.map((product, index) => (
-            <div
-              key={product._id}
-              className="group relative animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="absolute -top-2 -right-2 z-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full p-2 shadow-lg transform group-hover:scale-110 transition-transform duration-200">
-                <Heart className="w-4 h-4 text-white fill-current" />
-              </div>
-
-              <div className="relative bg-background rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-border hover:border-blue-300/40 transform hover:-translate-y-1">
-                <div className="absolute inset-0 bg-gradient-to-r from-pink-600/5 via-purple-600/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                <ProductCard
-                  sourcePage="fav"
-                  handleToggleFavorite={async () => {
-                    setLoadingIds((prev) => [...prev, product._id ?? ""])
-                    try {
-                      await addFavoriteProduct(product._id ?? "")
-                      setProducts((prev) => prev.filter((p) => p._id !== product._id))
-                      toast.success(t("favorites.productRemoved"))
-                    } catch (error) {
-                      console.error("Failed to update favorites:", error)
-                      toast.error(t("favorites.failedToRemove"))
-                    } finally {
-                      setLoadingIds((prev) => prev.filter((id) => id !== product._id))
-                    }
-                  }}
-                  {...product}
-                  isLoading={loadingIds.includes(product._id ?? "")}
-                  isLoadingCart={false}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Enhanced Footer Section */}
-        {filteredProducts?.length > 0 && (
-          <div className="mt-16 text-center">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-pink-600/10 to-purple-600/10 rounded-3xl blur-2xl"></div>
-              <div className="relative bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">{t("favorites.loveMoreProducts")}</h3>
-                <p className="text-gray-600 mb-6 max-w-md mx-auto">{t("favorites.loveMoreProductsDesc")}</p>
-                <a
-                  href="/shop"
-                  className="inline-flex items-center gap-3 bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white px-8 py-4 rounded-2xl font-semibold transform hover:scale-105 transition-all duration-200 shadow-xl"
-                >
-                  <ShoppingBag className="w-5 h-5" />
-                  {t("favorites.browseMoreProducts")}
-                  <Sparkles className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-
-      <style>{`
+        <style>{`
         @keyframes fade-in {
           from {
             opacity: 0;
@@ -255,6 +261,7 @@ export default function Fav() {
           opacity: 0;
         }
       `}</style>
-    </div>
+      </div>
+    </>
   )
 }

@@ -13,6 +13,8 @@ import {
   YAxis,
 } from "recharts"
 
+import { Helmet } from "react-helmet"
+
 import { useAllPets } from "@/hooks/pet"
 import { useAllOrderUsers, useAllUsers } from "@/hooks/user"
 
@@ -259,37 +261,43 @@ export default function AdminDashboard() {
   ]
 
   return (
-    <div className="min-h-screen p-4 sm:p-6 lg:p-8">
-      <div className="max-w-7xl mx-auto space-y-8">
-        {/* Header */}
-        <div className="text-center sm:text-left">
-          <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
-            Dashboard
-          </h1>
-          <p className="text-gray-600 text-lg">Monitor your business performance at a glance</p>
-        </div>
-
-        {/* Stats Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {statsData.map((stat, index) => (
-            <StatsCard key={index} {...stat} />
-          ))}
-        </div>
-
-        {/* Charts Section */}
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-          <div className="xl:col-span-2">
-            <PerformanceChart />
+    <>
+      <Helmet>
+        <title>Admin Dashboard</title>
+        <meta name="description" content="Monitor your admin dashboard" />
+      </Helmet>
+      <div className="min-h-screen p-4 sm:p-6 lg:p-8">
+        <div className="max-w-7xl mx-auto space-y-8">
+          {/* Header */}
+          <div className="text-center sm:text-left">
+            <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+              Dashboard
+            </h1>
+            <p className="text-gray-600 text-lg">Monitor your business performance at a glance</p>
           </div>
-          <div className="xl:col-span-1">
-            <VisitorsChart data={radialData} />
-          </div>
-        </div>
 
-        <div className="text-center text-gray-500 text-sm mt-12">
-          <p>Last updated: {new Date().toLocaleDateString()}</p>
+          {/* Stats Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {statsData.map((stat, index) => (
+              <StatsCard key={index} {...stat} />
+            ))}
+          </div>
+
+          {/* Charts Section */}
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+            <div className="xl:col-span-2">
+              <PerformanceChart />
+            </div>
+            <div className="xl:col-span-1">
+              <VisitorsChart data={radialData} />
+            </div>
+          </div>
+
+          <div className="text-center text-gray-500 text-sm mt-12">
+            <p>Last updated: {new Date().toLocaleDateString()}</p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

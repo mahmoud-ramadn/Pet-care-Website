@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet"
 import { useParams } from "react-router"
 
 import UserProfileUpdateForm from "@/components/forms/updateUserForm"
@@ -16,5 +17,13 @@ export default function UserEditProfile() {
       }
     : undefined
 
-  return <UserProfileUpdateForm value={formattedUserData} />
+  return (
+    <>
+      <Helmet>
+        <title>Edit User Profile</title>
+        <meta name="description" content="Edit your profile information" />
+      </Helmet>
+      <UserProfileUpdateForm value={formattedUserData} />
+    </>
+  )
 }

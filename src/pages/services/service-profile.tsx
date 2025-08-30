@@ -1,5 +1,6 @@
 import { useAtomValue } from "jotai"
 
+import { Helmet } from "react-helmet"
 import { useParams } from "react-router-dom"
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -57,84 +58,90 @@ export default function Description() {
   const faqData = getFAQData()
 
   return (
-    <div className="container py-10 space-y-10">
-      <ServiceHeader name={serviceProfile.name} />
+    <>
+      <Helmet>
+        <title>{serviceProfile.name}</title>
+        <meta name="description" content={serviceProfile.about} />
+      </Helmet>
+      <div className="container py-10 space-y-10">
+        <ServiceHeader name={serviceProfile.name} />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-        <div className="lg:col-span-2 space-y-10">
-          <ServiceInfo
-            name={serviceProfile.name}
-            rate={serviceProfile.rate}
-            numberOfRate={serviceProfile.numberOfRate}
-          />
-
-          <ServiceGallery images={serviceProfile.imagesProfile} />
-
-          <section className="bg-white p-6 rounded-xl shadow-sm border">
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800">عن الخدمة</h2>
-            <p className="text-gray-600 whitespace-pre-line leading-relaxed">{serviceProfile.about}</p>
-          </section>
-
-          <ServiceDetails
-            from={serviceProfile.from}
-            to={serviceProfile.to}
-            price={serviceProfile.price}
-            pricePer={serviceProfile.pricePer}
-          />
-
-          <PetPreferences types={serviceProfile.accepted_pet_types} sizes={serviceProfile.accepted_pet_sizes} />
-
-          {faqData.length > 0 && (
-            <section className="bg-white p-6 rounded-xl shadow-sm border">
-              <h2 className="text-2xl font-semibold mb-6 text-gray-800">الأسئلة الشائعة</h2>
-              <Accordion type="single" collapsible className="w-full">
-                {faqData.map((faq, index) => (
-                  <AccordionItem key={index} value={`item-${index}`} className="border-gray-200">
-                    <AccordionTrigger className=" hover:no-underline py-4 px-2">
-                      <span className="text-gray-800 font-medium text-lg leading-relaxed">{faq.question}</span>
-                    </AccordionTrigger>
-                    <AccordionContent className=" px-2 pb-4">
-                      <div className="text-gray-600 leading-relaxed whitespace-pre-line">{faq.answer}</div>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </section>
-          )}
-
-          <section className="bg-white md:p-6 rounded-xl shadow-sm border">
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800">مراجعات العملاء</h2>
-
-            {serviceProfile.reviewsOfService?.length ? (
-              <div className="space-y-6">
-                {serviceProfile.reviewsOfService.map((review) => (
-                  <ReviewItem key={review._id} review={review} reload={() => retry()} />
-                ))}
-              </div>
-            ) : (
-              <p className="text-gray-500">لا توجد مراجعات حتى الآن</p>
-            )}
-          </section>
-        </div>
-
-        <div className="lg:col-span-1">
-          <BookingCard
-            price={serviceProfile.price}
-            pricePer={serviceProfile.pricePer}
-            from={serviceProfile.from}
-            to={serviceProfile.to}
-            questions={serviceProfile.question1}
-          />
-          {token && (
-            <WriteReview
-              writeReview={(data) => {
-                serviceWritereivew(data, id ?? "")
-                retry()
-              }}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+          <div className="lg:col-span-2 space-y-10">
+            <ServiceInfo
+              name={serviceProfile.name}
+              rate={serviceProfile.rate}
+              numberOfRate={serviceProfile.numberOfRate}
             />
-          )}
+
+            <ServiceGallery images={serviceProfile.imagesProfile} />
+
+            <section className="bg-white p-6 rounded-xl shadow-sm border">
+              <h2 className="text-2xl font-semibold mb-4 text-gray-800">عن الخدمة</h2>
+              <p className="text-gray-600 whitespace-pre-line leading-relaxed">{serviceProfile.about}</p>
+            </section>
+
+            <ServiceDetails
+              from={serviceProfile.from}
+              to={serviceProfile.to}
+              price={serviceProfile.price}
+              pricePer={serviceProfile.pricePer}
+            />
+
+            <PetPreferences types={serviceProfile.accepted_pet_types} sizes={serviceProfile.accepted_pet_sizes} />
+
+            {faqData.length > 0 && (
+              <section className="bg-white p-6 rounded-xl shadow-sm border">
+                <h2 className="text-2xl font-semibold mb-6 text-gray-800">الأسئلة الشائعة</h2>
+                <Accordion type="single" collapsible className="w-full">
+                  {faqData.map((faq, index) => (
+                    <AccordionItem key={index} value={`item-${index}`} className="border-gray-200">
+                      <AccordionTrigger className=" hover:no-underline py-4 px-2">
+                        <span className="text-gray-800 font-medium text-lg leading-relaxed">{faq.question}</span>
+                      </AccordionTrigger>
+                      <AccordionContent className=" px-2 pb-4">
+                        <div className="text-gray-600 leading-relaxed whitespace-pre-line">{faq.answer}</div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </section>
+            )}
+
+            <section className="bg-white md:p-6 rounded-xl shadow-sm border">
+              <h2 className="text-2xl font-semibold mb-4 text-gray-800">مراجعات العملاء</h2>
+
+              {serviceProfile.reviewsOfService?.length ? (
+                <div className="space-y-6">
+                  {serviceProfile.reviewsOfService.map((review) => (
+                    <ReviewItem key={review._id} review={review} reload={() => retry()} />
+                  ))}
+                </div>
+              ) : (
+                <p className="text-gray-500">لا توجد مراجعات حتى الآن</p>
+              )}
+            </section>
+          </div>
+
+          <div className="lg:col-span-1">
+            <BookingCard
+              price={serviceProfile.price}
+              pricePer={serviceProfile.pricePer}
+              from={serviceProfile.from}
+              to={serviceProfile.to}
+              questions={serviceProfile.question1}
+            />
+            {token && (
+              <WriteReview
+                writeReview={(data) => {
+                  serviceWritereivew(data, id ?? "")
+                  retry()
+                }}
+              />
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

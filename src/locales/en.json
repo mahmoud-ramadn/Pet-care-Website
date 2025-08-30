@@ -74,6 +74,11 @@
   "Veterinary": {
     "description": "Specialized medical care for your pets"
   },
+
+  "VetNavigationLink": {
+    "doctors": "Doctors",
+    "clinics": "Clinics"
+  },
   "AdoptionNavigationLink": {
     "shelters": "Shelters",
     "dogs": "Dogs",
