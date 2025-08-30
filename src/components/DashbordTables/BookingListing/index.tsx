@@ -1,24 +1,14 @@
-import type { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table"
 
+import { useEffect, useMemo, useState } from "react"
 
+import DataTable from "@/components/ui/data-table"
 
-import { useEffect, useMemo, useState } from "react";
-
-
-
-import DataTable from "@/components/ui/data-table";
-
-
-
-import { useBookingService } from "@/hooks/shilters";
-
-
-
-
+import { useBookingService } from "@/hooks/shilters"
 
 export default function BookingListing() {
- const { value: bookings, loading } = useBookingService()
- 
+  const { value: bookings, loading } = useBookingService()
+
   // Initialize state from URL params or defaults
   const [currentPage, setCurrentPage] = useState(() => {
     if (typeof window !== "undefined") {

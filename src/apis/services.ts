@@ -1,8 +1,4 @@
-import { apiClient } from "@/lib/api-client";
-
-
-
-
+import { apiClient } from "@/lib/api-client"
 
 export const getServices = async (queryString?: string) => {
   let url = "services/getAllServices"
@@ -58,13 +54,7 @@ type CreateProductInputs = {
   cardExpireDate: string
   cardSecurityCode: string
   saveCard: boolean
-
 }
-
-
-
-
-
 
 export const CreateBookingRequest = async (inputs: CreateProductInputs) => {
   const response = await apiClient<RequestResponse>({

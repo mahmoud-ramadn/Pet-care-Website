@@ -29,7 +29,6 @@ export function AppSidebar() {
   const location = useLocation()
   const { value } = useGetMe()
 
-
   const isActive = (path: string) => {
     return location.pathname === path
   }
@@ -86,7 +85,7 @@ export function AppSidebar() {
     },
     {
       to: "/All-bookings",
-      icon: Book ,
+      icon: Book,
       text: "All Bookings",
       badge: null,
       gradient: "from-gray-500 to-blue-500",
@@ -194,16 +193,12 @@ export function AppSidebar() {
                           {item.badge}
                         </span>
                       )}
-
                     </div>
                   </Link>
                 </div>
               )
             })}
           </nav>
-
-
-          
         </SidebarGroup>
       </SidebarContent>
 
@@ -258,8 +253,6 @@ export function AppSidebar() {
               >
                 <Bell className="h-4 w-4 group-hover:animate-pulse" />
               </Button>
-
-              
 
               <Link
                 to="/"

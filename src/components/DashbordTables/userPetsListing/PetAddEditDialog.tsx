@@ -1,8 +1,7 @@
-import { lazy, Suspense } from "react"
+import { Suspense, lazy } from "react"
 
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog"
 import Loader from "@/components/ui/loader"
-
 
 const PetsForm = lazy(() => import("@/components/forms/petsForm"))
 

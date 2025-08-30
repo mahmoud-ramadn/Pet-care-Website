@@ -111,8 +111,6 @@ export default function Header() {
               <div className="flex items-center md:space-x-2 sm:space-x-4">
                 {token ? (
                   <>
-        
-
                     <UserInfo />
                   </>
                 ) : (

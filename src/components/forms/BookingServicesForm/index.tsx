@@ -12,8 +12,8 @@ import { FormControl, FormField, FormItem, FormLabel, FormLoading, FormMessage }
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { CreateBookingRequest } from "@/apis/services"
 
+import { CreateBookingRequest } from "@/apis/services"
 
 const BookingFormSchema = z.object({
   serviceType: z.string().min(1, "Service type is required"),
@@ -100,7 +100,7 @@ export default function BookingServicesForm({ values, onSuccess }: Props) {
   async function onSubmit(inputs: TypeBookingFormSchema): Promise<void> {
     try {
       setLoading(true)
-      await CreateBookingRequest(inputs as unknown  as request)
+      await CreateBookingRequest(inputs as unknown as request)
 
       toast.success("Booking created successfully!")
 
@@ -116,10 +116,6 @@ export default function BookingServicesForm({ values, onSuccess }: Props) {
       setLoading(false)
     }
   }
-
-
-
-
 
   const handleNumberChange = (value: string, onChange: (value: number) => void): void => {
     const numValue = parseFloat(value)
@@ -184,8 +180,6 @@ export default function BookingServicesForm({ values, onSuccess }: Props) {
                   )}
                 />
 
-               
-
                 <FormField
                   control={form.control}
                   name="servicePrice"
@@ -206,10 +200,8 @@ export default function BookingServicesForm({ values, onSuccess }: Props) {
                     </FormItem>
                   )}
                 />
-
               </div>
             </div>
-
 
             <div className=" light:bg-gradient-to-r from-green-50 to-teal-50 p-4 sm:p-6 rounded-lg border border-green-200">
               <h2 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-green-800">Schedule & Location</h2>
@@ -371,10 +363,6 @@ export default function BookingServicesForm({ values, onSuccess }: Props) {
                   )}
                 />
               </div>
-
-
-
-
 
               {/* Checkboxes */}
               <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4">

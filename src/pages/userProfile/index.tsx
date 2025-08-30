@@ -8,37 +8,39 @@ import { Link, useParams } from "react-router"
 
 import UserProfileSkeleton from "@/components/ui/feedbacks/userProfile-skeleton"
 
-import { useOneUser, useUserMoments } from "@/hooks/user"
+import { useGetMe, useOneUser, useUserMoments } from "@/hooks/user"
 
 const getRoleBadgeStyle = (role: string) => {
+  
   switch (role) {
     case "admin":
       return "bg-yellow-100 text-yellow-800 border-yellow-200"
-    case "moderator":
-      return "bg-purple-100 text-purple-800 border-purple-200"
-    default:
-      return "bg-blue-100 text-blue-800 border-blue-200"
-  }
+      case "moderator":
+        return "bg-purple-100 text-purple-800 border-purple-200"
+        default:
+          return "bg-blue-100 text-blue-800 border-blue-200"
+        }
+      }
+      
+      export default function UserProfile() {
+        const { t } = useTranslation()
+        const id = useParams().id
+        const {value:CurrentUser}=useGetMe()
+        const { value, loading: userLoading, retry } = useOneUser(id ?? "")
+        const { value: posts } = useUserMoments(id ?? "")
+        
+        useEffect(() => {
+          if (id) retry()
+          }, [id])
+
+if (userLoading) {
+  return <UserProfileSkeleton />
 }
 
-export default function UserProfile() {
-  const { t } = useTranslation()
-  const id = useParams().id
 
-  const { value, loading: userLoading, retry } = useOneUser(id ?? "")
-  const { value: posts } = useUserMoments(id ?? "")
-
-  useEffect(() => {
-    if (id) retry()
-  }, [id])
-
-  if (userLoading) {
-    return <UserProfileSkeleton />
-  }
-
-  if (!value) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex items-center justify-center p-4">
+if (!value) {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex items-center justify-center p-4">
         <div className="max-w-md w-full text-center bg-white rounded-3xl shadow-lg p-6 sm:p-8">
           <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <User className="w-8 h-8 text-red-500" />
@@ -48,7 +50,7 @@ export default function UserProfile() {
           <Link
             to="/"
             className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium text-sm sm:text-base"
-          >
+            >
             {t("userProfile.backToHome")}
           </Link>
         </div>
@@ -130,6 +132,8 @@ export default function UserProfile() {
                     </div>
 
                     {/* Edit Button */}
+
+            { id===CurrentUser?._id && (
                     <Link
                       to={`/Edit-user/${value?._id}`}
                       className="group relative p-2.5 sm:p-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 rounded-xl sm:rounded-2xl transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl mx-auto sm:mx-0"
@@ -139,7 +143,12 @@ export default function UserProfile() {
                       <div className="absolute top-12 sm:top-14 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
                         {t("userProfile.editProfile")}
                       </div>
-                    </Link>
+                    </Link>)}
+
+
+
+
+
                   </div>
 
                   {/* Stats Grid */}

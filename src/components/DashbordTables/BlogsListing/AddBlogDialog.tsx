@@ -1,5 +1,4 @@
-
-import { lazy, Suspense, useState } from "react"
+import { Suspense, lazy, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import {

@@ -1,13 +1,7 @@
-import { lazy } from "react";
-import type { RouteObject } from "react-router";
+import { lazy } from "react"
+import type { RouteObject } from "react-router"
 
-
-
-import UserDashboardLayout from "@/layouts/userDashbord";
-
-
-
-
+import UserDashboardLayout from "@/layouts/userDashbord"
 
 const User = lazy(() => import("@/pages/Dashborads/user/user"))
 const Admin = lazy(() => import("@/pages/Dashborads/admin"))
