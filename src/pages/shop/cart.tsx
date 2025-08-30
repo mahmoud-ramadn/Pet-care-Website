@@ -72,7 +72,7 @@ export default function Cart() {
 
                 <div className="flex items-center justify-start md:justify-end">
                   <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl font-semibold shadow-md md:shadow-lg text-sm md:text-base">
-                    {products.length} {products.length === 1 ? "Item" : "Items"}
+                    {products.length} {products?.length === 1 ? "Item" : "Items"}
                   </div>
                 </div>
               </div>
