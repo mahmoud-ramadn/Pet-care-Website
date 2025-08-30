@@ -111,23 +111,7 @@ export default function Header() {
               <div className="flex items-center md:space-x-2 sm:space-x-4">
                 {token ? (
                   <>
-                    <Link
-                      to="/shop/fav"
-                      className="group flex items-center justify-center relative p-2 text-foreground hover:text-red-500 transition-all duration-200"
-                      aria-label={t("favoriteProducts")}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-pink-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
-                      <Heart className="w-5 h-5 relative z-10 group-hover:scale-110" />
-                    </Link>
-
-                    <Link
-                      to="/shop/cart"
-                      className="group relative p-2 flex items-center justify-center  text-foreground hover:text-primary transition-all duration-200"
-                      aria-label={t("shoppingCart")}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
-                      <ShoppingBagIcon className="w-5 h-5 relative z-10 group-hover:scale-110" />
-                    </Link>
+        
 
                     <UserInfo />
                   </>
@@ -302,7 +286,7 @@ export default function Header() {
                 className="group flex items-center py-3 px-4 bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-100 hover:to-pink-100 rounded-lg transition-all duration-200 active:scale-95"
                 onClick={closeMobileMenu}
               >
-                <Heart className="w-5 h-5 mr-3 text-red-500" />
+                <Heart className="w-5 h-5 mr-3 text-white" />
                 <span className="font-medium text-foreground group-hover:text-red-600">{t("favoriteProducts")}</span>
               </Link>
 
@@ -311,7 +295,7 @@ export default function Header() {
                 className="group flex items-center py-3 px-4 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-100 hover:to-purple-100 rounded-lg transition-all duration-200 active:scale-95"
                 onClick={closeMobileMenu}
               >
-                <ShoppingBagIcon className="w-5 h-5 mr-3 text-blue-500" />
+                <ShoppingBagIcon className="w-5 h-5 mr-3 text-white" />
                 <span className="font-medium text-foreground group-hover:text-blue-600">{t("shoppingCart")}</span>
               </Link>
             </div>

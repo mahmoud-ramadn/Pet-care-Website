@@ -49,3 +49,67 @@ type ServiceDataType = {
   length?: number
   shuffledServices?: ShuffledServiceType[]
 }
+
+type  request= {
+    userId: string
+    serviceImage: string
+    serviceType: string
+    servicePrice: number
+    requestTotalPrice: number
+    location: string[] // مثال: ["1.1", "2.2"]
+    petsId: string[]
+    date: string // ISO Date
+    time: string
+    duration: string
+    notes: string
+    pickUp: boolean
+    payment: string
+    paymentImage: string
+    country: string
+    number: string
+    petsNumber: number | null
+    completed: boolean
+    remindMe3Hours: boolean
+    cardNumber: string
+    cardExpireDate: string // ISO Date
+    cardSecurityCode: string
+    saveCard: boolean
+    _id: string
+    createdAt: string // ISO Date
+    updatedAt: string // ISO Date
+    __v: number
+  }
+
+
+ interface RequestResponse {
+  status: "success" | "error"
+  request: {
+    userId: string
+    serviceImage: string
+    serviceType: string
+    servicePrice: number
+    requestTotalPrice: number
+    location: string[] // مثال: ["1.1", "2.2"]
+    petsId: string[]
+    date: string // ISO Date
+    time: string
+    duration: string
+    notes: string
+    pickUp: boolean
+    payment: string
+    paymentImage: string
+    country: string
+    number: string
+    petsNumber: number | null
+    completed: boolean
+    remindMe3Hours: boolean
+    cardNumber: string
+    cardExpireDate: string // ISO Date
+    cardSecurityCode: string
+    saveCard: boolean
+    _id: string
+    createdAt: string // ISO Date
+    updatedAt: string // ISO Date
+    __v: number
+  }
+}

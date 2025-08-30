@@ -1,4 +1,5 @@
-import { useState } from "react"
+
+import { lazy, Suspense, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -11,8 +12,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import Loader from "@/components/ui/loader"
 
-import CreateBlogForm from "../../forms/BlogsForm/CreatBlog"
+const CreateBlogForm = lazy(() => import("@/components/forms/BlogsForm/CreatBlog"))
 
 export function AddBlogDialog() {
   const [open, setOpen] = useState(false)
@@ -27,7 +29,15 @@ export function AddBlogDialog() {
           <DialogTitle>Add new blog</DialogTitle>
           <DialogDescription>Make changes to your profile here. Click save when you&apos;re done.</DialogDescription>
         </DialogHeader>
-        <CreateBlogForm onSuccess={() => setOpen(false)} />
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center h-full w-full">
+              <Loader />
+            </div>
+          }
+        >
+          <CreateBlogForm onSuccess={() => setOpen(false)} />
+        </Suspense>
         <DialogFooter>
           <DialogClose asChild>
             <Button variant="outline">Cancel</Button>

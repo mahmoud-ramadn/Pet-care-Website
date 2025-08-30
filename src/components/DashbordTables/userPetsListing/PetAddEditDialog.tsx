@@ -1,6 +1,10 @@
-import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog"
+import { lazy, Suspense } from "react"
 
-import PetsForm from "@/components/forms/petsForm"
+import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog"
+import Loader from "@/components/ui/loader"
+
+
+const PetsForm = lazy(() => import("@/components/forms/petsForm"))
 
 type Props = {
   open: boolean
@@ -15,7 +19,15 @@ export default function PetAddEditDialog({ open, setOpen, isEdit = false, onComp
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent>
         <DialogHeader></DialogHeader>
-        <PetsForm isEdit={isEdit} onComplete={onComplete} pet={pet} />
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center h-full w-full">
+              <Loader />
+            </div>
+          }
+        >
+          <PetsForm isEdit={isEdit} onComplete={onComplete} pet={pet} />
+        </Suspense>
       </DialogContent>
     </Dialog>
   )

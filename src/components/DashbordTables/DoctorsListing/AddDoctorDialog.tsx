@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { lazy, Suspense, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -11,8 +11,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import Loader from "@/components/ui/loader"
 
-import DoctorForm from "@/components/forms/DoctorForm"
+const DoctorForm = lazy(() => import("@/components/forms/DoctorForm"))
 
 export function AddDoctorDialog() {
   const [open, setOpen] = useState(false)
@@ -27,7 +28,15 @@ export function AddDoctorDialog() {
           <DialogTitle>Add new Doctor</DialogTitle>
           <DialogDescription>Make changes to your profile here. Click save when you&apos;re done.</DialogDescription>
         </DialogHeader>
-        <DoctorForm />
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center h-full w-full">
+              <Loader />
+            </div>
+          }
+        >
+          <DoctorForm />
+        </Suspense>
         <DialogFooter>
           <DialogClose asChild>
             <Button variant="outline">Cancel</Button>

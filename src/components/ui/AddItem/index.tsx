@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { Suspense, lazy, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -12,7 +12,9 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
-import ProductFrom from "@/components/forms/ProductFrom"
+import Loader from "../loader"
+
+const ProductForm = lazy(() => import("@/components/forms/ProductFrom"))
 
 export function AddItemDialog() {
   const [open, setOpen] = useState(false)
@@ -35,7 +37,15 @@ export function AddItemDialog() {
           <DialogTitle>Add new product</DialogTitle>
           <DialogDescription>Make changes to your profile here. Click save when you&apos;re done.</DialogDescription>
         </DialogHeader>
-        <ProductFrom categories={[...categoriesOptions]} onSuccess={() => setOpen(false)} />
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center h-full w-full">
+              <Loader />
+            </div>
+          }
+        >
+          <ProductForm categories={[...categoriesOptions]} onSuccess={() => setOpen(false)} />
+        </Suspense>
         <DialogFooter>
           <DialogClose asChild>
             <Button variant="outline">Cancel</Button>

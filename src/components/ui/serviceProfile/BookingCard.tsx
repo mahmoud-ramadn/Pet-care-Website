@@ -1,8 +1,10 @@
 import { Clock, Heart, MapPin, Share2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+import { BookingDialog } from "../services/Booking-dialog"
+import { useState } from "react"
 
-export function BookingCard({
+export default function BookingCard({
   price,
   pricePer,
   from,
@@ -15,8 +17,17 @@ export function BookingCard({
   to?: number
   questions?: string[]
 }) {
+
+  const [open, setOpen] = useState(false)
+
+  console.log(open);
+  
+
   return (
+    <>
+    <BookingDialog open={open} setOpen={setOpen}   />
     <div className="sticky top-8 border rounded-xl p-6 shadow-sm">
+
       <div className="flex justify-between items-start mb-4">
         <div>
           <p className="text-2xl font-bold">${price}</p>
@@ -51,7 +62,7 @@ export function BookingCard({
         </div>
       </div>
 
-      <Button className="w-full" size="lg">
+      <Button onClick={() => setOpen(true)} className="w-full" size="lg">
         Book Now
       </Button>
 
@@ -66,5 +77,6 @@ export function BookingCard({
         </div>
       </div>
     </div>
+    </>
   )
 }

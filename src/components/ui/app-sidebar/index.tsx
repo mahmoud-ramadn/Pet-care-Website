@@ -1,14 +1,13 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import {
   Bell,
+  Book,
   Cog,
   Crown,
   DogIcon,
-  Globe,
   LayoutDashboardIcon,
   LogOut,
   NewspaperIcon,
-  Settings,
   ShoppingBagIcon,
   ShoppingBasket,
   Star,
@@ -23,7 +22,6 @@ import { cn } from "@/lib/utils"
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } from "@/components/ui/sidebar"
 
 import { useGetMe } from "@/hooks/user"
-import i18n from "@/i18n"
 
 import { Button } from "../button"
 
@@ -31,10 +29,7 @@ export function AppSidebar() {
   const location = useLocation()
   const { value } = useGetMe()
 
-  const toggleLang = () => {
-    const newLang = i18n.language === "en" ? "ar" : "en"
-    i18n.changeLanguage(newLang)
-  }
+
   const isActive = (path: string) => {
     return location.pathname === path
   }
@@ -88,6 +83,13 @@ export function AppSidebar() {
       text: "All Orders",
       badge: null,
       gradient: "from-gray-500 to-red-500",
+    },
+    {
+      to: "/All-bookings",
+      icon: Book ,
+      text: "All Bookings",
+      badge: null,
+      gradient: "from-gray-500 to-blue-500",
     },
   ]
 
@@ -181,67 +183,27 @@ export function AppSidebar() {
                       <span
                         className={cn(
                           "font-medium text-sm transition-colors duration-200 flex-1",
-                          active ? "text-blue-800" : "text-gray-700 group-hover:text-gray-900"
+                          active ? "text-blue-800" : "text-gray-700 "
                         )}
                       >
                         {item.text}
                       </span>
 
-                      {/* Badge */}
                       {item.badge && (
                         <span className="px-2 py-1 bg-gradient-to-r from-orange-400 to-pink-400 text-white text-xs font-medium rounded-full shadow-sm">
                           {item.badge}
                         </span>
                       )}
 
-                      {/* Hover glow effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                     </div>
                   </Link>
                 </div>
               )
             })}
           </nav>
-        </SidebarGroup>
 
-        {/* Enhanced Separator */}
-        <div className="px-6 py-4">
-          <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-        </div>
 
-        {/* Team Section */}
-        <SidebarGroup className="py-4">
-          <div className="px-6 mb-4">
-            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider flex items-center gap-2">
-              <div className="w-4 h-0.5 bg-gradient-to-r from-purple-500 to-transparent rounded-full"></div>
-              Team & Settings
-            </h3>
-          </div>
-
-          <nav className="space-y-2 px-4">
-            <Link to="/team" className="block group">
-              <div className="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all duration-200 hover:bg-white hover:shadow-md hover:shadow-gray-100/50 transform hover:scale-[1.01]">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center group-hover:from-purple-200 group-hover:to-pink-200 transition-all duration-200">
-                  <Users className="w-5 h-5 text-purple-600" />
-                </div>
-                <span className="font-medium text-sm text-gray-700 group-hover:text-gray-900 transition-colors">
-                  Team Members
-                </span>
-                <div className="ml-auto w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              </div>
-            </Link>
-
-            <Link to="/settings" className="block group">
-              <div className="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all duration-200 hover:bg-white hover:shadow-md hover:shadow-gray-100/50 transform hover:scale-[1.01]">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-gray-100 to-slate-100 flex items-center justify-center group-hover:from-gray-200 group-hover:to-slate-200 transition-all duration-200">
-                  <Settings className="w-5 h-5 text-gray-600" />
-                </div>
-                <span className="font-medium text-sm text-gray-700 group-hover:text-gray-900 transition-colors">
-                  Settings
-                </span>
-              </div>
-            </Link>
-          </nav>
+          
         </SidebarGroup>
       </SidebarContent>
 
@@ -297,14 +259,7 @@ export function AppSidebar() {
                 <Bell className="h-4 w-4 group-hover:animate-pulse" />
               </Button>
 
-              <Button
-                onClick={toggleLang}
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 rounded-lg hover:bg-green-50 hover:text-green-600 transition-all duration-200 group"
-              >
-                <Globe className="h-4 w-4 group-hover:rotate-12 transition-transform duration-200" />
-              </Button>
+              
 
               <Link
                 to="/"

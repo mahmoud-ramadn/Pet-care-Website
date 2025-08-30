@@ -1,4 +1,8 @@
-import { apiClient } from "@/lib/api-client"
+import { apiClient } from "@/lib/api-client";
+
+
+
+
 
 export const getServices = async (queryString?: string) => {
   let url = "services/getAllServices"
@@ -32,4 +36,43 @@ export const getServiceProfile = async (serviceId: string) => {
   })
 
   return response.updatedDoc
+}
+
+type CreateProductInputs = {
+  serviceType: string
+  servicePrice: number
+  requestTotalPrice: number
+  date: string
+  time: string
+  duration: string
+  location: string[]
+  notes: string
+  pickUp: boolean
+  payment: string
+  country: string
+  number: string
+  petsNumber: number | null
+  completed: boolean
+  remindMe3Hours: boolean
+  cardNumber: string
+  cardExpireDate: string
+  cardSecurityCode: string
+  saveCard: boolean
+
+}
+
+
+
+
+
+
+export const CreateBookingRequest = async (inputs: CreateProductInputs) => {
+  const response = await apiClient<RequestResponse>({
+    url: "request/addRequest",
+    method: "POST",
+    data: inputs,
+    auth: true,
+  })
+
+  return response.status
 }

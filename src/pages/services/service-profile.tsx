@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom"
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ServiceProfileSkeleton } from "@/components/ui/feedbacks/service-profile-skeleton"
-import { BookingCard } from "@/components/ui/serviceProfile/BookingCard"
 import { PetPreferences } from "@/components/ui/serviceProfile/PetPreferences"
 import { ReviewItem } from "@/components/ui/serviceProfile/ReviewItem"
 import { ServiceDetails } from "@/components/ui/serviceProfile/ServiceDetails"
@@ -17,6 +16,7 @@ import { serviceWritereivew } from "@/apis/writeriewve"
 import { tokenAtom } from "@/atoms"
 import WriteReview from "@/components/forms/write-review"
 import { useServiceProfile } from "@/hooks/services"
+import BookingCard from "@/components/ui/serviceProfile/BookingCard"
 
 export default function Description() {
   const token = useAtomValue(tokenAtom)
@@ -124,6 +124,7 @@ export default function Description() {
           </div>
 
           <div className="lg:col-span-1">
+
             <BookingCard
               price={serviceProfile.price}
               pricePer={serviceProfile.pricePer}
@@ -131,6 +132,8 @@ export default function Description() {
               to={serviceProfile.to}
               questions={serviceProfile.question1}
             />
+
+
             {token && (
               <WriteReview
                 writeReview={(data) => {
