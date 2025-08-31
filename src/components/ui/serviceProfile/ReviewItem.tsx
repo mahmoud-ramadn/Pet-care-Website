@@ -1,11 +1,15 @@
 import { Calendar, CheckCircle, Edit, MoreHorizontal, Star, Trash } from "lucide-react"
 
-import { useState } from "react"
+import { Suspense, useState } from "react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 import { DeleteReview, updateReview } from "@/apis/writeriewve"
-import WriteReview from "@/components/forms/write-review"
+import { lazy } from "react"
+
+import Loader from "../loader"
+
+const LazyWriteReview = lazy(() => import("@/components/forms/write-review"))
 
 type ReviewItemProps = {
   review?: Review | null
@@ -206,7 +210,13 @@ export function ReviewItem({ review, reload }: ReviewItemProps) {
             <h5 className="font-medium text-blue-900 text-sm md:text-base">تعديل المراجعة</h5>
           </div>
 
-          <WriteReview
+          <Suspense fallback={
+            <div className="flex items-center justify-center py-4">
+              <Loader className="w-4 h-4 animate-spin" />
+            </div>
+          }>
+
+          <LazyWriteReview
             isEdit
             writeReview={async (values) => {
               if (!review?._id) return
@@ -223,6 +233,13 @@ export function ReviewItem({ review, reload }: ReviewItemProps) {
               review: review?.review,
             }}
           />
+
+          </Suspense>
+
+
+
+
+
 
           <div className="flex justify-end mt-2 md:mt-3">
             <button

@@ -1,4 +1,8 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
+
+
+
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,6 +21,8 @@ import { useLogout } from "@/hooks/auth"
 import { useGetMe } from "@/hooks/user"
 
 import { Button } from "../ui/button"
+import Loader from "../ui/loader"
+import {  Suspense } from "react"
 
 const isMobile = typeof window !== "undefined" && window.innerWidth < 768
 
@@ -58,6 +64,12 @@ export default function UserInfo() {
           <ChevronDown className="ml-1 size-4 text-gray-500 transition-transform duration-200 group-data-[state=open]:rotate-180" />
         </Button>
       </DropdownMenuTrigger>
+
+      <Suspense fallback={
+        <div className="flex items-center justify-center py-4">
+          <Loader className="w-4 h-4 animate-spin" />
+        </div>
+      }>
 
       <DropdownMenuContent
         className="min-w-56 rounded-xl border z-10  border-gray-200 shadow-xl dark:bg-gradient-to-r from-black to to-blue-700 bg-white p-1.5 will-change-[opacity,transform] data-[side=bottom]:animate-slideUpAndFade data-[side=right]:animate-slideLeftAndFade"
@@ -134,6 +146,10 @@ export default function UserInfo() {
           {t("logout")}
         </DropdownMenuItem>
       </DropdownMenuContent>
+
+</Suspense>
+
+
     </DropdownMenu>
   )
 }
