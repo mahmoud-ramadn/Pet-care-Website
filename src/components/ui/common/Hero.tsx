@@ -38,7 +38,7 @@ export default function Hero({
   return (
     <div className="relative h-[100vh] min-h-[800px] w-full overflow-hidden group">
       {/* Enhanced Background with Parallax Effect */}
-      
+
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed transition-all duration-1000 scale-105 group-hover:scale-110"
         style={{
@@ -101,9 +101,6 @@ export default function Hero({
             {t("adoption.description")}
           </p>
 
-
-          
-
           {browser && (
             <div className="flex flex-col sm:flex-row gap-4 mt-10 justify-center">
               <button className="group/btn px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 hover:from-amber-600 hover:to-orange-600">
@@ -153,16 +150,7 @@ export default function Hero({
               </div>
             </div>
           )}
-
-
-
-
-
         </div>
-
-
-
-
 
         {browser && (
           <div className="absolute md:bottom-32 bottom-10 animate-bounce">
