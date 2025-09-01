@@ -1,8 +1,9 @@
 import { useAtomValue } from "jotai"
 import { debounce } from "lodash-es"
-import { EarthIcon, Heart, Menu, Moon, ShoppingBagIcon, SparklesIcon, Sun, } from "lucide-react"
+import { EarthIcon, Heart, Menu, Moon, ShoppingBagIcon, SparklesIcon, Sun } from "lucide-react"
 
 import { Suspense, useCallback, useEffect, useState } from "react"
+import { lazy } from "react"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
@@ -10,10 +11,9 @@ import { HeaderLinks } from "@/Constants/main"
 import { tokenAtom } from "@/atoms"
 import { useTheme } from "@/components/global-provider/theme-provider"
 import i18n from "@/i18n"
-import { lazy } from "react"
-import UserInfo from "./user-info"
 
 import Loader from "../ui/loader"
+import UserInfo from "./user-info"
 
 const MobileMenu = lazy(() => import("./MobileMenu"))
 
@@ -192,22 +192,23 @@ export default function Header() {
         onClick={closeMobileMenu}
       />
 
-      
-<Suspense fallback={
-  <div className="flex items-center justify-center h-full">
-    <Loader />
-  </div>
-}>
-    <MobileMenu
-  mobileMenuOpen={mobileMenuOpen}
-  closeMobileMenu={closeMobileMenu}
-  toggleLanguage={toggleLanguage}
-  toggleTheme={toggleTheme}
-  theme={theme}
-  token={token}
-  t={t}
-/>
-</Suspense>
+      <Suspense
+        fallback={
+          <div className="flex items-center justify-center h-full">
+            <Loader />
+          </div>
+        }
+      >
+        <MobileMenu
+          mobileMenuOpen={mobileMenuOpen}
+          closeMobileMenu={closeMobileMenu}
+          toggleLanguage={toggleLanguage}
+          toggleTheme={toggleTheme}
+          theme={theme}
+          token={token}
+          t={t}
+        />
+      </Suspense>
     </>
   )
 }

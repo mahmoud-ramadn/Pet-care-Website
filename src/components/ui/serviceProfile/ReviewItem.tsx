@@ -1,11 +1,11 @@
 import { Calendar, CheckCircle, Edit, MoreHorizontal, Star, Trash } from "lucide-react"
 
 import { Suspense, useState } from "react"
+import { lazy } from "react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 import { DeleteReview, updateReview } from "@/apis/writeriewve"
-import { lazy } from "react"
 
 import Loader from "../loader"
 
@@ -210,36 +210,31 @@ export function ReviewItem({ review, reload }: ReviewItemProps) {
             <h5 className="font-medium text-blue-900 text-sm md:text-base">تعديل المراجعة</h5>
           </div>
 
-          <Suspense fallback={
-            <div className="flex items-center justify-center py-4">
-              <Loader className="w-4 h-4 animate-spin" />
-            </div>
-          }>
-
-          <LazyWriteReview
-            isEdit
-            writeReview={async (values) => {
-              if (!review?._id) return
-              try {
-                await updateReview(values, review._id)
-                reload()
-                setOpen(false)
-              } catch (error) {
-                console.error("فشل تحديث المراجعة:", error)
-              }
-            }}
-            initialValues={{
-              rating: review?.rating,
-              review: review?.review,
-            }}
-          />
-
+          <Suspense
+            fallback={
+              <div className="flex items-center justify-center py-4">
+                <Loader className="w-4 h-4 animate-spin" />
+              </div>
+            }
+          >
+            <LazyWriteReview
+              isEdit
+              writeReview={async (values) => {
+                if (!review?._id) return
+                try {
+                  await updateReview(values, review._id)
+                  reload()
+                  setOpen(false)
+                } catch (error) {
+                  console.error("فشل تحديث المراجعة:", error)
+                }
+              }}
+              initialValues={{
+                rating: review?.rating,
+                review: review?.review,
+              }}
+            />
           </Suspense>
-
-
-
-
-
 
           <div className="flex justify-end mt-2 md:mt-3">
             <button

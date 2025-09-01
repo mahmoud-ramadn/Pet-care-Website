@@ -4,16 +4,13 @@ import { Helmet } from "react-helmet"
 import { useParams } from "react-router"
 
 import { ShelterSkeleton } from "@/components/ui/feedbacks/singl-shilter-skeleton"
-
-
-import { useShilter } from "@/hooks/shilters"
+import ShelterAbout from "@/components/ui/shelters/ShelterAbout"
 import ShelterGallery from "@/components/ui/shelters/ShelterGallery"
 import ShelterInfo from "@/components/ui/shelters/ShelterInfo"
-import ShelterAbout from "@/components/ui/shelters/ShelterAbout"
 import ShelterMap from "@/components/ui/shelters/ShelterMap"
 import ShelterReviews from "@/components/ui/shelters/ShelterReviews"
 
-
+import { useShilter } from "@/hooks/shilters"
 
 export default function SinglShilter() {
   const { id } = useParams()
