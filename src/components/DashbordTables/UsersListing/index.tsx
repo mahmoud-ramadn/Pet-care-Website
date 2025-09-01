@@ -1,14 +1,35 @@
-import type { ColumnDef } from "@tanstack/react-table"
+import type { ColumnDef } from "@tanstack/react-table";
 
-import { useMemo } from "react"
 
-import DataTable from "@/components/ui/data-table"
 
-import Pagination from "@/components/common/Pagination"
-import { useAllUsers } from "@/hooks/user"
+import { useMemo } from "react";
+
+
+
+import DataTable from "@/components/ui/data-table";
+
+
+
+import Pagination from "@/components/common/Pagination";
+import { usePagination } from "@/hooks/usePagination";
+import { useAllUsers } from "@/hooks/user";
+
+
+
+
 
 export default function UsersListing() {
   const { value: user, loading } = useAllUsers()
+
+    const totalItems = Array.isArray(user) ? user.length : 0
+
+    const pagination = usePagination({
+      totalItems,
+      defaultItemsPerPage: 5,
+        defaultPage: 1,
+      })
+    
+
 
   const columns: ColumnDef<User>[] = useMemo(
     () => [
@@ -39,11 +60,28 @@ export default function UsersListing() {
     []
   )
 
+  const paginatedData = Array.isArray(user) ? user.slice(pagination.startIndex, pagination.endIndex) : []
+
   return (
     <div className="space-y-6">
-      <DataTable columns={columns} loading={loading} data={user || []} />
+      <DataTable columns={columns} loading={loading} data={paginatedData} />
 
-      <Pagination totalItems={user?.length || 0} />
+      <Pagination
+        currentPage={pagination.currentPage}
+        totalPages={pagination.totalPages}
+        itemsPerPage={pagination.itemsPerPage}
+        totalItems={totalItems}
+        startIndex={pagination.startIndex}
+        endIndex={pagination.endIndex}
+        canGoNext={pagination.canGoNext}
+        canGoPrevious={pagination.canGoPrevious}
+        onPageChange={pagination.setCurrentPage}
+        onItemsPerPageChange={pagination.setItemsPerPage}
+        onNextPage={pagination.goToNextPage}
+        onPreviousPage={pagination.goToPreviousPage}
+        getVisiblePages={pagination.getVisiblePages}
+      />
+
     </div>
   )
 }

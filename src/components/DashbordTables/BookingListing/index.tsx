@@ -6,9 +6,18 @@ import DataTable from "@/components/ui/data-table"
 
 import Pagination from "@/components/common/Pagination"
 import { useBookingService } from "@/hooks/shilters"
+import { usePagination } from "@/hooks/usePagination"
 
 export default function BookingListing() {
   const { value: bookings, loading } = useBookingService()
+
+  const totalItems = Array.isArray(bookings) ? bookings.length : 0
+
+  const pagination = usePagination({
+    totalItems,
+    defaultItemsPerPage: 5,
+    defaultPage: 1,
+  })
 
   const columns: ColumnDef<Book>[] = useMemo(
     () => [
@@ -69,11 +78,27 @@ export default function BookingListing() {
     []
   )
 
+  const paginatedData = Array.isArray(bookings) ? bookings.slice(pagination.startIndex, pagination.endIndex) : []
+
   return (
     <div className="space-y-6">
-      <DataTable columns={columns} loading={loading} data={bookings || []} />
+      <DataTable columns={columns} loading={loading} data={paginatedData} />
 
-      <Pagination totalItems={bookings?.length || 0} />
+      <Pagination
+        currentPage={pagination.currentPage}
+        totalPages={pagination.totalPages}
+        itemsPerPage={pagination.itemsPerPage}
+        totalItems={totalItems}
+        startIndex={pagination.startIndex}
+        endIndex={pagination.endIndex}
+        canGoNext={pagination.canGoNext}
+        canGoPrevious={pagination.canGoPrevious}
+        onPageChange={pagination.setCurrentPage}
+        onItemsPerPageChange={pagination.setItemsPerPage}
+        onNextPage={pagination.goToNextPage}
+        onPreviousPage={pagination.goToPreviousPage}
+        getVisiblePages={pagination.getVisiblePages}
+      />
     </div>
   )
 }

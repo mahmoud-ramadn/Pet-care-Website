@@ -1,16 +1,25 @@
 import type { ColumnDef } from "@tanstack/react-table"
 
-import { useMemo } from "react"
+import {  useMemo} from "react"
 
 import DataTable from "@/components/ui/data-table"
 
-import Pagination from "@/components/common/Pagination"
 import { useDoctors } from "@/hooks/doctors"
 
 import { AddDoctorDialog } from "./AddDoctorDialog"
+import { usePagination } from "@/hooks/usePagination"
+import Pagination from "@/components/common/Pagination"
 
 export default function DoctorsListing() {
   const { value: doctor, loading } = useDoctors()
+  const totalItems = Array.isArray(doctor) ? doctor.length : 0
+
+  const pagination = usePagination({
+    totalItems,
+    defaultItemsPerPage: 5,
+      defaultPage: 1,
+    })
+  
 
   const columns: ColumnDef<Doctor>[] = useMemo(
     () => [
@@ -90,12 +99,33 @@ export default function DoctorsListing() {
     []
   )
 
+
+
+
+    const paginatedData = Array.isArray(doctor) ? doctor.slice(pagination.startIndex, pagination.endIndex) : []
+
+
   return (
     <div className=" space-y-7">
       <AddDoctorDialog />
 
-      <DataTable columns={columns} loading={loading} data={doctor || []} />
-      <Pagination totalItems={doctor?.length || 0} />
+      <DataTable columns={columns} loading={loading} data={paginatedData} />
+     <Pagination
+        currentPage={pagination.currentPage}
+        totalPages={pagination.totalPages}
+        itemsPerPage={pagination.itemsPerPage}
+        totalItems={totalItems}
+        startIndex={pagination.startIndex}
+        endIndex={pagination.endIndex}
+        canGoNext={pagination.canGoNext}
+        canGoPrevious={pagination.canGoPrevious}
+        onPageChange={pagination.setCurrentPage}
+        onItemsPerPageChange={pagination.setItemsPerPage}
+        onNextPage={pagination.goToNextPage}
+        onPreviousPage={pagination.goToPreviousPage}
+        getVisiblePages={pagination.getVisiblePages}
+      />
+    
     </div>
   )
 }

@@ -1,15 +1,35 @@
-import type { ColumnDef } from "@tanstack/react-table"
+import type { ColumnDef } from "@tanstack/react-table";
 
-import { useMemo } from "react"
 
-import DataTable from "@/components/ui/data-table"
 
-import Pagination from "@/components/common/Pagination"
-import { useServices } from "@/hooks/services"
+import { useMemo } from "react";
+
+
+
+import DataTable from "@/components/ui/data-table";
+
+
+
+import Pagination from "@/components/common/Pagination";
+import { useServices } from "@/hooks/services";
+import { usePagination } from "@/hooks/usePagination";
+
+
+
+
 
 export default function ServiceListing() {
   const { value: services, loading } = useServices()
+  const totalItems = Array.isArray(services) ? services.length : 0
 
+  const pagination = usePagination({
+    totalItems,
+    defaultItemsPerPage: 5,
+    defaultPage: 1,
+  })
+  
+
+  
   const columns: ColumnDef<ShuffledServiceType>[] = useMemo(() => {
     return [
       { accessorKey: "serviceType", header: "Service Type" },
@@ -108,11 +128,27 @@ export default function ServiceListing() {
     ]
   }, [])
 
+  const paginatedData = Array.isArray(services) ? services.slice(pagination.startIndex, pagination.endIndex) : []
+
   return (
     <div className="space-y-6">
-      <DataTable columns={columns} loading={loading} data={services || []} />
+      <DataTable columns={columns} loading={loading} data={paginatedData} />
 
-      <Pagination totalItems={services?.length || 0} />
+      <Pagination
+        currentPage={pagination.currentPage}
+        totalPages={pagination.totalPages}
+        itemsPerPage={pagination.itemsPerPage}
+        totalItems={totalItems}
+        startIndex={pagination.startIndex}
+        endIndex={pagination.endIndex}
+        canGoNext={pagination.canGoNext}
+        canGoPrevious={pagination.canGoPrevious}
+        onPageChange={pagination.setCurrentPage}
+        onItemsPerPageChange={pagination.setItemsPerPage}
+        onNextPage={pagination.goToNextPage}
+        onPreviousPage={pagination.goToPreviousPage}
+        getVisiblePages={pagination.getVisiblePages}
+      />
     </div>
   )
 }

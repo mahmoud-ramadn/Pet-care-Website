@@ -1,27 +1,46 @@
-import { useMutation } from "@tanstack/react-query"
-import type { ColumnDef } from "@tanstack/react-table"
-import { CatIcon, MoreVerticalIcon, Trash2 } from "lucide-react"
-import { toast } from "sonner"
+import { useMutation } from "@tanstack/react-query";
+import type { ColumnDef } from "@tanstack/react-table";
+import { CatIcon, MoreVerticalIcon, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 
-import { Suspense, lazy,useMemo, useState } from "react"
 
-import { Button } from "@/components/ui/button"
-import DataTable from "@/components/ui/data-table"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
-import { DeletePet } from "@/apis/pet"
-import { useMyPets } from "@/hooks/pet"
-import Pagination from "@/components/common/Pagination"
+import { Suspense, lazy, useMemo, useState } from "react";
+
+
+
+import { Button } from "@/components/ui/button";
+import DataTable from "@/components/ui/data-table";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+
+
+
+import { DeletePet } from "@/apis/pet";
+import { useMyPets } from "@/hooks/pet";
+import { usePagination } from "@/hooks/usePagination";
+import Pagination from "@/components/common/Pagination";
+
+
+
+
 
 const PetAddEditDialog = lazy(() => import("./PetAddEditDialog"))
 
 export default function UserPetsListing() {
   const { value: pet, loading, retry } = useMyPets()
+
+  const totalItems = Array.isArray(pet) ? pet.length : 0
+
+  const pagination = usePagination({
+    totalItems,
+    defaultItemsPerPage: 5,
+      defaultPage: 1,
+    })
+  
+    
   const [open, setOpen] = useState(false)
 
   const [petItem, setPet] = useState<PetItem>()
-
-
 
   const { mutate: MakeDeletPet } = useMutation({
     mutationFn: async (id: string) => {
@@ -90,7 +109,9 @@ export default function UserPetsListing() {
     [MakeDeletPet]
   )
 
-  
+
+  const paginatedData = Array.isArray(pet) ? pet.slice(pagination.startIndex, pagination.endIndex) : []
+
 
   return (
     <div className="space-y-6">
@@ -105,7 +126,7 @@ export default function UserPetsListing() {
         </div>
         <span className="font-medium">Add Pets</span>
       </Button>
-      <DataTable columns={columns} loading={loading} data={pet || []} />
+      <DataTable columns={columns} loading={loading} data={paginatedData} />
       <Suspense>
         <PetAddEditDialog
           pet={petItem}
@@ -118,9 +139,21 @@ export default function UserPetsListing() {
           }}
         />
       </Suspense>
-
-      <Pagination totalItems={pet?.length || 0} />
-
+<Pagination
+        currentPage={pagination.currentPage}
+        totalPages={pagination.totalPages}
+        itemsPerPage={pagination.itemsPerPage}
+        totalItems={totalItems}
+        startIndex={pagination.startIndex}
+        endIndex={pagination.endIndex}
+        canGoNext={pagination.canGoNext}
+        canGoPrevious={pagination.canGoPrevious}
+        onPageChange={pagination.setCurrentPage}
+        onItemsPerPageChange={pagination.setItemsPerPage}
+        onNextPage={pagination.goToNextPage}
+        onPreviousPage={pagination.goToPreviousPage}
+        getVisiblePages={pagination.getVisiblePages}
+      />
     </div>
   )
 }

@@ -6,11 +6,20 @@ import { formatPriceEGP } from "@/lib/FormatPriceEGp"
 
 import DataTable from "@/components/ui/data-table"
 
-import Pagination from "@/components/common/Pagination"
 import { useOrderUser } from "@/hooks/user"
+import { usePagination } from "@/hooks/usePagination"
+import Pagination from "@/components/common/Pagination"
 
 export default function UserOrderListing() {
   const { value: order, loading } = useOrderUser()
+  const totalItems = Array.isArray(order) ? order.length : 0
+
+  const pagination = usePagination({
+    totalItems,
+    defaultItemsPerPage: 5,
+      defaultPage: 1,
+    })
+  
 
   const columns: ColumnDef<Order>[] = useMemo(() => {
     return [
@@ -59,11 +68,28 @@ export default function UserOrderListing() {
     ]
   }, [])
 
+  const paginatedData = Array.isArray(order) ? order.slice(pagination.startIndex, pagination.endIndex) : []
+
   return (
     <div className="space-y-6">
-      <DataTable columns={columns} loading={loading} data={order || []} />
+      <DataTable columns={columns} loading={loading} data={paginatedData} />
 
-      <Pagination totalItems={order?.length || 0} />
+      <Pagination
+        currentPage={pagination.currentPage}
+        totalPages={pagination.totalPages}
+        itemsPerPage={pagination.itemsPerPage}
+        totalItems={totalItems}
+        startIndex={pagination.startIndex}
+        endIndex={pagination.endIndex}
+        canGoNext={pagination.canGoNext}
+        canGoPrevious={pagination.canGoPrevious}
+        onPageChange={pagination.setCurrentPage}
+        onItemsPerPageChange={pagination.setItemsPerPage}
+        onNextPage={pagination.goToNextPage}
+        onPreviousPage={pagination.goToPreviousPage}
+        getVisiblePages={pagination.getVisiblePages}
+      />
+
     </div>
   )
 }

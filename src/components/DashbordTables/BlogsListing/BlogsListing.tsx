@@ -1,16 +1,37 @@
-import type { ColumnDef } from "@tanstack/react-table"
+import type { ColumnDef } from "@tanstack/react-table";
 
-import { useMemo } from "react"
 
-import DataTable from "@/components/ui/data-table"
 
-import Pagination from "@/components/common/Pagination"
-import { useBlog } from "@/hooks/blogs"
+import { useMemo } from "react";
 
-import { AddBlogDialog } from "./AddBlogDialog"
+
+
+import DataTable from "@/components/ui/data-table";
+
+
+
+import Pagination from "@/components/common/Pagination";
+import { useBlog } from "@/hooks/blogs";
+
+
+
+import { AddBlogDialog } from "./AddBlogDialog";
+import { usePagination } from "@/hooks/usePagination";
+
+
+
+
 
 export default function BlogsListing() {
   const { value: blog, loading } = useBlog()
+  const totalItems = Array.isArray(blog) ? blog.length : 0
+
+  const pagination = usePagination({
+    totalItems,
+    defaultItemsPerPage: 5,
+      defaultPage: 1,
+    })
+  
 
   const columns: ColumnDef<Blog>[] = useMemo(
     () => [
@@ -46,12 +67,28 @@ export default function BlogsListing() {
     []
   )
 
+  const paginatedData = Array.isArray(blog) ? blog.slice(pagination.startIndex, pagination.endIndex) : []
+
   return (
     <div className=" space-y-7">
       <AddBlogDialog />
-      <DataTable columns={columns} loading={loading} data={blog || []} />
+      <DataTable columns={columns} loading={loading} data={paginatedData} />
 
-      <Pagination totalItems={blog?.length || 0} />
+      <Pagination
+        currentPage={pagination.currentPage}
+        totalPages={pagination.totalPages}
+        itemsPerPage={pagination.itemsPerPage}
+        totalItems={totalItems}
+        startIndex={pagination.startIndex}
+        endIndex={pagination.endIndex}
+        canGoNext={pagination.canGoNext}
+        canGoPrevious={pagination.canGoPrevious}
+        onPageChange={pagination.setCurrentPage}
+        onItemsPerPageChange={pagination.setItemsPerPage}
+        onNextPage={pagination.goToNextPage}
+        onPreviousPage={pagination.goToPreviousPage}
+        getVisiblePages={pagination.getVisiblePages}
+      />
     </div>
   )
 }
