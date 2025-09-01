@@ -152,7 +152,6 @@ export default function ProductCard({
     </div>
   )
 
-
   return (
     <div
       className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-gray-200 group relative transform hover:-translate-y-1"
@@ -251,8 +250,6 @@ export default function ProductCard({
             </div>
           </>
         )}
-
-
       </div>
     </div>
   )

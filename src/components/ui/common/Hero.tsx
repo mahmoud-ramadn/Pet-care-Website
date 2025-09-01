@@ -16,14 +16,20 @@ type HeroLayoutType = {
   browser?: boolean
 }
 
-export default function Hero({ imageHero, cardUrl, MainTitle, array, preview,browser=false }: Readonly<HeroLayoutType>) {
+export default function Hero({
+  imageHero,
+  cardUrl,
+  MainTitle,
+  array,
+  preview,
+  browser = false,
+}: Readonly<HeroLayoutType>) {
   const [isVisible, setIsVisible] = useState(false)
   const [scrollY, setScrollY] = useState(0)
   const { t } = useTranslation()
 
   useEffect(() => {
     setIsVisible(true)
-
     const handleScroll = () => setScrollY(window.scrollY)
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
@@ -32,6 +38,7 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview,bro
   return (
     <div className="relative h-[100vh] min-h-[800px] w-full overflow-hidden group">
       {/* Enhanced Background with Parallax Effect */}
+      
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed transition-all duration-1000 scale-105 group-hover:scale-110"
         style={{
@@ -78,7 +85,7 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview,bro
             <span>مرحباً بكم</span>
           </div>
 
-          <h1 className="relative text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white drop-shadow-2xl leading-tight">
+          <h1 className="relative text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white drop-shadow-2xl leading-tight">
             <span className="relative inline-block">
               {MainTitle && t(MainTitle)}
               <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
@@ -90,39 +97,39 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview,bro
             <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 bg-clip-text text-transparent animate-pulse" />
           </h1>
 
-          <p className="mt-8 text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed font-medium">
+          <p className="mt-8  text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed font-medium">
             {t("adoption.description")}
           </p>
 
 
-          {browser && 
+          
+
+          {browser && (
             <div className="flex flex-col sm:flex-row gap-4 mt-10 justify-center">
               <button className="group/btn px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 hover:from-amber-600 hover:to-orange-600">
                 <span className="flex  md:justify-center  justify-center items-center gap-2">
                   ابدأ الآن
-                <div className="w-0 group-hover/btn:w-5 transition-all duration-300 overflow-hidden">
-                  <ChevronDown className="w-5 h-5 rotate-[-90deg]" />
-                </div>
-              </span>
-            </button>
-            <button className="px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-xl backdrop-blur-md hover:bg-white/10 hover:border-white/50 transition-all duration-300">
-              اعرف المزيد
-            </button>
-          </div>
-          }
+                  <div className="w-0 group-hover/btn:w-5 transition-all duration-300 overflow-hidden">
+                    <ChevronDown className="w-5 h-5 rotate-[-90deg]" />
+                  </div>
+                </span>
+              </button>
+              <button className="px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-xl backdrop-blur-md hover:bg-white/10 hover:border-white/50 transition-all duration-300">
+                اعرف المزيد
+              </button>
+            </div>
+          )}
 
-
-
-      {array && (
-        <div className="absolute  md:bottom-[-474px]  bottom-[-344px]  left-0 right-0 z-20">
-          <div className="container mx-auto px-4 pb-8">
-              <SwiperWrapper preview={preview} className="py-4">
-                {array.map((item, index) => (
-                  <div key={index}>
-                    <SquareNavigation
-                      path={item.path}
-                      className={`
-                        relative overflow-hidden flex flex-col items-center justify-center gap-6 p-8
+          {array && (
+            <div className="absolute  md:bottom-[-474px]  bottom-[-317px]  left-0 right-0 z-20">
+              <div className="container mx-auto px-4 pb-8">
+                <SwiperWrapper preview={preview} className="py-4">
+                  {array.map((item, index) => (
+                    <div key={index}>
+                      <SquareNavigation
+                        path={item.path}
+                        className={`
+                        relative overflow-hidden flex flex-col items-center justify-center gap-6 md:p-8
                         transition-all duration-300 hover:shadow-2xl rounded-2xl
                         ${
                           cardUrl === item.path
@@ -131,33 +138,41 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview,bro
                         }
                         before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/20 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-all before:duration-300
                       `}
-                      title={item.label ? t(item.label) : ""}
-                      image={item.image}
-                      imageClassName="rounded-xl shadow-md group-hover:shadow-xl transition-shadow duration-300"
-                    />
+                        title={item.label ? t(item.label) : ""}
+                        image={item.image}
+                        imageClassName="rounded-xl shadow-md group-hover:shadow-xl transition-shadow duration-300"
+                      />
 
-                    {/* Card Glow Effect */}
-                    {cardUrl === item.path && (
-                      <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 to-orange-500 rounded-2xl blur opacity-30 z-10" />
-                    )}
-                  </div>
-                ))}
-              </SwiperWrapper>
+                      {/* Card Glow Effect */}
+                      {cardUrl === item.path && (
+                        <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 to-orange-500 rounded-2xl blur opacity-30 z-10" />
+                      )}
+                    </div>
+                  ))}
+                </SwiperWrapper>
+              </div>
+            </div>
+          )}
+
+
+
+
+
+        </div>
+
+
+
+
+
+        {browser && (
+          <div className="absolute md:bottom-32 bottom-10 animate-bounce">
+            <div className="flex flex-col items-center gap-2 text-white/70">
+              <span className="text-sm font-medium">تصفح المزيد</span>
+              <ChevronDown className="w-5 h-5" />
+            </div>
           </div>
-        </div>
-      )}
-        </div>
-          {
-            browser &&
-        <div className="absolute md:bottom-32 bottom-10 animate-bounce">
-          <div className="flex flex-col items-center gap-2 text-white/70">
-            <span className="text-sm font-medium">تصفح المزيد</span>
-            <ChevronDown className="w-5 h-5" />
-          </div>
-        </div>
-          }
+        )}
       </div>
-
     </div>
   )
 }

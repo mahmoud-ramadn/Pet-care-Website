@@ -51,8 +51,6 @@ export default function Community() {
     }
   }
 
-
-
   return (
     <>
       <Helmet>
