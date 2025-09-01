@@ -68,7 +68,7 @@ export default function Services() {
         <meta name="description" content={t("services.HeroText")} />
       </Helmet>
       <div className="min-h-screen ">
-        <Hero MainTitle={t("services.HeroText")} imageHero={ProjectImages.services.HeroServices} />
+        <Hero MainTitle={t("services.HeroText")} browser={true} imageHero={ProjectImages.services.HeroServices} />
 
         {/* Enhanced Filters Section */}
         <div className=" backdrop-blur-sm border-b border-gray-200 sticky top-0 z-10 shadow-sm">

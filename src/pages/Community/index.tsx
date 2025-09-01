@@ -51,6 +51,8 @@ export default function Community() {
     }
   }
 
+
+
   return (
     <>
       <Helmet>
@@ -72,7 +74,7 @@ export default function Community() {
           <div className="space-y-6">
             {DataPosts?.map((item, index) => (
               <article
-                key={index}
+                key={item.post._id || index} // Use post ID as key for better React reconciliation
                 className="bg-background/90 backdrop-blur-sm rounded-2xl shadow-lg border border-border/50 overflow-hidden hover:shadow-2xl hover:scale-[1.01] transition-all duration-300 animate-in fade-in-up"
                 style={{ animationDelay: `${index * 100}ms` }}
               >

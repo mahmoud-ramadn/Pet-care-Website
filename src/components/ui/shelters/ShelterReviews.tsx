@@ -15,7 +15,7 @@ interface Props {
 export default function ShelterReviews({ reviews, shelterId, retry }: Props) {
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 grid-cols-1">
-      <section className="lg:col-span-3 rounded-2xl bg-white shadow-lg border border-gray-100 my-8 py-4">
+      <section className="lg:col-span-3 rounded-2xl bg-white shadow-lg border border-gray-100 my-8 p-4">
         <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
           <div className="w-1 h-8 bg-gradient-to-b from-amber-500 to-orange-500 ml-3 rounded-full"></div>
           مراجعات العملاء

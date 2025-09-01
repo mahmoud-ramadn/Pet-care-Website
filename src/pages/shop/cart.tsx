@@ -79,9 +79,9 @@ export default function Cart() {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-4 gap-12">
+          <div className="grid lg:grid-cols-5 gap-12">
             {/* Cart Items Section */}
-            <div className="lg:col-span-3 space-y-8">
+            <div className="lg:col-span-2 space-y-8">
               {!products.length ? (
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-foreground/5 to-foreground/10 rounded-3xl blur-xl opacity-50"></div>
@@ -136,7 +136,7 @@ export default function Cart() {
             </div>
 
             {/* Enhanced Order Summary */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-3">
               <div className="sticky top-8 space-y-6">
                 {/* Order Summary Card */}
                 <div className="relative">

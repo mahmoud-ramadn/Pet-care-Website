@@ -152,17 +152,6 @@ export default function ProductCard({
     </div>
   )
 
-  const renderStockStatus = () => (
-    <div
-      className={`absolute bottom-3 left-3 px-3 py-1 rounded-full text-xs font-semibold transition-all duration-300 ${
-        inStock
-          ? "bg-green-100 text-green-700 border border-green-200"
-          : "bg-red-100 text-red-700 border border-red-200"
-      } ${isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}
-    >
-      {inStock ? "In Stock" : "Out of Stock"}
-    </div>
-  )
 
   return (
     <div
@@ -209,7 +198,6 @@ export default function ProductCard({
           <>
             {renderFavoriteButton()}
             {renderQuickActions()}
-            {renderStockStatus()}
           </>
         )}
       </div>
@@ -264,12 +252,7 @@ export default function ProductCard({
           </>
         )}
 
-        {/* Stock indicator for main content */}
-        {inStock === false && (
-          <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-            <p className="text-red-700 text-sm font-medium text-center">Currently out of stock</p>
-          </div>
-        )}
+
       </div>
     </div>
   )

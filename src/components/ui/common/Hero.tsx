@@ -13,9 +13,10 @@ type HeroLayoutType = {
   array?: AdoptionNavigationLink[]
   className?: string
   preview?: number
+  browser?: boolean
 }
 
-export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: Readonly<HeroLayoutType>) {
+export default function Hero({ imageHero, cardUrl, MainTitle, array, preview,browser=false }: Readonly<HeroLayoutType>) {
   const [isVisible, setIsVisible] = useState(false)
   const [scrollY, setScrollY] = useState(0)
   const { t } = useTranslation()
@@ -93,10 +94,12 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
             {t("adoption.description")}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 mt-10 justify-center">
-            <button className="group/btn px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 hover:from-amber-600 hover:to-orange-600">
-              <span className="flex  md:justify-center  justify-center items-center gap-2">
-                ابدأ الآن
+
+          {browser && 
+            <div className="flex flex-col sm:flex-row gap-4 mt-10 justify-center">
+              <button className="group/btn px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 hover:from-amber-600 hover:to-orange-600">
+                <span className="flex  md:justify-center  justify-center items-center gap-2">
+                  ابدأ الآن
                 <div className="w-0 group-hover/btn:w-5 transition-all duration-300 overflow-hidden">
                   <ChevronDown className="w-5 h-5 rotate-[-90deg]" />
                 </div>
@@ -106,21 +109,13 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
               اعرف المزيد
             </button>
           </div>
-        </div>
+          }
 
-        <div className="absolute md:bottom-32 bottom-10 animate-bounce">
-          <div className="flex flex-col items-center gap-2 text-white/70">
-            <span className="text-sm font-medium">تصفح المزيد</span>
-            <ChevronDown className="w-5 h-5" />
-          </div>
-        </div>
-      </div>
+
 
       {array && (
-        <div className="absolute md:bottom-0    left-0 right-0 z-20">
+        <div className="absolute  md:bottom-[-474px]  bottom-[-344px]  left-0 right-0 z-20">
           <div className="container mx-auto px-4 pb-8">
-            {/* Background Blur Panel */}
-            <div className="relative backdrop-blur-md bg-black/20 rounded-2xl p-6 border border-white/10">
               <SwiperWrapper preview={preview} className="py-4">
                 {array.map((item, index) => (
                   <div key={index}>
@@ -148,10 +143,21 @@ export default function Hero({ imageHero, cardUrl, MainTitle, array, preview }: 
                   </div>
                 ))}
               </SwiperWrapper>
-            </div>
           </div>
         </div>
       )}
+        </div>
+          {
+            browser &&
+        <div className="absolute md:bottom-32 bottom-10 animate-bounce">
+          <div className="flex flex-col items-center gap-2 text-white/70">
+            <span className="text-sm font-medium">تصفح المزيد</span>
+            <ChevronDown className="w-5 h-5" />
+          </div>
+        </div>
+          }
+      </div>
+
     </div>
   )
 }
